@@ -1,0 +1,37 @@
+{
+	"name": "SapObjectCode",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sqlsrv_sap",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SQLSRV-SAP/NewQcoreDB"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "Name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "desc",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": {
+				"value": "@@SapObjectCode",
+				"type": "Expression"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

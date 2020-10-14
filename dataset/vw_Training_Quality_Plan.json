@@ -1,0 +1,55 @@
+{
+	"name": "vw_Training_Quality_Plan",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sqldb_egbi_dev",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SQLDB-EGBI-DEV/Training"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "MasterDocumentName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DocumentOwnerName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "EmployeeName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Department",
+				"type": "varchar"
+			},
+			{
+				"name": "Unit",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "NeedDocument",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "JobFunctionName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CurriculumName",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "training",
+			"table": "vw_Training_Quality_Plan"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

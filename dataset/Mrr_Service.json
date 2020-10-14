@@ -1,0 +1,144 @@
+{
+	"name": "Mrr_Service",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sqldb_egbi_dev",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SQLDB-EGBI-DEV/Service/Mrr"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "fSerialNumber",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ServiceDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "dtCheckOutDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "fServiceStepID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "InitailBOHStatus",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BOHComments",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ENV_TEMP_Type",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ENV_TEMP",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ENV_SERIAL_Number",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ENV_HUMIDITY",
+				"type": "nvarchar"
+			},
+			{
+				"name": "IsConfrimBOH",
+				"type": "bit"
+			},
+			{
+				"name": "ACKTEST_RESULT",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SWVersionCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ENV_SW_Version",
+				"type": "nvarchar"
+			},
+			{
+				"name": "IsSendToQcore",
+				"type": "bit"
+			},
+			{
+				"name": "status",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "StatusDesc",
+				"type": "nvarchar"
+			},
+			{
+				"name": "UserServiceCenterSAPID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "___office",
+				"type": "char"
+			},
+			{
+				"name": "fCreatedByID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "dtCreatedDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "fUpdatedByID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "dtUpdatedDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "__sync_to_sap_fields",
+				"type": "nvarchar"
+			},
+			{
+				"name": "IsToExport",
+				"type": "bit"
+			},
+			{
+				"name": "dtLastExportDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "srv",
+			"table": "Mrr_Service"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

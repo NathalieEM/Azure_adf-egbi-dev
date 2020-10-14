@@ -1,0 +1,130 @@
+{
+	"name": "Mrr_Rates1",
+	"properties": {
+		"activities": [
+			{
+				"name": "Mrr_Rates",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "trunct_Mrr_Rates1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"sqlReaderQuery": "SELECT * FROM (\n\tSELECT [RateDate]\n\t\t  ,[Currency]\n\t\t  ,[Rate]\n\t\t  ,DENSE_RANK() OVER (PARTITION BY [Currency] ORDER BY [RateDate] DESC) [DR1]\n\t  FROM dbo.ORTT\n) A\nWHERE A.DR1 = 1",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "AzureSqlSink"
+					},
+					"enableStaging": true,
+					"stagingSettings": {
+						"linkedServiceName": {
+							"referenceName": "AzureBlobStorage1",
+							"type": "LinkedServiceReference"
+						}
+					},
+					"enableSkipIncompatibleRow": true,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "RateDate",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								},
+								"sink": {
+									"name": "RateDate",
+									"type": "DateTime",
+									"physicalType": "datetime2"
+								}
+							},
+							{
+								"source": {
+									"name": "Currency",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "Currency",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Rate",
+									"type": "Decimal",
+									"physicalType": "decimal"
+								},
+								"sink": {
+									"name": "Rate",
+									"type": "Decimal",
+									"physicalType": "decimal"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "Rates_ORTT1",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "porf_Mrr_Rates1",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "trunct_Mrr_Rates1",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[PORF].[sp_trunc_Mrr_Rates]"
+				},
+				"linkedServiceName": {
+					"referenceName": "sqldb_sorrelbi_dev",
+					"type": "LinkedServiceReference"
+				}
+			}
+		],
+		"folder": {
+			"name": "PORF_SORREL/MRR"
+		},
+		"annotations": [],
+		"lastPublishTime": "2020-10-07T07:52:41Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

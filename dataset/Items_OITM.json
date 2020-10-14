@@ -1,0 +1,2112 @@
+{
+	"name": "Items_OITM",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sqlsrv_sap_TestNewQcoreDB_05012020",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SQLSRV-SAP/NewQcoreDB"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "ItemCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ItemName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FrgnName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ItmsGrpCod",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "CstGrpCode",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "VatGourpSa",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CodeBars",
+				"type": "nvarchar"
+			},
+			{
+				"name": "VATLiable",
+				"type": "char"
+			},
+			{
+				"name": "PrchseItem",
+				"type": "char"
+			},
+			{
+				"name": "SellItem",
+				"type": "char"
+			},
+			{
+				"name": "InvntItem",
+				"type": "char"
+			},
+			{
+				"name": "OnHand",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "IsCommited",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "OnOrder",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "IncomeAcct",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ExmptIncom",
+				"type": "nvarchar"
+			},
+			{
+				"name": "MaxLevel",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "DfltWH",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CardCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SuppCatNum",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BuyUnitMsr",
+				"type": "nvarchar"
+			},
+			{
+				"name": "NumInBuy",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "ReorderQty",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "MinLevel",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "LstEvlPric",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "LstEvlDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "CustomPer",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "Canceled",
+				"type": "char"
+			},
+			{
+				"name": "MnufctTime",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "WholSlsTax",
+				"type": "char"
+			},
+			{
+				"name": "RetilrTax",
+				"type": "char"
+			},
+			{
+				"name": "SpcialDisc",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "DscountCod",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "TrackSales",
+				"type": "char"
+			},
+			{
+				"name": "SalUnitMsr",
+				"type": "nvarchar"
+			},
+			{
+				"name": "NumInSale",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "Consig",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "QueryGroup",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Counted",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "OpenBlnc",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "EvalSystem",
+				"type": "char"
+			},
+			{
+				"name": "UserSign",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "FREE",
+				"type": "char"
+			},
+			{
+				"name": "PicturName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Transfered",
+				"type": "char"
+			},
+			{
+				"name": "BlncTrnsfr",
+				"type": "char"
+			},
+			{
+				"name": "UserText",
+				"type": "ntext"
+			},
+			{
+				"name": "SerialNum",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CommisPcnt",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "CommisSum",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "CommisGrp",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "TreeType",
+				"type": "char"
+			},
+			{
+				"name": "TreeQty",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "LastPurPrc",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "LastPurCur",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LastPurDat",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "ExitCur",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ExitPrice",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "ExitWH",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AssetItem",
+				"type": "char"
+			},
+			{
+				"name": "WasCounted",
+				"type": "char"
+			},
+			{
+				"name": "ManSerNum",
+				"type": "char"
+			},
+			{
+				"name": "SHeight1",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "SHght1Unit",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "SHeight2",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "SHght2Unit",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "SWidth1",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "SWdth1Unit",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "SWidth2",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "SWdth2Unit",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "SLength1",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "SLen1Unit",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "Slength2",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "SLen2Unit",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "SVolume",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "SVolUnit",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "SWeight1",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "SWght1Unit",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "SWeight2",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "SWght2Unit",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "BHeight1",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "BHght1Unit",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "BHeight2",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "BHght2Unit",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "BWidth1",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "BWdth1Unit",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "BWidth2",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "BWdth2Unit",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "BLength1",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "BLen1Unit",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "Blength2",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "BLen2Unit",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "BVolume",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "BVolUnit",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "BWeight1",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "BWght1Unit",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "BWeight2",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "BWght2Unit",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "FixCurrCms",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FirmCode",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "LstSalDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "QryGroup1",
+				"type": "char"
+			},
+			{
+				"name": "QryGroup2",
+				"type": "char"
+			},
+			{
+				"name": "QryGroup3",
+				"type": "char"
+			},
+			{
+				"name": "QryGroup4",
+				"type": "char"
+			},
+			{
+				"name": "QryGroup5",
+				"type": "char"
+			},
+			{
+				"name": "QryGroup6",
+				"type": "char"
+			},
+			{
+				"name": "QryGroup7",
+				"type": "char"
+			},
+			{
+				"name": "QryGroup8",
+				"type": "char"
+			},
+			{
+				"name": "QryGroup9",
+				"type": "char"
+			},
+			{
+				"name": "QryGroup10",
+				"type": "char"
+			},
+			{
+				"name": "QryGroup11",
+				"type": "char"
+			},
+			{
+				"name": "QryGroup12",
+				"type": "char"
+			},
+			{
+				"name": "QryGroup13",
+				"type": "char"
+			},
+			{
+				"name": "QryGroup14",
+				"type": "char"
+			},
+			{
+				"name": "QryGroup15",
+				"type": "char"
+			},
+			{
+				"name": "QryGroup16",
+				"type": "char"
+			},
+			{
+				"name": "QryGroup17",
+				"type": "char"
+			},
+			{
+				"name": "QryGroup18",
+				"type": "char"
+			},
+			{
+				"name": "QryGroup19",
+				"type": "char"
+			},
+			{
+				"name": "QryGroup20",
+				"type": "char"
+			},
+			{
+				"name": "QryGroup21",
+				"type": "char"
+			},
+			{
+				"name": "QryGroup22",
+				"type": "char"
+			},
+			{
+				"name": "QryGroup23",
+				"type": "char"
+			},
+			{
+				"name": "QryGroup24",
+				"type": "char"
+			},
+			{
+				"name": "QryGroup25",
+				"type": "char"
+			},
+			{
+				"name": "QryGroup26",
+				"type": "char"
+			},
+			{
+				"name": "QryGroup27",
+				"type": "char"
+			},
+			{
+				"name": "QryGroup28",
+				"type": "char"
+			},
+			{
+				"name": "QryGroup29",
+				"type": "char"
+			},
+			{
+				"name": "QryGroup30",
+				"type": "char"
+			},
+			{
+				"name": "QryGroup31",
+				"type": "char"
+			},
+			{
+				"name": "QryGroup32",
+				"type": "char"
+			},
+			{
+				"name": "QryGroup33",
+				"type": "char"
+			},
+			{
+				"name": "QryGroup34",
+				"type": "char"
+			},
+			{
+				"name": "QryGroup35",
+				"type": "char"
+			},
+			{
+				"name": "QryGroup36",
+				"type": "char"
+			},
+			{
+				"name": "QryGroup37",
+				"type": "char"
+			},
+			{
+				"name": "QryGroup38",
+				"type": "char"
+			},
+			{
+				"name": "QryGroup39",
+				"type": "char"
+			},
+			{
+				"name": "QryGroup40",
+				"type": "char"
+			},
+			{
+				"name": "QryGroup41",
+				"type": "char"
+			},
+			{
+				"name": "QryGroup42",
+				"type": "char"
+			},
+			{
+				"name": "QryGroup43",
+				"type": "char"
+			},
+			{
+				"name": "QryGroup44",
+				"type": "char"
+			},
+			{
+				"name": "QryGroup45",
+				"type": "char"
+			},
+			{
+				"name": "QryGroup46",
+				"type": "char"
+			},
+			{
+				"name": "QryGroup47",
+				"type": "char"
+			},
+			{
+				"name": "QryGroup48",
+				"type": "char"
+			},
+			{
+				"name": "QryGroup49",
+				"type": "char"
+			},
+			{
+				"name": "QryGroup50",
+				"type": "char"
+			},
+			{
+				"name": "QryGroup51",
+				"type": "char"
+			},
+			{
+				"name": "QryGroup52",
+				"type": "char"
+			},
+			{
+				"name": "QryGroup53",
+				"type": "char"
+			},
+			{
+				"name": "QryGroup54",
+				"type": "char"
+			},
+			{
+				"name": "QryGroup55",
+				"type": "char"
+			},
+			{
+				"name": "QryGroup56",
+				"type": "char"
+			},
+			{
+				"name": "QryGroup57",
+				"type": "char"
+			},
+			{
+				"name": "QryGroup58",
+				"type": "char"
+			},
+			{
+				"name": "QryGroup59",
+				"type": "char"
+			},
+			{
+				"name": "QryGroup60",
+				"type": "char"
+			},
+			{
+				"name": "QryGroup61",
+				"type": "char"
+			},
+			{
+				"name": "QryGroup62",
+				"type": "char"
+			},
+			{
+				"name": "QryGroup63",
+				"type": "char"
+			},
+			{
+				"name": "QryGroup64",
+				"type": "char"
+			},
+			{
+				"name": "CreateDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "UpdateDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "ExportCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SalFactor1",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "SalFactor2",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "SalFactor3",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "SalFactor4",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "PurFactor1",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "PurFactor2",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "PurFactor3",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "PurFactor4",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "SalFormula",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PurFormula",
+				"type": "nvarchar"
+			},
+			{
+				"name": "VatGroupPu",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AvgPrice",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "PurPackMsr",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PurPackUn",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "SalPackMsr",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SalPackUn",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "SCNCounter",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "ManBtchNum",
+				"type": "char"
+			},
+			{
+				"name": "ManOutOnly",
+				"type": "char"
+			},
+			{
+				"name": "DataSource",
+				"type": "char"
+			},
+			{
+				"name": "validFor",
+				"type": "char"
+			},
+			{
+				"name": "validFrom",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "validTo",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "frozenFor",
+				"type": "char"
+			},
+			{
+				"name": "frozenFrom",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "frozenTo",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "BlockOut",
+				"type": "char"
+			},
+			{
+				"name": "ValidComm",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FrozenComm",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LogInstanc",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ObjType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SWW",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Deleted",
+				"type": "char"
+			},
+			{
+				"name": "DocEntry",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ExpensAcct",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FrgnInAcct",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ShipType",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "GLMethod",
+				"type": "char"
+			},
+			{
+				"name": "ECInAcct",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FrgnExpAcc",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ECExpAcc",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TaxType",
+				"type": "char"
+			},
+			{
+				"name": "ByWh",
+				"type": "char"
+			},
+			{
+				"name": "WTLiable",
+				"type": "char"
+			},
+			{
+				"name": "ItemType",
+				"type": "char"
+			},
+			{
+				"name": "WarrntTmpl",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BaseUnit",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CountryOrg",
+				"type": "nvarchar"
+			},
+			{
+				"name": "StockValue",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "Phantom",
+				"type": "char"
+			},
+			{
+				"name": "IssueMthd",
+				"type": "char"
+			},
+			{
+				"name": "FREE1",
+				"type": "char"
+			},
+			{
+				"name": "PricingPrc",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "MngMethod",
+				"type": "char"
+			},
+			{
+				"name": "ReorderPnt",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "InvntryUom",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PlaningSys",
+				"type": "char"
+			},
+			{
+				"name": "PrcrmntMtd",
+				"type": "char"
+			},
+			{
+				"name": "OrdrIntrvl",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "OrdrMulti",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "MinOrdrQty",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "LeadTime",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "IndirctTax",
+				"type": "char"
+			},
+			{
+				"name": "TaxCodeAR",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TaxCodeAP",
+				"type": "nvarchar"
+			},
+			{
+				"name": "OSvcCode",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ISvcCode",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ServiceGrp",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "NCMCode",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "MatType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "MatGrp",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ProductSrc",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ServiceCtg",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ItemClass",
+				"type": "char"
+			},
+			{
+				"name": "Excisable",
+				"type": "char"
+			},
+			{
+				"name": "ChapterID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "NotifyASN",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ProAssNum",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AssblValue",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "DNFEntry",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "UserSign2",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "Spec",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TaxCtg",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Series",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "Number",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "FuelCode",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "BeverTblC",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BeverGrpC",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BeverTM",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Attachment",
+				"type": "ntext"
+			},
+			{
+				"name": "AtcEntry",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ToleranDay",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "UgpEntry",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PUoMEntry",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SUoMEntry",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "IUoMEntry",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "IssuePriBy",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "AssetClass",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AssetGroup",
+				"type": "nvarchar"
+			},
+			{
+				"name": "InventryNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Technician",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Employee",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Location",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "StatAsset",
+				"type": "char"
+			},
+			{
+				"name": "Cession",
+				"type": "char"
+			},
+			{
+				"name": "DeacAftUL",
+				"type": "char"
+			},
+			{
+				"name": "AsstStatus",
+				"type": "char"
+			},
+			{
+				"name": "CapDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "AcqDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "RetDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "GLPickMeth",
+				"type": "char"
+			},
+			{
+				"name": "NoDiscount",
+				"type": "char"
+			},
+			{
+				"name": "MgrByQty",
+				"type": "char"
+			},
+			{
+				"name": "AssetRmk1",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AssetRmk2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AssetAmnt1",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "AssetAmnt2",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "DeprGroup",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AssetSerNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CntUnitMsr",
+				"type": "nvarchar"
+			},
+			{
+				"name": "NumInCnt",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "INUoMEntry",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "OneBOneRec",
+				"type": "char"
+			},
+			{
+				"name": "RuleCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ScsCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SpProdType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "IWeight1",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "IWght1Unit",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "IWeight2",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "IWght2Unit",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "CompoWH",
+				"type": "char"
+			},
+			{
+				"name": "CreateTS",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "UpdateTS",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "U_location_2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_SCmovAvgPrice",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "U_ProductType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_BOMnotes",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_BOY_TB_0",
+				"type": "char"
+			},
+			{
+				"name": "U_FromSerial",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "U_ToSerial",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "U_HosPN",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_USTariff",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_EUTariff",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_kzbuchng",
+				"type": "char"
+			},
+			{
+				"name": "U_kzdruck",
+				"type": "char"
+			},
+			{
+				"name": "U_aussch",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "U_din",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_me_lager",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_me_verbr",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_losgr",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "U_match",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_sachb_id",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_wbz",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "U_wst_id",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_znr",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_kalk_pr",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "U_dispo",
+				"type": "char"
+			},
+			{
+				"name": "U_ke",
+				"type": "char"
+			},
+			{
+				"name": "U_gruppe",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_picture2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_picture3",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_bestellt",
+				"type": "ntext"
+			},
+			{
+				"name": "U_text_d",
+				"type": "ntext"
+			},
+			{
+				"name": "U_text_eng",
+				"type": "ntext"
+			},
+			{
+				"name": "U_sa",
+				"type": "char"
+			},
+			{
+				"name": "U_form",
+				"type": "char"
+			},
+			{
+				"name": "U_un_nr",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_vg",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_nag",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_nag_eng",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_zollt",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_spezgew",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "U_verschn",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_brgew",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "U_batchroh",
+				"type": "char"
+			},
+			{
+				"name": "U_prccode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_bereitst",
+				"type": "char"
+			},
+			{
+				"name": "U_verfb",
+				"type": "ntext"
+			},
+			{
+				"name": "U_uland",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_losgr_ka",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "U_kalksche",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_beasprio",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "U_haltbark",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "U_haltbar2",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "U_beas_vri",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "U_beas_ver",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_beas_caf",
+				"type": "ntext"
+			},
+			{
+				"name": "U_beas_kumulierung",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_beas_shortvariantd",
+				"type": "ntext"
+			},
+			{
+				"name": "U_beas_prodrelease",
+				"type": "char"
+			},
+			{
+				"name": "U_beas_mps",
+				"type": "char"
+			},
+			{
+				"name": "U_DLN",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_510K",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_FDA",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_PrdLblPath",
+				"type": "ntext"
+			},
+			{
+				"name": "U_SPckLblPath",
+				"type": "ntext"
+			},
+			{
+				"name": "U_MPckLblPath",
+				"type": "ntext"
+			},
+			{
+				"name": "U_NextSN",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "U_QBupdate",
+				"type": "char"
+			},
+			{
+				"name": "U_SW_Item_Version",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_ChangeSet",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_MaPrice",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "U_MaPriceU",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "U_ExistInQB",
+				"type": "char"
+			},
+			{
+				"name": "U_TargetMarket",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_IssuingAgency",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_PrimaryDINumber",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_DeviceCount",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "U_UnitofUseDINum",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_LabelerDUNSNumbe",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_BrandName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_VersionoModel",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_CatalogNumber",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_DIRecordPublish",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "U_CoDistribuEndDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "U_DMDINumber",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_SeconIssuingAgency",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_SecondaryDINumber",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_PackageDINumber",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_QtyperPackage",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "U_ContainsDIPackage",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_PackageType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_PackDiscontinueDat",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "U_CustContactPhone",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_DeviceDesc",
+				"type": "ntext"
+			},
+			{
+				"name": "U_DevSubDirMarking",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_DMDIDifferfromPr",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_CustcontactEmail",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_HumanCellTissue",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_Kit",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_CombinationProduct",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_DeviceExePreSub",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_FDAPreSubNum",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_SupplementNum",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "U_ProductCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_FDAListingNum",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_Code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_ForSingleUse",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_LotorBatchNum",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_ManufacturingDate",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_SerialNum",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_ExpirationDate",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_DonationIdenNum",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_LabelLatex",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_Labeledasnotlatex",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_PrescriptionUse",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_OvertheCounter",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_SizeType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_SizeValue",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "U_SizeuniMeasure",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_SizeTypeText",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_StorageHandling",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_LowValue",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "U_HighValue",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "U_UnitMeasure",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_SpecialStorCondi",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_DevPackSterile",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_ReqSterillization",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_SterllizationMeth",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_MRI",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_PCBShape",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_DSLink",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_Value",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_Planner",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_ItemGroup",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_OrcadSymbol",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_ServiceReoDesc",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_RepairLevel",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_CriticalComp",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_SPComments",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_BS_Scan",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_BS_Suffix",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_BS_StickXpress",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_GroupType",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "U_MaterialNum",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_MaterialDesc",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_Buyer",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_KitLabel",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_BoxLabel",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_Kit_Rev",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_Box_Rev",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_PrintTest",
+				"type": "char"
+			},
+			{
+				"name": "U_QA_App",
+				"type": "char"
+			},
+			{
+				"name": "U_SingleLabel",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_MultiLabel",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_Single_Rev",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_Multi_Rev",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_DeviceLabel",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_Device_Rev",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_EOL",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_EolFrom",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "U_SWEOL",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_SWEolFrom",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "OITM"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

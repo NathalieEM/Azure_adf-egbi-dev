@@ -1,0 +1,356 @@
+{
+	"name": "Mrr_Oitw",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sqldb_egbi_dev",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SQLDB-EGBI-DEV/SAP"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ItemCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "WhsCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "OnHand",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "IsCommited",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "OnOrder",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "Consig",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "Counted",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "WasCounted",
+				"type": "char"
+			},
+			{
+				"name": "UserSign",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "MinStock",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "MaxStock",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "MinOrder",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "AvgPrice",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "Locked",
+				"type": "char"
+			},
+			{
+				"name": "BalInvntAc",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SaleCostAc",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TransferAc",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RevenuesAc",
+				"type": "nvarchar"
+			},
+			{
+				"name": "VarianceAc",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DecreasAc",
+				"type": "nvarchar"
+			},
+			{
+				"name": "IncreasAc",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ReturnAc",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ExpensesAc",
+				"type": "nvarchar"
+			},
+			{
+				"name": "EURevenuAc",
+				"type": "nvarchar"
+			},
+			{
+				"name": "EUExpensAc",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FrRevenuAc",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FrExpensAc",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ExmptIncom",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PriceDifAc",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ExchangeAc",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BalanceAcc",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PurchaseAc",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PAReturnAc",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PurchOfsAc",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ShpdGdsAct",
+				"type": "nvarchar"
+			},
+			{
+				"name": "VatRevAct",
+				"type": "nvarchar"
+			},
+			{
+				"name": "StockValue",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "DecresGlAc",
+				"type": "nvarchar"
+			},
+			{
+				"name": "IncresGlAc",
+				"type": "nvarchar"
+			},
+			{
+				"name": "StokRvlAct",
+				"type": "nvarchar"
+			},
+			{
+				"name": "StkOffsAct",
+				"type": "nvarchar"
+			},
+			{
+				"name": "WipAcct",
+				"type": "nvarchar"
+			},
+			{
+				"name": "WipVarAcct",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CostRvlAct",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CstOffsAct",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ExpClrAct",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ExpOfstAct",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Object",
+				"type": "nvarchar"
+			},
+			{
+				"name": "logInstanc",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "createDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "userSign2",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "updateDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "ARCMAct",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ARCMFrnAct",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ARCMEUAct",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ARCMExpAct",
+				"type": "nvarchar"
+			},
+			{
+				"name": "APCMAct",
+				"type": "nvarchar"
+			},
+			{
+				"name": "APCMFrnAct",
+				"type": "nvarchar"
+			},
+			{
+				"name": "APCMEUAct",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RevRetAct",
+				"type": "nvarchar"
+			},
+			{
+				"name": "NegStckAct",
+				"type": "nvarchar"
+			},
+			{
+				"name": "StkInTnAct",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PurBalAct",
+				"type": "nvarchar"
+			},
+			{
+				"name": "WhICenAct",
+				"type": "nvarchar"
+			},
+			{
+				"name": "WhOCenAct",
+				"type": "nvarchar"
+			},
+			{
+				"name": "WipOffset",
+				"type": "nvarchar"
+			},
+			{
+				"name": "StockOffst",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DftBinAbs",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "DftBinEnfd",
+				"type": "char"
+			},
+			{
+				"name": "Freezed",
+				"type": "char"
+			},
+			{
+				"name": "FreezeDoc",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "FreeChrgSA",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FreeChrgPU",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_Location",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_Quanta",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "U_KanbanQty",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "sap",
+			"table": "Mrr_Oitw"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

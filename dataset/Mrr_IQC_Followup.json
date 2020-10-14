@@ -1,0 +1,133 @@
+{
+	"name": "Mrr_IQC_Followup",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sqldb_egbi_dev",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SQLDB-EGBI-DEV/ScoreCards/Mrr"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "Part Name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Supplier Cod",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Lot Source Supplier / Q Core",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Supplier",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Drawing Number",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Rev number",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Product belongs to",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Date of receipt",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Y/M Receipt",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Archive Location",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Batch #",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Total Qty. Received",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Sample Size",
+				"type": "nvarchar"
+			},
+			{
+				"name": "End date (end of IQC)",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Y/M End",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Time from receipt to release (days)",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Batch Disposition (Pass/Fail)",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Production (Pass/fail)",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Comments",
+				"type": "nvarchar"
+			},
+			{
+				"name": "MRB source (IQC/Production)",
+				"type": "nvarchar"
+			},
+			{
+				"name": "MRB #",
+				"type": "nvarchar"
+			},
+			{
+				"name": "MRB Disposition",
+				"type": "nvarchar"
+			},
+			{
+				"name": "final release date (after MRB)",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Documentation",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Dimensions",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Visual",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Functional",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Other",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "ScoreCards",
+			"table": "Mrr_IQC_Followup"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

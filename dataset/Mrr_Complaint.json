@@ -1,0 +1,447 @@
+{
+	"name": "Mrr_Complaint",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sqldb_egbi_dev",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SQLDB-EGBI-DEV/Service/Mrr"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "fSerialNumber",
+				"type": "nvarchar"
+			},
+			{
+				"name": "callID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "u_ootbfail",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Descr",
+				"type": "nvarchar"
+			},
+			{
+				"name": "status",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "StatusDesc",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_Fixapproval",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_WhoExperienced",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "U_SwVer",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_SendToHSPGSC",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_ReportedBy",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_RepByTitle",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_RecordId",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_Quantity",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "U_QBupdate",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_ProductNotes",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_ProblemObserved",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "U_PatientInv",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "U_PatInvDet",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_OotbOtherDetails",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_OccuredAt",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_IntakeFilledBy",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_HumanHarmDet",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_HumanHarm",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_HotList",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_Finalevaluletter",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_Event_Log_Req",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_EqReturnReq",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_Description",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_Date_Event_Log",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_CustomerType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_CPTitle",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_CP_Phone",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_CP_Email",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_CP",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_CompDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "U_CaseNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_Batch",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_Arrival_Event_Log",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_AppBy1Date",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "U_AppBy1",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_AckDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "Subject",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Street",
+				"type": "nvarchar"
+			},
+			{
+				"name": "State",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Room",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_Date_Pump_Req",
+				"type": "nvarchar"
+			},
+			{
+				"name": "closeDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "itemName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "itemCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "internalSN__NoUse",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Descrption",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Customer",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "custmrName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Country",
+				"type": "nvarchar"
+			},
+			{
+				"name": "City",
+				"type": "nvarchar"
+			},
+			{
+				"name": "callType",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "U_FixInstructiField",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_FixDesc",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_cp_fax",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_WhoExperiencedOth",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_DistLogedDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "u_unresponse",
+				"type": "nvarchar"
+			},
+			{
+				"name": "dtUpdated_FromSAP",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "___NEW_FIELDS",
+				"type": "nchar"
+			},
+			{
+				"name": "_FieldsNotQB",
+				"type": "char"
+			},
+			{
+				"name": "U_RepByPhone",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_OccuredAt_Other",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_AckDate_Unknown",
+				"type": "bit"
+			},
+			{
+				"name": "U_Delay_Therapy",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "U_Delay_TherapyDetails",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_Medical_Intervention",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "U_Medical_InterventionDetails",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_Alarm_Settings",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_Type_Of_Drug",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_Prime_Performed",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "U_Portal_Description",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_Product_Customer",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "DistributerNum",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DistributerName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_AckDate_Hour",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SWVersion",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_SendToQCoreDesc",
+				"type": "nvarchar"
+			},
+			{
+				"name": "fProductID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "fServiceID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ComplaintSource",
+				"type": "nvarchar"
+			},
+			{
+				"name": "IsCompleted",
+				"type": "bit"
+			},
+			{
+				"name": "IsReleasePump",
+				"type": "bit"
+			},
+			{
+				"name": "___office",
+				"type": "char"
+			},
+			{
+				"name": "fCreatedByID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "dtCreatedDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "fUpdatedByID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "dtUpdatedDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "__sync_to_sap_fields",
+				"type": "nvarchar"
+			},
+			{
+				"name": "dtExportDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "dtQuickBaseExportDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "srv",
+			"table": "Mrr_Complaint"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

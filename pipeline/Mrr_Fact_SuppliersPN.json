@@ -1,0 +1,141 @@
+{
+	"name": "Mrr_Fact_SuppliersPN",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy Mrr_Fact_SuppliersPN",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "trunc Mrr_Fact_SuppliersPN",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": "select distinct ItemCode,T0.CardCode,T1.CardName,U_ScoreCard from sap.Mrr_OSCN T0\nleft join sap.Mrr_OCRD_replica T1 on T0.cardcode=T1.cardcode",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "AzureSqlSink"
+					},
+					"enableStaging": true,
+					"stagingSettings": {
+						"linkedServiceName": {
+							"referenceName": "AzureBlobStorage1",
+							"type": "LinkedServiceReference"
+						}
+					},
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "ItemCode",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "ItemCode",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CardCode",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "SupplierID",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CardName",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "SupplierName",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "U_ScoreCard",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "ScoreCard",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "Mrr_Fact_SuppliersPN",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Dwh_fact_supplierspn",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "trunc Mrr_Fact_SuppliersPN",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[ScoreCards].[sp_trunc_Dwh_Fact_SuppliersPN]"
+				},
+				"linkedServiceName": {
+					"referenceName": "sqldb_egbi_dev",
+					"type": "LinkedServiceReference"
+				}
+			}
+		],
+		"folder": {
+			"name": "ScoreCards/Mrr"
+		},
+		"annotations": [],
+		"lastPublishTime": "2020-09-08T12:34:39Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

@@ -1,0 +1,110 @@
+{
+	"name": "SAP_Mrr_CUFD",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sqldb_egbi_dev",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SQLDB-EGBI-DEV/SAP"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ETL_ID",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "ETL_Timestamp",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "TableID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FieldID",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "AliasID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Descr",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TypeID",
+				"type": "char"
+			},
+			{
+				"name": "EditType",
+				"type": "char"
+			},
+			{
+				"name": "SizeID",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "EditSize",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "Dflt",
+				"type": "nvarchar"
+			},
+			{
+				"name": "NotNull",
+				"type": "char"
+			},
+			{
+				"name": "IndexID",
+				"type": "char"
+			},
+			{
+				"name": "RTable",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RField",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "Action",
+				"type": "char"
+			},
+			{
+				"name": "Sys",
+				"type": "char"
+			},
+			{
+				"name": "DfltDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "RelUDO",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ValidRule",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "sap",
+			"table": "Mrr_CUFD"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

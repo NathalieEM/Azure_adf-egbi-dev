@@ -1,0 +1,309 @@
+{
+	"name": "Stg_Fact_ComplaintHeader",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy Stg_Fact_ComplaintHeader",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "sp_trunc_Stg_Fact_ComplaintHeader",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": "select \n cast(c.id as nvarchar) as U_PortalID\n,c.fSerialNumber\n,c.callID\n,c.status\n,c.dtCreatedDate \n,c.Subject\n,c.closeDate\n,c.itemName\n,c.itemCode\n,c.Customer\n,c.custmrName\n,c.callType\n,c.ComplaintSource\n,s.servicedate\n,s.dtcheckoutdate\n,cast(s.status as nvarchar) serviceStatus\n,s.fcreatedbyid\n,s.UserServiceCenterSAPID\nfrom srv.Mrr_Complaint C\nleft join srv.Mrr_Service   S on C.fServiceID = S.ID\n\nunion all\n\nselect \n U_PortalID\n,internalSN\n,callid\n,status\n,U_CompDate\n,subject\n,closeDate\n,itemName\n,itemCode\n,customer\n,custmrName\n,callType\n,NULL as ComplaintSource\n,U_ServiceDate\n,U_dtcheckoutdate\n,U_ServiceStatus\n,cast(userSign as int) userSign\n,U_UserServiceCenter\nfrom sap.Mrr_OSCL",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "AzureSqlSink"
+					},
+					"enableStaging": true,
+					"stagingSettings": {
+						"linkedServiceName": {
+							"referenceName": "st_error_log",
+							"type": "LinkedServiceReference"
+						}
+					},
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "U_PortalID",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "U_PortalID",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "fSerialNumber",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "fSerialNumber",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "callID",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "callID",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "status",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "status",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "dtCreatedDate",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								},
+								"sink": {
+									"name": "dtCreatedDate",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								}
+							},
+							{
+								"source": {
+									"name": "Subject",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "Subject",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "closeDate",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								},
+								"sink": {
+									"name": "closeDate",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								}
+							},
+							{
+								"source": {
+									"name": "itemName",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "itemName",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "itemCode",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "itemCode",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Customer",
+									"type": "Double",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "Customer",
+									"type": "Double",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "custmrName",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "custmrName",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "callType",
+									"type": "Double",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "callType",
+									"type": "Double",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "ComplaintSource",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "ComplaintSource",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "servicedate",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								},
+								"sink": {
+									"name": "servicedate",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								}
+							},
+							{
+								"source": {
+									"name": "dtcheckoutdate",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								},
+								"sink": {
+									"name": "dtcheckoutdate",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								}
+							},
+							{
+								"source": {
+									"name": "serviceStatus",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "serviceStatus",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "fcreatedbyid",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "fcreatedbyid",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "UserServiceCenterSAPID",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "UserServiceCenterSAPID",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "Mrr_Complaint",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Stg_Fact_ComplaintHeader",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "sp_trunc_Stg_Fact_ComplaintHeader",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[srv].[sp_trunc_Stg_Fact_ComplaintHeader]"
+				},
+				"linkedServiceName": {
+					"referenceName": "sqldb_egbi_dev",
+					"type": "LinkedServiceReference"
+				}
+			}
+		],
+		"folder": {
+			"name": "Service/Stg"
+		},
+		"annotations": [],
+		"lastPublishTime": "2020-09-29T14:10:08Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

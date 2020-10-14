@@ -1,0 +1,59 @@
+{
+	"name": "EDHR_MRR_Device",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sqldb_egbi_dev",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SQLDB-EGBI-DEV/EDHR"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ETL_ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ETL_Timestamp",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SerialNumber",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Comments",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Brand",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PartNumber",
+				"type": "nvarchar"
+			},
+			{
+				"name": "OwnerGroup",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "EDHR",
+			"table": "Mrr_Device"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

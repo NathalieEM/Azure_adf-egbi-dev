@@ -1,0 +1,483 @@
+{
+	"name": "Mrr_SF_Departments",
+	"properties": {
+		"activities": [
+			{
+				"name": "Mrr_SF_Departments",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Trunc_Mrr_Department",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "get watermark",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SalesforceSource",
+						"query": {
+							"value": "select * from CompSuite__Department__c\nWHERE LastModifiedDate >= '@{activity('get watermark').output.firstRow.highValue}'",
+							"type": "Expression"
+						},
+						"readBehavior": "query"
+					},
+					"sink": {
+						"type": "AzureSqlSink"
+					},
+					"enableStaging": false,
+					"enableSkipIncompatibleRow": true,
+					"logStorageSettings": {
+						"linkedServiceName": {
+							"referenceName": "st_error_log",
+							"type": "LinkedServiceReference"
+						},
+						"path": "adf-errorlogs-dev"
+					},
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "Id",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Id",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "OwnerId",
+									"type": "String"
+								},
+								"sink": {
+									"name": "OwnerId",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "IsDeleted",
+									"type": "Boolean"
+								},
+								"sink": {
+									"name": "IsDeleted",
+									"type": "Boolean",
+									"physicalType": "bit"
+								}
+							},
+							{
+								"source": {
+									"name": "Name",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Name",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CreatedDate",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "CreatedDate",
+									"type": "DateTime",
+									"physicalType": "datetime2"
+								}
+							},
+							{
+								"source": {
+									"name": "CreatedById",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CreatedById",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "LastModifiedDate",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "LastModifiedDate",
+									"type": "DateTime",
+									"physicalType": "datetime2"
+								}
+							},
+							{
+								"source": {
+									"name": "LastModifiedById",
+									"type": "String"
+								},
+								"sink": {
+									"name": "LastModifiedById",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SystemModstamp",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "SystemModstamp",
+									"type": "DateTime",
+									"physicalType": "datetime2"
+								}
+							},
+							{
+								"source": {
+									"name": "LastActivityDate",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "LastActivityDate",
+									"type": "DateTime",
+									"physicalType": "datetime2"
+								}
+							},
+							{
+								"source": {
+									"name": "LastViewedDate",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "LastViewedDate",
+									"type": "DateTime",
+									"physicalType": "datetime2"
+								}
+							},
+							{
+								"source": {
+									"name": "LastReferencedDate",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "LastReferencedDate",
+									"type": "DateTime",
+									"physicalType": "datetime2"
+								}
+							},
+							{
+								"source": {
+									"name": "CompSuite__Department_Details__c",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CompSuite__Department_Details__c",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CompSuite__Department_Fax__c",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CompSuite__Department_Fax__c",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CompSuite__Department_Number__c",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CompSuite__Department_Number__c",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CompSuite__Department_Phone__c",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CompSuite__Department_Phone__c",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CompSuite__Life_Cycle_Comments__c",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CompSuite__Life_Cycle_Comments__c",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CompSuite__Lock_Fields__c",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CompSuite__Lock_Fields__c",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CompSuite__State__c",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CompSuite__State__c",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Company__c",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Company__c",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "SF_Departments",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Training_Mrr_SF_Departments",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Trunc_Mrr_Department",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[training].[sp_trunc_Mrr_SF_Departments]"
+				},
+				"linkedServiceName": {
+					"referenceName": "sqldb_egbi_dev",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "get watermark",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": "SELECT [highValue]\nFROM [watermarks].[highValues]\nWHERE [tableName] = 'Mrr_SF_Departments_replica'",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "watermarks_highValues",
+						"type": "DatasetReference"
+					}
+				}
+			},
+			{
+				"name": "Set Watermark",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "upsert",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[watermarks].[sp_set_watermark]",
+					"storedProcedureParameters": {
+						"columnName": {
+							"value": "LastModifiedDate",
+							"type": "String"
+						},
+						"schemaName": {
+							"value": "training",
+							"type": "String"
+						},
+						"tableName": {
+							"value": "Mrr_SF_Departments_replica",
+							"type": "String"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "sqldb_egbi_dev",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "stream activity - copy",
+				"type": "WebActivity",
+				"dependsOn": [
+					{
+						"activity": "Mrr_SF_Departments",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://api.powerbi.com/beta/7ef15b48-e070-48c2-b1c5-86e2488d6058/datasets/be953ba9-8789-435d-9add-fb35836ab916/rows?key=29QqE0bnK0yio0X2c1eZoMdV4XGuyh70Gfnxlbo5gXM9CXKFx4tWH%2F7Kv%2Ff5InszefKuhEMq%2FCNwqEhTP8JPfA%3D%3D",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json"
+					},
+					"body": {
+						"value": "\n[\n{\n\"Timestamp\" :\"@{utcnow()}\",\n\"Factory Name\" :\"@{pipeline().DataFactory}\",\n\"Pipeline Name\" :\"@{pipeline().Pipeline}\",\n\"Pipeline Run Id\" :\"@{pipeline().RunId}\",\n\"Activity Name\" :\"Mrr_SF_Departments - Copy\",\n\"Copy Activity - Rows Read\" :@{activity('Mrr_SF_Departments').output.rowsRead},\n\"Copy Activity - Rows Written\" :@{activity('Mrr_SF_Departments').output.rowsCopied},\n\"Copy Activity - Rows Skipped\" :@{activity('Mrr_SF_Departments').output.rowsSkipped}\n}\n]",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "upsert",
+				"type": "Lookup",
+				"dependsOn": [
+					{
+						"activity": "Mrr_SF_Departments",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderStoredProcedureName": "[training].[sp_Merge_Mrr_SF_Departments]",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "Training_Mrr_SF_Departments",
+						"type": "DatasetReference"
+					}
+				}
+			},
+			{
+				"name": "stream activity - merge",
+				"type": "WebActivity",
+				"dependsOn": [
+					{
+						"activity": "upsert",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://api.powerbi.com/beta/7ef15b48-e070-48c2-b1c5-86e2488d6058/datasets/be953ba9-8789-435d-9add-fb35836ab916/rows?key=29QqE0bnK0yio0X2c1eZoMdV4XGuyh70Gfnxlbo5gXM9CXKFx4tWH%2F7Kv%2Ff5InszefKuhEMq%2FCNwqEhTP8JPfA%3D%3D",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json"
+					},
+					"body": {
+						"value": "[\n{\n\"Timestamp\" :\"@{utcnow()}\",\n\"Factory Name\" :\"@{pipeline().DataFactory}\",\n\"Pipeline Name\" :\"@{pipeline().Pipeline}\",\n\"Pipeline Run Id\" :\"@{pipeline().RunId}\",\n\"Activity Name\" :\"Mrr_SF_Departments - Merge\",\n\"Merge Activity - Insert\" :@{if(\ncontains(activity('upsert').output,'firstRow'),\nactivity('upsert').output.firstRow.INSERT,\n0)},\n\"Merge Activity - Update\" :@{if(\ncontains(activity('upsert').output,'firstRow'),\nactivity('upsert').output.firstRow.UPDATE,\n0)}\n}\n]",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"folder": {
+			"name": "Training/Mrr"
+		},
+		"annotations": [],
+		"lastPublishTime": "2020-08-18T13:00:26Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

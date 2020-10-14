@@ -1,0 +1,16 @@
+{
+	"name": "SAP_Sorrel",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "SqlServer",
+		"typeProperties": {
+			"connectionString": "integrated security=False;data source=sap;initial catalog=TESTSorrelDB_25022020;user id=sa",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJlNmMyMjY5ZC1jN2VlLTRhNmEtYmRlMC0zNWMyYzM2YmQwOGEiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "ir-sap",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

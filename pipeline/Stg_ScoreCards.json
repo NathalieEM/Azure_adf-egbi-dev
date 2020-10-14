@@ -1,0 +1,65 @@
+{
+	"name": "Stg_ScoreCards",
+	"properties": {
+		"activities": [
+			{
+				"name": "Execute Stg_IQC_Followup",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Stg_IQC_Followup",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Execute Stg_ScarLog",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Stg_ScarLog",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Execute Stg_Suppliers_Audit_Activities_Followup",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Stg_Suppliers_Audit_Activities_Followup",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Execute Stg_Suppiers_OTD",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Stg_Suppiers_OTD",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			}
+		],
+		"folder": {
+			"name": "ScoreCards"
+		},
+		"annotations": [],
+		"lastPublishTime": "2020-08-18T13:00:27Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

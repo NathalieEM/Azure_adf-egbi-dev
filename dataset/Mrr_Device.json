@@ -1,0 +1,48 @@
+{
+	"name": "Mrr_Device",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sql_rptsrv",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SQLSRV-RPTSRV/EDHR"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "_SerialNumber",
+				"type": "nvarchar"
+			},
+			{
+				"name": "_Comments",
+				"type": "ntext"
+			},
+			{
+				"name": "_Brand",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "_PartNumber",
+				"type": "nvarchar"
+			},
+			{
+				"name": "_OwnerGroup",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "_Device"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

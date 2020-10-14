@@ -1,0 +1,117 @@
+{
+	"name": "Ki_Config_Tables",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sqlsrv_sap",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SQLSRV-SAP/NewQcoreDB"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "Code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DocEntry",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Canceled",
+				"type": "char"
+			},
+			{
+				"name": "Object",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LogInst",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "UserSign",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Transfered",
+				"type": "char"
+			},
+			{
+				"name": "CreateDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "CreateTime",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "UpdateDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "UpdateTime",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "DataSource",
+				"type": "char"
+			},
+			{
+				"name": "U_Type",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_Description",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_Erorr",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_Analysis",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_Repair",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_IsActive",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_Company",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_ExistInQB",
+				"type": "char"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": {
+				"value": "@@KI_CONFIG_TABLES",
+				"type": "Expression"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

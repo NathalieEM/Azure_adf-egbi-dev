@@ -1,0 +1,16 @@
+{
+	"name": "sql_rptsrv",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "SqlServer",
+		"typeProperties": {
+			"connectionString": "integrated security=False;data source=rptsrv;initial catalog=QcOo_reporting;user id=sa",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI4MzNlYTVhOS05Njk3LTQ2MjgtYTE5ZC1hOWFjNTc0ZmIxOTUiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "ir-sap",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

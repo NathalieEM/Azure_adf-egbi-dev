@@ -1,0 +1,56 @@
+{
+	"name": "porf_Mrr_CostCenter2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sqldb_sorrelbi_dev",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SQLDB-EGBI-DEV/PORF"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ETL_ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ETL_Timestamp",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "PrcCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PrcName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DimCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_OWNERCODE",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_OWNERNAME",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DB_NAME",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "PORF",
+			"table": "Mrr_CostCenter"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

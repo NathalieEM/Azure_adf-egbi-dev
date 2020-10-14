@@ -1,0 +1,517 @@
+{
+	"name": "OINM",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sqlsrv_sap",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SQLSRV-SAP/NewQcoreDB"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "TransNum",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TransType",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CreatedBy",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "BASE_REF",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DocLineNum",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "DocDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "DocDueDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "CardCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CardName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Ref1",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Ref2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Comments",
+				"type": "nvarchar"
+			},
+			{
+				"name": "JrnlMemo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DocTime",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "ItemCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Dscription",
+				"type": "nvarchar"
+			},
+			{
+				"name": "InQty",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "OutQty",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "Price",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "Currency",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Rate",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "VendorNum",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SerialNum",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Warehouse",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TreeType",
+				"type": "char"
+			},
+			{
+				"name": "SlpCode",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TaxDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "DataSource",
+				"type": "char"
+			},
+			{
+				"name": "PrjCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "UserSign",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "BlockNum",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ImportLog",
+				"type": "nvarchar"
+			},
+			{
+				"name": "UseDocPric",
+				"type": "char"
+			},
+			{
+				"name": "Location",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CalcPrice",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "OpenQty",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "Instance",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "LastInst",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "RevalTotal",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "BaseCurr",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ApplObj",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "AppObjAbs",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "AppObjType",
+				"type": "char"
+			},
+			{
+				"name": "StockAct",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TrnsfrAct",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PriceDifAc",
+				"type": "nvarchar"
+			},
+			{
+				"name": "VarianceAc",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ReturnAct",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ExcRateAct",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ClearAct",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CostAct",
+				"type": "nvarchar"
+			},
+			{
+				"name": "WipAct",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Balance",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "CreateDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "BaseLine",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TransValue",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "PriceDiff",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "TransSeq",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "InvntAct",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RemMethod",
+				"type": "nvarchar"
+			},
+			{
+				"name": "OpenValue",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "SubLineNum",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "AppObjLine",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Expenses",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "OpenExp",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "Allocation",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "OpenAlloc",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "ExpAlloc",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "OExpAlloc",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "OpenPDiff",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "ExchDiff",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "OpenEDiff",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "NegInvAdjs",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "OpenNegInv",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "NegStckAct",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BTransVal",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "VarVal",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "BExpVal",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "CogsVal",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "BNegAVal",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "IOffIncAcc",
+				"type": "nvarchar"
+			},
+			{
+				"name": "IOffIncVal",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "DOffDecAcc",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DOffDecVal",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "DecAcc",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DecVal",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "WipVal",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "WipVarAcc",
+				"type": "nvarchar"
+			},
+			{
+				"name": "WipVarVal",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "IncAct",
+				"type": "nvarchar"
+			},
+			{
+				"name": "IncVal",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "ExpCAcc",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CostMethod",
+				"type": "char"
+			},
+			{
+				"name": "OcrCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BaseQty",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PrevTrans",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "HTransSeq",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "OcrCode2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "OcrCode3",
+				"type": "nvarchar"
+			},
+			{
+				"name": "OcrCode4",
+				"type": "nvarchar"
+			},
+			{
+				"name": "OcrCode5",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "OINM"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,86 @@
+{
+	"name": "porf_Mrr_PURCRequests",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sqldb_egbi_dev",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SQLDB-EGBI-DEV/PORF"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ETL_ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ETL_Timestamp",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "CardCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CardName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DocType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RquestedShipDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "ItemCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Price",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "AcctCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "OcrCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "OcrCode2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Currency",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_ReqDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "PorfNum",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "PORF",
+			"table": "Mrr_PURCRequests"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

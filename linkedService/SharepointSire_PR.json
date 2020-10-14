@@ -1,0 +1,13 @@
+{
+	"name": "SharepointSire_PR",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "RestService",
+		"typeProperties": {
+			"url": "https://eitangroupna.sharepoint.com/sites/PR/_api/lists/",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		}
+	}
+}

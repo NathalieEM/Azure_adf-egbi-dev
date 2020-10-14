@@ -1,0 +1,16 @@
+{
+	"name": "prof_test",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sqlsrv_sap",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SQLSRV-SAP/NewQcoreDB"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

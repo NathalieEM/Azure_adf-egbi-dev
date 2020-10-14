@@ -1,0 +1,49 @@
+{
+	"name": "UFD1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sqlsrv_sap_TestNewQcoreDB_05012020",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SQLSRV-SAP/NewQcoreDB"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "TableID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FieldID",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "IndexID",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "FldValue",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Descr",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FldDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "UFD1"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

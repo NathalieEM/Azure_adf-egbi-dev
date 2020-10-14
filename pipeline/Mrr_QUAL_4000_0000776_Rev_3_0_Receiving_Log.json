@@ -1,0 +1,348 @@
+{
+	"name": "Mrr_QUAL_4000_0000776_Rev_3_0_Receiving_Log",
+	"properties": {
+		"description": "File Name Changed to \"QUAL_4000_0000776_Rev_3_0_Receiving_Log\"",
+		"activities": [
+			{
+				"name": "Mrr_QUAL_4000_0000776_Rev_3_0_Receiving_Log",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Truncate Mrr_IQC_Followup",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "ExcelSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true
+						}
+					},
+					"sink": {
+						"type": "AzureSqlSink"
+					},
+					"enableStaging": true,
+					"stagingSettings": {
+						"linkedServiceName": {
+							"referenceName": "AzureBlobStorage1",
+							"type": "LinkedServiceReference"
+						}
+					},
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "Part Name",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Part Name",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Supplier Code",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Supplier Cod",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Lot Source\nSupplier /\nQ Core",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Lot Source Supplier / Q Core",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Supplier",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Supplier",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Drawing Number",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Drawing Number",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Rev number",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Rev number",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Product it belongs to",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Product belongs to",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Date of receipt [dd/mm/yyyy]",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Date of receipt",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Y/M Receipt",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Y/M Receipt",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Archive Location",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Archive Location",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Batch #",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Batch #",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Total  Qty. Received",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Total Qty. Received",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Rule [Normal, Reduced, Tightened]",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Rule (Normal, Reduced, Tightened)",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Sampling method change request\n [Normal, Reduced, Tightened",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Sampling method change request",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Sample size visual ",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Sample Size",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "End date (end of IQC) [dd/mm/yyyy]",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "End date (end of IQC)",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Y/M End",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Y/M End",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Time from receipt to release [days]",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Time from receipt to release (days)",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Batch Disposition [Pass/Fail]",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Batch Disposition (Pass/Fail)",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Comments ",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Comments",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "MRB #\n[YYYY-XXXX]",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "MRB #",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "QUAL_4000_0000776_Rev3_0_Receiving_Log",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Mrr_IQC_Followup",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Truncate Mrr_IQC_Followup",
+				"description": "File Name Changed to \"QUAL_4000_0000776_Rev_3_0_Receiving_Log\"",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[ScoreCards].[trunc_Mrr_IQC_Followup]"
+				},
+				"linkedServiceName": {
+					"referenceName": "sqldb_egbi_dev",
+					"type": "LinkedServiceReference"
+				}
+			}
+		],
+		"folder": {
+			"name": "ScoreCards/Mrr"
+		},
+		"annotations": [],
+		"lastPublishTime": "2020-08-18T13:00:25Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

@@ -1,0 +1,58 @@
+{
+	"name": "Stg_SapPO1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sqldb_sorrelbi_dev",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "PORF_SORREL"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PORFNum",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SAPDocNum",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TranDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "TranStatus",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TranMessage",
+				"type": "nvarchar"
+			},
+			{
+				"name": "dtUpdated",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "TakenToSP",
+				"type": "bit"
+			}
+		],
+		"typeProperties": {
+			"schema": "PORF",
+			"table": "Stg_SapPO"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

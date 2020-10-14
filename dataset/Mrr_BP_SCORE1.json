@@ -1,0 +1,68 @@
+{
+	"name": "Mrr_BP_SCORE1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sqldb_egbi_dev",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SQLDB-EGBI-DEV/ScoreCards/Mrr"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "Code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LineId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Object",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LogInst",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "U_CardCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_CardName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_Score",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "U_Total",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_TotalPer",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_Critical",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_ScoreScaleType",
+				"type": "char"
+			}
+		],
+		"typeProperties": {
+			"schema": "ScoreCards",
+			"table": "Mrr_BP_SCORE1"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

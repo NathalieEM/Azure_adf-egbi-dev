@@ -1,0 +1,47 @@
+{
+	"name": "porf_Mrr_Rates1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sqldb_sorrelbi_dev",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SQLDB-EGBI-DEV/PORF"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ETL_ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ETL_Timestamp",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "RateDate",
+				"type": "datetime2",
+				"scale": 0
+			},
+			{
+				"name": "Currency",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Rate",
+				"type": "decimal",
+				"precision": 9,
+				"scale": 0
+			}
+		],
+		"typeProperties": {
+			"schema": "PORF",
+			"table": "Mrr_Rates"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

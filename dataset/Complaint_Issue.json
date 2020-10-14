@@ -1,0 +1,139 @@
+{
+	"name": "Complaint_Issue",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AWS_Service_portal",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "AWS"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ComplaintIssueSource",
+				"type": "nvarchar"
+			},
+			{
+				"name": "fComplaintID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "fKnownIssueID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "KnownIssueMain",
+				"type": "nvarchar"
+			},
+			{
+				"name": "fStatusID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "IsComplaintRelated",
+				"type": "bit"
+			},
+			{
+				"name": "DateReported",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "KnownUnique",
+				"type": "nvarchar"
+			},
+			{
+				"name": "__KnownIssueFields",
+				"type": "char"
+			},
+			{
+				"name": "Category",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Error",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Description",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SWVersion",
+				"type": "nvarchar"
+			},
+			{
+				"name": "___SAP",
+				"type": "char"
+			},
+			{
+				"name": "DocEntry",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "LineID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "dtUpdated_FromSAP",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "___office",
+				"type": "char"
+			},
+			{
+				"name": "fCreatedByID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "dtCreatedDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "fUpdatedByID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "dtUpdatedDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "__sync_to_sap_fields",
+				"type": "nvarchar"
+			},
+			{
+				"name": "dtExportDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "tbl_Complaint_Issues"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

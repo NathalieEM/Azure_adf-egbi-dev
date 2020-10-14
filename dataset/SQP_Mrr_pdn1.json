@@ -1,0 +1,20 @@
+{
+	"name": "SQP_Mrr_pdn1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sqlsrv_sap",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SQLDB-EGBI-DEV/SAP"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "PDN1"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

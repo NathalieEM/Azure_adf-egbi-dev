@@ -1,0 +1,65 @@
+{
+	"name": "porf_Mrr_Suppliers2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sqldb_sorrelbi_dev",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SQLDB-EGBI-DEV/PORF"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ETL_ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ETL_Timestamp",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "CardCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CardName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CurrName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "E_Mail",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PayMethod",
+				"type": "varchar"
+			},
+			{
+				"name": "U_ASLType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ListNum",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "DB_NAME",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "PORF",
+			"table": "Mrr_Suppliers"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

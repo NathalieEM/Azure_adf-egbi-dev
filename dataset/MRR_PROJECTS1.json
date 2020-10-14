@@ -1,0 +1,124 @@
+{
+	"name": "MRR_PROJECTS1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "TESTSorrelDB_25022020",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SQLDB-EGBI-DEV/PORF"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "PrjCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PrjName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Locked",
+				"type": "char"
+			},
+			{
+				"name": "DataSource",
+				"type": "char"
+			},
+			{
+				"name": "UserSign",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "ValidFrom",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "ValidTo",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "Active",
+				"type": "char"
+			},
+			{
+				"name": "LogInstanc",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "UserSign2",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "UpdateDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "U_beas_status",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_beas_template",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_beas_cardcode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_beas_belnr_id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "U_beas_belpos_id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "U_Owner",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_OwnerMail",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_Secondary",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_SecMail",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_PORFApp",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_PorfApp2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_PORF",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "OPRJ"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

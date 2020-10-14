@@ -1,0 +1,53 @@
+{
+	"name": "porf_Mrr_Items",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sqldb_egbi_dev",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SQLDB-EGBI-DEV/PORF"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ETL_ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ETL_Timestamp",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "ItemCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ItemName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CardCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ItmsGrpCod",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "DB_NAME",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "PORF",
+			"table": "Mrr_Items"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

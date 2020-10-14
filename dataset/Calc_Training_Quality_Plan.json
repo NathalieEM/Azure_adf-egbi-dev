@@ -1,0 +1,53 @@
+{
+	"name": "Calc_Training_Quality_Plan",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sqldb_egbi_dev",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SQLDB-EGBI-DEV/Training"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "MasterDocumentName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DocumentOwnerName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "EmployeeName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Department",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Unit",
+				"type": "nvarchar"
+			},
+			{
+				"name": "NeedDocument",
+				"type": "nvarchar"
+			},
+			{
+				"name": "JobFunctionName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CurriculumName",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "training",
+			"table": "Calc_Training_Quality_Plan"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

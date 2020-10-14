@@ -1,0 +1,130 @@
+{
+	"name": "ServiceCenters",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sqlsrv_sap",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SQLDB-EGBI-DEV/ScoreCards/Mrr"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "Code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DocEntry",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Canceled",
+				"type": "char"
+			},
+			{
+				"name": "Object",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LogInst",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "UserSign",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Transfered",
+				"type": "char"
+			},
+			{
+				"name": "CreateDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "CreateTime",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "UpdateDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "UpdateTime",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "DataSource",
+				"type": "char"
+			},
+			{
+				"name": "U_SC_Name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_Active",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_CardCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_CardName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_HubCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_HubName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_IntakeFormEmail",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_IntakeFormSAMA",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_IsQcore",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_IsICU",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_ServiceCenterType",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": {
+				"value": "@@ServiceCenters",
+				"type": "Expression"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,115 @@
+{
+	"name": "QUAL_4000_0000776_Rev3_0_Receiving_Log",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Blob Storage"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "QUAL-4000-0000776",
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "QUAL-4000-0000776 - Receiving Log.xlsx",
+				"container": "excels"
+			},
+			"range": "a2:v10000",
+			"firstRowAsHeader": true
+		},
+		"schema": [
+			{
+				"name": "Part Name",
+				"type": "String"
+			},
+			{
+				"name": "Supplier Code",
+				"type": "String"
+			},
+			{
+				"name": "Lot Source\nSupplier /\nQ Core",
+				"type": "String"
+			},
+			{
+				"name": "Supplier",
+				"type": "String"
+			},
+			{
+				"name": "Drawing Number",
+				"type": "String"
+			},
+			{
+				"name": "Rev number",
+				"type": "String"
+			},
+			{
+				"name": "Product it belongs to",
+				"type": "String"
+			},
+			{
+				"name": "Date of receipt [dd/mm/yyyy]",
+				"type": "String"
+			},
+			{
+				"name": "Y/M Receipt",
+				"type": "String"
+			},
+			{
+				"name": "Archive Location",
+				"type": "String"
+			},
+			{
+				"name": "Batch #",
+				"type": "String"
+			},
+			{
+				"name": "Total  Qty. Received",
+				"type": "String"
+			},
+			{
+				"name": "Rule [Normal, Reduced, Tightened]",
+				"type": "String"
+			},
+			{
+				"name": "Sampling method change request\n [Normal, Reduced, Tightened",
+				"type": "String"
+			},
+			{
+				"name": "Sample size visual ",
+				"type": "String"
+			},
+			{
+				"name": "Sample Size Dimensions",
+				"type": "String"
+			},
+			{
+				"name": "End date (end of IQC) [dd/mm/yyyy]",
+				"type": "String"
+			},
+			{
+				"name": "Y/M End",
+				"type": "String"
+			},
+			{
+				"name": "Time from receipt to release [days]",
+				"type": "String"
+			},
+			{
+				"name": "Batch Disposition [Pass/Fail]",
+				"type": "String"
+			},
+			{
+				"name": "Comments ",
+				"type": "String"
+			},
+			{
+				"name": "MRB #\n[YYYY-XXXX]",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

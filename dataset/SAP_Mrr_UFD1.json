@@ -1,0 +1,60 @@
+{
+	"name": "SAP_Mrr_UFD1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sqldb_egbi_dev",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SQLDB-EGBI-DEV/SAP"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ETL_ID",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "ETL_Timestamp",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "TableID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FieldID",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "IndexID",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "FldValue",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Descr",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FldDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "sap",
+			"table": "Mrr_UFD1"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

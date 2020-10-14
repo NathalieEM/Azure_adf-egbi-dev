@@ -1,0 +1,562 @@
+{
+	"name": "Accounts_OACT2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "TESTSorrelDB_25022020",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SQLSRV-SAP/NewQcoreDB"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "AcctCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AcctName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CurrTotal",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "EndTotal",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "Finanse",
+				"type": "char"
+			},
+			{
+				"name": "Groups",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Budget",
+				"type": "char"
+			},
+			{
+				"name": "Frozen",
+				"type": "char"
+			},
+			{
+				"name": "Free_2",
+				"type": "char"
+			},
+			{
+				"name": "Postable",
+				"type": "char"
+			},
+			{
+				"name": "Fixed",
+				"type": "char"
+			},
+			{
+				"name": "Levels",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "ExportCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "GrpLine",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "FatherNum",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AccntntCod",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CashBox",
+				"type": "char"
+			},
+			{
+				"name": "GroupMask",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "RateTrans",
+				"type": "char"
+			},
+			{
+				"name": "TaxIncome",
+				"type": "char"
+			},
+			{
+				"name": "ExmIncome",
+				"type": "char"
+			},
+			{
+				"name": "ExtrMatch",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "IntrMatch",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ActType",
+				"type": "char"
+			},
+			{
+				"name": "Transfered",
+				"type": "char"
+			},
+			{
+				"name": "BlncTrnsfr",
+				"type": "char"
+			},
+			{
+				"name": "OverType",
+				"type": "char"
+			},
+			{
+				"name": "OverCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SysMatch",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PrevYear",
+				"type": "char"
+			},
+			{
+				"name": "ActCurr",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RateDifAct",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SysTotal",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "FcTotal",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "Protected",
+				"type": "char"
+			},
+			{
+				"name": "RealAcct",
+				"type": "char"
+			},
+			{
+				"name": "Advance",
+				"type": "char"
+			},
+			{
+				"name": "CreateDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "UpdateDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "FrgnName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Details",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ExtraSum",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "Project",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RevalMatch",
+				"type": "char"
+			},
+			{
+				"name": "DataSource",
+				"type": "char"
+			},
+			{
+				"name": "LocMth",
+				"type": "char"
+			},
+			{
+				"name": "MTHCounter",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "BNKCounter",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "UserSign",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "LocManTran",
+				"type": "char"
+			},
+			{
+				"name": "LogInstanc",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ObjType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ValidFor",
+				"type": "char"
+			},
+			{
+				"name": "ValidFrom",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "ValidTo",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "ValidComm",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FrozenFor",
+				"type": "char"
+			},
+			{
+				"name": "FrozenFrom",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "FrozenTo",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "FrozenComm",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Counter",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Segment_0",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Segment_1",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Segment_2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Segment_3",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Segment_4",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Segment_5",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Segment_6",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Segment_7",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Segment_8",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Segment_9",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FormatCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CfwRlvnt",
+				"type": "char"
+			},
+			{
+				"name": "ExchRate",
+				"type": "char"
+			},
+			{
+				"name": "RevalAcct",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LastRevBal",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "LastRevDat",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "DfltVat",
+				"type": "nvarchar"
+			},
+			{
+				"name": "VatChange",
+				"type": "char"
+			},
+			{
+				"name": "Category",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TransCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "OverCode5",
+				"type": "nvarchar"
+			},
+			{
+				"name": "OverCode2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "OverCode3",
+				"type": "nvarchar"
+			},
+			{
+				"name": "OverCode4",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DfltTax",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TaxPostAcc",
+				"type": "char"
+			},
+			{
+				"name": "AcctStrLe",
+				"type": "nvarchar"
+			},
+			{
+				"name": "MeaUnit",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BalDirect",
+				"type": "nvarchar"
+			},
+			{
+				"name": "UserSign2",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "PlngLevel",
+				"type": "nvarchar"
+			},
+			{
+				"name": "MultiLink",
+				"type": "char"
+			},
+			{
+				"name": "PrjRelvnt",
+				"type": "char"
+			},
+			{
+				"name": "Dim1Relvnt",
+				"type": "char"
+			},
+			{
+				"name": "Dim2Relvnt",
+				"type": "char"
+			},
+			{
+				"name": "Dim3Relvnt",
+				"type": "char"
+			},
+			{
+				"name": "Dim4Relvnt",
+				"type": "char"
+			},
+			{
+				"name": "Dim5Relvnt",
+				"type": "char"
+			},
+			{
+				"name": "AccrualTyp",
+				"type": "char"
+			},
+			{
+				"name": "DatevAcct",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "DatevAutoA",
+				"type": "char"
+			},
+			{
+				"name": "DatevFirst",
+				"type": "char"
+			},
+			{
+				"name": "SnapShotId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PCN874Rpt",
+				"type": "char"
+			},
+			{
+				"name": "SCAdjust",
+				"type": "char"
+			},
+			{
+				"name": "BPLId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "BPLName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SubLedgerN",
+				"type": "nvarchar"
+			},
+			{
+				"name": "VATRegNum",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ActId",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ClosingAcc",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PurpCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RefCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BlocManPos",
+				"type": "char"
+			},
+			{
+				"name": "U_beas_wip",
+				"type": "char"
+			},
+			{
+				"name": "U_Bnk",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_Brnc",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "U_Acct",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_LicTr",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_MasavDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "U_BS_Scan",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_BS_Suffix",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_BS_StickXpress",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "OACT"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

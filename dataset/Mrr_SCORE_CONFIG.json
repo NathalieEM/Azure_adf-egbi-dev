@@ -1,0 +1,106 @@
+{
+	"name": "Mrr_SCORE_CONFIG",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sqldb_egbi_dev",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SQLDB-EGBI-DEV/ScoreCards/Mrr"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "Code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DocEntry",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Canceled",
+				"type": "char"
+			},
+			{
+				"name": "Object",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LogInst",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "UserSign",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Transfered",
+				"type": "char"
+			},
+			{
+				"name": "CreateDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "CreateTime",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "UpdateDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "UpdateTime",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "DataSource",
+				"type": "char"
+			},
+			{
+				"name": "U_Type",
+				"type": "char"
+			},
+			{
+				"name": "U_REV",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_Active",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_ActiveFrom",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "U_Activeto",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "ScoreCards",
+			"table": "Mrr_SCORE_CONFIG"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

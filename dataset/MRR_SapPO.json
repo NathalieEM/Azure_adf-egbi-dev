@@ -1,0 +1,63 @@
+{
+	"name": "MRR_SapPO",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sqldb_egbi_dev",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "PORF"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PORFNum",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SAPDocNum",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TranDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "TranStatus",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TranMessage",
+				"type": "nvarchar"
+			},
+			{
+				"name": "dtUpdated",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "TakenToSP",
+				"type": "bit"
+			},
+			{
+				"name": "SPID",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "PORF",
+			"table": "MRR_SapPO"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

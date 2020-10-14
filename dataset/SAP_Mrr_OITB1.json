@@ -1,0 +1,56 @@
+{
+	"name": "SAP_Mrr_OITB1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sqldb_sorrelbi_dev",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SQLDB-EGBI-DEV/SAP"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ETL_ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ETL_Timestamp",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "ItmsGrpCod",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "ItmsGrpNam",
+				"type": "nvarchar"
+			},
+			{
+				"name": "updateDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "U_ItemType",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "U_Company",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "sap",
+			"table": "Mrr_OITB"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

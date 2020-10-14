@@ -1,0 +1,52 @@
+{
+	"name": "watermarks_highValues1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sqldb_sorrelbi_dev",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SQLDB-EGBI-DEV"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "highValue_Id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "highValue_updateDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "schemaName",
+				"type": "varchar"
+			},
+			{
+				"name": "tableName",
+				"type": "varchar"
+			},
+			{
+				"name": "columnName",
+				"type": "varchar"
+			},
+			{
+				"name": "highValue",
+				"type": "varchar"
+			},
+			{
+				"name": "highValue_Type",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "watermarks",
+			"table": "highValues"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

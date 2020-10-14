@@ -1,0 +1,37 @@
+{
+	"name": "SharepointToBlobStorage",
+	"properties": {
+		"activities": [
+			{
+				"name": "SharepointToBlobStorage",
+				"type": "WebActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://prod-16.northeurope.logic.azure.com:443/workflows/94197d3f2f6e48d1a791b8641476835a/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=4xmttJ5tK6OrNkrk-gaWO2tIHdsODA-FNm6Q5umKuEI",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json"
+					},
+					"body": {
+						"DataFactoryName": "@{pipeline().DataFactory}",
+						"PipelineName": "@{pipeline().Pipeline}"
+					}
+				}
+			}
+		],
+		"folder": {
+			"name": "ScoreCards/ImportFile"
+		},
+		"annotations": [],
+		"lastPublishTime": "2020-08-18T13:00:22Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

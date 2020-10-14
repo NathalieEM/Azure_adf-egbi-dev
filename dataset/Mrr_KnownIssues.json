@@ -1,0 +1,183 @@
+{
+	"name": "Mrr_KnownIssues",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sqldb_egbi_dev",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SQLDB-EGBI-DEV/SAP"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "KnownUnique",
+				"type": "nvarchar"
+			},
+			{
+				"name": "KnownIssueMain",
+				"type": "nvarchar"
+			},
+			{
+				"name": "KnownIssueID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Category",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Error",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Description",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Cause",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SWVersion",
+				"type": "nvarchar"
+			},
+			{
+				"name": "UserExperienceCategoryCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "UserExperienceErrorCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AnalysisCategoryCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AnalysisErrorCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DiagnosticsConclusions",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RepairCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RepairCategoryCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RMF",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RiskInvolvedSAP",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BaseOn",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ImgUrl",
+				"type": "nvarchar"
+			},
+			{
+				"name": "IsActive",
+				"type": "bit"
+			},
+			{
+				"name": "___Not_Used_Fields",
+				"type": "char"
+			},
+			{
+				"name": "IsActiveStr",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RepairLevel",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "UserExperienceCategoryDescription",
+				"type": "nvarchar"
+			},
+			{
+				"name": "UserxperienceErrorDescription",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AnalysisCategoryDescription",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AnalysisErrorDescription",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RepairDescription",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RepairCategoryDescription",
+				"type": "nvarchar"
+			},
+			{
+				"name": "___office",
+				"type": "char"
+			},
+			{
+				"name": "fCreatedByID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "dtCreatedDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "fUpdatedByID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "dtUpdatedDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "__sync_to_sap_fields",
+				"type": "nvarchar"
+			},
+			{
+				"name": "IsToExport",
+				"type": "bit"
+			},
+			{
+				"name": "dtLastExportDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "srv",
+			"table": "Mrr_KnownIssues"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

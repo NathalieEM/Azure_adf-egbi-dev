@@ -1,0 +1,107 @@
+{
+	"name": "Stg_Fact_Trending",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sqldb_egbi_dev",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SQLDB-EGBI-DEV/Service/Stg"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "CMR#",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Customer Name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DNR#",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Awareness Date",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "P/N",
+				"type": "nvarchar"
+			},
+			{
+				"name": "P/N Name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Code Category Code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Category Code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Code Error Code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Error Code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Code Analysis Code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Analysis Code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Code Analysis Error Code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Analysis Error Codes",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Quantity",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Date closed",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "KnownID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RepairLevel",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Level3",
+				"type": "nvarchar"
+			},
+			{
+				"name": "internalSN",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "srv",
+			"table": "Stg_Fact_Trending"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

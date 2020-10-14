@@ -1,0 +1,333 @@
+{
+	"name": "Mrr_PORF_JsonParsed2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Is_Sorrel_integration",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SQLDB-EGBI-DEV/PORF"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "ETL_ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ETL_Timestamp",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "json_Item_key",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "json_Item_name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "json_Item_data",
+				"type": "nvarchar"
+			},
+			{
+				"name": "json_Account_key",
+				"type": "nvarchar"
+			},
+			{
+				"name": "json_Account_name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "json_Account_data",
+				"type": "nvarchar"
+			},
+			{
+				"name": "json_LineNumber",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "json_Name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "json_Code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "json_GL",
+				"type": "nvarchar"
+			},
+			{
+				"name": "json_Qty",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "json_UnitPrice",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "json_Currency",
+				"type": "nvarchar"
+			},
+			{
+				"name": "json_Total",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "json_TotalNis",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "json_ExchangeRate",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "json_RefPrice",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "json_RefCurrency",
+				"type": "nvarchar"
+			},
+			{
+				"name": "json_RequestedDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "ID",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "Created",
+				"type": "timestamp"
+			},
+			{
+				"name": "Title",
+				"type": "nvarchar"
+			},
+			{
+				"name": "UserDepartment",
+				"type": "nvarchar"
+			},
+			{
+				"name": "UserCompany",
+				"type": "nvarchar"
+			},
+			{
+				"name": "IsProjectRelated",
+				"type": "bit"
+			},
+			{
+				"name": "Project",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DepartmentCC",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DepartmentCodeCC",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ProjectCC",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ProjectCodeCC",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ProjectCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SupplierType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SupplierName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SupplierCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SupplierEmail",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PaymentMethod",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RequestedDate",
+				"type": "date"
+			},
+			{
+				"name": "QMS",
+				"type": "bit"
+			},
+			{
+				"name": "Mech",
+				"type": "bit"
+			},
+			{
+				"name": "ASL",
+				"type": "bit"
+			},
+			{
+				"name": "MP",
+				"type": "bit"
+			},
+			{
+				"name": "IMTE",
+				"type": "bit"
+			},
+			{
+				"name": "Items",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SecondaryOwner",
+				"type": "nvarchar"
+			},
+			{
+				"name": "VP",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FinanceOwner",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FinanceMaster",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SecondaryOwnerDate",
+				"type": "date"
+			},
+			{
+				"name": "SecondaryOwnerStatus",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SecondaryOwnerComments",
+				"type": "nvarchar"
+			},
+			{
+				"name": "VPDate",
+				"type": "date"
+			},
+			{
+				"name": "VPStatus",
+				"type": "nvarchar"
+			},
+			{
+				"name": "VPComments",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FinanceOwnerDate",
+				"type": "date"
+			},
+			{
+				"name": "FinanceOwnerStatus",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FinanceOwnerComments",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FinanceMasterDate",
+				"type": "date"
+			},
+			{
+				"name": "FinanceMasterStatus",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FinanceMasterComments",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CurrentApproval",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PORFStatus",
+				"type": "nvarchar"
+			},
+			{
+				"name": "InternalStatus",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CreatorComments",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ItemType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "MPName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ViewPORF",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Total",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "TotalNis",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "ReadyForSap",
+				"type": "bit"
+			},
+			{
+				"name": "TakenToSap",
+				"type": "bit"
+			},
+			{
+				"name": "Item Type",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Path",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "PORF",
+			"table": "Mrr_PORF_json_parsed"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

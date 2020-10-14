@@ -1,0 +1,81 @@
+{
+	"name": "Mrr_Service_Flow",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sqldb_egbi_dev",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SQLDB-EGBI-DEV/SAP"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Callid",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ObjId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Sort",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "Step",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Startdate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "Enddate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "DaysInstep",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "StepGoal",
+				"type": "nchar"
+			},
+			{
+				"name": "PendingGroup",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "dtupdated",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "isDeleted",
+				"type": "bit"
+			}
+		],
+		"typeProperties": {
+			"schema": "sap",
+			"table": "Mrr_ServiceFlow"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

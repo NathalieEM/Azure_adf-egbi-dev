@@ -1,0 +1,62 @@
+{
+	"name": "SCORE_CONFIG_LINES",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sqlsrv_sap_TestNewQcoreDB_05012020",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SQLDB-EGBI-DEV/ScoreCards/Mrr"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "Code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LineId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Object",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LogInst",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "U_Category",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_SubCategory",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_OverallCatWeight",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_SubCatWeight",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_Type",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": {
+				"value": "@@SCORE_CONFIG_LINES",
+				"type": "Expression"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,84 @@
+{
+	"name": "ServiceFlow",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sqlsrv_sap",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SQLDB-EGBI-DEV/ScoreCards/Mrr"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Callid",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ObjId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Sort",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "Step",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Startdate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "Enddate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "DaysInstep",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "StepGoal",
+				"type": "nchar"
+			},
+			{
+				"name": "PendingGroup",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "dtupdated",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "isDeleted",
+				"type": "bit"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": {
+				"value": "@@ServiceFlow",
+				"type": "Expression"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

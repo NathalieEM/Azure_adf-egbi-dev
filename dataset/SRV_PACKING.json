@@ -1,0 +1,129 @@
+{
+	"name": "SRV_PACKING",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sqlsrv_sap",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SQLSRV-SAP/NewQcoreDB"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "DocEntry",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "DocNum",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Period",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Instance",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "Series",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Handwrtten",
+				"type": "char"
+			},
+			{
+				"name": "Canceled",
+				"type": "char"
+			},
+			{
+				"name": "Object",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LogInst",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "UserSign",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Transfered",
+				"type": "char"
+			},
+			{
+				"name": "Status",
+				"type": "char"
+			},
+			{
+				"name": "CreateDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "CreateTime",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "UpdateDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "UpdateTime",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "DataSource",
+				"type": "char"
+			},
+			{
+				"name": "RequestStatus",
+				"type": "char"
+			},
+			{
+				"name": "Creator",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Remark",
+				"type": "ntext"
+			},
+			{
+				"name": "U_SO",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_CustomerName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_MixPumps",
+				"type": "char"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": {
+				"value": "@@SRV_PACKGING",
+				"type": "Expression"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,16 @@
+{
+	"name": "AWS_Service_portal",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "SqlServer",
+		"typeProperties": {
+			"connectionString": "integrated security=False;data source=WIN-CD4SC50NM4M;initial catalog=QCORE_SERVICE_PORTAL;user id=uExternalBI",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI2ZTk1ZDQxNS1iNDVmLTRkMTAtODQ5OS02MmEwNzgwNWI3N2IiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "integrationRuntime-AWS-Service-SQL",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

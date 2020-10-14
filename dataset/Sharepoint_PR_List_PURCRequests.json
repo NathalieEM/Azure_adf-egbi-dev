@@ -1,0 +1,19 @@
+{
+	"name": "Sharepoint_PR_List_PURCRequests",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SharepointSire_PR",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Sharepoint/PROF"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"typeProperties": {
+			"relativeUrl": "getbytitle('PURCRequests')/items"
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

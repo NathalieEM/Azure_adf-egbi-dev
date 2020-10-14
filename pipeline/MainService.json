@@ -1,0 +1,46 @@
+{
+	"name": "MainService",
+	"properties": {
+		"activities": [
+			{
+				"name": "Mrr_Service",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Mrr_Service",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Stg_Service",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Mrr_Service",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Stg_Service",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			}
+		],
+		"folder": {
+			"name": "Service"
+		},
+		"annotations": [],
+		"lastPublishTime": "2020-10-06T07:57:10Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

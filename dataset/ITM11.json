@@ -1,0 +1,92 @@
+{
+	"name": "ITM11",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "TESTSorrelDB_25022020",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SQLSRV-SAP/NewQcoreDB"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "ItemCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PriceList",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "Price",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "Currency",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Ovrwritten",
+				"type": "char"
+			},
+			{
+				"name": "Factor",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "LogInstanc",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ObjType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AddPrice1",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "Currency1",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AddPrice2",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "Currency2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Ovrwrite1",
+				"type": "char"
+			},
+			{
+				"name": "Ovrwrite2",
+				"type": "char"
+			},
+			{
+				"name": "BasePLNum",
+				"type": "smallint",
+				"precision": 5
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "ITM1"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

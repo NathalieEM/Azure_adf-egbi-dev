@@ -1,0 +1,20 @@
+{
+	"name": "Training_SF_Record_Type",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sqldb_egbi_dev",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SQLDB-EGBI-DEV/Training"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "training",
+			"table": "Mrr_SF_Record_Type"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

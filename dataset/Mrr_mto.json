@@ -1,0 +1,132 @@
+{
+	"name": "Mrr_mto",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sql_rptsrv",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SQLSRV-RPTSRV/EDHR"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "_Procedure",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "_StartTime",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "_EndTime",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "_ExecutedBy",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "_Parent",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "_Comments",
+				"type": "ntext"
+			},
+			{
+				"name": "_Result",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "_FailReason",
+				"type": "ntext"
+			},
+			{
+				"name": "_PCAppSoftwareVersion",
+				"type": "nvarchar"
+			},
+			{
+				"name": "_Deleted",
+				"type": "bit"
+			},
+			{
+				"name": "_DeletedBy",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "_DeletedTime",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "_InsertTime",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "_LastUpdateTime",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "_OriginalProcedureId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "_QcApprovalTime",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "_QcApprover",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "_Device",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "_DeviceSoftwareVersion",
+				"type": "nvarchar"
+			},
+			{
+				"name": "_SapOrderId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "_Failure",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "_DHR_MakeToOrder"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,16 @@
+{
+	"name": "SAP_integrator_dev",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SAP_Integrator_dev",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "PORF"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

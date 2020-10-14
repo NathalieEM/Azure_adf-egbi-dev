@@ -1,0 +1,93 @@
+{
+	"name": "CostCenter_OPRC",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sqlsrv_sap_TestNewQcoreDB_05012020",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SQLSRV-SAP/NewQcoreDB"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "PrcCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PrcName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "GrpCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Balance",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "Locked",
+				"type": "char"
+			},
+			{
+				"name": "DataSource",
+				"type": "char"
+			},
+			{
+				"name": "UserSign",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "DimCode",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "CCTypeCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ValidFrom",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "ValidTo",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "Active",
+				"type": "char"
+			},
+			{
+				"name": "LogInstanc",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "UserSign2",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "UpdateDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "OPRC"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

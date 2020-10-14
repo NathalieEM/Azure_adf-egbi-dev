@@ -1,0 +1,19 @@
+{
+	"name": "SF_Training_Assignment",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_salesforce",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SalesForce"
+		},
+		"annotations": [],
+		"type": "SalesforceObject",
+		"schema": [],
+		"typeProperties": {
+			"objectApiName": "CompSuite__Training_Assignment__c"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

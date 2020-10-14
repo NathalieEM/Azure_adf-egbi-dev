@@ -1,0 +1,60 @@
+{
+	"name": "MRR_OSCN",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sqldb_egbi_dev",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SQLDB-EGBI-DEV/SAP"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ItemCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CardCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Substitute",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Transfered",
+				"type": "char"
+			},
+			{
+				"name": "DataSource",
+				"type": "char"
+			},
+			{
+				"name": "UserSign",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "UserSign2",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "ShowSCN",
+				"type": "char"
+			},
+			{
+				"name": "U_ScoreCard",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "sap",
+			"table": "Mrr_OSCN"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,93 @@
+{
+	"name": "Mrr_ScarLog",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sqldb_egbi_dev",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SQLDB-EGBI-DEV/ScoreCards/Mrr"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "NCR #",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Supplier Name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Supplier's No.",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Part Description",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PN",
+				"type": "nvarchar"
+			},
+			{
+				"name": "MRB # / Ref",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Description of deviation",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Date of sending SCAR to supplier",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Y/M (trend)",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Allowed return date",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Date of Reminder",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Date of SCAR Return",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SCAR Approval Date",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Effectiveness Results",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Effectiveness Checking Date",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Closing Date",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Status",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Comments",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "ScoreCards",
+			"table": "Mrr_ScarLog"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

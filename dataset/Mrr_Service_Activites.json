@@ -1,0 +1,203 @@
+{
+	"name": "Mrr_Service_Activites",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sqldb_egbi_dev",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SQLDB-EGBI-DEV/Service/Mrr"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "___General",
+				"type": "nvarchar"
+			},
+			{
+				"name": "fIssueID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "fServiceID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "___DM_fields",
+				"type": "nvarchar"
+			},
+			{
+				"name": "fDeviceID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SerialNumber",
+				"type": "nvarchar"
+			},
+			{
+				"name": "fComplaintID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "___Form_Data",
+				"type": "bit"
+			},
+			{
+				"name": "UserExperienceCategoryCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "UserExperienceCategoryName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "UserExperienceErrorCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "UserExperienceErrorName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AnalysisCategoryCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AnalysisCategoryName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AnalysisErrorCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AnalysisErrorName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Confirmed",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Misused",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "RepairCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RepairName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AnalysisRepairCategoryCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AnalysisRepairCategoryName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AnalysisRepairErrorCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AnalysisRepairErrorName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RepairLevel",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "RepairActionReplacedCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RepairActionReplacedName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SparePartSnBatchNumber",
+				"type": "nvarchar"
+			},
+			{
+				"name": "InitializationDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "DiagnosticsConclusion",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DiagnosticsConclusionComments",
+				"type": "nvarchar"
+			},
+			{
+				"name": "UserServiceCenterSAPID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "___office",
+				"type": "char"
+			},
+			{
+				"name": "fCreatedByID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "dtCreatedDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "fUpdatedByID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "dtUpdatedDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "__sync_to_sap_fields",
+				"type": "nvarchar"
+			},
+			{
+				"name": "IsToExport",
+				"type": "bit"
+			},
+			{
+				"name": "dtLastExportDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "srv",
+			"table": "Mrr_Service_Activites"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

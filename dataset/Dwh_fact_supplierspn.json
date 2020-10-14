@@ -1,0 +1,38 @@
+{
+	"name": "Dwh_fact_supplierspn",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sqldb_egbi_dev",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SQLDB-EGBI-DEV/ScoreCards/Dwh"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ItemCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SupplierID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SupplierName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ScoreCard",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "ScoreCards",
+			"table": "Dwh_Fact_SuppliersPN"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

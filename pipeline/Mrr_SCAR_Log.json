@@ -1,0 +1,646 @@
+{
+	"name": "Mrr_SCAR_Log",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy Mrr_Calc_SCAR_Log from xlsx",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Truncate Mrr_Calc_ScarLog And Mrr_ScarLog",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "ExcelSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true
+						}
+					},
+					"sink": {
+						"type": "AzureSqlSink"
+					},
+					"enableStaging": true,
+					"stagingSettings": {
+						"linkedServiceName": {
+							"referenceName": "AzureBlobStorage1",
+							"type": "LinkedServiceReference"
+						}
+					},
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "NCR #",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "NCR #",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Supplier Name",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Supplier Name",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Supplier's No.",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Supplier's No.",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Part Description",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Part Description",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "PN",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "PN",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "MRB # / Ref",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "MRB # / Ref",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Description of deviation",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Description of deviation",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Date of sending SCAR to supplier",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Date of sending SCAR to supplier",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Y/M (trend)",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Y/M (trend)",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Allowed return date",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Allowed return date",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Date of Reminder",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Date of Reminder",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Date of SCAR Return",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Date of SCAR Return",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "QA's Review date",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "QA's Review date",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SCAR Approval Date",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "SCAR Approval Date",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Effectiveness Results",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Effectiveness Results",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Effectiveness Checking Date",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Effectiveness Checking Date",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Closing Date",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Closing Date",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Status",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Status",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Comments",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Comments",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Time To Answer",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Time To Answer",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Time to Approval",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Time to Approval",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Time for Effectivness",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Time for Effectivness",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Time to Close",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Time to Close",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "SCAR_Log",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Mrr_Calc_ScarLog",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Truncate Mrr_Calc_ScarLog And Mrr_ScarLog",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[ScoreCards].[trunc_Mrr_ScarLog]"
+				},
+				"linkedServiceName": {
+					"referenceName": "sqldb_egbi_dev",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Copy Mrr_ScarLog",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Copy Mrr_Calc_SCAR_Log from xlsx",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": "SELECT \n\t   case when [NCR #] = 'n/a' then null else [NCR #] end [NCRNo] \n      ,[Supplier Name] as SupplierName\n      ,[Supplier's No.] as SupplierNo\n      ,case when [Part Description] = 'n/a' then null else [Part Description] end PartDescription\n      ,[PN]\n      ,case when [MRB # / Ref] = 'n/a' then null else [MRB # / Ref] end MRBNo\n      ,case when [Description of deviation] = 'n/a' then null else [Description of deviation] end as [DescriptionofDeviation]\n      ,case when [Date of sending SCAR to supplier] = 'n/a' then null else [Date of sending SCAR to supplier] end [ScarSendingDate]\n      ,case when [Y/M (trend)] = 'n/a' then null else [Y/M (trend)] end as Trend\n      ,case when [Allowed return date] = 'n/a' then null else [Allowed return date] end as [AllowedReturnDate]\n      ,case when [Date of Reminder] = 'n/a' then null else [Date of Reminder] end as ReminderDate\n      ,case when [Date of SCAR Return]  in ('n/a','NA') then null else [Date of SCAR Return] end as ScarReturningDate\n      ,case when [SCAR Approval Date] = 'n/a' then null else [SCAR Approval Date] end as [ScarApprovalDate]\n      ,case when [Effectiveness Results] = 'n/a' then null else [Effectiveness Results] end as [EffectivenessResults]\n      ,case when [Effectiveness Checking Date] = 'n/a' then null else [Effectiveness Checking Date] end as [EffectivenessCheckingDate]\n      ,case when [Closing Date] = 'n/a' then null else [Closing Date] end as [ClosingDate]\n      ,[Status]\n      ,[Comments]\nFROM [ScoreCards].[Mrr_Calc_ScarLog]",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "AzureSqlSink"
+					},
+					"enableStaging": true,
+					"stagingSettings": {
+						"linkedServiceName": {
+							"referenceName": "AzureBlobStorage1",
+							"type": "LinkedServiceReference"
+						}
+					},
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "NCRNo",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "NCRNo",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SupplierName",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "SupplierName",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SupplierNo",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "SupplierNo",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "PartDescription",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "PartDescription",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "PN",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "PN",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "MRBNo",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "MRBNo",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "DescriptionofDeviation",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "DescriptionofDeviation",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ScarSendingDate",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "ScarSendingDate",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Trend",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "Trend",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "AllowedReturnDate",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "AllowedReturnDate",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ReminderDate",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "ReminderDate",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ScarReturningDate",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "ScarReturningDate",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ScarApprovalDate",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "ScarApprovalDate",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "EffectivenessResults",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "EffectivenessResults",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "EffectivenessCheckingDate",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "EffectivenessCheckingDate",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ClosingDate",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "ClosingDate",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Status",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "Status",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Comments",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "Comments",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "Mrr_Calc_ScarLog",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Mrr_ScarLog",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"folder": {
+			"name": "ScoreCards/Mrr"
+		},
+		"annotations": [],
+		"lastPublishTime": "2020-09-08T09:06:53Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

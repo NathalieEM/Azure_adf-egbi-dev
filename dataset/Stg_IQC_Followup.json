@@ -1,0 +1,77 @@
+{
+	"name": "Stg_IQC_Followup",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sqldb_egbi_dev",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SQLDB-EGBI-DEV/ScoreCards/Stg"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "Year",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "WeeK",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "EndDateIQC",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "SupplierID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SupplierName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DateReciept",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "Itemcode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ProductType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TotalRecQty",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "Pass/Fail",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Rev number ",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Batch Number",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "ScoreCards",
+			"table": "Stg_IQC_Followup"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

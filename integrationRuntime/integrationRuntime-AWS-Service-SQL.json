@@ -1,0 +1,6 @@
+{
+	"name": "integrationRuntime-AWS-Service-SQL",
+	"properties": {
+		"type": "SelfHosted"
+	}
+}

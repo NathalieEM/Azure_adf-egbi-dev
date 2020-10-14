@@ -1,0 +1,38 @@
+{
+	"name": "Mrr_OSCS",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sqldb_egbi_dev",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SQLDB-EGBI-DEV/SAP"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "statusID",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "Name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Descriptio",
+				"type": "ntext"
+			},
+			{
+				"name": "Locked",
+				"type": "char"
+			}
+		],
+		"typeProperties": {
+			"schema": "sap",
+			"table": "Mrr_Oscs"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

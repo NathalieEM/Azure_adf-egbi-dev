@@ -1,0 +1,16 @@
+{
+	"name": "SAP_integrator_dev1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Is_Sorrel_integration",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "PORF_SORREL"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

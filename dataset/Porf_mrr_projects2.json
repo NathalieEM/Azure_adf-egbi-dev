@@ -1,0 +1,68 @@
+{
+	"name": "Porf_mrr_projects2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sqldb_sorrelbi_dev",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SQLSRV-SAP/NewQcoreDB"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ETL_ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ETL_Timestamp",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "PrjCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PrjName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_Owner",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_OwnerMail",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_Secondary",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_SecMail",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_PORFApp",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_PorfApp2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_PORF",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "PORF",
+			"table": "Mrr_Projects"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,26 @@
+{
+	"name": "SAP_Main1",
+	"properties": {
+		"activities": [
+			{
+				"name": "SAP_MRR_OSCN_1",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "SAP_Mrr_OSCN_1",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			}
+		],
+		"folder": {
+			"name": "SAP_SORREL"
+		},
+		"annotations": [],
+		"lastPublishTime": "2020-10-07T07:45:27Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

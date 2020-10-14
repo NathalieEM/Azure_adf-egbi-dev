@@ -1,0 +1,53 @@
+{
+	"name": "Mrr_Srv_Serials",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sqldb_egbi_dev",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SQLDB-EGBI-DEV/SAP"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "DocEntry",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "LineId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "VisOrder",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Object",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LogInst",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "U_SerialNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_Rma",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "sap",
+			"table": "Mrr_Srv_Serials"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

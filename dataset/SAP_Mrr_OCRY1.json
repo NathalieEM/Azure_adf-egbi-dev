@@ -1,0 +1,107 @@
+{
+	"name": "SAP_Mrr_OCRY1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sqldb_sorrelbi_dev",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SQLDB-EGBI-DEV/SAP"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ETL_ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ETL_Timestamp",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "Code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AddrFormat",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "UserSign",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "IsEC",
+				"type": "char"
+			},
+			{
+				"name": "ReportCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TaxIdDigts",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "BnkCodDgts",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "BnkBchDgts",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "BnkActDgts",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "BnkCtKDgts",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ValDomAcct",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ValIban",
+				"type": "char"
+			},
+			{
+				"name": "IsBlackLst",
+				"type": "char"
+			},
+			{
+				"name": "UICCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CntCodNum",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Siscomex",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "sap",
+			"table": "Mrr_OCRY"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,6 @@
+{
+	"name": "ir-sap",
+	"properties": {
+		"type": "SelfHosted"
+	}
+}

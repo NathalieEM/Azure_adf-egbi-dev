@@ -1,0 +1,21 @@
+{
+	"name": "json_dummy",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "st_error_log",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Blob Storage"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "prof"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

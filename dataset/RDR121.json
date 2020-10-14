@@ -1,0 +1,296 @@
+{
+	"name": "RDR121",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "TESTSorrelDB_25022020",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SQLSRV-SAP/NewQcoreDB"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "DocEntry",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TaxId0",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TaxId1",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TaxId2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TaxId3",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TaxId4",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TaxId5",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TaxId6",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TaxId7",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TaxId8",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TaxId9",
+				"type": "nvarchar"
+			},
+			{
+				"name": "State",
+				"type": "nvarchar"
+			},
+			{
+				"name": "County",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Incoterms",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Vehicle",
+				"type": "nvarchar"
+			},
+			{
+				"name": "VidState",
+				"type": "nvarchar"
+			},
+			{
+				"name": "NfRef",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Carrier",
+				"type": "nvarchar"
+			},
+			{
+				"name": "QoP",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PackDesc",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Brand",
+				"type": "nvarchar"
+			},
+			{
+				"name": "NoSU",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "NetWeight",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "GrsWeight",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "LogInstanc",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ObjectType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TaxId10",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TransCat",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FormNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TaxId11",
+				"type": "nvarchar"
+			},
+			{
+				"name": "StreetS",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BlockS",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BuildingS",
+				"type": "ntext"
+			},
+			{
+				"name": "CityS",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ZipCodeS",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CountyS",
+				"type": "nvarchar"
+			},
+			{
+				"name": "StateS",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CountryS",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AddrTypeS",
+				"type": "nvarchar"
+			},
+			{
+				"name": "StreetNoS",
+				"type": "nvarchar"
+			},
+			{
+				"name": "StreetB",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BlockB",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BuildingB",
+				"type": "ntext"
+			},
+			{
+				"name": "CityB",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ZipCodeB",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CountyB",
+				"type": "nvarchar"
+			},
+			{
+				"name": "StateB",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CountryB",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AddrTypeB",
+				"type": "nvarchar"
+			},
+			{
+				"name": "StreetNoB",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ImpORExp",
+				"type": "char"
+			},
+			{
+				"name": "Vat",
+				"type": "char"
+			},
+			{
+				"name": "AltCrdNamB",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AltTaxIdB",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Address2S",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Address3S",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Address2B",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Address3B",
+				"type": "nvarchar"
+			},
+			{
+				"name": "MainUsage",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "GlbLocNumS",
+				"type": "nvarchar"
+			},
+			{
+				"name": "GlbLocNumB",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CollectDT",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TransprtDT",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "TransprtRS",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TaxId12",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TaxId13",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "RDR12"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

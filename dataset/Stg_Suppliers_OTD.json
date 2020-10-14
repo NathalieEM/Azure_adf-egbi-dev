@@ -1,0 +1,89 @@
+{
+	"name": "Stg_Suppliers_OTD",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sqldb_egbi_dev",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SQLDB-EGBI-DEV/ScoreCards/Stg"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "cardcode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "cardname",
+				"type": "nvarchar"
+			},
+			{
+				"name": "QcorePO",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PO Line Num",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "VendorRef#",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PN",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Item Group Name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Description",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Quantity",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 11
+			},
+			{
+				"name": "OpenQuantity",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 11
+			},
+			{
+				"name": "ShippedQuantity",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 6
+			},
+			{
+				"name": "LastShipDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "Requested Date",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "ScoreCard",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "ScoreCards",
+			"table": "Stg_SuppliersOTD"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

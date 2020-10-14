@@ -1,0 +1,14 @@
+{
+	"name": "SharePointOnlineList1",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "SharePointOnlineList",
+		"typeProperties": {
+			"siteUrl": "https://eitangroupna.sharepoint.com/sites/PR",
+			"tenantId": "7ef15b48-e070-48c2-b1c5-86e2488d6058",
+			"servicePrincipalId": "a0518f3b-5bac-47c9-8059-20b248658b92",
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkFERi1FR0JJLURFVl9hN2I4OWYyYi01ZDJkLTQ0NTQtYWE3NS01Njk4MmJiZmE0MWEiDQp9"
+		}
+	}
+}

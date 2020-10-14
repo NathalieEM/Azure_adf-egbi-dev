@@ -1,0 +1,19 @@
+{
+	"name": "Sharepoint_PR_List_Items",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SharePointOnlineList1",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Sharepoint/PROF"
+		},
+		"annotations": [],
+		"type": "SharePointOnlineListResource",
+		"schema": [],
+		"typeProperties": {
+			"listName": "Items"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

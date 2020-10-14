@@ -1,0 +1,69 @@
+{
+	"name": "Dwh_ScarLog",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sqldb_egbi_dev",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SQLDB-EGBI-DEV/ScoreCards/Dwh"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "Year",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Week",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SupplierName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SupplierNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PartDescription",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PN",
+				"type": "nvarchar"
+			},
+			{
+				"name": "MRBNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DescriptionofDeviation",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ScarSendingDate",
+				"type": "date"
+			},
+			{
+				"name": "AllowedReturnDate",
+				"type": "date"
+			},
+			{
+				"name": "ReminderDate",
+				"type": "date"
+			},
+			{
+				"name": "ScarReturningDate",
+				"type": "date"
+			}
+		],
+		"typeProperties": {
+			"schema": "ScoreCards",
+			"table": "Dwh_ScarLog"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

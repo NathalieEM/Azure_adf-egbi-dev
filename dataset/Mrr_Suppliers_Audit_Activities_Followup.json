@@ -1,0 +1,89 @@
+{
+	"name": "Mrr_Suppliers_Audit_Activities_Followup",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sqldb_egbi_dev",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SQLDB-EGBI-DEV/ScoreCards/Mrr"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "SupplierName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Supplier Number",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SupplierType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Location",
+				"type": "nvarchar"
+			},
+			{
+				"name": "EAN #",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AuditPerfom",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ActualAuditDate",
+				"type": "date"
+			},
+			{
+				"name": "AuditDurationDays",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LeadAuditorName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Audit Team",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AuditType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Findings_Critical",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Findings_Major",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Findings_Moderate",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Findings_Observ",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AuditResults",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AuditorScore",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "ScoreCards",
+			"table": "Mrr_Suppliers_Audit_Activities_Followup"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

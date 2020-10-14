@@ -1,0 +1,52 @@
+{
+	"name": "porf_Mrr_Accounts2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sqldb_sorrelbi_dev",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SQLDB-EGBI-DEV/PORF"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ETL_ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ETL_Timestamp",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "AcctCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AcctName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "OverCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "OverCode2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DB_NAME",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "PORF",
+			"table": "Mrr_Accounts"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

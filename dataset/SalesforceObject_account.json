@@ -1,0 +1,16 @@
+{
+	"name": "SalesforceObject_account",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SalesforceSandBox",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SalesforceObject",
+		"schema": [],
+		"typeProperties": {
+			"objectApiName": "Account"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

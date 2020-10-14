@@ -1,0 +1,143 @@
+{
+	"name": "Mrr_ITT11",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sqldb_sorrelbi_dev",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SQLDB-EGBI-DEV/SAP"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "Father",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ChildNum",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Quantity",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "Warehouse",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Price",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "Currency",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PriceList",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "OrigPrice",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "OrigCurr",
+				"type": "nvarchar"
+			},
+			{
+				"name": "IssueMthd",
+				"type": "char"
+			},
+			{
+				"name": "Uom",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Comment",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LogInstanc",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Object",
+				"type": "nvarchar"
+			},
+			{
+				"name": "OcrCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "OcrCode2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "OcrCode3",
+				"type": "nvarchar"
+			},
+			{
+				"name": "OcrCode4",
+				"type": "nvarchar"
+			},
+			{
+				"name": "OcrCode5",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PrncpInput",
+				"type": "char"
+			},
+			{
+				"name": "Project",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Type",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "WipActCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AddQuantit",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			},
+			{
+				"name": "LineText",
+				"type": "ntext"
+			},
+			{
+				"name": "U_pos",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 6
+			}
+		],
+		"typeProperties": {
+			"schema": "sap",
+			"table": "Mrr_ITT1"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

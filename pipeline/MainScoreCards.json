@@ -1,0 +1,177 @@
+{
+	"name": "MainScoreCards",
+	"properties": {
+		"activities": [
+			{
+				"name": "Execute SharepointToBlobStorage",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "SharepointToBlobStorage",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Execute Mrr_ScoreCards",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Execute SharepointToBlobStorage",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Mrr_ScoreCards",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Execute Stg_ScoreCards",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Execute Mrr_ScoreCards",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Stg_ScoreCards",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Execute Dwh_ScoreCards",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Execute Stg_ScoreCards",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Dwh_ScoreCards",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "stream activity - ScoreCards",
+				"type": "WebActivity",
+				"dependsOn": [
+					{
+						"activity": "Execute Dwh_ScoreCards",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://api.powerbi.com/beta/7ef15b48-e070-48c2-b1c5-86e2488d6058/datasets/be953ba9-8789-435d-9add-fb35836ab916/rows?noSignUpCheck=1&key=29QqE0bnK0yio0X2c1eZoMdV4XGuyh70Gfnxlbo5gXM9CXKFx4tWH%2F7Kv%2Ff5InszefKuhEMq%2FCNwqEhTP8JPfA%3D%3D",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json"
+					},
+					"body": [
+						{
+							"Timestamp": "@{utcnow()}",
+							"Factory Name": "@{pipeline().DataFactory}",
+							"Pipeline Name": "@{pipeline().Pipeline}",
+							"Pipeline Run Id": "@{pipeline().RunId}",
+							"Activity Name": "Execute MainScoreCards Pipeline",
+							"Copy Activity - Rows Read": 999,
+							"Copy Activity - Rows Written": 999,
+							"Copy Activity - Rows Skipped": 0
+						}
+					]
+				}
+			},
+			{
+				"name": "SendEmailNotification-Failure",
+				"type": "WebActivity",
+				"dependsOn": [
+					{
+						"activity": "Execute Dwh_ScoreCards",
+						"dependencyConditions": [
+							"Failed"
+						]
+					},
+					{
+						"activity": "Execute Stg_ScoreCards",
+						"dependencyConditions": [
+							"Failed"
+						]
+					},
+					{
+						"activity": "Execute Mrr_ScoreCards",
+						"dependencyConditions": [
+							"Failed"
+						]
+					},
+					{
+						"activity": "Execute SharepointToBlobStorage",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://prod-63.northeurope.logic.azure.com:443/workflows/820378097fd14cf6bb058c2dde474d95/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=X6EEM-5om1n88dstvBtdfDZeYsime2jFG7w33AbkIm4",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json"
+					},
+					"body": {
+						"DataFactoryName": "@{pipeline().DataFactory}",
+						"PipelineName": "@{pipeline().Pipeline}",
+						"Subject": "An error has occurred!",
+						"ErrorMessage": "The ADF pipeline has crashed! Please check the logs.",
+						"EmailTo": "nathalie.mayzlits@qcore.com;liron.aperman@qcore.com;jana.cohen@qcore.com"
+					}
+				}
+			}
+		],
+		"folder": {
+			"name": "ScoreCards"
+		},
+		"annotations": [],
+		"lastPublishTime": "2020-09-06T09:23:21Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
