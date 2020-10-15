@@ -9,7 +9,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "SAP_Mrr_OSCN_1",
+						"referenceName": "SAP_Mrr_OSCN1",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true

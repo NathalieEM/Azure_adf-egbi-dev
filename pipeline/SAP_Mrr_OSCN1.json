@@ -158,14 +158,14 @@
 							},
 							{
 								"source": {
-									"name": "U_ScoreCard",
-									"type": "Int32",
-									"physicalType": "int"
+									"name": "U_Manuf",
+									"type": "String",
+									"physicalType": "nvarchar"
 								},
 								"sink": {
-									"name": "U_ScoreCard",
-									"type": "Int32",
-									"physicalType": "int"
+									"name": "U_Manuf",
+									"type": "String",
+									"physicalType": "nvarchar"
 								}
 							}
 						],
