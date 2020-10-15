@@ -1,0 +1,684 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "adf-egbi-dev"
+		},
+		"sqldb_egbi_dev_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'sqldb_egbi_dev'"
+		},
+		"ls_salesforce_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'ls_salesforce'"
+		},
+		"ls_salesforce_securityToken": {
+			"type": "secureString",
+			"metadata": "Secure string for 'securityToken' of 'ls_salesforce'"
+		},
+		"sqlsrv_sap_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'sqlsrv_sap'"
+		},
+		"st_error_log_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'st_error_log'"
+		},
+		"SharePointOnlineList1_servicePrincipalKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'servicePrincipalKey' of 'SharePointOnlineList1'"
+		},
+		"sqlsrv_sap_TestNewQcoreDB_05012020_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'sqlsrv_sap_TestNewQcoreDB_05012020'"
+		},
+		"AzureBlobStorage1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage1'"
+		},
+		"sql_rptsrv_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'sql_rptsrv'"
+		},
+		"ls_sap_integrator_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_sap_integrator'"
+		},
+		"SAP_Integrator_dev_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'SAP_Integrator_dev'"
+		},
+		"RPTSRV_ReportServer_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'RPTSRV_ReportServer'"
+		},
+		"RptSrv_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'RptSrv'"
+		},
+		"AWS_Service_portal_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AWS_Service_portal'"
+		},
+		"SalesforceSandBox_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'SalesforceSandBox'"
+		},
+		"SalesforceSandBox_securityToken": {
+			"type": "secureString",
+			"metadata": "Secure string for 'securityToken' of 'SalesforceSandBox'"
+		},
+		"SAP_Sorrel_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'SAP_Sorrel'"
+		},
+		"TESTSorrelDB_25022020_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'TESTSorrelDB_25022020'"
+		},
+		"sqldb_sorrelbi_dev_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'sqldb_sorrelbi_dev'"
+		},
+		"Is_Sorrel_integration_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'Is_Sorrel_integration'"
+		},
+		"ls_salesforce_properties_typeProperties_environmentUrl": {
+			"type": "string",
+			"defaultValue": "https://login.salesforce.com"
+		},
+		"ls_salesforce_properties_typeProperties_username": {
+			"type": "string",
+			"defaultValue": "help.desk@qcore.com"
+		},
+		"SharePointOnlineList1_properties_typeProperties_servicePrincipalId": {
+			"type": "string",
+			"defaultValue": "a0518f3b-5bac-47c9-8059-20b248658b92"
+		},
+		"SharepointSire_PR_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://eitangroupna.sharepoint.com/sites/PR/_api/lists/"
+		},
+		"SalesforceSandBox_properties_typeProperties_environmentUrl": {
+			"type": "string",
+			"defaultValue": "qcoremedical--sandbox.my.salesforce.com"
+		},
+		"SalesforceSandBox_properties_typeProperties_username": {
+			"type": "string",
+			"defaultValue": "nathalie.mayzlits@qcore.com.sandbox"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "adf-egbi-dev_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"sqldb_egbi_dev_connectionString": {
+						"value": "[parameters('sqldb_egbi_dev_connectionString')]"
+					},
+					"ls_salesforce_password": {
+						"value": "[parameters('ls_salesforce_password')]"
+					},
+					"ls_salesforce_securityToken": {
+						"value": "[parameters('ls_salesforce_securityToken')]"
+					},
+					"st_error_log_connectionString": {
+						"value": "[parameters('st_error_log_connectionString')]"
+					},
+					"SharePointOnlineList1_servicePrincipalKey": {
+						"value": "[parameters('SharePointOnlineList1_servicePrincipalKey')]"
+					},
+					"AzureBlobStorage1_connectionString": {
+						"value": "[parameters('AzureBlobStorage1_connectionString')]"
+					},
+					"sqldb_sorrelbi_dev_connectionString": {
+						"value": "[parameters('sqldb_sorrelbi_dev_connectionString')]"
+					},
+					"sqlsrv_sap_connectionString": {
+						"value": "[parameters('sqlsrv_sap_connectionString')]"
+					},
+					"sqlsrv_sap_TestNewQcoreDB_05012020_connectionString": {
+						"value": "[parameters('sqlsrv_sap_TestNewQcoreDB_05012020_connectionString')]"
+					},
+					"sql_rptsrv_connectionString": {
+						"value": "[parameters('sql_rptsrv_connectionString')]"
+					},
+					"ls_sap_integrator_connectionString": {
+						"value": "[parameters('ls_sap_integrator_connectionString')]"
+					},
+					"SAP_Integrator_dev_connectionString": {
+						"value": "[parameters('SAP_Integrator_dev_connectionString')]"
+					},
+					"RPTSRV_ReportServer_connectionString": {
+						"value": "[parameters('RPTSRV_ReportServer_connectionString')]"
+					},
+					"RptSrv_connectionString": {
+						"value": "[parameters('RptSrv_connectionString')]"
+					},
+					"AWS_Service_portal_connectionString": {
+						"value": "[parameters('AWS_Service_portal_connectionString')]"
+					},
+					"SalesforceSandBox_password": {
+						"value": "[parameters('SalesforceSandBox_password')]"
+					},
+					"SalesforceSandBox_securityToken": {
+						"value": "[parameters('SalesforceSandBox_securityToken')]"
+					},
+					"ls_salesforce_properties_typeProperties_environmentUrl": {
+						"value": "[parameters('ls_salesforce_properties_typeProperties_environmentUrl')]"
+					},
+					"ls_salesforce_properties_typeProperties_username": {
+						"value": "[parameters('ls_salesforce_properties_typeProperties_username')]"
+					},
+					"SharePointOnlineList1_properties_typeProperties_servicePrincipalId": {
+						"value": "[parameters('SharePointOnlineList1_properties_typeProperties_servicePrincipalId')]"
+					},
+					"SharepointSire_PR_properties_typeProperties_url": {
+						"value": "[parameters('SharepointSire_PR_properties_typeProperties_url')]"
+					},
+					"SalesforceSandBox_properties_typeProperties_environmentUrl": {
+						"value": "[parameters('SalesforceSandBox_properties_typeProperties_environmentUrl')]"
+					},
+					"SalesforceSandBox_properties_typeProperties_username": {
+						"value": "[parameters('SalesforceSandBox_properties_typeProperties_username')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "adf-egbi-dev_ArmTemplate_1",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"SAP_Sorrel_connectionString": {
+						"value": "[parameters('SAP_Sorrel_connectionString')]"
+					},
+					"TESTSorrelDB_25022020_connectionString": {
+						"value": "[parameters('TESTSorrelDB_25022020_connectionString')]"
+					},
+					"Is_Sorrel_integration_connectionString": {
+						"value": "[parameters('Is_Sorrel_integration_connectionString')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adf-egbi-dev_ArmTemplate_0')]"
+			]
+		},
+		{
+			"name": "adf-egbi-dev_ArmTemplate_2",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_2.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adf-egbi-dev_ArmTemplate_1')]"
+			]
+		},
+		{
+			"name": "adf-egbi-dev_ArmTemplate_3",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_3.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adf-egbi-dev_ArmTemplate_2')]"
+			]
+		},
+		{
+			"name": "adf-egbi-dev_ArmTemplate_4",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_4.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adf-egbi-dev_ArmTemplate_3')]"
+			]
+		},
+		{
+			"name": "adf-egbi-dev_ArmTemplate_5",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_5.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adf-egbi-dev_ArmTemplate_4')]"
+			]
+		},
+		{
+			"name": "adf-egbi-dev_ArmTemplate_6",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_6.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adf-egbi-dev_ArmTemplate_5')]"
+			]
+		},
+		{
+			"name": "adf-egbi-dev_ArmTemplate_7",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_7.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adf-egbi-dev_ArmTemplate_6')]"
+			]
+		},
+		{
+			"name": "adf-egbi-dev_ArmTemplate_8",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_8.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adf-egbi-dev_ArmTemplate_7')]"
+			]
+		},
+		{
+			"name": "adf-egbi-dev_ArmTemplate_9",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_9.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adf-egbi-dev_ArmTemplate_8')]"
+			]
+		},
+		{
+			"name": "adf-egbi-dev_ArmTemplate_10",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_10.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adf-egbi-dev_ArmTemplate_9')]"
+			]
+		},
+		{
+			"name": "adf-egbi-dev_ArmTemplate_11",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_11.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adf-egbi-dev_ArmTemplate_10')]"
+			]
+		},
+		{
+			"name": "adf-egbi-dev_ArmTemplate_12",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_12.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adf-egbi-dev_ArmTemplate_11')]"
+			]
+		},
+		{
+			"name": "adf-egbi-dev_ArmTemplate_13",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_13.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adf-egbi-dev_ArmTemplate_12')]"
+			]
+		},
+		{
+			"name": "adf-egbi-dev_ArmTemplate_14",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_14.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adf-egbi-dev_ArmTemplate_13')]"
+			]
+		},
+		{
+			"name": "adf-egbi-dev_ArmTemplate_15",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_15.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adf-egbi-dev_ArmTemplate_14')]"
+			]
+		},
+		{
+			"name": "adf-egbi-dev_ArmTemplate_16",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_16.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adf-egbi-dev_ArmTemplate_15')]"
+			]
+		},
+		{
+			"name": "adf-egbi-dev_ArmTemplate_17",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_17.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adf-egbi-dev_ArmTemplate_16')]"
+			]
+		},
+		{
+			"name": "adf-egbi-dev_ArmTemplate_18",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_18.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adf-egbi-dev_ArmTemplate_17')]"
+			]
+		},
+		{
+			"name": "adf-egbi-dev_ArmTemplate_19",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_19.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adf-egbi-dev_ArmTemplate_18')]"
+			]
+		},
+		{
+			"name": "adf-egbi-dev_ArmTemplate_20",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_20.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adf-egbi-dev_ArmTemplate_19')]"
+			]
+		},
+		{
+			"name": "adf-egbi-dev_ArmTemplate_21",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_21.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adf-egbi-dev_ArmTemplate_20')]"
+			]
+		},
+		{
+			"name": "adf-egbi-dev_ArmTemplate_22",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_22.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adf-egbi-dev_ArmTemplate_21')]"
+			]
+		},
+		{
+			"name": "adf-egbi-dev_ArmTemplate_23",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_23.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adf-egbi-dev_ArmTemplate_22')]"
+			]
+		}
+	]
+}

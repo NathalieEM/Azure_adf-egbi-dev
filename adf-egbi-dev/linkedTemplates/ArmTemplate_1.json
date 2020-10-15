@@ -1,0 +1,1518 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "adf-egbi-dev"
+		},
+		"SAP_Sorrel_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'SAP_Sorrel'"
+		},
+		"TESTSorrelDB_25022020_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'TESTSorrelDB_25022020'"
+		},
+		"Is_Sorrel_integration_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'Is_Sorrel_integration'"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/SAP_Sorrel')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "SqlServer",
+				"typeProperties": {
+					"connectionString": "[parameters('SAP_Sorrel_connectionString')]"
+				},
+				"connectVia": {
+					"referenceName": "ir-sap",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/TESTSorrelDB_25022020')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "SqlServer",
+				"typeProperties": {
+					"connectionString": "[parameters('TESTSorrelDB_25022020_connectionString')]"
+				},
+				"connectVia": {
+					"referenceName": "ir-sap",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Is_Sorrel_integration')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "SqlServer",
+				"typeProperties": {
+					"connectionString": "[parameters('Is_Sorrel_integration_connectionString')]"
+				},
+				"connectVia": {
+					"referenceName": "ir-sap",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SF_Employee_JF_Relation')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_salesforce",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SalesForce"
+				},
+				"annotations": [],
+				"type": "SalesforceObject",
+				"schema": [],
+				"typeProperties": {
+					"objectApiName": "CompSuite__Junction_Employee_Job_Function__c"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SF_Curriculum')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_salesforce",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SalesForce"
+				},
+				"annotations": [],
+				"type": "SalesforceObject",
+				"schema": [],
+				"typeProperties": {
+					"objectApiName": "CompSuite__Curriculum__c"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SF_Job_Function')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_salesforce",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SalesForce"
+				},
+				"annotations": [],
+				"type": "SalesforceObject",
+				"schema": [],
+				"typeProperties": {
+					"objectApiName": "CompSuite__Job_Function_Group__c"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SF_Curriculum_Requirement_Relations')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_salesforce",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SalesForce"
+				},
+				"annotations": [],
+				"type": "SalesforceObject",
+				"schema": [],
+				"typeProperties": {
+					"objectApiName": "CompSuite__Junction_Curriculum_Requirement_Header__c"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SF_Employee')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_salesforce",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SalesForce"
+				},
+				"annotations": [],
+				"type": "SalesforceObject",
+				"schema": [],
+				"typeProperties": {
+					"objectApiName": "CompSuite__Employee__c"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SF_Curriculum_JF_Relation')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_salesforce",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SalesForce"
+				},
+				"annotations": [],
+				"type": "SalesforceObject",
+				"schema": [],
+				"typeProperties": {
+					"objectApiName": "CompSuite__Junction_Job_Function_Curriculum__c"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SF_Master_Document')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_salesforce",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SalesForce"
+				},
+				"annotations": [],
+				"type": "SalesforceObject",
+				"schema": [],
+				"typeProperties": {
+					"objectApiName": "CompSuite__Document_Header__c"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Training_Mrr_SF_Employee')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqldb_egbi_dev",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLDB-EGBI-DEV/Training"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ETL_ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ETL_Timestamp",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "Id",
+						"type": "varchar"
+					},
+					{
+						"name": "OwnerId",
+						"type": "varchar"
+					},
+					{
+						"name": "IsDeleted",
+						"type": "bit"
+					},
+					{
+						"name": "Name",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CreatedDate",
+						"type": "datetime2",
+						"scale": 0
+					},
+					{
+						"name": "CreatedById",
+						"type": "varchar"
+					},
+					{
+						"name": "LastModifiedDate",
+						"type": "datetime2",
+						"scale": 0
+					},
+					{
+						"name": "LastModifiedById",
+						"type": "varchar"
+					},
+					{
+						"name": "SystemModstamp",
+						"type": "datetime2",
+						"scale": 0
+					},
+					{
+						"name": "LastActivityDate",
+						"type": "datetime2",
+						"scale": 0
+					},
+					{
+						"name": "LastViewedDate",
+						"type": "datetime2",
+						"scale": 0
+					},
+					{
+						"name": "LastReferencedDate",
+						"type": "datetime2",
+						"scale": 0
+					},
+					{
+						"name": "CompSuite__Active__c",
+						"type": "bit"
+					},
+					{
+						"name": "CompSuite__Department__c",
+						"type": "varchar"
+					},
+					{
+						"name": "CompSuite__Employee_Email__c",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CompSuite__Employee_Number__c",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CompSuite__Life_Cycle_Comments__c",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CompSuite__Lock_Fields__c",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CompSuite__Site__c",
+						"type": "varchar"
+					},
+					{
+						"name": "CompSuite__State__c",
+						"type": "varchar"
+					},
+					{
+						"name": "CompSuite__User__c",
+						"type": "varchar"
+					},
+					{
+						"name": "Employee_Number__c",
+						"type": "varchar"
+					},
+					{
+						"name": "Emp_User_ID__c",
+						"type": "varchar"
+					},
+					{
+						"name": "User_ID__c",
+						"type": "varchar"
+					},
+					{
+						"name": "Employee_Title__c",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Company__c",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Exists__c",
+						"type": "bit"
+					},
+					{
+						"name": "FirstTableCheck__c",
+						"type": "bit"
+					},
+					{
+						"name": "Owner_Name__c",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CompSuite__Business_Unit__c",
+						"type": "nvarchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "training",
+					"table": "Mrr_SF_Employee"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Training_Mrr_SF_Job_Function_Curriculum_Relation')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqldb_egbi_dev",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLDB-EGBI-DEV/Training"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ETL_ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ETL_Timestamp",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "Id",
+						"type": "varchar"
+					},
+					{
+						"name": "OwnerId",
+						"type": "varchar"
+					},
+					{
+						"name": "IsDeleted",
+						"type": "bit"
+					},
+					{
+						"name": "Name",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CreatedDate",
+						"type": "datetime2",
+						"scale": 0
+					},
+					{
+						"name": "CreatedById",
+						"type": "varchar"
+					},
+					{
+						"name": "LastModifiedDate",
+						"type": "datetime2",
+						"scale": 0
+					},
+					{
+						"name": "LastModifiedById",
+						"type": "varchar"
+					},
+					{
+						"name": "SystemModstamp",
+						"type": "datetime2",
+						"scale": 0
+					},
+					{
+						"name": "LastActivityDate",
+						"type": "datetime2",
+						"scale": 0
+					},
+					{
+						"name": "LastViewedDate",
+						"type": "datetime2",
+						"scale": 0
+					},
+					{
+						"name": "LastReferencedDate",
+						"type": "datetime2",
+						"scale": 0
+					},
+					{
+						"name": "CompSuite__Active__c",
+						"type": "bit"
+					},
+					{
+						"name": "CompSuite__Department__c",
+						"type": "varchar"
+					},
+					{
+						"name": "CompSuite__Employee_Email__c",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CompSuite__Employee_Number__c",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CompSuite__Life_Cycle_Comments__c",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CompSuite__Lock_Fields__c",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CompSuite__Site__c",
+						"type": "varchar"
+					},
+					{
+						"name": "CompSuite__State__c",
+						"type": "varchar"
+					},
+					{
+						"name": "CompSuite__User__c",
+						"type": "varchar"
+					},
+					{
+						"name": "Employee_Number__c",
+						"type": "varchar"
+					},
+					{
+						"name": "Emp_User_ID__c",
+						"type": "varchar"
+					},
+					{
+						"name": "User_ID__c",
+						"type": "varchar"
+					},
+					{
+						"name": "Employee_Title__c",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Company__c",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Exists__c",
+						"type": "bit"
+					},
+					{
+						"name": "FirstTableCheck__c",
+						"type": "bit"
+					},
+					{
+						"name": "Owner_Name__c",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CompSuite__Business_Unit__c",
+						"type": "nvarchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "training",
+					"table": "Mrr_SF_Job_Function_Curriculum_Relation"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Training_Mrr_SF_Curriculum')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqldb_egbi_dev",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLDB-EGBI-DEV/Training"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ETL_ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ETL_Timestamp",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "Id",
+						"type": "varchar"
+					},
+					{
+						"name": "OwnerId",
+						"type": "varchar"
+					},
+					{
+						"name": "IsDeleted",
+						"type": "bit"
+					},
+					{
+						"name": "Name",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CreatedDate",
+						"type": "datetime2",
+						"scale": 0
+					},
+					{
+						"name": "CreatedById",
+						"type": "varchar"
+					},
+					{
+						"name": "LastModifiedDate",
+						"type": "datetime2",
+						"scale": 0
+					},
+					{
+						"name": "LastModifiedById",
+						"type": "varchar"
+					},
+					{
+						"name": "SystemModstamp",
+						"type": "datetime2",
+						"scale": 0
+					},
+					{
+						"name": "LastActivityDate",
+						"type": "datetime2",
+						"scale": 0
+					},
+					{
+						"name": "LastViewedDate",
+						"type": "datetime2",
+						"scale": 0
+					},
+					{
+						"name": "LastReferencedDate",
+						"type": "datetime2",
+						"scale": 0
+					},
+					{
+						"name": "CompSuite__Active__c",
+						"type": "bit"
+					},
+					{
+						"name": "CompSuite__Department__c",
+						"type": "varchar"
+					},
+					{
+						"name": "CompSuite__Employee_Email__c",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CompSuite__Employee_Number__c",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CompSuite__Life_Cycle_Comments__c",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CompSuite__Lock_Fields__c",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CompSuite__Site__c",
+						"type": "varchar"
+					},
+					{
+						"name": "CompSuite__State__c",
+						"type": "varchar"
+					},
+					{
+						"name": "CompSuite__User__c",
+						"type": "varchar"
+					},
+					{
+						"name": "Employee_Number__c",
+						"type": "varchar"
+					},
+					{
+						"name": "Emp_User_ID__c",
+						"type": "varchar"
+					},
+					{
+						"name": "User_ID__c",
+						"type": "varchar"
+					},
+					{
+						"name": "Employee_Title__c",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Company__c",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Exists__c",
+						"type": "bit"
+					},
+					{
+						"name": "FirstTableCheck__c",
+						"type": "bit"
+					},
+					{
+						"name": "Owner_Name__c",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CompSuite__Business_Unit__c",
+						"type": "nvarchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "training",
+					"table": "Mrr_SF_Curriculum"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Training_Mrr_SF_Curriculum_Requirement_Relations')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqldb_egbi_dev",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLDB-EGBI-DEV/Training"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ETL_ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ETL_Timestamp",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "Id",
+						"type": "varchar"
+					},
+					{
+						"name": "OwnerId",
+						"type": "varchar"
+					},
+					{
+						"name": "IsDeleted",
+						"type": "bit"
+					},
+					{
+						"name": "Name",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CreatedDate",
+						"type": "datetime2",
+						"scale": 0
+					},
+					{
+						"name": "CreatedById",
+						"type": "varchar"
+					},
+					{
+						"name": "LastModifiedDate",
+						"type": "datetime2",
+						"scale": 0
+					},
+					{
+						"name": "LastModifiedById",
+						"type": "varchar"
+					},
+					{
+						"name": "SystemModstamp",
+						"type": "datetime2",
+						"scale": 0
+					},
+					{
+						"name": "LastActivityDate",
+						"type": "datetime2",
+						"scale": 0
+					},
+					{
+						"name": "LastViewedDate",
+						"type": "datetime2",
+						"scale": 0
+					},
+					{
+						"name": "LastReferencedDate",
+						"type": "datetime2",
+						"scale": 0
+					},
+					{
+						"name": "CompSuite__Active__c",
+						"type": "bit"
+					},
+					{
+						"name": "CompSuite__Department__c",
+						"type": "varchar"
+					},
+					{
+						"name": "CompSuite__Employee_Email__c",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CompSuite__Employee_Number__c",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CompSuite__Life_Cycle_Comments__c",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CompSuite__Lock_Fields__c",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CompSuite__Site__c",
+						"type": "varchar"
+					},
+					{
+						"name": "CompSuite__State__c",
+						"type": "varchar"
+					},
+					{
+						"name": "CompSuite__User__c",
+						"type": "varchar"
+					},
+					{
+						"name": "Employee_Number__c",
+						"type": "varchar"
+					},
+					{
+						"name": "Emp_User_ID__c",
+						"type": "varchar"
+					},
+					{
+						"name": "User_ID__c",
+						"type": "varchar"
+					},
+					{
+						"name": "Employee_Title__c",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Company__c",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Exists__c",
+						"type": "bit"
+					},
+					{
+						"name": "FirstTableCheck__c",
+						"type": "bit"
+					},
+					{
+						"name": "Owner_Name__c",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CompSuite__Business_Unit__c",
+						"type": "nvarchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "training",
+					"table": "Mrr_SF_Curriculum_Requirement_Relations"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Training_Mrr_SF_Job_Function_Employee_Relations')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqldb_egbi_dev",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLDB-EGBI-DEV/Training"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ETL_ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ETL_Timestamp",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "Id",
+						"type": "varchar"
+					},
+					{
+						"name": "OwnerId",
+						"type": "varchar"
+					},
+					{
+						"name": "IsDeleted",
+						"type": "bit"
+					},
+					{
+						"name": "Name",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CreatedDate",
+						"type": "datetime2",
+						"scale": 0
+					},
+					{
+						"name": "CreatedById",
+						"type": "varchar"
+					},
+					{
+						"name": "LastModifiedDate",
+						"type": "datetime2",
+						"scale": 0
+					},
+					{
+						"name": "LastModifiedById",
+						"type": "varchar"
+					},
+					{
+						"name": "SystemModstamp",
+						"type": "datetime2",
+						"scale": 0
+					},
+					{
+						"name": "LastActivityDate",
+						"type": "datetime2",
+						"scale": 0
+					},
+					{
+						"name": "LastViewedDate",
+						"type": "datetime2",
+						"scale": 0
+					},
+					{
+						"name": "LastReferencedDate",
+						"type": "datetime2",
+						"scale": 0
+					},
+					{
+						"name": "CompSuite__Active__c",
+						"type": "bit"
+					},
+					{
+						"name": "CompSuite__Department__c",
+						"type": "varchar"
+					},
+					{
+						"name": "CompSuite__Employee_Email__c",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CompSuite__Employee_Number__c",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CompSuite__Life_Cycle_Comments__c",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CompSuite__Lock_Fields__c",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CompSuite__Site__c",
+						"type": "varchar"
+					},
+					{
+						"name": "CompSuite__State__c",
+						"type": "varchar"
+					},
+					{
+						"name": "CompSuite__User__c",
+						"type": "varchar"
+					},
+					{
+						"name": "Employee_Number__c",
+						"type": "varchar"
+					},
+					{
+						"name": "Emp_User_ID__c",
+						"type": "varchar"
+					},
+					{
+						"name": "User_ID__c",
+						"type": "varchar"
+					},
+					{
+						"name": "Employee_Title__c",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Company__c",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Exists__c",
+						"type": "bit"
+					},
+					{
+						"name": "FirstTableCheck__c",
+						"type": "bit"
+					},
+					{
+						"name": "Owner_Name__c",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CompSuite__Business_Unit__c",
+						"type": "nvarchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "training",
+					"table": "Mrr_SF_Job_Function_Employee_Relations"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Training_Mrr_SF_Master_Document')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqldb_egbi_dev",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLDB-EGBI-DEV/Training"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ETL_ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ETL_Timestamp",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "Id",
+						"type": "varchar"
+					},
+					{
+						"name": "OwnerId",
+						"type": "varchar"
+					},
+					{
+						"name": "IsDeleted",
+						"type": "bit"
+					},
+					{
+						"name": "Name",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CreatedDate",
+						"type": "datetime2",
+						"scale": 0
+					},
+					{
+						"name": "CreatedById",
+						"type": "varchar"
+					},
+					{
+						"name": "LastModifiedDate",
+						"type": "datetime2",
+						"scale": 0
+					},
+					{
+						"name": "LastModifiedById",
+						"type": "varchar"
+					},
+					{
+						"name": "SystemModstamp",
+						"type": "datetime2",
+						"scale": 0
+					},
+					{
+						"name": "LastActivityDate",
+						"type": "datetime2",
+						"scale": 0
+					},
+					{
+						"name": "LastViewedDate",
+						"type": "datetime2",
+						"scale": 0
+					},
+					{
+						"name": "LastReferencedDate",
+						"type": "datetime2",
+						"scale": 0
+					},
+					{
+						"name": "CompSuite__Active__c",
+						"type": "bit"
+					},
+					{
+						"name": "CompSuite__Department__c",
+						"type": "varchar"
+					},
+					{
+						"name": "CompSuite__Employee_Email__c",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CompSuite__Employee_Number__c",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CompSuite__Life_Cycle_Comments__c",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CompSuite__Lock_Fields__c",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CompSuite__Site__c",
+						"type": "varchar"
+					},
+					{
+						"name": "CompSuite__State__c",
+						"type": "varchar"
+					},
+					{
+						"name": "CompSuite__User__c",
+						"type": "varchar"
+					},
+					{
+						"name": "Employee_Number__c",
+						"type": "varchar"
+					},
+					{
+						"name": "Emp_User_ID__c",
+						"type": "varchar"
+					},
+					{
+						"name": "User_ID__c",
+						"type": "varchar"
+					},
+					{
+						"name": "Employee_Title__c",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Company__c",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Exists__c",
+						"type": "bit"
+					},
+					{
+						"name": "FirstTableCheck__c",
+						"type": "bit"
+					},
+					{
+						"name": "Owner_Name__c",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CompSuite__Business_Unit__c",
+						"type": "nvarchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "training",
+					"table": "Mrr_SF_Master_Document"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Training_Mrr_SF_Job_Function')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqldb_egbi_dev",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLDB-EGBI-DEV/Training"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ETL_ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ETL_Timestamp",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "Id",
+						"type": "varchar"
+					},
+					{
+						"name": "OwnerId",
+						"type": "varchar"
+					},
+					{
+						"name": "IsDeleted",
+						"type": "bit"
+					},
+					{
+						"name": "Name",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CreatedDate",
+						"type": "datetime2",
+						"scale": 0
+					},
+					{
+						"name": "CreatedById",
+						"type": "varchar"
+					},
+					{
+						"name": "LastModifiedDate",
+						"type": "datetime2",
+						"scale": 0
+					},
+					{
+						"name": "LastModifiedById",
+						"type": "varchar"
+					},
+					{
+						"name": "SystemModstamp",
+						"type": "datetime2",
+						"scale": 0
+					},
+					{
+						"name": "LastActivityDate",
+						"type": "datetime2",
+						"scale": 0
+					},
+					{
+						"name": "LastViewedDate",
+						"type": "datetime2",
+						"scale": 0
+					},
+					{
+						"name": "LastReferencedDate",
+						"type": "datetime2",
+						"scale": 0
+					},
+					{
+						"name": "CompSuite__Active__c",
+						"type": "bit"
+					},
+					{
+						"name": "CompSuite__Department__c",
+						"type": "varchar"
+					},
+					{
+						"name": "CompSuite__Employee_Email__c",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CompSuite__Employee_Number__c",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CompSuite__Life_Cycle_Comments__c",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CompSuite__Lock_Fields__c",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CompSuite__Site__c",
+						"type": "varchar"
+					},
+					{
+						"name": "CompSuite__State__c",
+						"type": "varchar"
+					},
+					{
+						"name": "CompSuite__User__c",
+						"type": "varchar"
+					},
+					{
+						"name": "Employee_Number__c",
+						"type": "varchar"
+					},
+					{
+						"name": "Emp_User_ID__c",
+						"type": "varchar"
+					},
+					{
+						"name": "User_ID__c",
+						"type": "varchar"
+					},
+					{
+						"name": "Employee_Title__c",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Company__c",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Exists__c",
+						"type": "bit"
+					},
+					{
+						"name": "FirstTableCheck__c",
+						"type": "bit"
+					},
+					{
+						"name": "Owner_Name__c",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CompSuite__Business_Unit__c",
+						"type": "nvarchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "training",
+					"table": "Mrr_SF_Job_Function"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SF_Requirement_Header')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_salesforce",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SalesForce"
+				},
+				"annotations": [],
+				"type": "SalesforceObject",
+				"schema": [],
+				"typeProperties": {
+					"objectApiName": "CompSuite__Requirement_Header__c"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Training_Mrr_SF_Requirement_Header')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqldb_egbi_dev",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLDB-EGBI-DEV/Training"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ETL_ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ETL_Timestamp",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "Id",
+						"type": "varchar"
+					},
+					{
+						"name": "OwnerId",
+						"type": "varchar"
+					},
+					{
+						"name": "IsDeleted",
+						"type": "bit"
+					},
+					{
+						"name": "Name",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CreatedDate",
+						"type": "datetime2",
+						"scale": 0
+					},
+					{
+						"name": "CreatedById",
+						"type": "varchar"
+					},
+					{
+						"name": "LastModifiedDate",
+						"type": "datetime2",
+						"scale": 0
+					},
+					{
+						"name": "LastModifiedById",
+						"type": "varchar"
+					},
+					{
+						"name": "SystemModstamp",
+						"type": "datetime2",
+						"scale": 0
+					},
+					{
+						"name": "LastActivityDate",
+						"type": "datetime2",
+						"scale": 0
+					},
+					{
+						"name": "LastViewedDate",
+						"type": "datetime2",
+						"scale": 0
+					},
+					{
+						"name": "LastReferencedDate",
+						"type": "datetime2",
+						"scale": 0
+					},
+					{
+						"name": "CompSuite__Curriculums__c",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CompSuite__Days_to_Complete__c",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "CompSuite__Document__c",
+						"type": "varchar"
+					},
+					{
+						"name": "CompSuite__Life_Cycle_Comments__c",
+						"type": "varchar"
+					},
+					{
+						"name": "CompSuite__Lock_Fields__c",
+						"type": "varchar"
+					},
+					{
+						"name": "CompSuite__Requirement_Frequency__c",
+						"type": "varchar"
+					},
+					{
+						"name": "CompSuite__Training_Eff_Protocol__c",
+						"type": "varchar"
+					},
+					{
+						"name": "CompSuite__State__c",
+						"type": "varchar"
+					},
+					{
+						"name": "CompSuite__Number_of_Versions__c",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Requirement_ID__c",
+						"type": "nvarchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "training",
+					"table": "Mrr_SF_Requirement_Header"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SF_Training_Assignment')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_salesforce",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SalesForce"
+				},
+				"annotations": [],
+				"type": "SalesforceObject",
+				"schema": [],
+				"typeProperties": {
+					"objectApiName": "CompSuite__Training_Assignment__c"
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}

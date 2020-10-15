@@ -1,0 +1,1797 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "adf-egbi-dev"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/Dwh_Suppliers_Audit_Activities_Followup')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Merge Dwh_Suppliers_Audit_Activities_Followup",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[ScoreCards].[Merge_Dwh_Suppliers_Audit_Activities_Followup]"
+						},
+						"linkedServiceName": {
+							"referenceName": "sqldb_egbi_dev",
+							"type": "LinkedServiceReference"
+						}
+					}
+				],
+				"folder": {
+					"name": "ScoreCards/Dwh"
+				},
+				"annotations": [],
+				"lastPublishTime": "2020-10-15T07:53:24Z"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Sharepoint_PR_List_Items')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "SharePointOnlineList1",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Sharepoint/PROF"
+				},
+				"annotations": [],
+				"type": "SharePointOnlineListResource",
+				"schema": [],
+				"typeProperties": {
+					"listName": "Items"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Excel1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Blob Storage"
+				},
+				"annotations": [],
+				"type": "Excel",
+				"typeProperties": {
+					"sheetName": "Sheet1",
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "EGFR Open Booking list.xlsx",
+						"container": "excels"
+					},
+					"range": "a9:j1000",
+					"firstRowAsHeader": true
+				},
+				"schema": [
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SAP_Mrr_RDR12')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqldb_egbi_dev",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLDB-EGBI-DEV/SAP"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "DocEntry",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "TaxId0",
+						"type": "nvarchar"
+					},
+					{
+						"name": "TaxId1",
+						"type": "nvarchar"
+					},
+					{
+						"name": "TaxId2",
+						"type": "nvarchar"
+					},
+					{
+						"name": "TaxId3",
+						"type": "nvarchar"
+					},
+					{
+						"name": "TaxId4",
+						"type": "nvarchar"
+					},
+					{
+						"name": "TaxId5",
+						"type": "nvarchar"
+					},
+					{
+						"name": "TaxId6",
+						"type": "nvarchar"
+					},
+					{
+						"name": "TaxId7",
+						"type": "nvarchar"
+					},
+					{
+						"name": "TaxId8",
+						"type": "nvarchar"
+					},
+					{
+						"name": "TaxId9",
+						"type": "nvarchar"
+					},
+					{
+						"name": "State",
+						"type": "nvarchar"
+					},
+					{
+						"name": "County",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Incoterms",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Vehicle",
+						"type": "nvarchar"
+					},
+					{
+						"name": "VidState",
+						"type": "nvarchar"
+					},
+					{
+						"name": "NfRef",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Carrier",
+						"type": "nvarchar"
+					},
+					{
+						"name": "QoP",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "PackDesc",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Brand",
+						"type": "nvarchar"
+					},
+					{
+						"name": "NoSU",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "NetWeight",
+						"type": "decimal",
+						"precision": 19,
+						"scale": 6
+					},
+					{
+						"name": "GrsWeight",
+						"type": "decimal",
+						"precision": 19,
+						"scale": 6
+					},
+					{
+						"name": "LogInstanc",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ObjectType",
+						"type": "nvarchar"
+					},
+					{
+						"name": "TaxId10",
+						"type": "nvarchar"
+					},
+					{
+						"name": "TransCat",
+						"type": "nvarchar"
+					},
+					{
+						"name": "FormNo",
+						"type": "nvarchar"
+					},
+					{
+						"name": "TaxId11",
+						"type": "nvarchar"
+					},
+					{
+						"name": "StreetS",
+						"type": "nvarchar"
+					},
+					{
+						"name": "BlockS",
+						"type": "nvarchar"
+					},
+					{
+						"name": "BuildingS",
+						"type": "ntext"
+					},
+					{
+						"name": "CityS",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ZipCodeS",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CountyS",
+						"type": "nvarchar"
+					},
+					{
+						"name": "StateS",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CountryS",
+						"type": "nvarchar"
+					},
+					{
+						"name": "AddrTypeS",
+						"type": "nvarchar"
+					},
+					{
+						"name": "StreetNoS",
+						"type": "nvarchar"
+					},
+					{
+						"name": "StreetB",
+						"type": "nvarchar"
+					},
+					{
+						"name": "BlockB",
+						"type": "nvarchar"
+					},
+					{
+						"name": "BuildingB",
+						"type": "ntext"
+					},
+					{
+						"name": "CityB",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ZipCodeB",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CountyB",
+						"type": "nvarchar"
+					},
+					{
+						"name": "StateB",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CountryB",
+						"type": "nvarchar"
+					},
+					{
+						"name": "AddrTypeB",
+						"type": "nvarchar"
+					},
+					{
+						"name": "StreetNoB",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ImpORExp",
+						"type": "char"
+					},
+					{
+						"name": "Vat",
+						"type": "char"
+					},
+					{
+						"name": "AltCrdNamB",
+						"type": "nvarchar"
+					},
+					{
+						"name": "AltTaxIdB",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Address2S",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Address3S",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Address2B",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Address3B",
+						"type": "nvarchar"
+					},
+					{
+						"name": "MainUsage",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "GlbLocNumS",
+						"type": "nvarchar"
+					},
+					{
+						"name": "GlbLocNumB",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CollectDT",
+						"type": "nvarchar"
+					},
+					{
+						"name": "TransprtDT",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "TransprtRS",
+						"type": "nvarchar"
+					},
+					{
+						"name": "TaxId12",
+						"type": "nvarchar"
+					},
+					{
+						"name": "TaxId13",
+						"type": "nvarchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "sap",
+					"table": "Mrr_RDR12"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/porf_Mrr_Accounts')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqldb_egbi_dev",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLDB-EGBI-DEV/PORF"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ETL_ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ETL_Timestamp",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "AcctCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "AcctName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "OverCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "OverCode2",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DB_NAME",
+						"type": "nvarchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "PORF",
+					"table": "Mrr_Accounts"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/porf_Mrr_Suppliers')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqldb_egbi_dev",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLDB-EGBI-DEV/PORF"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ETL_ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ETL_Timestamp",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "CardCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CardName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CurrName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "E_Mail",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PayMethod",
+						"type": "varchar"
+					},
+					{
+						"name": "U_ASLType",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ListNum",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "DB_NAME",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "PORF",
+					"table": "Mrr_Suppliers"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/porf_Mrr_PriceList')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqldb_egbi_dev",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLDB-EGBI-DEV/PORF"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ETL_ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ETL_Timestamp",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "ItemCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PriceList",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Price",
+						"type": "decimal",
+						"precision": 9,
+						"scale": 0
+					},
+					{
+						"name": "Currency",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DB_NAME",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "PORF",
+					"table": "Mrr_PriceList"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/porf_Mrr_CostCenter')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqldb_egbi_dev",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLDB-EGBI-DEV/PORF"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ETL_ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ETL_Timestamp",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "PrcCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PrcName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DimCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_OWNERCODE",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_OWNERNAME",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DB_NAME",
+						"type": "nvarchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "PORF",
+					"table": "Mrr_CostCenter"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/porf_Mrr_Rates')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqldb_egbi_dev",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLDB-EGBI-DEV/PORF"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ETL_ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ETL_Timestamp",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "RateDate",
+						"type": "datetime2",
+						"scale": 0
+					},
+					{
+						"name": "Currency",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Rate",
+						"type": "decimal",
+						"precision": 9,
+						"scale": 0
+					}
+				],
+				"typeProperties": {
+					"schema": "PORF",
+					"table": "Mrr_Rates"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/porf_Mrr_Items')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqldb_egbi_dev",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLDB-EGBI-DEV/PORF"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ETL_ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ETL_Timestamp",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "ItemCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ItemName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CardCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ItmsGrpCod",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "DB_NAME",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "PORF",
+					"table": "Mrr_Items"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/porf_Mrr_PURCRequests')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqldb_egbi_dev",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLDB-EGBI-DEV/PORF"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ETL_ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ETL_Timestamp",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "CardCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CardName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DocType",
+						"type": "nvarchar"
+					},
+					{
+						"name": "RquestedShipDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "ItemCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Price",
+						"type": "decimal",
+						"precision": 19,
+						"scale": 6
+					},
+					{
+						"name": "AcctCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "OcrCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "OcrCode2",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Currency",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_ReqDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "PorfNum",
+						"type": "nvarchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "PORF",
+					"table": "Mrr_PURCRequests"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SAP_Mrr_CUFD')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqldb_egbi_dev",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLDB-EGBI-DEV/SAP"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ETL_ID",
+						"type": "bigint",
+						"precision": 19
+					},
+					{
+						"name": "ETL_Timestamp",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "TableID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "FieldID",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "AliasID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Descr",
+						"type": "nvarchar"
+					},
+					{
+						"name": "TypeID",
+						"type": "char"
+					},
+					{
+						"name": "EditType",
+						"type": "char"
+					},
+					{
+						"name": "SizeID",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "EditSize",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "Dflt",
+						"type": "nvarchar"
+					},
+					{
+						"name": "NotNull",
+						"type": "char"
+					},
+					{
+						"name": "IndexID",
+						"type": "char"
+					},
+					{
+						"name": "RTable",
+						"type": "nvarchar"
+					},
+					{
+						"name": "RField",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "Action",
+						"type": "char"
+					},
+					{
+						"name": "Sys",
+						"type": "char"
+					},
+					{
+						"name": "DfltDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "RelUDO",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ValidRule",
+						"type": "nvarchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "sap",
+					"table": "Mrr_CUFD"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SAP_Mrr_UFD1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqldb_egbi_dev",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLDB-EGBI-DEV/SAP"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ETL_ID",
+						"type": "bigint",
+						"precision": 19
+					},
+					{
+						"name": "ETL_Timestamp",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "TableID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "FieldID",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "IndexID",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "FldValue",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Descr",
+						"type": "nvarchar"
+					},
+					{
+						"name": "FldDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					}
+				],
+				"typeProperties": {
+					"schema": "sap",
+					"table": "Mrr_UFD1"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SAP_Mrr_OPRJ')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqldb_egbi_dev",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLDB-EGBI-DEV/PORF"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ETL_ID",
+						"type": "bigint",
+						"precision": 19
+					},
+					{
+						"name": "ETL_Timestamp",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "PrjCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PrjName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Locked",
+						"type": "char"
+					},
+					{
+						"name": "DataSource",
+						"type": "char"
+					},
+					{
+						"name": "UserSign",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "ValidFrom",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "ValidTo",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "Active",
+						"type": "char"
+					},
+					{
+						"name": "LogInstanc",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "UserSign2",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "UpdateDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "U_beas_status",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_beas_template",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_beas_cardcode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_beas_belnr_id",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "U_beas_belpos_id",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "U_Owner",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_OwnerMail",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_Secondary",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_SecMail",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_PORFApp",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_PorfApp2",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_PORF",
+						"type": "nvarchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "sap",
+					"table": "Mrr_OPRJ"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Porf_mrr_projects')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqldb_egbi_dev",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLSRV-SAP/NewQcoreDB"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ETL_ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ETL_Timestamp",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "PrjCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PrjName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_Owner",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_OwnerMail",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_Secondary",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_SecMail",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_PORFApp",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_PorfApp2",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_PORF",
+						"type": "nvarchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "PORF",
+					"table": "Mrr_Projects"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Mrr_IQC_Followup')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqldb_egbi_dev",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLDB-EGBI-DEV/ScoreCards/Mrr"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "Part Name",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Supplier Cod",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Lot Source Supplier / Q Core",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Supplier",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Drawing Number",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Rev number",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Product belongs to",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Date of receipt",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Y/M Receipt",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Archive Location",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Batch #",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Total Qty. Received",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Sample Size",
+						"type": "nvarchar"
+					},
+					{
+						"name": "End date (end of IQC)",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Y/M End",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Time from receipt to release (days)",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Batch Disposition (Pass/Fail)",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Production (Pass/fail)",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Comments",
+						"type": "nvarchar"
+					},
+					{
+						"name": "MRB source (IQC/Production)",
+						"type": "nvarchar"
+					},
+					{
+						"name": "MRB #",
+						"type": "nvarchar"
+					},
+					{
+						"name": "MRB Disposition",
+						"type": "nvarchar"
+					},
+					{
+						"name": "final release date (after MRB)",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Documentation",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Dimensions",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Visual",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Functional",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Other",
+						"type": "nvarchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "ScoreCards",
+					"table": "Mrr_IQC_Followup"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Suppliers_Audit_Activities_Followup')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Blob Storage"
+				},
+				"annotations": [],
+				"type": "Excel",
+				"typeProperties": {
+					"sheetName": "Suppliers Audit Log",
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "Suppliers Audit Activities Follow-up.xlsx",
+						"container": "excels"
+					},
+					"range": "a3:r1000",
+					"firstRowAsHeader": false
+				},
+				"schema": [
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SCAR_Log')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Blob Storage"
+				},
+				"annotations": [],
+				"type": "Excel",
+				"typeProperties": {
+					"sheetName": "PURC-4000-0000800",
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "PURC-4000-0000800 Suppliers Corrective Action (SCAR) Log.xlsx",
+						"container": "excels"
+					},
+					"range": "a1:x1000",
+					"firstRowAsHeader": true
+				},
+				"schema": [
+					{
+						"name": "NCR #",
+						"type": "String"
+					},
+					{
+						"name": "Supplier Name",
+						"type": "String"
+					},
+					{
+						"name": "Supplier's No.",
+						"type": "String"
+					},
+					{
+						"name": "Part Description",
+						"type": "String"
+					},
+					{
+						"name": "PN",
+						"type": "String"
+					},
+					{
+						"name": "MRB # / Ref",
+						"type": "String"
+					},
+					{
+						"name": "Description of deviation",
+						"type": "String"
+					},
+					{
+						"name": "Date of sending SCAR to supplier",
+						"type": "String"
+					},
+					{
+						"name": "Y/M (trend)",
+						"type": "String"
+					},
+					{
+						"name": "Allowed return date",
+						"type": "String"
+					},
+					{
+						"name": "Date of Reminder",
+						"type": "String"
+					},
+					{
+						"name": "Date of SCAR Return",
+						"type": "String"
+					},
+					{
+						"name": "QA's Review date",
+						"type": "String"
+					},
+					{
+						"name": "SCAR Approval Date",
+						"type": "String"
+					},
+					{
+						"name": "Effectiveness Results",
+						"type": "String"
+					},
+					{
+						"name": "Effectiveness Checking Date",
+						"type": "String"
+					},
+					{
+						"name": "Closing Date",
+						"type": "String"
+					},
+					{
+						"name": "Sealing Date",
+						"type": "String"
+					},
+					{
+						"name": "Status",
+						"type": "String"
+					},
+					{
+						"name": "Comments",
+						"type": "String"
+					},
+					{
+						"name": "Time To Answer",
+						"type": "String"
+					},
+					{
+						"name": "Time to Approval",
+						"type": "String"
+					},
+					{
+						"name": "Time for Effectivness",
+						"type": "String"
+					},
+					{
+						"name": "Time to Close",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Mrr_ScarLog')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqldb_egbi_dev",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLDB-EGBI-DEV/ScoreCards/Mrr"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "NCR #",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Supplier Name",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Supplier's No.",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Part Description",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PN",
+						"type": "nvarchar"
+					},
+					{
+						"name": "MRB # / Ref",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Description of deviation",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Date of sending SCAR to supplier",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Y/M (trend)",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Allowed return date",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Date of Reminder",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Date of SCAR Return",
+						"type": "nvarchar"
+					},
+					{
+						"name": "SCAR Approval Date",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Effectiveness Results",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Effectiveness Checking Date",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Closing Date",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Status",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Comments",
+						"type": "nvarchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "ScoreCards",
+					"table": "Mrr_ScarLog"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Mrr_Calc_ScarLog')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqldb_egbi_dev",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLDB-EGBI-DEV/ScoreCards/Mrr"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "NCR #",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Supplier Name",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Supplier's No.",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Part Description",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PN",
+						"type": "nvarchar"
+					},
+					{
+						"name": "MRB # / Ref",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Description of deviation",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Date of sending SCAR to supplier",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Y/M (trend)",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Allowed return date",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Date of Reminder",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Date of SCAR Return",
+						"type": "nvarchar"
+					},
+					{
+						"name": "QA's Review date",
+						"type": "nvarchar"
+					},
+					{
+						"name": "SCAR Approval Date",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Effectiveness Results",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Effectiveness Checking Date",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Closing Date",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Status",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Comments",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Time To Answer",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Time to Approval",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Time for Effectivness",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Time to Close",
+						"type": "nvarchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "ScoreCards",
+					"table": "Mrr_Calc_ScarLog"
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}
