@@ -7,49 +7,17 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "adf-egbi-dev"
 		},
-		"sqldb_egbi_dev_connectionString": {
+		"AWS_Service_portal_connectionString": {
 			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'sqldb_egbi_dev'"
-		},
-		"ls_salesforce_password": {
-			"type": "secureString",
-			"metadata": "Secure string for 'password' of 'ls_salesforce'"
-		},
-		"ls_salesforce_securityToken": {
-			"type": "secureString",
-			"metadata": "Secure string for 'securityToken' of 'ls_salesforce'"
-		},
-		"sqlsrv_sap_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'sqlsrv_sap'"
-		},
-		"st_error_log_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'st_error_log'"
-		},
-		"SharePointOnlineList1_servicePrincipalKey": {
-			"type": "secureString",
-			"metadata": "Secure string for 'servicePrincipalKey' of 'SharePointOnlineList1'"
-		},
-		"sqlsrv_sap_TestNewQcoreDB_05012020_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'sqlsrv_sap_TestNewQcoreDB_05012020'"
+			"metadata": "Secure string for 'connectionString' of 'AWS_Service_portal'"
 		},
 		"AzureBlobStorage1_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage1'"
 		},
-		"sql_rptsrv_connectionString": {
+		"Is_Sorrel_integration_connectionString": {
 			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'sql_rptsrv'"
-		},
-		"ls_sap_integrator_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'ls_sap_integrator'"
-		},
-		"SAP_Integrator_dev_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'SAP_Integrator_dev'"
+			"metadata": "Secure string for 'connectionString' of 'Is_Sorrel_integration'"
 		},
 		"RPTSRV_ReportServer_connectionString": {
 			"type": "secureString",
@@ -59,9 +27,13 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'RptSrv'"
 		},
-		"AWS_Service_portal_connectionString": {
+		"SAP_Integrator_dev_connectionString": {
 			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'AWS_Service_portal'"
+			"metadata": "Secure string for 'connectionString' of 'SAP_Integrator_dev'"
+		},
+		"SAP_Sorrel_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'SAP_Sorrel'"
 		},
 		"SalesforceSandBox_password": {
 			"type": "secureString",
@@ -71,29 +43,57 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'securityToken' of 'SalesforceSandBox'"
 		},
-		"SAP_Sorrel_connectionString": {
+		"SharePointOnlineList1_servicePrincipalKey": {
 			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'SAP_Sorrel'"
+			"metadata": "Secure string for 'servicePrincipalKey' of 'SharePointOnlineList1'"
 		},
 		"TESTSorrelDB_25022020_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'TESTSorrelDB_25022020'"
 		},
+		"ls_salesforce_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'ls_salesforce'"
+		},
+		"ls_salesforce_securityToken": {
+			"type": "secureString",
+			"metadata": "Secure string for 'securityToken' of 'ls_salesforce'"
+		},
+		"ls_sap_integrator_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_sap_integrator'"
+		},
+		"sql_rptsrv_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'sql_rptsrv'"
+		},
+		"sqldb_egbi_dev_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'sqldb_egbi_dev'"
+		},
 		"sqldb_sorrelbi_dev_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'sqldb_sorrelbi_dev'"
 		},
-		"Is_Sorrel_integration_connectionString": {
+		"sqlsrv_sap_connectionString": {
 			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'Is_Sorrel_integration'"
+			"metadata": "Secure string for 'connectionString' of 'sqlsrv_sap'"
 		},
-		"ls_salesforce_properties_typeProperties_environmentUrl": {
-			"type": "string",
-			"defaultValue": "https://login.salesforce.com"
+		"sqlsrv_sap_TestNewQcoreDB_05012020_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'sqlsrv_sap_TestNewQcoreDB_05012020'"
 		},
-		"ls_salesforce_properties_typeProperties_username": {
+		"st_error_log_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'st_error_log'"
+		},
+		"SalesforceSandBox_properties_typeProperties_environmentUrl": {
 			"type": "string",
-			"defaultValue": "help.desk@qcore.com"
+			"defaultValue": "qcoremedical--sandbox.my.salesforce.com"
+		},
+		"SalesforceSandBox_properties_typeProperties_username": {
+			"type": "string",
+			"defaultValue": "nathalie.mayzlits@qcore.com.sandbox"
 		},
 		"SharePointOnlineList1_properties_typeProperties_servicePrincipalId": {
 			"type": "string",
@@ -103,13 +103,13 @@
 			"type": "string",
 			"defaultValue": "https://eitangroupna.sharepoint.com/sites/PR/_api/lists/"
 		},
-		"SalesforceSandBox_properties_typeProperties_environmentUrl": {
+		"ls_salesforce_properties_typeProperties_environmentUrl": {
 			"type": "string",
-			"defaultValue": "qcoremedical--sandbox.my.salesforce.com"
+			"defaultValue": "https://login.salesforce.com"
 		},
-		"SalesforceSandBox_properties_typeProperties_username": {
+		"ls_salesforce_properties_typeProperties_username": {
 			"type": "string",
-			"defaultValue": "nathalie.mayzlits@qcore.com.sandbox"
+			"defaultValue": "help.desk@qcore.com"
 		},
 		"containerUri": {
 			"type": "string",
@@ -138,8 +138,11 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
-					"sqldb_egbi_dev_connectionString": {
-						"value": "[parameters('sqldb_egbi_dev_connectionString')]"
+					"AzureBlobStorage1_connectionString": {
+						"value": "[parameters('AzureBlobStorage1_connectionString')]"
+					},
+					"SharePointOnlineList1_servicePrincipalKey": {
+						"value": "[parameters('SharePointOnlineList1_servicePrincipalKey')]"
 					},
 					"ls_salesforce_password": {
 						"value": "[parameters('ls_salesforce_password')]"
@@ -147,53 +150,14 @@
 					"ls_salesforce_securityToken": {
 						"value": "[parameters('ls_salesforce_securityToken')]"
 					},
-					"st_error_log_connectionString": {
-						"value": "[parameters('st_error_log_connectionString')]"
-					},
-					"SharePointOnlineList1_servicePrincipalKey": {
-						"value": "[parameters('SharePointOnlineList1_servicePrincipalKey')]"
-					},
-					"AzureBlobStorage1_connectionString": {
-						"value": "[parameters('AzureBlobStorage1_connectionString')]"
+					"sqldb_egbi_dev_connectionString": {
+						"value": "[parameters('sqldb_egbi_dev_connectionString')]"
 					},
 					"sqldb_sorrelbi_dev_connectionString": {
 						"value": "[parameters('sqldb_sorrelbi_dev_connectionString')]"
 					},
-					"sqlsrv_sap_connectionString": {
-						"value": "[parameters('sqlsrv_sap_connectionString')]"
-					},
-					"sqlsrv_sap_TestNewQcoreDB_05012020_connectionString": {
-						"value": "[parameters('sqlsrv_sap_TestNewQcoreDB_05012020_connectionString')]"
-					},
-					"sql_rptsrv_connectionString": {
-						"value": "[parameters('sql_rptsrv_connectionString')]"
-					},
-					"ls_sap_integrator_connectionString": {
-						"value": "[parameters('ls_sap_integrator_connectionString')]"
-					},
-					"SAP_Integrator_dev_connectionString": {
-						"value": "[parameters('SAP_Integrator_dev_connectionString')]"
-					},
-					"RPTSRV_ReportServer_connectionString": {
-						"value": "[parameters('RPTSRV_ReportServer_connectionString')]"
-					},
-					"RptSrv_connectionString": {
-						"value": "[parameters('RptSrv_connectionString')]"
-					},
-					"AWS_Service_portal_connectionString": {
-						"value": "[parameters('AWS_Service_portal_connectionString')]"
-					},
-					"SalesforceSandBox_password": {
-						"value": "[parameters('SalesforceSandBox_password')]"
-					},
-					"SalesforceSandBox_securityToken": {
-						"value": "[parameters('SalesforceSandBox_securityToken')]"
-					},
-					"ls_salesforce_properties_typeProperties_environmentUrl": {
-						"value": "[parameters('ls_salesforce_properties_typeProperties_environmentUrl')]"
-					},
-					"ls_salesforce_properties_typeProperties_username": {
-						"value": "[parameters('ls_salesforce_properties_typeProperties_username')]"
+					"st_error_log_connectionString": {
+						"value": "[parameters('st_error_log_connectionString')]"
 					},
 					"SharePointOnlineList1_properties_typeProperties_servicePrincipalId": {
 						"value": "[parameters('SharePointOnlineList1_properties_typeProperties_servicePrincipalId')]"
@@ -201,11 +165,11 @@
 					"SharepointSire_PR_properties_typeProperties_url": {
 						"value": "[parameters('SharepointSire_PR_properties_typeProperties_url')]"
 					},
-					"SalesforceSandBox_properties_typeProperties_environmentUrl": {
-						"value": "[parameters('SalesforceSandBox_properties_typeProperties_environmentUrl')]"
+					"ls_salesforce_properties_typeProperties_environmentUrl": {
+						"value": "[parameters('ls_salesforce_properties_typeProperties_environmentUrl')]"
 					},
-					"SalesforceSandBox_properties_typeProperties_username": {
-						"value": "[parameters('SalesforceSandBox_properties_typeProperties_username')]"
+					"ls_salesforce_properties_typeProperties_username": {
+						"value": "[parameters('ls_salesforce_properties_typeProperties_username')]"
 					}
 				}
 			},
@@ -224,15 +188,6 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
-					},
-					"SAP_Sorrel_connectionString": {
-						"value": "[parameters('SAP_Sorrel_connectionString')]"
-					},
-					"TESTSorrelDB_25022020_connectionString": {
-						"value": "[parameters('TESTSorrelDB_25022020_connectionString')]"
-					},
-					"Is_Sorrel_integration_connectionString": {
-						"value": "[parameters('Is_Sorrel_integration_connectionString')]"
 					}
 				}
 			},
@@ -393,6 +348,9 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"AWS_Service_portal_connectionString": {
+						"value": "[parameters('AWS_Service_portal_connectionString')]"
 					}
 				}
 			},
@@ -413,6 +371,48 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"Is_Sorrel_integration_connectionString": {
+						"value": "[parameters('Is_Sorrel_integration_connectionString')]"
+					},
+					"RPTSRV_ReportServer_connectionString": {
+						"value": "[parameters('RPTSRV_ReportServer_connectionString')]"
+					},
+					"RptSrv_connectionString": {
+						"value": "[parameters('RptSrv_connectionString')]"
+					},
+					"SAP_Integrator_dev_connectionString": {
+						"value": "[parameters('SAP_Integrator_dev_connectionString')]"
+					},
+					"SAP_Sorrel_connectionString": {
+						"value": "[parameters('SAP_Sorrel_connectionString')]"
+					},
+					"SalesforceSandBox_password": {
+						"value": "[parameters('SalesforceSandBox_password')]"
+					},
+					"SalesforceSandBox_securityToken": {
+						"value": "[parameters('SalesforceSandBox_securityToken')]"
+					},
+					"TESTSorrelDB_25022020_connectionString": {
+						"value": "[parameters('TESTSorrelDB_25022020_connectionString')]"
+					},
+					"ls_sap_integrator_connectionString": {
+						"value": "[parameters('ls_sap_integrator_connectionString')]"
+					},
+					"sql_rptsrv_connectionString": {
+						"value": "[parameters('sql_rptsrv_connectionString')]"
+					},
+					"sqlsrv_sap_connectionString": {
+						"value": "[parameters('sqlsrv_sap_connectionString')]"
+					},
+					"sqlsrv_sap_TestNewQcoreDB_05012020_connectionString": {
+						"value": "[parameters('sqlsrv_sap_TestNewQcoreDB_05012020_connectionString')]"
+					},
+					"SalesforceSandBox_properties_typeProperties_environmentUrl": {
+						"value": "[parameters('SalesforceSandBox_properties_typeProperties_environmentUrl')]"
+					},
+					"SalesforceSandBox_properties_typeProperties_username": {
+						"value": "[parameters('SalesforceSandBox_properties_typeProperties_username')]"
 					}
 				}
 			},
@@ -678,6 +678,26 @@
 			},
 			"dependsOn": [
 				"[resourceId('Microsoft.Resources/deployments', 'adf-egbi-dev_ArmTemplate_22')]"
+			]
+		},
+		{
+			"name": "adf-egbi-dev_ArmTemplate_24",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_24.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adf-egbi-dev_ArmTemplate_23')]"
 			]
 		}
 	]

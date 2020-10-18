@@ -5,37 +5,13 @@
 		"factoryName": {
 			"value": "adf-egbi-dev"
 		},
-		"sqldb_egbi_dev_connectionString": {
-			"value": ""
-		},
-		"ls_salesforce_password": {
-			"value": ""
-		},
-		"ls_salesforce_securityToken": {
-			"value": ""
-		},
-		"sqlsrv_sap_connectionString": {
-			"value": ""
-		},
-		"st_error_log_connectionString": {
-			"value": ""
-		},
-		"SharePointOnlineList1_servicePrincipalKey": {
-			"value": ""
-		},
-		"sqlsrv_sap_TestNewQcoreDB_05012020_connectionString": {
+		"AWS_Service_portal_connectionString": {
 			"value": ""
 		},
 		"AzureBlobStorage1_connectionString": {
 			"value": ""
 		},
-		"sql_rptsrv_connectionString": {
-			"value": ""
-		},
-		"ls_sap_integrator_connectionString": {
-			"value": ""
-		},
-		"SAP_Integrator_dev_connectionString": {
+		"Is_Sorrel_integration_connectionString": {
 			"value": ""
 		},
 		"RPTSRV_ReportServer_connectionString": {
@@ -44,7 +20,10 @@
 		"RptSrv_connectionString": {
 			"value": ""
 		},
-		"AWS_Service_portal_connectionString": {
+		"SAP_Integrator_dev_connectionString": {
+			"value": ""
+		},
+		"SAP_Sorrel_connectionString": {
 			"value": ""
 		},
 		"SalesforceSandBox_password": {
@@ -53,23 +32,44 @@
 		"SalesforceSandBox_securityToken": {
 			"value": ""
 		},
-		"SAP_Sorrel_connectionString": {
+		"SharePointOnlineList1_servicePrincipalKey": {
 			"value": ""
 		},
 		"TESTSorrelDB_25022020_connectionString": {
 			"value": ""
 		},
+		"ls_salesforce_password": {
+			"value": ""
+		},
+		"ls_salesforce_securityToken": {
+			"value": ""
+		},
+		"ls_sap_integrator_connectionString": {
+			"value": ""
+		},
+		"sql_rptsrv_connectionString": {
+			"value": ""
+		},
+		"sqldb_egbi_dev_connectionString": {
+			"value": ""
+		},
 		"sqldb_sorrelbi_dev_connectionString": {
 			"value": ""
 		},
-		"Is_Sorrel_integration_connectionString": {
+		"sqlsrv_sap_connectionString": {
 			"value": ""
 		},
-		"ls_salesforce_properties_typeProperties_environmentUrl": {
-			"value": "https://login.salesforce.com"
+		"sqlsrv_sap_TestNewQcoreDB_05012020_connectionString": {
+			"value": ""
 		},
-		"ls_salesforce_properties_typeProperties_username": {
-			"value": "help.desk@qcore.com"
+		"st_error_log_connectionString": {
+			"value": ""
+		},
+		"SalesforceSandBox_properties_typeProperties_environmentUrl": {
+			"value": "qcoremedical--sandbox.my.salesforce.com"
+		},
+		"SalesforceSandBox_properties_typeProperties_username": {
+			"value": "nathalie.mayzlits@qcore.com.sandbox"
 		},
 		"SharePointOnlineList1_properties_typeProperties_servicePrincipalId": {
 			"value": "a0518f3b-5bac-47c9-8059-20b248658b92"
@@ -77,11 +77,11 @@
 		"SharepointSire_PR_properties_typeProperties_url": {
 			"value": "https://eitangroupna.sharepoint.com/sites/PR/_api/lists/"
 		},
-		"SalesforceSandBox_properties_typeProperties_environmentUrl": {
-			"value": "qcoremedical--sandbox.my.salesforce.com"
+		"ls_salesforce_properties_typeProperties_environmentUrl": {
+			"value": "https://login.salesforce.com"
 		},
-		"SalesforceSandBox_properties_typeProperties_username": {
-			"value": "nathalie.mayzlits@qcore.com.sandbox"
+		"ls_salesforce_properties_typeProperties_username": {
+			"value": "help.desk@qcore.com"
 		},
 		"containerUri": {
 			"value": ""

@@ -7,9 +7,13 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "adf-egbi-dev"
 		},
-		"sqldb_egbi_dev_connectionString": {
+		"AzureBlobStorage1_connectionString": {
 			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'sqldb_egbi_dev'"
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage1'"
+		},
+		"SharePointOnlineList1_servicePrincipalKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'servicePrincipalKey' of 'SharePointOnlineList1'"
 		},
 		"ls_salesforce_password": {
 			"type": "secureString",
@@ -19,69 +23,17 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'securityToken' of 'ls_salesforce'"
 		},
-		"st_error_log_connectionString": {
+		"sqldb_egbi_dev_connectionString": {
 			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'st_error_log'"
-		},
-		"SharePointOnlineList1_servicePrincipalKey": {
-			"type": "secureString",
-			"metadata": "Secure string for 'servicePrincipalKey' of 'SharePointOnlineList1'"
-		},
-		"AzureBlobStorage1_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage1'"
+			"metadata": "Secure string for 'connectionString' of 'sqldb_egbi_dev'"
 		},
 		"sqldb_sorrelbi_dev_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'sqldb_sorrelbi_dev'"
 		},
-		"sqlsrv_sap_connectionString": {
+		"st_error_log_connectionString": {
 			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'sqlsrv_sap'"
-		},
-		"sqlsrv_sap_TestNewQcoreDB_05012020_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'sqlsrv_sap_TestNewQcoreDB_05012020'"
-		},
-		"sql_rptsrv_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'sql_rptsrv'"
-		},
-		"ls_sap_integrator_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'ls_sap_integrator'"
-		},
-		"SAP_Integrator_dev_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'SAP_Integrator_dev'"
-		},
-		"RPTSRV_ReportServer_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'RPTSRV_ReportServer'"
-		},
-		"RptSrv_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'RptSrv'"
-		},
-		"AWS_Service_portal_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'AWS_Service_portal'"
-		},
-		"SalesforceSandBox_password": {
-			"type": "secureString",
-			"metadata": "Secure string for 'password' of 'SalesforceSandBox'"
-		},
-		"SalesforceSandBox_securityToken": {
-			"type": "secureString",
-			"metadata": "Secure string for 'securityToken' of 'SalesforceSandBox'"
-		},
-		"ls_salesforce_properties_typeProperties_environmentUrl": {
-			"type": "string",
-			"defaultValue": "https://login.salesforce.com"
-		},
-		"ls_salesforce_properties_typeProperties_username": {
-			"type": "string",
-			"defaultValue": "help.desk@qcore.com"
+			"metadata": "Secure string for 'connectionString' of 'st_error_log'"
 		},
 		"SharePointOnlineList1_properties_typeProperties_servicePrincipalId": {
 			"type": "string",
@@ -91,13 +43,13 @@
 			"type": "string",
 			"defaultValue": "https://eitangroupna.sharepoint.com/sites/PR/_api/lists/"
 		},
-		"SalesforceSandBox_properties_typeProperties_environmentUrl": {
+		"ls_salesforce_properties_typeProperties_environmentUrl": {
 			"type": "string",
-			"defaultValue": "qcoremedical--sandbox.my.salesforce.com"
+			"defaultValue": "https://login.salesforce.com"
 		},
-		"SalesforceSandBox_properties_typeProperties_username": {
+		"ls_salesforce_properties_typeProperties_username": {
 			"type": "string",
-			"defaultValue": "nathalie.mayzlits@qcore.com.sandbox"
+			"defaultValue": "help.desk@qcore.com"
 		}
 	},
 	"variables": {
@@ -105,88 +57,53 @@
 	},
 	"resources": [
 		{
-			"name": "[concat(parameters('factoryName'), '/ir-sap')]",
-			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
+			"name": "[concat(parameters('factoryName'), '/SharepointToBlobStorage')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
 			"properties": {
-				"type": "SelfHosted",
-				"typeProperties": {}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/integrationRuntime-AWS-Service-SQL')]",
-			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"type": "SelfHosted",
-				"typeProperties": {}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/SalesForce-azure-IR')]",
-			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"type": "Managed",
-				"typeProperties": {
-					"computeProperties": {
-						"location": "South Central US",
-						"dataFlowProperties": {
-							"computeType": "General",
-							"coreCount": 8,
-							"timeToLive": 0
+				"activities": [
+					{
+						"name": "SharepointToBlobStorage",
+						"type": "WebActivity",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"url": "https://prod-16.northeurope.logic.azure.com:443/workflows/94197d3f2f6e48d1a791b8641476835a/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=4xmttJ5tK6OrNkrk-gaWO2tIHdsODA-FNm6Q5umKuEI",
+							"method": "POST",
+							"headers": {
+								"Content-Type": "application/json"
+							},
+							"body": {
+								"DataFactoryName": "@{pipeline().DataFactory}",
+								"PipelineName": "@{pipeline().Pipeline}"
+							}
 						}
 					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/sqldb_egbi_dev')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
+				],
+				"folder": {
+					"name": "ScoreCards/ImportFile"
+				},
 				"annotations": [],
-				"type": "AzureSqlDatabase",
-				"typeProperties": {
-					"connectionString": "[parameters('sqldb_egbi_dev_connectionString')]"
-				}
+				"lastPublishTime": "2020-08-18T13:00:22Z"
 			},
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/ls_salesforce')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "Salesforce",
-				"typeProperties": {
-					"environmentUrl": "[parameters('ls_salesforce_properties_typeProperties_environmentUrl')]",
-					"username": "[parameters('ls_salesforce_properties_typeProperties_username')]",
-					"password": {
-						"type": "SecureString",
-						"value": "[parameters('ls_salesforce_password')]"
-					},
-					"securityToken": {
-						"type": "SecureString",
-						"value": "[parameters('ls_salesforce_securityToken')]"
-					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/st_error_log')]",
+			"name": "[concat(parameters('factoryName'), '/AzureBlobStorage1')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"annotations": [],
 				"type": "AzureBlobStorage",
 				"typeProperties": {
-					"connectionString": "[parameters('st_error_log_connectionString')]"
+					"connectionString": "[parameters('AzureBlobStorage1_connectionString')]"
 				}
 			},
 			"dependsOn": []
@@ -226,14 +143,36 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/AzureBlobStorage1')]",
+			"name": "[concat(parameters('factoryName'), '/ls_salesforce')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"annotations": [],
-				"type": "AzureBlobStorage",
+				"type": "Salesforce",
 				"typeProperties": {
-					"connectionString": "[parameters('AzureBlobStorage1_connectionString')]"
+					"environmentUrl": "[parameters('ls_salesforce_properties_typeProperties_environmentUrl')]",
+					"username": "[parameters('ls_salesforce_properties_typeProperties_username')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('ls_salesforce_password')]"
+					},
+					"securityToken": {
+						"type": "SecureString",
+						"value": "[parameters('ls_salesforce_securityToken')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/sqldb_egbi_dev')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureSqlDatabase",
+				"typeProperties": {
+					"connectionString": "[parameters('sqldb_egbi_dev_connectionString')]"
 				}
 			},
 			"dependsOn": []
@@ -252,14 +191,66 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/SharepointToBlobStorage')]",
+			"name": "[concat(parameters('factoryName'), '/st_error_log')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('st_error_log_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SalesForce-azure-IR')]",
+			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "Managed",
+				"typeProperties": {
+					"computeProperties": {
+						"location": "South Central US",
+						"dataFlowProperties": {
+							"computeType": "General",
+							"coreCount": 8,
+							"timeToLive": 0
+						}
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/integrationRuntime-AWS-Service-SQL')]",
+			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "SelfHosted",
+				"typeProperties": {}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ir-sap')]",
+			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "SelfHosted",
+				"typeProperties": {}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Dim_Item')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"activities": [
 					{
-						"name": "SharepointToBlobStorage",
-						"type": "WebActivity",
+						"name": "sp_Dim_Item_Code",
+						"type": "SqlServerStoredProcedure",
 						"dependsOn": [],
 						"policy": {
 							"timeout": "7.00:00:00",
@@ -270,205 +261,366 @@
 						},
 						"userProperties": [],
 						"typeProperties": {
-							"url": "https://prod-16.northeurope.logic.azure.com:443/workflows/94197d3f2f6e48d1a791b8641476835a/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=4xmttJ5tK6OrNkrk-gaWO2tIHdsODA-FNm6Q5umKuEI",
-							"method": "POST",
-							"headers": {
-								"Content-Type": "application/json"
-							},
-							"body": {
-								"DataFactoryName": "@{pipeline().DataFactory}",
-								"PipelineName": "@{pipeline().Pipeline}"
-							}
+							"storedProcedureName": "[[ScoreCards].[sp_Dim_Item_Code]"
+						},
+						"linkedServiceName": {
+							"referenceName": "sqldb_egbi_dev",
+							"type": "LinkedServiceReference"
 						}
 					}
 				],
 				"folder": {
-					"name": "ScoreCards/ImportFile"
+					"name": "ScoreCards/Dwh"
 				},
 				"annotations": [],
-				"lastPublishTime": "2020-10-15T07:53:24Z"
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/sqlsrv_sap')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "SqlServer",
-				"typeProperties": {
-					"connectionString": "[parameters('sqlsrv_sap_connectionString')]"
-				},
-				"connectVia": {
-					"referenceName": "ir-sap",
-					"type": "IntegrationRuntimeReference"
-				}
+				"lastPublishTime": "2020-08-18T13:00:23Z"
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/integrationRuntimes/ir-sap')]"
+				"[concat(variables('factoryId'), '/linkedServices/sqldb_egbi_dev')]"
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/sqlsrv_sap_TestNewQcoreDB_05012020')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"name": "[concat(parameters('factoryName'), '/Dwh_Dim_Suppliers')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
 			"properties": {
-				"annotations": [],
-				"type": "SqlServer",
-				"typeProperties": {
-					"connectionString": "[parameters('sqlsrv_sap_TestNewQcoreDB_05012020_connectionString')]"
+				"activities": [
+					{
+						"name": "sp_Insert_Dwh_Dim_Suppliers",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[ScoreCards].[sp_Insert_Dwh_Dim_Suppliers]"
+						},
+						"linkedServiceName": {
+							"referenceName": "sqldb_egbi_dev",
+							"type": "LinkedServiceReference"
+						}
+					}
+				],
+				"folder": {
+					"name": "ScoreCards/Dwh"
 				},
-				"connectVia": {
-					"referenceName": "ir-sap",
-					"type": "IntegrationRuntimeReference"
-				}
+				"annotations": [],
+				"lastPublishTime": "2020-08-18T13:00:23Z"
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/integrationRuntimes/ir-sap')]"
+				"[concat(variables('factoryId'), '/linkedServices/sqldb_egbi_dev')]"
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/sql_rptsrv')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"name": "[concat(parameters('factoryName'), '/Dwh_Suppliers_Audit_Activities_Followup')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
 			"properties": {
-				"annotations": [],
-				"type": "SqlServer",
-				"typeProperties": {
-					"connectionString": "[parameters('sql_rptsrv_connectionString')]"
+				"activities": [
+					{
+						"name": "Merge Dwh_Suppliers_Audit_Activities_Followup",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[ScoreCards].[Merge_Dwh_Suppliers_Audit_Activities_Followup]"
+						},
+						"linkedServiceName": {
+							"referenceName": "sqldb_egbi_dev",
+							"type": "LinkedServiceReference"
+						}
+					}
+				],
+				"folder": {
+					"name": "ScoreCards/Dwh"
 				},
-				"connectVia": {
-					"referenceName": "ir-sap",
-					"type": "IntegrationRuntimeReference"
-				}
+				"annotations": [],
+				"lastPublishTime": "2020-08-18T13:00:24Z"
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/integrationRuntimes/ir-sap')]"
+				"[concat(variables('factoryId'), '/linkedServices/sqldb_egbi_dev')]"
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/ls_sap_integrator')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"name": "[concat(parameters('factoryName'), '/Stg_Dim_Product')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
 			"properties": {
-				"annotations": [],
-				"type": "SqlServer",
-				"typeProperties": {
-					"connectionString": "[parameters('ls_sap_integrator_connectionString')]"
+				"activities": [
+					{
+						"name": "sp_Stg_Dim_Product",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[srv].[sp_Stg_Dim_Product]"
+						},
+						"linkedServiceName": {
+							"referenceName": "sqldb_egbi_dev",
+							"type": "LinkedServiceReference"
+						}
+					}
+				],
+				"folder": {
+					"name": "Service/Stg"
 				},
-				"connectVia": {
-					"referenceName": "ir-sap",
-					"type": "IntegrationRuntimeReference"
-				}
+				"annotations": [],
+				"lastPublishTime": "2020-09-22T09:12:05Z"
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/integrationRuntimes/ir-sap')]"
+				"[concat(variables('factoryId'), '/linkedServices/sqldb_egbi_dev')]"
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/SAP_Integrator_dev')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"name": "[concat(parameters('factoryName'), '/Stg_Fact_InstallBase')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
 			"properties": {
-				"annotations": [],
-				"type": "SqlServer",
-				"typeProperties": {
-					"connectionString": "[parameters('SAP_Integrator_dev_connectionString')]"
+				"activities": [
+					{
+						"name": "sp_Stg_Fact_InstallBase",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[srv].[sp_Stg_Fact_InstallBase]"
+						},
+						"linkedServiceName": {
+							"referenceName": "sqldb_egbi_dev",
+							"type": "LinkedServiceReference"
+						}
+					}
+				],
+				"folder": {
+					"name": "Service/Stg"
 				},
-				"connectVia": {
-					"referenceName": "ir-sap",
-					"type": "IntegrationRuntimeReference"
-				}
+				"annotations": [],
+				"lastPublishTime": "2020-09-22T09:12:05Z"
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/integrationRuntimes/ir-sap')]"
+				"[concat(variables('factoryId'), '/linkedServices/sqldb_egbi_dev')]"
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/RPTSRV_ReportServer')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"name": "[concat(parameters('factoryName'), '/Stg_Fact_Oscl')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
 			"properties": {
-				"annotations": [],
-				"type": "SqlServer",
-				"typeProperties": {
-					"connectionString": "[parameters('RPTSRV_ReportServer_connectionString')]"
+				"activities": [
+					{
+						"name": "sp_Stg_Fact_Oscl",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[srv].[sp_Stg_Fact_Oscl]"
+						},
+						"linkedServiceName": {
+							"referenceName": "sqldb_egbi_dev",
+							"type": "LinkedServiceReference"
+						}
+					}
+				],
+				"folder": {
+					"name": "Service/Stg"
 				},
-				"connectVia": {
-					"referenceName": "ir-sap",
-					"type": "IntegrationRuntimeReference"
-				}
+				"annotations": [],
+				"lastPublishTime": "2020-09-22T09:12:05Z"
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/integrationRuntimes/ir-sap')]"
+				"[concat(variables('factoryId'), '/linkedServices/sqldb_egbi_dev')]"
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/RptSrv')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"name": "[concat(parameters('factoryName'), '/UpdateSapPO')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
 			"properties": {
-				"annotations": [],
-				"type": "SqlServer",
-				"typeProperties": {
-					"connectionString": "[parameters('RptSrv_connectionString')]"
+				"description": "Updates TakenToSP filed on PORF.Stg_SapPO",
+				"activities": [
+					{
+						"name": "Stored procedure1_copy1",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[PORF].[sp_Update_Stg_SapPO_bByID]",
+							"storedProcedureParameters": {
+								"ID": {
+									"value": {
+										"value": "@pipeline().parameters.ID",
+										"type": "Expression"
+									},
+									"type": "Int32"
+								}
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "sqldb_egbi_dev",
+							"type": "LinkedServiceReference"
+						}
+					}
+				],
+				"concurrency": 2,
+				"parameters": {
+					"ID": {
+						"type": "int"
+					}
 				},
-				"connectVia": {
-					"referenceName": "ir-sap",
-					"type": "IntegrationRuntimeReference"
-				}
+				"folder": {
+					"name": "PORF"
+				},
+				"annotations": [],
+				"lastPublishTime": "2020-08-31T07:49:23Z"
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/integrationRuntimes/ir-sap')]"
+				"[concat(variables('factoryId'), '/linkedServices/sqldb_egbi_dev')]"
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/AWS_Service_portal')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"name": "[concat(parameters('factoryName'), '/UpdateSapPO1')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
 			"properties": {
-				"annotations": [],
-				"type": "SqlServer",
-				"typeProperties": {
-					"connectionString": "[parameters('AWS_Service_portal_connectionString')]"
+				"description": "Updates TakenToSP filed on PORF.Stg_SapPO",
+				"activities": [
+					{
+						"name": "Stored procedure1_copy1",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[PORF_SORREL].[sp_Update_Stg_SapPO_bByID]",
+							"storedProcedureParameters": {
+								"ID": {
+									"value": {
+										"value": "@pipeline().parameters.ID",
+										"type": "Expression"
+									},
+									"type": "Int32"
+								}
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "sqldb_egbi_dev",
+							"type": "LinkedServiceReference"
+						}
+					}
+				],
+				"concurrency": 2,
+				"parameters": {
+					"ID": {
+						"type": "int"
+					}
 				},
-				"connectVia": {
-					"referenceName": "integrationRuntime-AWS-Service-SQL",
-					"type": "IntegrationRuntimeReference"
-				}
+				"folder": {
+					"name": "PORF_SORREL/TOdelete"
+				},
+				"annotations": [],
+				"lastPublishTime": "2020-09-30T12:36:26Z"
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/integrationRuntimes/integrationRuntime-AWS-Service-SQL')]"
+				"[concat(variables('factoryId'), '/linkedServices/sqldb_egbi_dev')]"
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/SalesforceSandBox')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"name": "[concat(parameters('factoryName'), '/UpdateSapPO2')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
 			"properties": {
-				"annotations": [],
-				"type": "Salesforce",
-				"typeProperties": {
-					"environmentUrl": "[parameters('SalesforceSandBox_properties_typeProperties_environmentUrl')]",
-					"username": "[parameters('SalesforceSandBox_properties_typeProperties_username')]",
-					"password": {
-						"type": "SecureString",
-						"value": "[parameters('SalesforceSandBox_password')]"
-					},
-					"securityToken": {
-						"type": "SecureString",
-						"value": "[parameters('SalesforceSandBox_securityToken')]"
-					},
-					"apiVersion": "48.0"
+				"description": "Updates TakenToSP filed on PORF.Stg_SapPO",
+				"activities": [
+					{
+						"name": "Stored procedure1_copy1",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[PORF].[sp_Update_Stg_SapPO_bByID]",
+							"storedProcedureParameters": {
+								"ID": {
+									"value": {
+										"value": "@pipeline().parameters.ID",
+										"type": "Expression"
+									},
+									"type": "Int32"
+								}
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "sqldb_sorrelbi_dev",
+							"type": "LinkedServiceReference"
+						}
+					}
+				],
+				"concurrency": 2,
+				"parameters": {
+					"ID": {
+						"type": "int"
+					}
 				},
-				"connectVia": {
-					"referenceName": "SalesForce-azure-IR",
-					"type": "IntegrationRuntimeReference"
-				}
+				"folder": {
+					"name": "PORF_SORREL"
+				},
+				"annotations": [],
+				"lastPublishTime": "2020-09-30T13:04:22Z"
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/integrationRuntimes/SalesForce-azure-IR')]"
+				"[concat(variables('factoryId'), '/linkedServices/sqldb_sorrelbi_dev')]"
 			]
 		}
 	]
