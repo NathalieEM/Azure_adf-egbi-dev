@@ -738,6 +738,95 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/Stg_OCReport')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqldb_egbi_dev",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "Step",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CallId",
+						"type": "nvarchar"
+					},
+					{
+						"name": "objid",
+						"type": "nvarchar"
+					},
+					{
+						"name": "pendinggroup",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "SD",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "ED",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "startweek",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "endweek",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Wkopenat",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Dates",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "Name",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_StepFatherGroup",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "U_GoalInDays",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Hirarchy",
+						"type": "int",
+						"precision": 10
+					}
+				],
+				"typeProperties": {
+					"schema": "srv",
+					"table": "Stg_OCReport"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/Stg_SapPO')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -928,97 +1017,6 @@
 				"typeProperties": {
 					"schema": "ScoreCards",
 					"table": "Stg_ScarLog"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Stg_Suppliers_Audit_Activities_Followup')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqldb_egbi_dev",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQLDB-EGBI-DEV/ScoreCards/Stg"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "SupplierName",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Supplier Number",
-						"type": "nvarchar"
-					},
-					{
-						"name": "SupplierType",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Location",
-						"type": "nvarchar"
-					},
-					{
-						"name": "EAN #",
-						"type": "nvarchar"
-					},
-					{
-						"name": "AuditPerfom",
-						"type": "nvarchar"
-					},
-					{
-						"name": "ActualAuditDate",
-						"type": "date"
-					},
-					{
-						"name": "AuditDurationDays",
-						"type": "nvarchar"
-					},
-					{
-						"name": "LeadAuditorName",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Audit Team",
-						"type": "nvarchar"
-					},
-					{
-						"name": "AuditType",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Findings_Critical",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Findings_Major",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Findings_Moderate",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Findings_Observ",
-						"type": "nvarchar"
-					},
-					{
-						"name": "AuditResults",
-						"type": "nvarchar"
-					},
-					{
-						"name": "AuditorScore",
-						"type": "nvarchar"
-					}
-				],
-				"typeProperties": {
-					"schema": "ScoreCards",
-					"table": "Stg_Suppliers_Audit_Activities_Followup"
 				}
 			},
 			"dependsOn": []
