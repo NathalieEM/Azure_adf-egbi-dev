@@ -1,0 +1,86 @@
+{
+	"name": "Stg_OCReport",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sqldb_egbi_dev",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "Step",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CallId",
+				"type": "nvarchar"
+			},
+			{
+				"name": "objid",
+				"type": "nvarchar"
+			},
+			{
+				"name": "pendinggroup",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SD",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "ED",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "startweek",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "endweek",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Wkopenat",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Dates",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "Name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "U_StepFatherGroup",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "U_GoalInDays",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Hirarchy",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "srv",
+			"table": "Stg_OCReport"
+		}
+	}
+}

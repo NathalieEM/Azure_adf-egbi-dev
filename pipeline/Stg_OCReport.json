@@ -1,0 +1,259 @@
+{
+	"name": "Stg_OCReport",
+	"properties": {
+		"activities": [
+			{
+				"name": "trunc Stg_OCReport",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[srv].[sp_trunc_Stg_OCReport]"
+				},
+				"linkedServiceName": {
+					"referenceName": "sqldb_egbi_dev",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Copy Stg_OCReport",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "trunc Stg_OCReport",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": "Select Step    ,a.callid    ,objid,    pendinggroup    ,\ncase when  [Sd_Rule]= 'Min' then  Min( case when a.Startdate='1900-01-01 00:00:00.000' then NULL else a.Startdate End ) when  [Sd_Rule]= 'Max' then  Max( case when a.Startdate='1900-01-01 00:00:00.000' then NULL else a.Startdate End ) end  SD , \ncase when  [ed_Rule]= 'Min' then  Min( case when a.EndDate='1900-01-01 00:00:00.000' then NULL else a.EndDate End )when  [ed_Rule]= 'Max' then  Max( case when a.EndDate='1900-01-01 00:00:00.000' then NULL else a.EndDate End ) end  ED     \n,startweek    ,endweek,    Wkopenat,    Dates,    a.Name  ,U_StepFatherGroup,    U_GoalInDays \n, row_number() over (partition by a.callid, pendinggroup ,  Wkopenat order by a.callid, Wkopenat, U_StepFatherGroup, Name ) Hirarchy\nFrom \n(\n\n\t\tselect \n\t\tStep, callid, objid, pendinggroup, StartDate , EndDate , datepart(week, StartDate) startweek,0 endweek, 0 Wkopenat, StartDate as Dates--, Row_number() over (partition by object order by dattime asc) StartLine , \n\t\t, t1.Name, t1.[Sd_Rule], [Ed_Rule],[U_StepFatherGroup],t1.[U_GoalInDays]\n\t\tfrom  [sap].[Mrr_ServiceFlow] t0  inner join SAP.[Mrr_ServiceGoal] t1 on t0.Step=t1.[U_StepName] collate SQL_Latin1_General_CP850_CI_AS\n\n\t\tunion all \n\n\t\tselect  \n\t\tStep, callid, objid,pendinggroup,  StartDate , EndDate , 0 startweek,datepart(week, EndDate) endtweek , 0  , EndDate\n\t\t, t1.Name, t1.[Sd_Rule], [Ed_Rule],[U_StepFatherGroup],t1.[U_GoalInDays]\n\t\tfrom  [sap].[Mrr_ServiceFlow] t0  inner join SAP.[Mrr_ServiceGoal] t1 on t0.Step=t1.[U_StepName] collate SQL_Latin1_General_CP850_CI_AS \n\n\t\tunion all \n\n\t\tselect  \n\t\tStep, callid, objid,pendinggroup,  StartDate , EndDate , 0 startweek, 0 endtweek ,  datepart(week, t2.date_ ) Wkopenat, t2.date_ Dates\n\t\t, t1.Name, t1.[Sd_Rule], [Ed_Rule],[U_StepFatherGroup],t1.[U_GoalInDays]\n\t\tfrom  [sap].[Mrr_ServiceFlow] t0  right join\n\n\t\t\t\t(\n\t\t\t\tselect  date_ \n\t\t\t\tfrom  srv.DimDate\n\t\t\t\t)\n \n\t\tt2 on  StartDate < t2.date_ and (EndDate >= t2.date_ or Isnull(EndDate,'')='' )\n\t\tinner join SAP.[Mrr_ServiceGoal] t1 on t0.Step=t1.[U_StepName] collate SQL_Latin1_General_CP850_CI_AS\n) A\nGroup  by \nStep    ,a.callid ,objid   ,  Dates,  pendinggroup        ,startweek    ,endweek,    Wkopenat ,   a.Name    ,Sd_Rule,    Ed_Rule    ,U_StepFatherGroup,    U_GoalInDays\n\norder by Dates",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "AzureSqlSink"
+					},
+					"enableStaging": true,
+					"stagingSettings": {
+						"linkedServiceName": {
+							"referenceName": "st_error_log",
+							"type": "LinkedServiceReference"
+						}
+					},
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "Step",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "Step",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "callid",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "CallId",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "objid",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "objid",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "pendinggroup",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "pendinggroup",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "SD",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								},
+								"sink": {
+									"name": "SD",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								}
+							},
+							{
+								"source": {
+									"name": "ED",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								},
+								"sink": {
+									"name": "ED",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								}
+							},
+							{
+								"source": {
+									"name": "startweek",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "startweek",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "endweek",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "endweek",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "Wkopenat",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "Wkopenat",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "Dates",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								},
+								"sink": {
+									"name": "Dates",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								}
+							},
+							{
+								"source": {
+									"name": "Name",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "Name",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "U_StepFatherGroup",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "U_StepFatherGroup",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "U_GoalInDays",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "U_GoalInDays",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "Hirarchy",
+									"type": "Int64",
+									"physicalType": "bigint"
+								},
+								"sink": {
+									"name": "Hirarchy",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "Stg_OCReport",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Stg_OCReport",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"folder": {
+			"name": "Service/Stg"
+		},
+		"annotations": []
+	}
+}
