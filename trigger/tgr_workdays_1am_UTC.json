@@ -15,6 +15,12 @@
 					"referenceName": "MainScoreCards",
 					"type": "PipelineReference"
 				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "MainService",
+					"type": "PipelineReference"
+				}
 			}
 		],
 		"type": "ScheduleTrigger",
@@ -22,7 +28,7 @@
 			"recurrence": {
 				"frequency": "Week",
 				"interval": 1,
-				"startTime": "2020-07-16T13:51:00Z",
+				"startTime": "2020-07-16T13:51:00.000Z",
 				"timeZone": "UTC",
 				"schedule": {
 					"minutes": [
