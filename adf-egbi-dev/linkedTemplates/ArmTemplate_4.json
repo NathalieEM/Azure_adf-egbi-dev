@@ -8385,6 +8385,9 @@
 					"referenceName": "sqldb_egbi_dev",
 					"type": "LinkedServiceReference"
 				},
+				"folder": {
+					"name": "SQLDB-EGBI-DEV/SAP"
+				},
 				"annotations": [],
 				"type": "AzureSqlTable",
 				"schema": [
