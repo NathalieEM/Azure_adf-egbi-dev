@@ -446,6 +446,19 @@
 					},
 					"waitOnCompletion": true
 				}
+			},
+			{
+				"name": "Mrr_ServiceGoal",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Mrr_ServiceGoal",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
 			}
 		],
 		"folder": {
