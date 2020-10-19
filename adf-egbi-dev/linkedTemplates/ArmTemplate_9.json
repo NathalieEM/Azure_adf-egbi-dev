@@ -13,6 +13,30 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/json_dummy')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "st_error_log",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Blob Storage"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"container": "prof"
+					}
+				},
+				"schema": {}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/porf_Mrr_Accounts')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -1373,63 +1397,6 @@
 				"typeProperties": {
 					"schema": "training",
 					"table": "Mrr_SF_Training_Assignment"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/vw_Training_Quality_Plan')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqldb_egbi_dev",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQLDB-EGBI-DEV/Training"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "MasterDocumentName",
-						"type": "nvarchar"
-					},
-					{
-						"name": "DocumentOwnerName",
-						"type": "nvarchar"
-					},
-					{
-						"name": "EmployeeName",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Department",
-						"type": "varchar"
-					},
-					{
-						"name": "Unit",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "NeedDocument",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "JobFunctionName",
-						"type": "nvarchar"
-					},
-					{
-						"name": "CurriculumName",
-						"type": "nvarchar"
-					}
-				],
-				"typeProperties": {
-					"schema": "training",
-					"table": "vw_Training_Quality_Plan"
 				}
 			},
 			"dependsOn": []

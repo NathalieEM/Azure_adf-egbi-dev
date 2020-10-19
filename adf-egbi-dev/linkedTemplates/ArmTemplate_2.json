@@ -13,6 +13,114 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/Mrr_Call')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqldb_egbi_dev",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLDB-EGBI-DEV/Service/Mrr"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "fSerialNumber",
+						"type": "nvarchar"
+					},
+					{
+						"name": "callID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "fTemplateID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "fCategoryID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "CategoryOther",
+						"type": "nvarchar"
+					},
+					{
+						"name": "fSubCategoryID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "SubCategoryOther",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Title",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CallDesc",
+						"type": "nvarchar"
+					},
+					{
+						"name": "fUrgencyID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "fMainAssetID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "fStatusID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "___office",
+						"type": "char"
+					},
+					{
+						"name": "fCreatedByID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "dtCreatedDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "fUpdatedByID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "dtUpdatedDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					}
+				],
+				"typeProperties": {
+					"schema": "srv",
+					"table": "Mrr_Call"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/Mrr_Complaint')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -7278,158 +7386,6 @@
 				"typeProperties": {
 					"schema": "sap",
 					"table": "Mrr_OINS"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Mrr_OITT')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqldb_egbi_dev",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQLDB-EGBI-DEV/SAP"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "Code",
-						"type": "nvarchar"
-					},
-					{
-						"name": "TreeType",
-						"type": "char"
-					},
-					{
-						"name": "PriceList",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "Qauntity",
-						"type": "decimal",
-						"precision": 19,
-						"scale": 6
-					},
-					{
-						"name": "UseFthrWhs",
-						"type": "char"
-					},
-					{
-						"name": "CreateDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "UpdateDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "Transfered",
-						"type": "char"
-					},
-					{
-						"name": "DataSource",
-						"type": "char"
-					},
-					{
-						"name": "UserSign",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "SCNCounter",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "DispCurr",
-						"type": "nvarchar"
-					},
-					{
-						"name": "ToWH",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Object",
-						"type": "nvarchar"
-					},
-					{
-						"name": "LogInstac",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "UserSign2",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "OcrCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "HideComp",
-						"type": "char"
-					},
-					{
-						"name": "OcrCode2",
-						"type": "nvarchar"
-					},
-					{
-						"name": "OcrCode3",
-						"type": "nvarchar"
-					},
-					{
-						"name": "OcrCode4",
-						"type": "nvarchar"
-					},
-					{
-						"name": "OcrCode5",
-						"type": "nvarchar"
-					},
-					{
-						"name": "UpdateTime",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Project",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_Active",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "U_Lang",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_Mode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_Lang1",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_BomRev",
-						"type": "nvarchar"
-					}
-				],
-				"typeProperties": {
-					"schema": "sap",
-					"table": "Mrr_OITT"
 				}
 			},
 			"dependsOn": []
