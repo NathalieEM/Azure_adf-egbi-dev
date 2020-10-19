@@ -1,13 +1,13 @@
 {
-	"name": "AWS_parm_CallCategory",
+	"name": "AWS_Call",
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy Mrr_parm_CallCategory",
+				"name": "Copy Mrr_Call",
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "trunc_Mrr_parm_CallCategory",
+						"activity": "sp_trunc_Mrr_Call",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -54,48 +54,156 @@
 							},
 							{
 								"source": {
-									"name": "Name",
+									"name": "fSerialNumber",
 									"type": "String",
 									"physicalType": "nvarchar"
 								},
 								"sink": {
-									"name": "Name",
+									"name": "fSerialNumber",
 									"type": "String",
 									"physicalType": "nvarchar"
 								}
 							},
 							{
 								"source": {
-									"name": "IsFreeText",
-									"type": "Boolean",
-									"physicalType": "bit"
+									"name": "callID",
+									"type": "String",
+									"physicalType": "nvarchar"
 								},
 								"sink": {
-									"name": "IsFreeText",
-									"type": "Boolean",
-									"physicalType": "bit"
+									"name": "callID",
+									"type": "String",
+									"physicalType": "nvarchar"
 								}
 							},
 							{
 								"source": {
-									"name": "SortOrder",
+									"name": "fTemplateID",
 									"type": "Int32",
 									"physicalType": "int"
 								},
 								"sink": {
-									"name": "SortOrder",
+									"name": "fTemplateID",
 									"type": "Int32",
 									"physicalType": "int"
 								}
 							},
 							{
 								"source": {
-									"name": "__Office",
+									"name": "fCategoryID",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "fCategoryID",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "CategoryOther",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "CategoryOther",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "fSubCategoryID",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "fSubCategoryID",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "SubCategoryOther",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "SubCategoryOther",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Title",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "Title",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CallDesc",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "CallDesc",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "fUrgencyID",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "fUrgencyID",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "fMainAssetID",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "fMainAssetID",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "fStatusID",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "fStatusID",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "___office",
 									"type": "String",
 									"physicalType": "char"
 								},
 								"sink": {
-									"name": "__Office",
+									"name": "___office",
 									"type": "String",
 									"physicalType": "char"
 								}
@@ -158,19 +266,19 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "parm_CallCategory",
+						"referenceName": "tbl_Call",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "Mrr_parm_CallCategory",
+						"referenceName": "Mrr_Call",
 						"type": "DatasetReference"
 					}
 				]
 			},
 			{
-				"name": "trunc_Mrr_parm_CallCategory",
+				"name": "sp_trunc_Mrr_Call",
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [],
 				"policy": {
@@ -182,7 +290,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"storedProcedureName": "[srv].[trunc_Mrr_parm_CallCategory]"
+					"storedProcedureName": "[srv].[sp_trunc_Mrr_Call]"
 				},
 				"linkedServiceName": {
 					"referenceName": "sqldb_egbi_dev",
@@ -193,6 +301,8 @@
 		"folder": {
 			"name": "Service/Mrr"
 		},
-		"annotations": []
-	}
+		"annotations": [],
+		"lastPublishTime": "2020-10-11T13:21:45Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
 }

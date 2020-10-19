@@ -87,7 +87,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "Mrr_parm_CallCategory",
+						"referenceName": "AWS_parm_CallCategory",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true

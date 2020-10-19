@@ -1,0 +1,105 @@
+{
+	"name": "Mrr_Call",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sqldb_egbi_dev",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SQLDB-EGBI-DEV/Service/Mrr"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "fSerialNumber",
+				"type": "nvarchar"
+			},
+			{
+				"name": "callID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "fTemplateID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "fCategoryID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CategoryOther",
+				"type": "nvarchar"
+			},
+			{
+				"name": "fSubCategoryID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SubCategoryOther",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Title",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CallDesc",
+				"type": "nvarchar"
+			},
+			{
+				"name": "fUrgencyID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "fMainAssetID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "fStatusID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "___office",
+				"type": "char"
+			},
+			{
+				"name": "fCreatedByID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "dtCreatedDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "fUpdatedByID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "dtUpdatedDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "srv",
+			"table": "Mrr_Call"
+		}
+	}
+}
