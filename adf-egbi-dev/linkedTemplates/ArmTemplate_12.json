@@ -13,6 +13,561 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/Training_Quality_Plan')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Copy vw_Training_Quality_Plan",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "exec trunc_Calc_Training_Quality_Plan_Tables",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "AzureSqlSource",
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"sink": {
+								"type": "AzureSqlSink"
+							},
+							"enableStaging": true,
+							"stagingSettings": {
+								"linkedServiceName": {
+									"referenceName": "st_error_log",
+									"type": "LinkedServiceReference"
+								}
+							},
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "MasterDocumentName",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "MasterDocumentName",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "DocumentOwnerName",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "DocumentOwnerName",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "EmployeeName",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "EmployeeName",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Department",
+											"type": "String",
+											"physicalType": "varchar"
+										},
+										"sink": {
+											"name": "Department",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Unit",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "Unit",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "JobFunctionName",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "JobFunctionName",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "CurriculumName",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "CurriculumName",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "vw_Training_Quality_Plan",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "Calc_Training_Quality_Plan",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "exec trunc_Calc_Training_Quality_Plan_Tables",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[training].[sp_trunc_Calc_Training_Quality_Plan]"
+						},
+						"linkedServiceName": {
+							"referenceName": "sqldb_egbi_dev",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "SharepointToBlobStorage_Training",
+						"type": "WebActivity",
+						"dependsOn": [
+							{
+								"activity": "exec trunc_Calc_Training_Quality_Plan_Tables",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"url": "https://prod-14.northeurope.logic.azure.com:443/workflows/c06e19b5fc074fdeb4aedbe7c16efe6b/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=8Kh91tZRdYot8y7B2fGmL60l0W25slqXdXOaPuwIh-Y",
+							"method": "POST",
+							"headers": {},
+							"body": {
+								"DataFactoryName": "@{pipeline().DataFactory}",
+								"PipelineName": "@{pipeline().Pipeline}"
+							}
+						}
+					},
+					{
+						"name": "Copy Training_Quality_Plan_Xls",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "SharepointToBlobStorage_Training",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
+								}
+							},
+							"sink": {
+								"type": "AzureSqlSink"
+							},
+							"enableStaging": true,
+							"stagingSettings": {
+								"linkedServiceName": {
+									"referenceName": "st_error_log",
+									"type": "LinkedServiceReference"
+								}
+							},
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"type": "String",
+											"ordinal": 1
+										},
+										"sink": {
+											"name": "MasterDocumentName",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"type": "String",
+											"ordinal": 2
+										},
+										"sink": {
+											"name": "DocumentOwnerName",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"type": "String",
+											"ordinal": 3
+										},
+										"sink": {
+											"name": "EmployeeName",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"type": "String",
+											"ordinal": 4
+										},
+										"sink": {
+											"name": "Department",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"type": "String",
+											"ordinal": 5
+										},
+										"sink": {
+											"name": "Unit",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"type": "String",
+											"ordinal": 6
+										},
+										"sink": {
+											"name": "NeedDocument",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"type": "String",
+											"ordinal": 7
+										},
+										"sink": {
+											"name": "JobFunctionName",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"type": "String",
+											"ordinal": 8
+										},
+										"sink": {
+											"name": "CurriculumName",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "Training_Quality_Plan",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "Calc_Training_Quality_Plan_Xls",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "exec sp_Merge_Calc_Training_Quality_Plan",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [
+							{
+								"activity": "Copy Training_Quality_Plan_Xls",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "Copy vw_Training_Quality_Plan",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[training].[sp_Merge_Calc_Training_Quality_Plan]"
+						},
+						"linkedServiceName": {
+							"referenceName": "sqldb_egbi_dev",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "Export to CSV",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "exec sp_Merge_Calc_Training_Quality_Plan",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "AzureSqlSource",
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"sink": {
+								"type": "DelimitedTextSink",
+								"storeSettings": {
+									"type": "AzureBlobStorageWriteSettings"
+								},
+								"formatSettings": {
+									"type": "DelimitedTextWriteSettings",
+									"quoteAllText": true,
+									"fileExtension": ".txt"
+								}
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "MasterDocumentName",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"type": "String",
+											"physicalType": "String",
+											"ordinal": 1
+										}
+									},
+									{
+										"source": {
+											"name": "DocumentOwnerName",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"type": "String",
+											"physicalType": "String",
+											"ordinal": 2
+										}
+									},
+									{
+										"source": {
+											"name": "EmployeeName",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"type": "String",
+											"physicalType": "String",
+											"ordinal": 3
+										}
+									},
+									{
+										"source": {
+											"name": "Department",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"type": "String",
+											"physicalType": "String",
+											"ordinal": 4
+										}
+									},
+									{
+										"source": {
+											"name": "Unit",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"type": "String",
+											"physicalType": "String",
+											"ordinal": 5
+										}
+									},
+									{
+										"source": {
+											"name": "NeedDocument",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"type": "String",
+											"physicalType": "String",
+											"ordinal": 6
+										}
+									},
+									{
+										"source": {
+											"name": "JobFunctionName",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"type": "String",
+											"physicalType": "String",
+											"ordinal": 7
+										}
+									},
+									{
+										"source": {
+											"name": "CurriculumName",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"type": "String",
+											"physicalType": "String",
+											"ordinal": 8
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "Calc_Training_Quality_Plan",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "Training_Quality_Plan_New",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"folder": {
+					"name": "Training"
+				},
+				"annotations": [],
+				"lastPublishTime": "2020-09-15T07:48:22Z"
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/sp_BP_FinalScore')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
@@ -10520,360 +11075,6 @@
 				"typeProperties": {
 					"schema": "dbo",
 					"table": "INV1"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/ISSUES_SERVICE')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqlsrv_sap_TestNewQcoreDB_05012020",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQLDB-EGBI-DEV/ScoreCards/Mrr"
-				},
-				"annotations": [],
-				"type": "SqlServerTable",
-				"schema": [
-					{
-						"name": "Code",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Name",
-						"type": "nvarchar"
-					},
-					{
-						"name": "DocEntry",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Canceled",
-						"type": "char"
-					},
-					{
-						"name": "Object",
-						"type": "nvarchar"
-					},
-					{
-						"name": "LogInst",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "UserSign",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Transfered",
-						"type": "char"
-					},
-					{
-						"name": "CreateDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "CreateTime",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "UpdateDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "UpdateTime",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "DataSource",
-						"type": "char"
-					},
-					{
-						"name": "U_CallId",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "U_SPCategory",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_SPError",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_Confirmed",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_MisUse",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_UserSign1",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_DateStamp1",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "U_TimeStamp1",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "U_AnaylsisCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_AnalysisErrCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_KnownID",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_LongKnownID",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_UserSign2",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_DateStamp2",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "U_TimeStamp2",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "U_RrpairCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_AnalysisRepairCat",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_AnalysisRepairErr",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_RepairLevel",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_RepairAction",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_SparePartSnBatch",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_DiagnosticsConc",
-						"type": "ntext"
-					},
-					{
-						"name": "U_DiagConcComment",
-						"type": "ntext"
-					},
-					{
-						"name": "U_ComplaintRelated",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_UserSign3",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_DateStamp3",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "U_TimeStamp3",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "U_Reopen",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_ReopendT",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "U_ReOpen_Detalis",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_LineStatus",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_UserSign",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_DateStamp",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "U_TimeStamp",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "U_SPDescription",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_PortalID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "U_ServiceID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "U_PortalCompIsuueID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "U_ServiceActivityID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "U_Category",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_Error",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_UserSignP",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_DateStampP",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "U_TimeStampP",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "U_UserSignP1",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_DateStampP1",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "U_TomeStampP1",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "U_InternalSN",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_CompIssueStatus",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_TimeStampP1",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "U_OriginDocentry",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "U_OriginLine",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "U_ServiceLocation",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_ReopenUser",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_ReopenPortalUser",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_ReopenPortalDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "U_TransactionID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "U_Cancel",
-						"type": "char"
-					},
-					{
-						"name": "U_UserServiceCenter",
-						"type": "nvarchar"
-					}
-				],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": {
-						"value": "@@ISSUES_SERVICE",
-						"type": "Expression"
-					}
 				}
 			},
 			"dependsOn": []
