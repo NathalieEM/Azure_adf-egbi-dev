@@ -79,6 +79,19 @@
 					},
 					"waitOnCompletion": true
 				}
+			},
+			{
+				"name": "Mrr_parm_CallCategory",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Mrr_parm_CallCategory",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
 			}
 		],
 		"folder": {
