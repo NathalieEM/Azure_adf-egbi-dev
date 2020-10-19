@@ -13,6 +13,27 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/SF_Departments')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_salesforce",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SalesForce"
+				},
+				"annotations": [],
+				"type": "SalesforceObject",
+				"schema": [],
+				"typeProperties": {
+					"objectApiName": "CompSuite__Department__c"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/SF_Employee')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -861,66 +882,6 @@
 				},
 				"folder": {
 					"name": "PORF"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "ID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "PORFNum",
-						"type": "nvarchar"
-					},
-					{
-						"name": "SAPDocNum",
-						"type": "nvarchar"
-					},
-					{
-						"name": "TranDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "TranStatus",
-						"type": "nvarchar"
-					},
-					{
-						"name": "TranMessage",
-						"type": "nvarchar"
-					},
-					{
-						"name": "dtUpdated",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "TakenToSP",
-						"type": "bit"
-					}
-				],
-				"typeProperties": {
-					"schema": "PORF",
-					"table": "Stg_SapPO"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Stg_SapPO1')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqldb_sorrelbi_dev",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "PORF_SORREL"
 				},
 				"annotations": [],
 				"type": "AzureSqlTable",
