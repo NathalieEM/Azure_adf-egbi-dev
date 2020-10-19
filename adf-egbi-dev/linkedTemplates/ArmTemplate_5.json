@@ -13,6 +13,89 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/Mrr_Service_Flow')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqldb_egbi_dev",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLDB-EGBI-DEV/SAP"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Callid",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ObjId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Sort",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "Step",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Startdate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "Enddate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "DaysInstep",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "StepGoal",
+						"type": "nchar"
+					},
+					{
+						"name": "PendingGroup",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "dtupdated",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "isDeleted",
+						"type": "bit"
+					}
+				],
+				"typeProperties": {
+					"schema": "sap",
+					"table": "Mrr_ServiceFlow"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/Mrr_Service_Flow1')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -4186,6 +4269,64 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/Mrr_parm_CallStatus')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqldb_egbi_dev",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLDB-EGBI-DEV/Service/Mrr"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Name",
+						"type": "nvarchar"
+					},
+					{
+						"name": "__Office",
+						"type": "char"
+					},
+					{
+						"name": "fCreatedByID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "dtCreatedDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "fUpdatedByID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "dtUpdatedDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					}
+				],
+				"typeProperties": {
+					"schema": "srv",
+					"table": "Mrr_parm_CallStatus"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/Mrr_parm_CallSubCategory')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -4936,224 +5077,6 @@
 				"typeProperties": {
 					"schema": "sap",
 					"table": "Mrr_OCRD"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/SAP_Mrr_OCRY')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqldb_egbi_dev",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQLDB-EGBI-DEV/SAP"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "ETL_ID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "ETL_Timestamp",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "Code",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Name",
-						"type": "nvarchar"
-					},
-					{
-						"name": "AddrFormat",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "UserSign",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "IsEC",
-						"type": "char"
-					},
-					{
-						"name": "ReportCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "TaxIdDigts",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "BnkCodDgts",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "BnkBchDgts",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "BnkActDgts",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "BnkCtKDgts",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "ValDomAcct",
-						"type": "nvarchar"
-					},
-					{
-						"name": "ValIban",
-						"type": "char"
-					},
-					{
-						"name": "IsBlackLst",
-						"type": "char"
-					},
-					{
-						"name": "UICCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "CntCodNum",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Siscomex",
-						"type": "nvarchar"
-					}
-				],
-				"typeProperties": {
-					"schema": "sap",
-					"table": "Mrr_OCRY"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/SAP_Mrr_OCRY1')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqldb_sorrelbi_dev",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQLDB-EGBI-DEV/SAP"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "ETL_ID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "ETL_Timestamp",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "Code",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Name",
-						"type": "nvarchar"
-					},
-					{
-						"name": "AddrFormat",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "UserSign",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "IsEC",
-						"type": "char"
-					},
-					{
-						"name": "ReportCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "TaxIdDigts",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "BnkCodDgts",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "BnkBchDgts",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "BnkActDgts",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "BnkCtKDgts",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "ValDomAcct",
-						"type": "nvarchar"
-					},
-					{
-						"name": "ValIban",
-						"type": "char"
-					},
-					{
-						"name": "IsBlackLst",
-						"type": "char"
-					},
-					{
-						"name": "UICCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "CntCodNum",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Siscomex",
-						"type": "nvarchar"
-					}
-				],
-				"typeProperties": {
-					"schema": "sap",
-					"table": "Mrr_OCRY"
 				}
 			},
 			"dependsOn": []

@@ -13,6 +13,48 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/SF_Curriculum')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_salesforce",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SalesForce"
+				},
+				"annotations": [],
+				"type": "SalesforceObject",
+				"schema": [],
+				"typeProperties": {
+					"objectApiName": "CompSuite__Curriculum__c"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SF_Curriculum_JF_Relation')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_salesforce",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SalesForce"
+				},
+				"annotations": [],
+				"type": "SalesforceObject",
+				"schema": [],
+				"typeProperties": {
+					"objectApiName": "CompSuite__Junction_Job_Function_Curriculum__c"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/SF_Curriculum_Requirement_Relations')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -775,194 +817,6 @@
 				"typeProperties": {
 					"schema": "srv",
 					"table": "Stg_Fact_OrdersAndShipments"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Stg_Fact_Trending')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqldb_egbi_dev",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQLDB-EGBI-DEV/Service/Stg"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "CMR#",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Customer Name",
-						"type": "nvarchar"
-					},
-					{
-						"name": "DNR#",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Awareness Date",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "P/N",
-						"type": "nvarchar"
-					},
-					{
-						"name": "P/N Name",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Code Category Code",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Category Code",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Code Error Code",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Error Code",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Code Analysis Code",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Analysis Code",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Code Analysis Error Code",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Analysis Error Codes",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Quantity",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Date closed",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "KnownID",
-						"type": "nvarchar"
-					},
-					{
-						"name": "RepairLevel",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Level3",
-						"type": "nvarchar"
-					},
-					{
-						"name": "internalSN",
-						"type": "nvarchar"
-					}
-				],
-				"typeProperties": {
-					"schema": "srv",
-					"table": "Stg_Fact_Trending"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Stg_IQC_Followup')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqldb_egbi_dev",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQLDB-EGBI-DEV/ScoreCards/Stg"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "Year",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "WeeK",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "EndDateIQC",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "SupplierID",
-						"type": "nvarchar"
-					},
-					{
-						"name": "SupplierName",
-						"type": "nvarchar"
-					},
-					{
-						"name": "DateReciept",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "Itemcode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "ProductType",
-						"type": "nvarchar"
-					},
-					{
-						"name": "TotalRecQty",
-						"type": "float",
-						"precision": 15
-					},
-					{
-						"name": "Pass/Fail",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Rev number ",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Batch Number",
-						"type": "nvarchar"
-					}
-				],
-				"typeProperties": {
-					"schema": "ScoreCards",
-					"table": "Stg_IQC_Followup"
 				}
 			},
 			"dependsOn": []

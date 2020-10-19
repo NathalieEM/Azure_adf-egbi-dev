@@ -13,6 +13,78 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/SERVICEGOAL')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqlsrv_sap",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLSRV-SAP/NewQcoreDB"
+				},
+				"annotations": [],
+				"type": "SqlServerTable",
+				"schema": [
+					{
+						"name": "Code",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Name",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_StepName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_StepFatherGroup",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "U_GoalInDays",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Sd_Rule",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Ed_Rule",
+						"type": "nvarchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": {
+						"value": "@@SERVICEGOAL",
+						"type": "Expression"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SORREL_INTEGRATOR_DEV')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Is_Sorrel_integration",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "SqlServerTable",
+				"schema": [],
+				"typeProperties": {}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/SQP_Mrr_pdn1')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -5975,108 +6047,6 @@
 				"typeProperties": {
 					"schema": "dbo",
 					"table": "OCRD"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/UFD1')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqlsrv_sap_TestNewQcoreDB_05012020",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQLSRV-SAP/NewQcoreDB"
-				},
-				"annotations": [],
-				"type": "SqlServerTable",
-				"schema": [
-					{
-						"name": "TableID",
-						"type": "nvarchar"
-					},
-					{
-						"name": "FieldID",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "IndexID",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "FldValue",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Descr",
-						"type": "nvarchar"
-					},
-					{
-						"name": "FldDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					}
-				],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "UFD1"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/UFD11')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "TESTSorrelDB_25022020",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQLSRV-SAP/NewQcoreDB"
-				},
-				"annotations": [],
-				"type": "SqlServerTable",
-				"schema": [
-					{
-						"name": "TableID",
-						"type": "nvarchar"
-					},
-					{
-						"name": "FieldID",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "IndexID",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "FldValue",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Descr",
-						"type": "nvarchar"
-					},
-					{
-						"name": "FldDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					}
-				],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "UFD1"
 				}
 			},
 			"dependsOn": []
