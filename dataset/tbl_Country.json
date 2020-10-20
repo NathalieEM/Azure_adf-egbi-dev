@@ -1,0 +1,43 @@
+{
+	"name": "tbl_Country",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AWS_Service_portal",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "AWS"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Country",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PhoneCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "dtUpdated_FromSAP",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "tbl_Country"
+		}
+	}
+}
