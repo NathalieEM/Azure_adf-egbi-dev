@@ -2646,11 +2646,11 @@
 			"properties": {
 				"activities": [
 					{
-						"name": "Copy Mrr_parm_CallStatus",
+						"name": "Copy Mrr_CallStatus",
 						"type": "Copy",
 						"dependsOn": [
 							{
-								"activity": "trunc_Mrr_parm_CallStatus",
+								"activity": "trunc_Mrr_CallStatus",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -2791,7 +2791,7 @@
 						]
 					},
 					{
-						"name": "trunc_Mrr_parm_CallStatus",
+						"name": "trunc_Mrr_CallStatus",
 						"type": "SqlServerStoredProcedure",
 						"dependsOn": [],
 						"policy": {
