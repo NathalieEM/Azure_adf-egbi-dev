@@ -12,12 +12,6 @@
 			},
 			{
 				"pipelineReference": {
-					"referenceName": "Intgrator To  Azure",
-					"type": "PipelineReference"
-				}
-			},
-			{
-				"pipelineReference": {
 					"referenceName": "Mrr_Items1",
 					"type": "PipelineReference"
 				}
