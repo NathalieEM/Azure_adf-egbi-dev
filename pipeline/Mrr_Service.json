@@ -159,13 +159,26 @@
 				}
 			},
 			{
-				"name": "AWS_parm_CallStatus1",
+				"name": "AWS_parm_CallUrgency",
 				"type": "ExecutePipeline",
 				"dependsOn": [],
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "AWS_parm_CallStatus",
+						"referenceName": "AWS_parm_CallUrgency",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "AWS_State",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "AWS_State",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true
