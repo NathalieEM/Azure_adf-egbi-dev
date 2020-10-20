@@ -13,6 +13,1602 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/Mrr_Oscl')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqldb_egbi_dev",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLDB-EGBI-DEV/ScoreCards/Mrr"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "callID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "subject",
+						"type": "nvarchar"
+					},
+					{
+						"name": "customer",
+						"type": "nvarchar"
+					},
+					{
+						"name": "custmrName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "contctCode",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "manufSN",
+						"type": "nvarchar"
+					},
+					{
+						"name": "internalSN",
+						"type": "nvarchar"
+					},
+					{
+						"name": "contractID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "cntrctDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "resolDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "resolTime",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "free_1",
+						"type": "char"
+					},
+					{
+						"name": "free_2",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "origin",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "itemCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "itemName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "itemGroup",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "status",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "priority",
+						"type": "char"
+					},
+					{
+						"name": "callType",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "problemTyp",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "assignee",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "descrption",
+						"type": "ntext"
+					},
+					{
+						"name": "objType",
+						"type": "nvarchar"
+					},
+					{
+						"name": "logInstanc",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "userSign",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "createDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "createTime",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "closeDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "closeTime",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "userSign2",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "updateDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "SCL1Count",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "SCL2Count",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "isEntitled",
+						"type": "char"
+					},
+					{
+						"name": "insID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "technician",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "resolution",
+						"type": "ntext"
+					},
+					{
+						"name": "Scl1NxtLn",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Scl2NxtLn",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Scl3NxtLn",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Scl4NxtLn",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Scl5NxtLn",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "isQueue",
+						"type": "char"
+					},
+					{
+						"name": "Queue",
+						"type": "nvarchar"
+					},
+					{
+						"name": "resolOnDat",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "resolOnTim",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "respByDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "respByTime",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "respOnDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "respOnTime",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "respAssign",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "AssignDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "AssignTime",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "UpdateTime",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "responder",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "Transfered",
+						"type": "char"
+					},
+					{
+						"name": "Instance",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "DocNum",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Series",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "Handwrtten",
+						"type": "char"
+					},
+					{
+						"name": "PIndicator",
+						"type": "nvarchar"
+					},
+					{
+						"name": "StartDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "StartTime",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "EndDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "EndTime",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Duration",
+						"type": "decimal",
+						"precision": 19,
+						"scale": 6
+					},
+					{
+						"name": "DurType",
+						"type": "char"
+					},
+					{
+						"name": "Reminder",
+						"type": "char"
+					},
+					{
+						"name": "RemQty",
+						"type": "decimal",
+						"precision": 19,
+						"scale": 6
+					},
+					{
+						"name": "RemType",
+						"type": "char"
+					},
+					{
+						"name": "RemDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "RemSent",
+						"type": "char"
+					},
+					{
+						"name": "RemTime",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "Location",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "AddrName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "AddrType",
+						"type": "char"
+					},
+					{
+						"name": "Street",
+						"type": "nvarchar"
+					},
+					{
+						"name": "City",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Room",
+						"type": "nvarchar"
+					},
+					{
+						"name": "State",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Country",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DisplInCal",
+						"type": "char"
+					},
+					{
+						"name": "SupplCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Attachment",
+						"type": "ntext"
+					},
+					{
+						"name": "AtcEntry",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "NumAtCard",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ProSubType",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "U_CreatedByName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_CreatedByDep",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_CaseNo",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_SwVer",
+						"type": "ntext"
+					},
+					{
+						"name": "U_CompDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "U_AckDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "U_InvDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "U_ConfDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "U_EffPlDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "U_EffAcDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "U_MDRStatus",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "U_MDRref",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_CAPAStatus",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "U_CAPAref",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_RMAissue",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "U_FAComittee",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "U_FAOutcome",
+						"type": "ntext"
+					},
+					{
+						"name": "U_FAdate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "U_FAresults",
+						"type": "ntext"
+					},
+					{
+						"name": "U_FAdueDateCust",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "U_RMAStatus",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "U_ReturnE",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "U_InvestigationL",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "U_PO",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "U_Severity",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "U_PH",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "U_RPN",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "U_COA",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "U_DateActionDecision",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "U_CompType",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "U_UserExp",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_ErrorCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_RepairCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_CompVer",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "U_compstatus",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_RMF",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_Quantity",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "U_Batch",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_CP",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_CP_Email",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_CP_Phone",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_CustomerType",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_CustTypeOther",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_WhoExperienced",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_WhoExpOther",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_OccuredAt",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_OccAtOther",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_PatientInv",
+						"type": "char"
+					},
+					{
+						"name": "U_PatInvDet",
+						"type": "ntext"
+					},
+					{
+						"name": "U_DeathInjury",
+						"type": "char"
+					},
+					{
+						"name": "U_DeathInjuryDet",
+						"type": "ntext"
+					},
+					{
+						"name": "U_HumanHarm",
+						"type": "char"
+					},
+					{
+						"name": "U_HumanHarmDet",
+						"type": "ntext"
+					},
+					{
+						"name": "U_ProblemObserved",
+						"type": "char"
+					},
+					{
+						"name": "U_OOTBfail",
+						"type": "char"
+					},
+					{
+						"name": "U_OOTBfilDet",
+						"type": "ntext"
+					},
+					{
+						"name": "U_IntakeFilledBy",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_IntakeFillDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "U_AnalysisCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_NewErrorCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_CategoryCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_AdditionalNotes",
+						"type": "ntext"
+					},
+					{
+						"name": "U_IRA",
+						"type": "char"
+					},
+					{
+						"name": "U_Justification",
+						"type": "ntext"
+					},
+					{
+						"name": "U_RiskInvolved",
+						"type": "ntext"
+					},
+					{
+						"name": "U_RiskToPatient",
+						"type": "ntext"
+					},
+					{
+						"name": "U_RAdescription",
+						"type": "ntext"
+					},
+					{
+						"name": "U_RAdescImage",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_DaysOpened",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "U_SeveretyFreetext",
+						"type": "ntext"
+					},
+					{
+						"name": "U_PofOccFreetext",
+						"type": "ntext"
+					},
+					{
+						"name": "U_PoHFreetext",
+						"type": "ntext"
+					},
+					{
+						"name": "U_IRAfilledBy",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_REA1",
+						"type": "char"
+					},
+					{
+						"name": "U_REA2",
+						"type": "char"
+					},
+					{
+						"name": "U_REA2text",
+						"type": "ntext"
+					},
+					{
+						"name": "U_REA3",
+						"type": "char"
+					},
+					{
+						"name": "U_REA3Text",
+						"type": "ntext"
+					},
+					{
+						"name": "U_Remedial",
+						"type": "char"
+					},
+					{
+						"name": "U_EventReportable",
+						"type": "char"
+					},
+					{
+						"name": "U_REAfilledby",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_REAfilledbydate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "U_FactsAnalysisConcl",
+						"type": "ntext"
+					},
+					{
+						"name": "U_CompClass",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_InvFilledBy",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_InvfilledBydate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "U_RAaffected",
+						"type": "char"
+					},
+					{
+						"name": "U_RAaffText",
+						"type": "ntext"
+					},
+					{
+						"name": "U_AssRMF",
+						"type": "ntext"
+					},
+					{
+						"name": "U_ChangeRMF",
+						"type": "char"
+					},
+					{
+						"name": "U_ChangeRMFtext",
+						"type": "ntext"
+					},
+					{
+						"name": "U_Additionofrisk",
+						"type": "char"
+					},
+					{
+						"name": "U_AdditionText",
+						"type": "ntext"
+					},
+					{
+						"name": "U_AssUpdateFilledBy",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_AssUpdateFillDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "U_RER",
+						"type": "char"
+					},
+					{
+						"name": "U_RERText",
+						"type": "ntext"
+					},
+					{
+						"name": "U_CloseComplaint",
+						"type": "char"
+					},
+					{
+						"name": "U_CloseJust",
+						"type": "ntext"
+					},
+					{
+						"name": "U_Repair",
+						"type": "char"
+					},
+					{
+						"name": "U_RepairRecommended",
+						"type": "ntext"
+					},
+					{
+						"name": "U_AnswerToCustomer",
+						"type": "char"
+					},
+					{
+						"name": "U_AnswerSender",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_IRAfilleddate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "U_AnalysisCatCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_ECOref",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_RelatesTo",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "U_Suffix",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_Cause",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_CPTitle",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_ReportedBy",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_RepByTitle",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_REA4Text",
+						"type": "ntext"
+					},
+					{
+						"name": "U_CountriesAffected",
+						"type": "ntext"
+					},
+					{
+						"name": "U_EqReturnReq",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_EqReturnReqDetails",
+						"type": "ntext"
+					},
+					{
+						"name": "U_classFreetext",
+						"type": "ntext"
+					},
+					{
+						"name": "U_Trending1",
+						"type": "ntext"
+					},
+					{
+						"name": "U_Trending2",
+						"type": "ntext"
+					},
+					{
+						"name": "U_OOTBtext",
+						"type": "ntext"
+					},
+					{
+						"name": "U_OotbOtherDetails",
+						"type": "ntext"
+					},
+					{
+						"name": "U_AppBy1",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_AppBy2",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_AppBy3",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_AppBy4",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_AppBy1Date",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "U_AppBy2Date",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "U_AppBy3Date",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "U_AppByDate4",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "U_CapaOther",
+						"type": "ntext"
+					},
+					{
+						"name": "U_AnswerToCustomerDe",
+						"type": "ntext"
+					},
+					{
+						"name": "U_Checkfortrends",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_DeliveryMode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_FilledBy1",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_FilledByDate1",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "U_FilledBy2",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_FilledByDate2",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "U_ProductNotes",
+						"type": "ntext"
+					},
+					{
+						"name": "U_CheckSimComp",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_NextCert",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "U_ClosureLetter",
+						"type": "ntext"
+					},
+					{
+						"name": "U_ClosureDescription",
+						"type": "ntext"
+					},
+					{
+						"name": "U_CustEventDesc",
+						"type": "ntext"
+					},
+					{
+						"name": "U_LetterType",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_SW_Ver",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_Date_Pump_Req",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "U_TandI",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_TandI_Date",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "U_Event_Log_Req",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_Date_Event_Log",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "U_Arrival_Event_Log",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "U_LastQAUpdate",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_QBupdate",
+						"type": "char"
+					},
+					{
+						"name": "U_RecordId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "U_AnswerRecDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "U_Description",
+						"type": "ntext"
+					},
+					{
+						"name": "U_AccRecDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "U_HotList",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_TIrequired",
+						"type": "char"
+					},
+					{
+						"name": "U_FilledBy3",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_DatePumpPlaced",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "U_ReportedInitial",
+						"type": "char"
+					},
+					{
+						"name": "U_ReportedInitialDat",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "U_ReportedFinalAsses",
+						"type": "char"
+					},
+					{
+						"name": "U_ReportedFinalDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "U_ReportedDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "U_RefNo",
+						"type": "ntext"
+					},
+					{
+						"name": "U_RefNoCustomer",
+						"type": "ntext"
+					},
+					{
+						"name": "U_CommentRA",
+						"type": "ntext"
+					},
+					{
+						"name": "U_DateEventLogReview",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "U_PumpDispositionBy",
+						"type": "ntext"
+					},
+					{
+						"name": "U_RepInitFilledBy",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_RepByFinalFilledBy",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_RepByQcoreFDA",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_RepByCustomerFDA",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_RepByQcoreAuth",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_RepBycustomerAuth",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_RefNo2",
+						"type": "ntext"
+					},
+					{
+						"name": "U_RefNoCustomer2",
+						"type": "ntext"
+					},
+					{
+						"name": "U_SendToHSPGSC",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_SenToHSPGSCDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "U_QuoteBeFix",
+						"type": "char"
+					},
+					{
+						"name": "U_addendum",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_Finalevaluletter",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_InRepairLab",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_ActivityType",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_PortalID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_FixApproval",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_FixInstructiField",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_EventLogReview",
+						"type": "ntext"
+					},
+					{
+						"name": "U_LevelInvestigation",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_FANum",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_ReturnJustif",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_FANaem",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_CP_Fax",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_WhoExperiencedOth",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_DistAwarDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "U_DistLogedDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "U_unresponse",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_ClosureTemplate",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_DelayTherapy",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_MedicInterNeed",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_ServiceStatus",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_ServiceDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "U_InitailBOHStatus",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_ENV_TEMP",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_ENV_SERIAL_Number",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_ENV_HUMIDITY",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_IsConfrimBOH",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_ACKTEST_RESULT",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_ENV_SW_Version",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_ENV_TEMP_Type",
+						"type": "ntext"
+					},
+					{
+						"name": "U_BS_Scan",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_BS_Suffix",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_BS_StickXpress",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_Level3",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_PumpAge",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_urgent",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_FirstPumpAttempt",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "U_SecondPumpAttempt",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "U_ThirdPumpAttempt",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "U_DateShipped",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "U_FirstEventLog",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "U_SecondEventLog",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "U_ThirdEventLog",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "U_DeviceNotReturned",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_FirstAdditinfo",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "U_SecondAdditinfo",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "U_ThirdAdditinfo",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "U_AccesstoReturn",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_SendReason",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_PlacementCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_FakeNews",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_ProductSort",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_FirstQDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "U_LastADate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "U_OpenQuest",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "U_ClosedQuest",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "U_CurrentStep",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_DeviceNotReturndDt",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "U_AddtionNotObtainDt",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "U_ToolTip",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_dtCheckOutDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "U_PortalServiceID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "U_Service_location",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_ServiceCenter",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_SingleCase_TXT",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_SingleCase_Date",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "U_SingleCaseY",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_SingleSign",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_TransactionID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "U_ServicelocationID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "U_Single_SignDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "U_Company",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_AWB",
+						"type": "nvarchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "SAP",
+					"table": "Mrr_OSCL"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/Mrr_PCH1')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -14008,211 +15604,6 @@
 				"typeProperties": {
 					"schema": "sap",
 					"table": "Mrr_ServiceGoal"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Mrr_Service_Activites')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqldb_egbi_dev",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQLDB-EGBI-DEV/Service/Mrr"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "ID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "___General",
-						"type": "nvarchar"
-					},
-					{
-						"name": "fIssueID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "fServiceID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "___DM_fields",
-						"type": "nvarchar"
-					},
-					{
-						"name": "fDeviceID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "SerialNumber",
-						"type": "nvarchar"
-					},
-					{
-						"name": "fComplaintID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "___Form_Data",
-						"type": "bit"
-					},
-					{
-						"name": "UserExperienceCategoryCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "UserExperienceCategoryName",
-						"type": "nvarchar"
-					},
-					{
-						"name": "UserExperienceErrorCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "UserExperienceErrorName",
-						"type": "nvarchar"
-					},
-					{
-						"name": "AnalysisCategoryCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "AnalysisCategoryName",
-						"type": "nvarchar"
-					},
-					{
-						"name": "AnalysisErrorCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "AnalysisErrorName",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Confirmed",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Misused",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "RepairCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "RepairName",
-						"type": "nvarchar"
-					},
-					{
-						"name": "AnalysisRepairCategoryCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "AnalysisRepairCategoryName",
-						"type": "nvarchar"
-					},
-					{
-						"name": "AnalysisRepairErrorCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "AnalysisRepairErrorName",
-						"type": "nvarchar"
-					},
-					{
-						"name": "RepairLevel",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "RepairActionReplacedCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "RepairActionReplacedName",
-						"type": "nvarchar"
-					},
-					{
-						"name": "SparePartSnBatchNumber",
-						"type": "nvarchar"
-					},
-					{
-						"name": "InitializationDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "DiagnosticsConclusion",
-						"type": "nvarchar"
-					},
-					{
-						"name": "DiagnosticsConclusionComments",
-						"type": "nvarchar"
-					},
-					{
-						"name": "UserServiceCenterSAPID",
-						"type": "nvarchar"
-					},
-					{
-						"name": "___office",
-						"type": "char"
-					},
-					{
-						"name": "fCreatedByID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "dtCreatedDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "fUpdatedByID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "dtUpdatedDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "__sync_to_sap_fields",
-						"type": "nvarchar"
-					},
-					{
-						"name": "IsToExport",
-						"type": "bit"
-					},
-					{
-						"name": "dtLastExportDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					}
-				],
-				"typeProperties": {
-					"schema": "srv",
-					"table": "Mrr_Service_Activites"
 				}
 			},
 			"dependsOn": []

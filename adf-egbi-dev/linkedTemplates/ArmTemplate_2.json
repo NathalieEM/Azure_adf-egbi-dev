@@ -13,6 +13,121 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/Mrr_Calc_ScarLog')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqldb_egbi_dev",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLDB-EGBI-DEV/ScoreCards/Mrr"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "NCR #",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Supplier Name",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Supplier's No.",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Part Description",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PN",
+						"type": "nvarchar"
+					},
+					{
+						"name": "MRB # / Ref",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Description of deviation",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Date of sending SCAR to supplier",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Y/M (trend)",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Allowed return date",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Date of Reminder",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Date of SCAR Return",
+						"type": "nvarchar"
+					},
+					{
+						"name": "QA's Review date",
+						"type": "nvarchar"
+					},
+					{
+						"name": "SCAR Approval Date",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Effectiveness Results",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Effectiveness Checking Date",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Closing Date",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Status",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Comments",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Time To Answer",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Time to Approval",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Time for Effectivness",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Time to Close",
+						"type": "nvarchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "ScoreCards",
+					"table": "Mrr_Calc_ScarLog"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/Mrr_Calc_Suppliers_Audit_Activities_Followup')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -6361,158 +6476,6 @@
 				"typeProperties": {
 					"schema": "srv",
 					"table": "Mrr_KnownIssues"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Mrr_OINM')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqldb_egbi_dev",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQLDB-EGBI-DEV/SAP"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "Code",
-						"type": "nvarchar"
-					},
-					{
-						"name": "TreeType",
-						"type": "char"
-					},
-					{
-						"name": "PriceList",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "Qauntity",
-						"type": "decimal",
-						"precision": 19,
-						"scale": 6
-					},
-					{
-						"name": "UseFthrWhs",
-						"type": "char"
-					},
-					{
-						"name": "CreateDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "UpdateDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "Transfered",
-						"type": "char"
-					},
-					{
-						"name": "DataSource",
-						"type": "char"
-					},
-					{
-						"name": "UserSign",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "SCNCounter",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "DispCurr",
-						"type": "nvarchar"
-					},
-					{
-						"name": "ToWH",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Object",
-						"type": "nvarchar"
-					},
-					{
-						"name": "LogInstac",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "UserSign2",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "OcrCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "HideComp",
-						"type": "char"
-					},
-					{
-						"name": "OcrCode2",
-						"type": "nvarchar"
-					},
-					{
-						"name": "OcrCode3",
-						"type": "nvarchar"
-					},
-					{
-						"name": "OcrCode4",
-						"type": "nvarchar"
-					},
-					{
-						"name": "OcrCode5",
-						"type": "nvarchar"
-					},
-					{
-						"name": "UpdateTime",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Project",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_Active",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "U_Lang",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_Mode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_Lang1",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_BomRev",
-						"type": "nvarchar"
-					}
-				],
-				"typeProperties": {
-					"schema": "sap",
-					"table": "Mrr_OINM"
 				}
 			},
 			"dependsOn": []

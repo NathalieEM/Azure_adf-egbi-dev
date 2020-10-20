@@ -13,6 +13,211 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/Mrr_Service_Activites')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqldb_egbi_dev",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLDB-EGBI-DEV/Service/Mrr"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "___General",
+						"type": "nvarchar"
+					},
+					{
+						"name": "fIssueID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "fServiceID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "___DM_fields",
+						"type": "nvarchar"
+					},
+					{
+						"name": "fDeviceID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "SerialNumber",
+						"type": "nvarchar"
+					},
+					{
+						"name": "fComplaintID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "___Form_Data",
+						"type": "bit"
+					},
+					{
+						"name": "UserExperienceCategoryCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "UserExperienceCategoryName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "UserExperienceErrorCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "UserExperienceErrorName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "AnalysisCategoryCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "AnalysisCategoryName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "AnalysisErrorCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "AnalysisErrorName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Confirmed",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Misused",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "RepairCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "RepairName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "AnalysisRepairCategoryCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "AnalysisRepairCategoryName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "AnalysisRepairErrorCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "AnalysisRepairErrorName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "RepairLevel",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "RepairActionReplacedCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "RepairActionReplacedName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "SparePartSnBatchNumber",
+						"type": "nvarchar"
+					},
+					{
+						"name": "InitializationDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "DiagnosticsConclusion",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DiagnosticsConclusionComments",
+						"type": "nvarchar"
+					},
+					{
+						"name": "UserServiceCenterSAPID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "___office",
+						"type": "char"
+					},
+					{
+						"name": "fCreatedByID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "dtCreatedDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "fUpdatedByID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "dtUpdatedDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "__sync_to_sap_fields",
+						"type": "nvarchar"
+					},
+					{
+						"name": "IsToExport",
+						"type": "bit"
+					},
+					{
+						"name": "dtLastExportDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					}
+				],
+				"typeProperties": {
+					"schema": "srv",
+					"table": "Mrr_Service_Activites"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/Mrr_Service_Center')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -4965,123 +5170,6 @@
 					"schema": "PORF",
 					"table": "Mrr_Projects"
 				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/QUAL_4000_0000776_Rev3_0_Receiving_Log')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureBlobStorage1",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "Blob Storage"
-				},
-				"annotations": [],
-				"type": "Excel",
-				"typeProperties": {
-					"sheetName": "QUAL-4000-0000776",
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "QUAL-4000-0000776 - Receiving Log.xlsx",
-						"container": "excels"
-					},
-					"range": "a2:v10000",
-					"firstRowAsHeader": true
-				},
-				"schema": [
-					{
-						"name": "Part Name",
-						"type": "String"
-					},
-					{
-						"name": "Supplier Code",
-						"type": "String"
-					},
-					{
-						"name": "Lot Source\nSupplier /\nQ Core",
-						"type": "String"
-					},
-					{
-						"name": "Supplier",
-						"type": "String"
-					},
-					{
-						"name": "Drawing Number",
-						"type": "String"
-					},
-					{
-						"name": "Rev number",
-						"type": "String"
-					},
-					{
-						"name": "Product it belongs to",
-						"type": "String"
-					},
-					{
-						"name": "Date of receipt [dd/mm/yyyy]",
-						"type": "String"
-					},
-					{
-						"name": "Y/M Receipt",
-						"type": "String"
-					},
-					{
-						"name": "Archive Location",
-						"type": "String"
-					},
-					{
-						"name": "Batch #",
-						"type": "String"
-					},
-					{
-						"name": "Total  Qty. Received",
-						"type": "String"
-					},
-					{
-						"name": "Rule [Normal, Reduced, Tightened]",
-						"type": "String"
-					},
-					{
-						"name": "Sampling method change request\n [Normal, Reduced, Tightened",
-						"type": "String"
-					},
-					{
-						"name": "Sample size visual ",
-						"type": "String"
-					},
-					{
-						"name": "Sample Size Dimensions",
-						"type": "String"
-					},
-					{
-						"name": "End date (end of IQC) [dd/mm/yyyy]",
-						"type": "String"
-					},
-					{
-						"name": "Y/M End",
-						"type": "String"
-					},
-					{
-						"name": "Time from receipt to release [days]",
-						"type": "String"
-					},
-					{
-						"name": "Batch Disposition [Pass/Fail]",
-						"type": "String"
-					},
-					{
-						"name": "Comments ",
-						"type": "String"
-					},
-					{
-						"name": "MRB #\n[YYYY-XXXX]",
-						"type": "String"
-					}
-				]
 			},
 			"dependsOn": []
 		}

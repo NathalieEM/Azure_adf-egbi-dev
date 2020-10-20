@@ -13,6 +13,123 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/QUAL_4000_0000776_Rev3_0_Receiving_Log')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Blob Storage"
+				},
+				"annotations": [],
+				"type": "Excel",
+				"typeProperties": {
+					"sheetName": "QUAL-4000-0000776",
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "QUAL-4000-0000776 - Receiving Log.xlsx",
+						"container": "excels"
+					},
+					"range": "a2:v10000",
+					"firstRowAsHeader": true
+				},
+				"schema": [
+					{
+						"name": "Part Name",
+						"type": "String"
+					},
+					{
+						"name": "Supplier Code",
+						"type": "String"
+					},
+					{
+						"name": "Lot Source\nSupplier /\nQ Core",
+						"type": "String"
+					},
+					{
+						"name": "Supplier",
+						"type": "String"
+					},
+					{
+						"name": "Drawing Number",
+						"type": "String"
+					},
+					{
+						"name": "Rev number",
+						"type": "String"
+					},
+					{
+						"name": "Product it belongs to",
+						"type": "String"
+					},
+					{
+						"name": "Date of receipt [dd/mm/yyyy]",
+						"type": "String"
+					},
+					{
+						"name": "Y/M Receipt",
+						"type": "String"
+					},
+					{
+						"name": "Archive Location",
+						"type": "String"
+					},
+					{
+						"name": "Batch #",
+						"type": "String"
+					},
+					{
+						"name": "Total  Qty. Received",
+						"type": "String"
+					},
+					{
+						"name": "Rule [Normal, Reduced, Tightened]",
+						"type": "String"
+					},
+					{
+						"name": "Sampling method change request\n [Normal, Reduced, Tightened",
+						"type": "String"
+					},
+					{
+						"name": "Sample size visual ",
+						"type": "String"
+					},
+					{
+						"name": "Sample Size Dimensions",
+						"type": "String"
+					},
+					{
+						"name": "End date (end of IQC) [dd/mm/yyyy]",
+						"type": "String"
+					},
+					{
+						"name": "Y/M End",
+						"type": "String"
+					},
+					{
+						"name": "Time from receipt to release [days]",
+						"type": "String"
+					},
+					{
+						"name": "Batch Disposition [Pass/Fail]",
+						"type": "String"
+					},
+					{
+						"name": "Comments ",
+						"type": "String"
+					},
+					{
+						"name": "MRB #\n[YYYY-XXXX]",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/SAP_Mrr_CUFD')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -3183,68 +3300,6 @@
 				"typeProperties": {
 					"schema": "sap",
 					"table": "Mrr_RDR1"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/SAP_Mrr_UFD1')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqldb_egbi_dev",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQLDB-EGBI-DEV/SAP"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "ETL_ID",
-						"type": "bigint",
-						"precision": 19
-					},
-					{
-						"name": "ETL_Timestamp",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "TableID",
-						"type": "nvarchar"
-					},
-					{
-						"name": "FieldID",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "IndexID",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "FldValue",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Descr",
-						"type": "nvarchar"
-					},
-					{
-						"name": "FldDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					}
-				],
-				"typeProperties": {
-					"schema": "sap",
-					"table": "Mrr_UFD1"
 				}
 			},
 			"dependsOn": []
