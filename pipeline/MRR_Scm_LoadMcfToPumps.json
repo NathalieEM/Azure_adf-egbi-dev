@@ -1,0 +1,9 @@
+{
+	"name": "MRR_Scm_LoadMcfToPumps",
+	"properties": {
+		"folder": {
+			"name": "EDHR/MRR"
+		},
+		"annotations": []
+	}
+}
