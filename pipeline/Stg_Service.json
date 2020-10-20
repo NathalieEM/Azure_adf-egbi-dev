@@ -118,6 +118,19 @@
 					},
 					"waitOnCompletion": true
 				}
+			},
+			{
+				"name": "Stg_Fact_ServiceFlow",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Stg_Fact_ServiceFlow",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
 			}
 		],
 		"folder": {
