@@ -216,6 +216,38 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/Mrr_City')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqldb_egbi_dev",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLDB-EGBI-DEV/Service/Mrr"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Name",
+						"type": "nvarchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "srv",
+					"table": "Mrr_City"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/Mrr_Complaint')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -801,6 +833,52 @@
 				"typeProperties": {
 					"schema": "srv",
 					"table": "Mrr_Complaint_Issue"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Mrr_Country')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqldb_egbi_dev",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLDB-EGBI-DEV/Service/Mrr"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Country",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Code",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PhoneCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "dtUpdated_FromSAP",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					}
+				],
+				"typeProperties": {
+					"schema": "srv",
+					"table": "Mrr_Country"
 				}
 			},
 			"dependsOn": []
@@ -6435,605 +6513,6 @@
 				"typeProperties": {
 					"schema": "sap",
 					"table": "Mrr_OINM"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Mrr_OINM1')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqldb_sorrelbi_dev",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQLDB-EGBI-DEV/SAP"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "Code",
-						"type": "nvarchar"
-					},
-					{
-						"name": "TreeType",
-						"type": "char"
-					},
-					{
-						"name": "PriceList",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "Qauntity",
-						"type": "decimal",
-						"precision": 19,
-						"scale": 6
-					},
-					{
-						"name": "UseFthrWhs",
-						"type": "char"
-					},
-					{
-						"name": "CreateDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "UpdateDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "Transfered",
-						"type": "char"
-					},
-					{
-						"name": "DataSource",
-						"type": "char"
-					},
-					{
-						"name": "UserSign",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "SCNCounter",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "DispCurr",
-						"type": "nvarchar"
-					},
-					{
-						"name": "ToWH",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Object",
-						"type": "nvarchar"
-					},
-					{
-						"name": "LogInstac",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "UserSign2",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "OcrCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "HideComp",
-						"type": "char"
-					},
-					{
-						"name": "OcrCode2",
-						"type": "nvarchar"
-					},
-					{
-						"name": "OcrCode3",
-						"type": "nvarchar"
-					},
-					{
-						"name": "OcrCode4",
-						"type": "nvarchar"
-					},
-					{
-						"name": "OcrCode5",
-						"type": "nvarchar"
-					},
-					{
-						"name": "UpdateTime",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Project",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_Active",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "U_Lang",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_Mode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_Lang1",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_BomRev",
-						"type": "nvarchar"
-					}
-				],
-				"typeProperties": {
-					"schema": "sap",
-					"table": "Mrr_OINM"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Mrr_OINS')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqldb_egbi_dev",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQLDB-EGBI-DEV/SAP"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "insID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "customer",
-						"type": "nvarchar"
-					},
-					{
-						"name": "custmrName",
-						"type": "nvarchar"
-					},
-					{
-						"name": "contactCod",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "directCsmr",
-						"type": "nvarchar"
-					},
-					{
-						"name": "drctCsmNam",
-						"type": "nvarchar"
-					},
-					{
-						"name": "manufSN",
-						"type": "nvarchar"
-					},
-					{
-						"name": "internalSN",
-						"type": "nvarchar"
-					},
-					{
-						"name": "warranty",
-						"type": "char"
-					},
-					{
-						"name": "wrrntyStrt",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "wrrntyEnd",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "responsVal",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "responsUnt",
-						"type": "char"
-					},
-					{
-						"name": "itemCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "itemName",
-						"type": "nvarchar"
-					},
-					{
-						"name": "itemGroup",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "manufDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "delivery",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "deliveryNo",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "invoice",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "invoiceNum",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "dlvryDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "cntctPhone",
-						"type": "nvarchar"
-					},
-					{
-						"name": "street",
-						"type": "nvarchar"
-					},
-					{
-						"name": "block",
-						"type": "nvarchar"
-					},
-					{
-						"name": "zip",
-						"type": "nvarchar"
-					},
-					{
-						"name": "city",
-						"type": "nvarchar"
-					},
-					{
-						"name": "county",
-						"type": "nvarchar"
-					},
-					{
-						"name": "country",
-						"type": "nvarchar"
-					},
-					{
-						"name": "state",
-						"type": "nvarchar"
-					},
-					{
-						"name": "instLction",
-						"type": "nvarchar"
-					},
-					{
-						"name": "contract",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "cntrctStrt",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "cntrctEnd",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "attachment",
-						"type": "ntext"
-					},
-					{
-						"name": "objType",
-						"type": "nvarchar"
-					},
-					{
-						"name": "logInstanc",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "userSign",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "createDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "userSign2",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "updateDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "Building",
-						"type": "ntext"
-					},
-					{
-						"name": "status",
-						"type": "char"
-					},
-					{
-						"name": "replcIns",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "repByIns",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "technician",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "territory",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "AtcEntry",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Transfered",
-						"type": "char"
-					},
-					{
-						"name": "AddrType",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Instance",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "StreetNo",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_SwVer",
-						"type": "ntext"
-					},
-					{
-						"name": "U_ShipDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "U_ISW_ItemCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_ISW_ItemName",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_FA",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_Last_Arrival_Pump",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "U_QBupdate",
-						"type": "char"
-					},
-					{
-						"name": "U_ExistInQB",
-						"type": "char"
-					},
-					{
-						"name": "U_ExpireDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "U_InitializationDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "U_ChangeSet",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_BattSN",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_SwUpDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "U_PlacementCus",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_PlacementCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_PlacementDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "U_InternalUse",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_SWSource",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_LastACK",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "U_AgeAug15",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "U_FreezAgedT",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "U_FreezeCMR",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_CustomerCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_CustomerName",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_Global",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_PlaceCity",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_PlaceState",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_PlaceZip",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_MacAddress1",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_MacAddress2",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_MacAddress3",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_MacAddress4",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_MacAddress5",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_ECO",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_InsID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "U_ManfDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "U_HumenUse",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_WaitingFor",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_WarrentyEnddate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "U_attest",
-						"type": "ntext"
-					}
-				],
-				"typeProperties": {
-					"schema": "sap",
-					"table": "Mrr_OINS"
 				}
 			},
 			"dependsOn": []

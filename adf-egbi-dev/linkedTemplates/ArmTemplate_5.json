@@ -13,6 +13,264 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/Mrr_Service_Center')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqldb_egbi_dev",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLDB-EGBI-DEV/SAP"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "Code",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Name",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DocEntry",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Canceled",
+						"type": "char"
+					},
+					{
+						"name": "Object",
+						"type": "nvarchar"
+					},
+					{
+						"name": "LogInst",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "UserSign",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Transfered",
+						"type": "char"
+					},
+					{
+						"name": "CreateDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "CreateTime",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "UpdateDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "UpdateTime",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "DataSource",
+						"type": "char"
+					},
+					{
+						"name": "U_SC_Name",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_Active",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_CardCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_CardName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_HubCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_HubName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_IntakeFormEmail",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_IntakeFormSAMA",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_IsQcore",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_IsICU",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_ServiceCenterType",
+						"type": "int",
+						"precision": 10
+					}
+				],
+				"typeProperties": {
+					"schema": "sap",
+					"table": "Mrr_ServiceCenters"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Mrr_Service_Center1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqldb_sorrelbi_dev",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLDB-EGBI-DEV/SAP"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "Code",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Name",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DocEntry",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Canceled",
+						"type": "char"
+					},
+					{
+						"name": "Object",
+						"type": "nvarchar"
+					},
+					{
+						"name": "LogInst",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "UserSign",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Transfered",
+						"type": "char"
+					},
+					{
+						"name": "CreateDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "CreateTime",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "UpdateDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "UpdateTime",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "DataSource",
+						"type": "char"
+					},
+					{
+						"name": "U_SC_Name",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_Active",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_CardCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_CardName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_HubCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_HubName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_IntakeFormEmail",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_IntakeFormSAMA",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_IsQcore",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_IsICU",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_ServiceCenterType",
+						"type": "int",
+						"precision": 10
+					}
+				],
+				"typeProperties": {
+					"schema": "sap",
+					"table": "Mrr_ServiceCenters"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/Mrr_Service_Flow')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -400,6 +658,42 @@
 				"typeProperties": {
 					"schema": "sap",
 					"table": "Mrr_Srv_Serials"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Mrr_State')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqldb_egbi_dev",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLDB-EGBI-DEV/Service/Mrr"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "State",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Code",
+						"type": "nvarchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "srv",
+					"table": "Mrr_State"
 				}
 			},
 			"dependsOn": []
@@ -4788,292 +5082,6 @@
 						"type": "String"
 					}
 				]
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/SAP_Mrr_CUFD')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqldb_egbi_dev",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQLDB-EGBI-DEV/SAP"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "ETL_ID",
-						"type": "bigint",
-						"precision": 19
-					},
-					{
-						"name": "ETL_Timestamp",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "TableID",
-						"type": "nvarchar"
-					},
-					{
-						"name": "FieldID",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "AliasID",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Descr",
-						"type": "nvarchar"
-					},
-					{
-						"name": "TypeID",
-						"type": "char"
-					},
-					{
-						"name": "EditType",
-						"type": "char"
-					},
-					{
-						"name": "SizeID",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "EditSize",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "Dflt",
-						"type": "nvarchar"
-					},
-					{
-						"name": "NotNull",
-						"type": "char"
-					},
-					{
-						"name": "IndexID",
-						"type": "char"
-					},
-					{
-						"name": "RTable",
-						"type": "nvarchar"
-					},
-					{
-						"name": "RField",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "Action",
-						"type": "char"
-					},
-					{
-						"name": "Sys",
-						"type": "char"
-					},
-					{
-						"name": "DfltDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "RelUDO",
-						"type": "nvarchar"
-					},
-					{
-						"name": "ValidRule",
-						"type": "nvarchar"
-					}
-				],
-				"typeProperties": {
-					"schema": "sap",
-					"table": "Mrr_CUFD"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/SAP_Mrr_CUFD1')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqldb_sorrelbi_dev",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQLDB-EGBI-DEV/SAP"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "ETL_ID",
-						"type": "bigint",
-						"precision": 19
-					},
-					{
-						"name": "ETL_Timestamp",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "TableID",
-						"type": "nvarchar"
-					},
-					{
-						"name": "FieldID",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "AliasID",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Descr",
-						"type": "nvarchar"
-					},
-					{
-						"name": "TypeID",
-						"type": "char"
-					},
-					{
-						"name": "EditType",
-						"type": "char"
-					},
-					{
-						"name": "SizeID",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "EditSize",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "Dflt",
-						"type": "nvarchar"
-					},
-					{
-						"name": "NotNull",
-						"type": "char"
-					},
-					{
-						"name": "IndexID",
-						"type": "char"
-					},
-					{
-						"name": "RTable",
-						"type": "nvarchar"
-					},
-					{
-						"name": "RField",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "Action",
-						"type": "char"
-					},
-					{
-						"name": "Sys",
-						"type": "char"
-					},
-					{
-						"name": "DfltDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "RelUDO",
-						"type": "nvarchar"
-					},
-					{
-						"name": "ValidRule",
-						"type": "nvarchar"
-					}
-				],
-				"typeProperties": {
-					"schema": "sap",
-					"table": "Mrr_CUFD"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/SAP_Mrr_OCRD')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqldb_egbi_dev",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQLDB-EGBI-DEV/SAP"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "ETL_ID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "ETL_Timestamp",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "CardCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "CardName",
-						"type": "nvarchar"
-					},
-					{
-						"name": "CardType",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Country",
-						"type": "nvarchar"
-					},
-					{
-						"name": "CreateDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "UpdateDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					}
-				],
-				"typeProperties": {
-					"schema": "sap",
-					"table": "Mrr_OCRD"
-				}
 			},
 			"dependsOn": []
 		}

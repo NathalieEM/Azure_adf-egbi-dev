@@ -13,6 +13,1349 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/Mrr_Suppliers_Audit_Activities_Followup')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "trunc_Mrr_Suppliers_Audit_Activities_Followup",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[ScoreCards].[trunc_Mrr_Suppliers_Audit_Activities_Followup]"
+						},
+						"linkedServiceName": {
+							"referenceName": "sqldb_egbi_dev",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "Copy Mrr_Calc_Suppliers_Audit_Activities_Followup",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "trunc_Mrr_Suppliers_Audit_Activities_Followup",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "ExcelSource",
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true
+								}
+							},
+							"sink": {
+								"type": "AzureSqlSink"
+							},
+							"enableStaging": true,
+							"stagingSettings": {
+								"linkedServiceName": {
+									"referenceName": "AzureBlobStorage1",
+									"type": "LinkedServiceReference"
+								}
+							},
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"type": "String",
+											"ordinal": 1
+										},
+										"sink": {
+											"name": "SupplierName",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"type": "String",
+											"ordinal": 2
+										},
+										"sink": {
+											"name": "Supplier Number",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"type": "String",
+											"ordinal": 3
+										},
+										"sink": {
+											"name": "SupplierType",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"type": "String",
+											"ordinal": 4
+										},
+										"sink": {
+											"name": "Location",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"type": "String",
+											"ordinal": 5
+										},
+										"sink": {
+											"name": "EAN #",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"type": "String",
+											"ordinal": 6
+										},
+										"sink": {
+											"name": "Audit Plan (Month)",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"type": "String",
+											"ordinal": 7
+										},
+										"sink": {
+											"name": "AuditPerfom",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"type": "String",
+											"ordinal": 8
+										},
+										"sink": {
+											"name": "ActualAuditDate",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"type": "String",
+											"ordinal": 9
+										},
+										"sink": {
+											"name": "AuditDurationDays",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"type": "String",
+											"ordinal": 10
+										},
+										"sink": {
+											"name": "LeadAuditorName",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"type": "String",
+											"ordinal": 11
+										},
+										"sink": {
+											"name": "Audit Team",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"type": "String",
+											"ordinal": 12
+										},
+										"sink": {
+											"name": "AuditType",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"type": "String",
+											"ordinal": 13
+										},
+										"sink": {
+											"name": "Findings_Critical",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"type": "String",
+											"ordinal": 14
+										},
+										"sink": {
+											"name": "Findings_Major",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"type": "String",
+											"ordinal": 15
+										},
+										"sink": {
+											"name": "Findings_Moderate",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"type": "String",
+											"ordinal": 16
+										},
+										"sink": {
+											"name": "Findings_Observ",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"type": "String",
+											"ordinal": 17
+										},
+										"sink": {
+											"name": "AuditResults",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"type": "String",
+											"ordinal": 18
+										},
+										"sink": {
+											"name": "AuditorScore",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "Suppliers_Audit_Activities_Followup",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "Mrr_Calc_Suppliers_Audit_Activities_Followup",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "Copy Mrr_Suppliers_Audit_Activities_Followup",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "Copy Mrr_Calc_Suppliers_Audit_Activities_Followup",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "AzureSqlSource",
+								"sqlReaderQuery": "SELECT [SupplierName]\n      ,[Supplier Number]\n      ,[SupplierType]\n      ,[Location]\n      ,[EAN #]\n      ,[AuditPerfom]\n      ,case when [ActualAuditDate] like '%Not done moved%' then null else [ActualAuditDate] end as [ActualAuditDate]\n      ,[AuditDurationDays]\n      ,[LeadAuditorName]\n      ,case when [Audit Team] = 'NA' then null else [Audit Team] end as [Audit Team]\n      ,[AuditType]\n      ,case when [Findings_Critical]  = 'NA' then null else [Findings_Critical] end as [Findings_Critical]\n      ,case when [Findings_Major]\t  = 'NA' then null else [Findings_Major] end as [Findings_Major]\n      ,case when [Findings_Moderate]  = 'NA' then null else [Findings_Moderate] end as [Findings_Moderate]\n      ,case when [Findings_Observ]\t  = 'NA' then null else [Findings_Observ] end as [Findings_Observ]\n      ,case when [AuditResults] = 'NA' then null else [AuditResults] end as [AuditResults]\n      ,case when [AuditorScore] = 'NA' then null else [AuditorScore] end as [AuditorScore]\n  FROM [ScoreCards].[Mrr_Calc_Suppliers_Audit_Activities_Followup]",
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"sink": {
+								"type": "AzureSqlSink"
+							},
+							"enableStaging": true,
+							"stagingSettings": {
+								"linkedServiceName": {
+									"referenceName": "AzureBlobStorage1",
+									"type": "LinkedServiceReference"
+								}
+							},
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "SupplierName",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "SupplierName",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Supplier Number",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "Supplier Number",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "SupplierType",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "SupplierType",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Location",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "Location",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "EAN #",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "EAN #",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "AuditPerfom",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "AuditPerfom",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "ActualAuditDate",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "ActualAuditDate",
+											"type": "DateTime",
+											"physicalType": "date"
+										}
+									},
+									{
+										"source": {
+											"name": "AuditDurationDays",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "AuditDurationDays",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "LeadAuditorName",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "LeadAuditorName",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Audit Team",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "Audit Team",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "AuditType",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "AuditType",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Findings_Critical",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "Findings_Critical",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Findings_Major",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "Findings_Major",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Findings_Moderate",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "Findings_Moderate",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Findings_Observ",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "Findings_Observ",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "AuditResults",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "AuditResults",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "AuditorScore",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "AuditorScore",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "Mrr_Calc_Suppliers_Audit_Activities_Followup",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "Mrr_Suppliers_Audit_Activities_Followup",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"folder": {
+					"name": "ScoreCards/Mrr"
+				},
+				"annotations": [],
+				"lastPublishTime": "2020-08-18T13:00:25Z"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Stg_Dim_User')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "sp_Stg_Dim_User",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[srv].[sp_trunc_Stg_Dim_User]"
+						},
+						"linkedServiceName": {
+							"referenceName": "sqldb_egbi_dev",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "Copy Stg_Dim_User",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "sp_Stg_Dim_User",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "AzureSqlSource",
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"sink": {
+								"type": "AzureSqlSink"
+							},
+							"enableStaging": true,
+							"stagingSettings": {
+								"linkedServiceName": {
+									"referenceName": "st_error_log",
+									"type": "LinkedServiceReference"
+								}
+							},
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "ID",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "ID",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "fGroupID",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "fGroupID",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "IsTrainingUser",
+											"type": "Boolean",
+											"physicalType": "bit"
+										},
+										"sink": {
+											"name": "IsTrainingUser",
+											"type": "Boolean",
+											"physicalType": "bit"
+										}
+									},
+									{
+										"source": {
+											"name": "IsAdminUser",
+											"type": "Boolean",
+											"physicalType": "bit"
+										},
+										"sink": {
+											"name": "IsAdminUser",
+											"type": "Boolean",
+											"physicalType": "bit"
+										}
+									},
+									{
+										"source": {
+											"name": "FirstName",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "FirstName",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "LastName",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "LastName",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Position",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "Position",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "fStateID",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "fStateID",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "City",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "City",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "fCountryID",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "fCountryID",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "fServiceCenterID",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "fServiceCenterID",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "Organization",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "Organization",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "UserName",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "UserName",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "UserDisplayName",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "UserDisplayName",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "IsActive",
+											"type": "Boolean",
+											"physicalType": "bit"
+										},
+										"sink": {
+											"name": "IsActive",
+											"type": "Boolean",
+											"physicalType": "bit"
+										}
+									},
+									{
+										"source": {
+											"name": "fStatusID",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "fStatusID",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "fNewUserStatusID",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "fNewUserStatusID",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "RegistrationDate",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										},
+										"sink": {
+											"name": "RegistrationDate",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										}
+									},
+									{
+										"source": {
+											"name": "IsBlockUser",
+											"type": "Boolean",
+											"physicalType": "bit"
+										},
+										"sink": {
+											"name": "IsBlockUser",
+											"type": "Boolean",
+											"physicalType": "bit"
+										}
+									},
+									{
+										"source": {
+											"name": "UserCertificationRenewDate",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										},
+										"sink": {
+											"name": "UserCertificationRenewDate",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										}
+									},
+									{
+										"source": {
+											"name": "ApproveTermsConditions",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										},
+										"sink": {
+											"name": "ApproveTermsConditions",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										}
+									},
+									{
+										"source": {
+											"name": "IsNeedApproveTermsAgain",
+											"type": "Boolean",
+											"physicalType": "bit"
+										},
+										"sink": {
+											"name": "IsNeedApproveTermsAgain",
+											"type": "Boolean",
+											"physicalType": "bit"
+										}
+									},
+									{
+										"source": {
+											"name": "fLocationID",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "fLocationID",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "fCreatedByID",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "fCreatedByID",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "dtCreatedDate",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										},
+										"sink": {
+											"name": "dtCreatedDate",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										}
+									},
+									{
+										"source": {
+											"name": "fUpdatedByID",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "fUpdatedByID",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "dtUpdatedDate",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										},
+										"sink": {
+											"name": "dtUpdatedDate",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										}
+									},
+									{
+										"source": {
+											"name": "IsToExport",
+											"type": "Boolean",
+											"physicalType": "bit"
+										},
+										"sink": {
+											"name": "IsToExport",
+											"type": "Boolean",
+											"physicalType": "bit"
+										}
+									},
+									{
+										"source": {
+											"name": "dtLastExportDate",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										},
+										"sink": {
+											"name": "dtLastExportDate",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										}
+									},
+									{
+										"source": {
+											"name": "__fDistributorID",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "__fDistributorID",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "_fServiceCenterID",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "_fServiceCenterID",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "Mrr_User",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "Stg_Dim_User",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"folder": {
+					"name": "Service/Stg"
+				},
+				"annotations": [],
+				"lastPublishTime": "2020-09-22T09:12:05Z"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Stg_Fact_ComplaintHeader')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Copy Stg_Fact_ComplaintHeader",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "sp_trunc_Stg_Fact_ComplaintHeader",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "AzureSqlSource",
+								"sqlReaderQuery": "select \n cast(c.id as nvarchar) as U_PortalID\n,c.fSerialNumber\n,c.callID\n,c.status\n,c.dtCreatedDate \n,c.Subject\n,c.closeDate\n,c.itemName\n,c.itemCode\n,c.Customer\n,c.custmrName\n,c.callType\n,c.ComplaintSource\n,s.servicedate\n,s.dtcheckoutdate\n,cast(s.status as nvarchar) serviceStatus\n,s.fcreatedbyid\n,s.UserServiceCenterSAPID\nfrom srv.Mrr_Complaint C\nleft join srv.Mrr_Service   S on C.fServiceID = S.ID\n\nunion all\n\nselect \n U_PortalID\n,internalSN\n,callid\n,status\n,U_CompDate\n,subject\n,closeDate\n,itemName\n,itemCode\n,customer\n,custmrName\n,callType\n,NULL as ComplaintSource\n,U_ServiceDate\n,U_dtcheckoutdate\n,U_ServiceStatus\n,cast(userSign as int) userSign\n,U_UserServiceCenter\nfrom sap.Mrr_OSCL",
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"sink": {
+								"type": "AzureSqlSink"
+							},
+							"enableStaging": true,
+							"stagingSettings": {
+								"linkedServiceName": {
+									"referenceName": "st_error_log",
+									"type": "LinkedServiceReference"
+								}
+							},
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "U_PortalID",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "U_PortalID",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "fSerialNumber",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "fSerialNumber",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "callID",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "callID",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "status",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "status",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "dtCreatedDate",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										},
+										"sink": {
+											"name": "dtCreatedDate",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										}
+									},
+									{
+										"source": {
+											"name": "Subject",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "Subject",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "closeDate",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										},
+										"sink": {
+											"name": "closeDate",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										}
+									},
+									{
+										"source": {
+											"name": "itemName",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "itemName",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "itemCode",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "itemCode",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Customer",
+											"type": "Double",
+											"physicalType": "float"
+										},
+										"sink": {
+											"name": "Customer",
+											"type": "Double",
+											"physicalType": "float"
+										}
+									},
+									{
+										"source": {
+											"name": "custmrName",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "custmrName",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "callType",
+											"type": "Double",
+											"physicalType": "float"
+										},
+										"sink": {
+											"name": "callType",
+											"type": "Double",
+											"physicalType": "float"
+										}
+									},
+									{
+										"source": {
+											"name": "ComplaintSource",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "ComplaintSource",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "servicedate",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										},
+										"sink": {
+											"name": "servicedate",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										}
+									},
+									{
+										"source": {
+											"name": "dtcheckoutdate",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										},
+										"sink": {
+											"name": "dtcheckoutdate",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										}
+									},
+									{
+										"source": {
+											"name": "serviceStatus",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "serviceStatus",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "fcreatedbyid",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "fcreatedbyid",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "UserServiceCenterSAPID",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "UserServiceCenterSAPID",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "Mrr_Complaint",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "Stg_Fact_ComplaintHeader",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "sp_trunc_Stg_Fact_ComplaintHeader",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[srv].[sp_trunc_Stg_Fact_ComplaintHeader]"
+						},
+						"linkedServiceName": {
+							"referenceName": "sqldb_egbi_dev",
+							"type": "LinkedServiceReference"
+						}
+					}
+				],
+				"folder": {
+					"name": "Service/Stg"
+				},
+				"annotations": [],
+				"lastPublishTime": "2020-09-29T14:10:08Z"
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/Stg_Fact_OrdersAndShipments')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
@@ -5129,697 +6472,6 @@
 				"typeProperties": {
 					"schema": "dbo",
 					"table": "CUFD"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/CUFD1')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "TESTSorrelDB_25022020",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQLSRV-SAP/NewQcoreDB"
-				},
-				"annotations": [],
-				"type": "SqlServerTable",
-				"schema": [
-					{
-						"name": "TableID",
-						"type": "nvarchar"
-					},
-					{
-						"name": "FieldID",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "AliasID",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Descr",
-						"type": "nvarchar"
-					},
-					{
-						"name": "TypeID",
-						"type": "char"
-					},
-					{
-						"name": "EditType",
-						"type": "char"
-					},
-					{
-						"name": "SizeID",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "EditSize",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "Dflt",
-						"type": "nvarchar"
-					},
-					{
-						"name": "NotNull",
-						"type": "char"
-					},
-					{
-						"name": "IndexID",
-						"type": "char"
-					},
-					{
-						"name": "RTable",
-						"type": "nvarchar"
-					},
-					{
-						"name": "RField",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "Action",
-						"type": "char"
-					},
-					{
-						"name": "Sys",
-						"type": "char"
-					},
-					{
-						"name": "DfltDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "RelUDO",
-						"type": "nvarchar"
-					},
-					{
-						"name": "ValidRule",
-						"type": "nvarchar"
-					}
-				],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "CUFD"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Complaint')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AWS_Service_portal",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "AWS"
-				},
-				"annotations": [],
-				"type": "SqlServerTable",
-				"schema": [
-					{
-						"name": "ID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "fSerialNumber",
-						"type": "nvarchar"
-					},
-					{
-						"name": "callID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "u_ootbfail",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Descr",
-						"type": "nvarchar"
-					},
-					{
-						"name": "status",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "StatusDesc",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_Fixapproval",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_WhoExperienced",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "U_SwVer",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_SendToHSPGSC",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_ReportedBy",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_RepByTitle",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_RecordId",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_Quantity",
-						"type": "float",
-						"precision": 15
-					},
-					{
-						"name": "U_QBupdate",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_ProductNotes",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_ProblemObserved",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "U_PatientInv",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "U_PatInvDet",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_OotbOtherDetails",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_OccuredAt",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_IntakeFilledBy",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_HumanHarmDet",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_HumanHarm",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_HotList",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_Finalevaluletter",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_Event_Log_Req",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_EqReturnReq",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_Description",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_Date_Event_Log",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_CustomerType",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_CPTitle",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_CP_Phone",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_CP_Email",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_CP",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_CompDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "U_CaseNo",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_Batch",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_Arrival_Event_Log",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_AppBy1Date",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "U_AppBy1",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_AckDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "Subject",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Street",
-						"type": "nvarchar"
-					},
-					{
-						"name": "State",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Room",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_Date_Pump_Req",
-						"type": "nvarchar"
-					},
-					{
-						"name": "closeDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "itemName",
-						"type": "nvarchar"
-					},
-					{
-						"name": "itemCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "internalSN__NoUse",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Descrption",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Customer",
-						"type": "float",
-						"precision": 15
-					},
-					{
-						"name": "custmrName",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Country",
-						"type": "nvarchar"
-					},
-					{
-						"name": "City",
-						"type": "nvarchar"
-					},
-					{
-						"name": "callType",
-						"type": "float",
-						"precision": 15
-					},
-					{
-						"name": "U_FixInstructiField",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_FixDesc",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_cp_fax",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_WhoExperiencedOth",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_DistLogedDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "u_unresponse",
-						"type": "nvarchar"
-					},
-					{
-						"name": "dtUpdated_FromSAP",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "___NEW_FIELDS",
-						"type": "nchar"
-					},
-					{
-						"name": "_FieldsNotQB",
-						"type": "char"
-					},
-					{
-						"name": "U_RepByPhone",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_OccuredAt_Other",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_AckDate_Unknown",
-						"type": "bit"
-					},
-					{
-						"name": "U_Delay_Therapy",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "U_Delay_TherapyDetails",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_Medical_Intervention",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "U_Medical_InterventionDetails",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_Alarm_Settings",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_Type_Of_Drug",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_Prime_Performed",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "U_Portal_Description",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_Product_Customer",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "DistributerNum",
-						"type": "nvarchar"
-					},
-					{
-						"name": "DistributerName",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_AckDate_Hour",
-						"type": "nvarchar"
-					},
-					{
-						"name": "SWVersion",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_SendToQCoreDesc",
-						"type": "nvarchar"
-					},
-					{
-						"name": "fProductID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "fServiceID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "ComplaintSource",
-						"type": "nvarchar"
-					},
-					{
-						"name": "IsCompleted",
-						"type": "bit"
-					},
-					{
-						"name": "IsReleasePump",
-						"type": "bit"
-					},
-					{
-						"name": "___office",
-						"type": "char"
-					},
-					{
-						"name": "fCreatedByID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "dtCreatedDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "fUpdatedByID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "dtUpdatedDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "__sync_to_sap_fields",
-						"type": "nvarchar"
-					},
-					{
-						"name": "dtExportDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "dtQuickBaseExportDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					}
-				],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "tbl_Complaint"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Complaint_Issue')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AWS_Service_portal",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "AWS"
-				},
-				"annotations": [],
-				"type": "SqlServerTable",
-				"schema": [
-					{
-						"name": "ID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "ComplaintIssueSource",
-						"type": "nvarchar"
-					},
-					{
-						"name": "fComplaintID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "fKnownIssueID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "KnownIssueMain",
-						"type": "nvarchar"
-					},
-					{
-						"name": "fStatusID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "IsComplaintRelated",
-						"type": "bit"
-					},
-					{
-						"name": "DateReported",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "KnownUnique",
-						"type": "nvarchar"
-					},
-					{
-						"name": "__KnownIssueFields",
-						"type": "char"
-					},
-					{
-						"name": "Category",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Error",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Description",
-						"type": "nvarchar"
-					},
-					{
-						"name": "SWVersion",
-						"type": "nvarchar"
-					},
-					{
-						"name": "___SAP",
-						"type": "char"
-					},
-					{
-						"name": "DocEntry",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "LineID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "dtUpdated_FromSAP",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "___office",
-						"type": "char"
-					},
-					{
-						"name": "fCreatedByID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "dtCreatedDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "fUpdatedByID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "dtUpdatedDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "__sync_to_sap_fields",
-						"type": "nvarchar"
-					},
-					{
-						"name": "dtExportDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					}
-				],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "tbl_Complaint_Issues"
 				}
 			},
 			"dependsOn": []
