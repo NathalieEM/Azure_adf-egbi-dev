@@ -6,12 +6,6 @@
 		"pipelines": [
 			{
 				"pipelineReference": {
-					"referenceName": "SAP_Main",
-					"type": "PipelineReference"
-				}
-			},
-			{
-				"pipelineReference": {
 					"referenceName": "MainService",
 					"type": "PipelineReference"
 				}
@@ -22,7 +16,7 @@
 			"recurrence": {
 				"frequency": "Week",
 				"interval": 1,
-				"startTime": "2020-07-16T13:51:00.000Z",
+				"startTime": "2020-07-16T13:51:00Z",
 				"timeZone": "UTC",
 				"schedule": {
 					"minutes": [
