@@ -183,6 +183,19 @@
 					},
 					"waitOnCompletion": true
 				}
+			},
+			{
+				"name": "AWS_ServiceCenter",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "AWS_ServiceCenter",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
 			}
 		],
 		"folder": {
