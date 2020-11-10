@@ -1583,6 +1583,10 @@
 			{
 				"name": "U_AWB",
 				"type": "nvarchar"
+			},
+			{
+				"name": "U_UserServiceCenter",
+				"type": "nvarchar"
 			}
 		],
 		"typeProperties": {
