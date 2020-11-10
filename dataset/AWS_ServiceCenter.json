@@ -1,0 +1,110 @@
+{
+	"name": "AWS_ServiceCenter",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AWS_Service_portal",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "AWS"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ServiceCenterName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ServiceCenterSAPIdentity",
+				"type": "nvarchar"
+			},
+			{
+				"name": "fServiceCenterTypeID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ServiceCenterLogo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "IntakeFormEmail",
+				"type": "nvarchar"
+			},
+			{
+				"name": "IntakeFormSAMA",
+				"type": "nvarchar"
+			},
+			{
+				"name": "IsActive",
+				"type": "bit"
+			},
+			{
+				"name": "IsQcore",
+				"type": "bit"
+			},
+			{
+				"name": "IsICU",
+				"type": "bit"
+			},
+			{
+				"name": "IsAltera",
+				"type": "bit"
+			},
+			{
+				"name": "DistributorNumSuitable",
+				"type": "nvarchar"
+			},
+			{
+				"name": "dtUpdated_FromSAP",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "IsSyncToSAP",
+				"type": "bit"
+			},
+			{
+				"name": "CompHandlerMail",
+				"type": "nvarchar"
+			},
+			{
+				"name": "__Office",
+				"type": "char"
+			},
+			{
+				"name": "fCreatedByID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "dtCreatedDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "fUpdatedByID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "dtUpdatedDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "tbl_ServiceCenter"
+		}
+	}
+}
