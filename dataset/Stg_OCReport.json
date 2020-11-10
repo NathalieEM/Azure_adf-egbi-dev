@@ -79,6 +79,27 @@
 				"name": "Hirarchy",
 				"type": "int",
 				"precision": 10
+			},
+			{
+				"name": "Sort",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "U_CompDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "U_ThirdPumpAttempt",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "U_LevelInvestigation",
+				"type": "nvarchar"
 			}
 		],
 		"typeProperties": {
