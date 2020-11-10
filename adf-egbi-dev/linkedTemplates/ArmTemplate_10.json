@@ -26,16 +26,67 @@
 		"SAP_Integrator_dev_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'SAP_Integrator_dev'"
-		},
-		"SAP_Sorrel_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'SAP_Sorrel'"
 		}
 	},
 	"variables": {
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/porf_Mrr_Items1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqldb_sorrelbi_dev",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLDB-EGBI-DEV/PORF"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ETL_ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ETL_Timestamp",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "ItemCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ItemName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CardCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ItmsGrpCod",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "DB_NAME",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "porf",
+					"table": "Mrr_Items"
+				}
+			},
+			"dependsOn": []
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/porf_Mrr_Items2')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
@@ -1197,23 +1248,6 @@
 				"type": "SqlServer",
 				"typeProperties": {
 					"connectionString": "[parameters('SAP_Integrator_dev_connectionString')]"
-				},
-				"connectVia": {
-					"referenceName": "ir-sap",
-					"type": "IntegrationRuntimeReference"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/SAP_Sorrel')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "SqlServer",
-				"typeProperties": {
-					"connectionString": "[parameters('SAP_Sorrel_connectionString')]"
 				},
 				"connectVia": {
 					"referenceName": "ir-sap",

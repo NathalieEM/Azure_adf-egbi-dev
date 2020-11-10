@@ -13,6 +13,136 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/Mrr_CRD1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqldb_egbi_dev",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLDB-EGBI-DEV/SAP"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "Address",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CardCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Street",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Block",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ZipCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "City",
+						"type": "nvarchar"
+					},
+					{
+						"name": "County",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Country",
+						"type": "nvarchar"
+					},
+					{
+						"name": "State",
+						"type": "nvarchar"
+					},
+					{
+						"name": "UserSign",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "LogInstanc",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ObjType",
+						"type": "nvarchar"
+					},
+					{
+						"name": "LicTradNum",
+						"type": "nvarchar"
+					},
+					{
+						"name": "LineNum",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "TaxCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Building",
+						"type": "ntext"
+					},
+					{
+						"name": "AdresType",
+						"type": "char"
+					},
+					{
+						"name": "Address2",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Address3",
+						"type": "nvarchar"
+					},
+					{
+						"name": "AddrType",
+						"type": "nvarchar"
+					},
+					{
+						"name": "StreetNo",
+						"type": "nvarchar"
+					},
+					{
+						"name": "AltCrdName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "AltTaxId",
+						"type": "nvarchar"
+					},
+					{
+						"name": "TaxOffice",
+						"type": "nvarchar"
+					},
+					{
+						"name": "GlblLocNum",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Ntnlty",
+						"type": "nvarchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "sap",
+					"table": "Mrr_CRD1"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/Mrr_CRD11')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -5993,357 +6123,6 @@
 				],
 				"typeProperties": {
 					"schema": "sap",
-					"table": "Mrr_Issues_Service"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Mrr_Issues_Service')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqldb_egbi_dev",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQLDB-EGBI-DEV/ScoreCards/Mrr"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "Code",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Name",
-						"type": "nvarchar"
-					},
-					{
-						"name": "DocEntry",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Canceled",
-						"type": "char"
-					},
-					{
-						"name": "Object",
-						"type": "nvarchar"
-					},
-					{
-						"name": "LogInst",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "UserSign",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Transfered",
-						"type": "char"
-					},
-					{
-						"name": "CreateDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "CreateTime",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "UpdateDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "UpdateTime",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "DataSource",
-						"type": "char"
-					},
-					{
-						"name": "U_CallId",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "U_SPCategory",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_SPError",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_Confirmed",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_MisUse",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_UserSign1",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_DateStamp1",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "U_TimeStamp1",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "U_AnaylsisCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_AnalysisErrCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_KnownID",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_LongKnownID",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_UserSign2",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_DateStamp2",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "U_TimeStamp2",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "U_RrpairCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_AnalysisRepairCat",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_AnalysisRepairErr",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_RepairLevel",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_RepairAction",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_SparePartSnBatch",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_DiagnosticsConc",
-						"type": "ntext"
-					},
-					{
-						"name": "U_DiagConcComment",
-						"type": "ntext"
-					},
-					{
-						"name": "U_ComplaintRelated",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_UserSign3",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_DateStamp3",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "U_TimeStamp3",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "U_Reopen",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_ReopendT",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "U_ReOpen_Detalis",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_LineStatus",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_UserSign",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_DateStamp",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "U_TimeStamp",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "U_SPDescription",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_PortalID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "U_ServiceID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "U_PortalCompIsuueID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "U_ServiceActivityID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "U_Category",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_Error",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_UserSignP",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_DateStampP",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "U_TimeStampP",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "U_UserSignP1",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_DateStampP1",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "U_TomeStampP1",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "U_InternalSN",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_CompIssueStatus",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_TimeStampP1",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "U_OriginDocentry",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "U_OriginLine",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "U_ServiceLocation",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_ReopenUser",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_ReopenPortalUser",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_ReopenPortalDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "U_TransactionID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "U_Cancel",
-						"type": "char"
-					},
-					{
-						"name": "U_UserServiceCenter",
-						"type": "nvarchar"
-					}
-				],
-				"typeProperties": {
-					"schema": "ScoreCards",
 					"table": "Mrr_Issues_Service"
 				}
 			},

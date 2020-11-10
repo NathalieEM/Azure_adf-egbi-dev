@@ -383,9 +383,6 @@
 					},
 					"SAP_Integrator_dev_connectionString": {
 						"value": "[parameters('SAP_Integrator_dev_connectionString')]"
-					},
-					"SAP_Sorrel_connectionString": {
-						"value": "[parameters('SAP_Sorrel_connectionString')]"
 					}
 				}
 			},
@@ -406,6 +403,9 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"SAP_Sorrel_connectionString": {
+						"value": "[parameters('SAP_Sorrel_connectionString')]"
 					},
 					"SalesforceSandBox_password": {
 						"value": "[parameters('SalesforceSandBox_password')]"
