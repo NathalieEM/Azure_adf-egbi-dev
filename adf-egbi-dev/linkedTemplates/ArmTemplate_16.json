@@ -14797,8 +14797,8 @@
 					},
 					{
 						"name": "Series",
-						"type": "smallint",
-						"precision": 5
+						"type": "int",
+						"precision": 10
 					},
 					{
 						"name": "Handwrtten",
@@ -14927,6 +14927,76 @@
 						"name": "ProSubType",
 						"type": "smallint",
 						"precision": 5
+					},
+					{
+						"name": "BPType",
+						"type": "char"
+					},
+					{
+						"name": "Telephone",
+						"type": "nvarchar"
+					},
+					{
+						"name": "BPPhone1",
+						"type": "nvarchar"
+					},
+					{
+						"name": "BPPhone2",
+						"type": "nvarchar"
+					},
+					{
+						"name": "BPCellular",
+						"type": "nvarchar"
+					},
+					{
+						"name": "BPFax",
+						"type": "nvarchar"
+					},
+					{
+						"name": "BPShipCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "BPShipAddr",
+						"type": "nvarchar"
+					},
+					{
+						"name": "BPBillCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "BPBillAddr",
+						"type": "nvarchar"
+					},
+					{
+						"name": "BPTerrit",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "BPE_Mail",
+						"type": "nvarchar"
+					},
+					{
+						"name": "BPProjCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "BPContact",
+						"type": "nvarchar"
+					},
+					{
+						"name": "OwnerCode",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "DPPStatus",
+						"type": "char"
+					},
+					{
+						"name": "EncryptIV",
+						"type": "nvarchar"
 					},
 					{
 						"name": "U_CreatedByName",
@@ -16077,6 +16147,31 @@
 					},
 					{
 						"name": "U_AWB",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_UserServiceCenter",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_ReleasePump",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_CIFTId",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "U_SCcode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_SCname",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_Reportable",
 						"type": "nvarchar"
 					}
 				],
