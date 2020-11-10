@@ -1,0 +1,37 @@
+{
+	"name": "AWS_Group",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AWS_Service_portal",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "AWS"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "GroupName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "IsTraining",
+				"type": "bit"
+			},
+			{
+				"name": "IsActive",
+				"type": "bit"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "tbl_sys_Group"
+		}
+	}
+}

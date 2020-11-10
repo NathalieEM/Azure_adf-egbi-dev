@@ -1,0 +1,37 @@
+{
+	"name": "Mrr_Group",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sqldb_egbi_dev",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SQLDB-EGBI-DEV/Service/Mrr"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "GroupName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "IsTraining",
+				"type": "bit"
+			},
+			{
+				"name": "IsActive",
+				"type": "bit"
+			}
+		],
+		"typeProperties": {
+			"schema": "srv",
+			"table": "Mrr_Group"
+		}
+	}
+}
