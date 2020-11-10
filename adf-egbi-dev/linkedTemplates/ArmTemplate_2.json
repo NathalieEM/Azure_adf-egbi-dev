@@ -13,6 +13,136 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/Mrr_CRD11')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqldb_sorrelbi_dev",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLDB-EGBI-DEV/SAP"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "Address",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CardCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Street",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Block",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ZipCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "City",
+						"type": "nvarchar"
+					},
+					{
+						"name": "County",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Country",
+						"type": "nvarchar"
+					},
+					{
+						"name": "State",
+						"type": "nvarchar"
+					},
+					{
+						"name": "UserSign",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "LogInstanc",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ObjType",
+						"type": "nvarchar"
+					},
+					{
+						"name": "LicTradNum",
+						"type": "nvarchar"
+					},
+					{
+						"name": "LineNum",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "TaxCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Building",
+						"type": "ntext"
+					},
+					{
+						"name": "AdresType",
+						"type": "char"
+					},
+					{
+						"name": "Address2",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Address3",
+						"type": "nvarchar"
+					},
+					{
+						"name": "AddrType",
+						"type": "nvarchar"
+					},
+					{
+						"name": "StreetNo",
+						"type": "nvarchar"
+					},
+					{
+						"name": "AltCrdName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "AltTaxId",
+						"type": "nvarchar"
+					},
+					{
+						"name": "TaxOffice",
+						"type": "nvarchar"
+					},
+					{
+						"name": "GlblLocNum",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Ntnlty",
+						"type": "nvarchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "sap",
+					"table": "Mrr_CRD1"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/Mrr_Calc_ScarLog')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -6291,191 +6421,6 @@
 				"typeProperties": {
 					"schema": "sap",
 					"table": "Mrr_Ki_Config_Tables"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Mrr_KnownIssues')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqldb_egbi_dev",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQLDB-EGBI-DEV/SAP"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "ID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "KnownUnique",
-						"type": "nvarchar"
-					},
-					{
-						"name": "KnownIssueMain",
-						"type": "nvarchar"
-					},
-					{
-						"name": "KnownIssueID",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Category",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Error",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Description",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Cause",
-						"type": "nvarchar"
-					},
-					{
-						"name": "SWVersion",
-						"type": "nvarchar"
-					},
-					{
-						"name": "UserExperienceCategoryCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "UserExperienceErrorCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "AnalysisCategoryCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "AnalysisErrorCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "DiagnosticsConclusions",
-						"type": "nvarchar"
-					},
-					{
-						"name": "RepairCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "RepairCategoryCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "RMF",
-						"type": "nvarchar"
-					},
-					{
-						"name": "RiskInvolvedSAP",
-						"type": "nvarchar"
-					},
-					{
-						"name": "BaseOn",
-						"type": "nvarchar"
-					},
-					{
-						"name": "ImgUrl",
-						"type": "nvarchar"
-					},
-					{
-						"name": "IsActive",
-						"type": "bit"
-					},
-					{
-						"name": "___Not_Used_Fields",
-						"type": "char"
-					},
-					{
-						"name": "IsActiveStr",
-						"type": "nvarchar"
-					},
-					{
-						"name": "RepairLevel",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "UserExperienceCategoryDescription",
-						"type": "nvarchar"
-					},
-					{
-						"name": "UserxperienceErrorDescription",
-						"type": "nvarchar"
-					},
-					{
-						"name": "AnalysisCategoryDescription",
-						"type": "nvarchar"
-					},
-					{
-						"name": "AnalysisErrorDescription",
-						"type": "nvarchar"
-					},
-					{
-						"name": "RepairDescription",
-						"type": "nvarchar"
-					},
-					{
-						"name": "RepairCategoryDescription",
-						"type": "nvarchar"
-					},
-					{
-						"name": "___office",
-						"type": "char"
-					},
-					{
-						"name": "fCreatedByID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "dtCreatedDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "fUpdatedByID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "dtUpdatedDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "__sync_to_sap_fields",
-						"type": "nvarchar"
-					},
-					{
-						"name": "IsToExport",
-						"type": "bit"
-					},
-					{
-						"name": "dtLastExportDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					}
-				],
-				"typeProperties": {
-					"schema": "srv",
-					"table": "Mrr_KnownIssues"
 				}
 			},
 			"dependsOn": []
