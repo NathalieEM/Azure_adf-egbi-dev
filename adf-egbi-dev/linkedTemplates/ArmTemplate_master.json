@@ -386,18 +386,6 @@
 					},
 					"SAP_Sorrel_connectionString": {
 						"value": "[parameters('SAP_Sorrel_connectionString')]"
-					},
-					"SalesforceSandBox_password": {
-						"value": "[parameters('SalesforceSandBox_password')]"
-					},
-					"SalesforceSandBox_securityToken": {
-						"value": "[parameters('SalesforceSandBox_securityToken')]"
-					},
-					"SalesforceSandBox_properties_typeProperties_environmentUrl": {
-						"value": "[parameters('SalesforceSandBox_properties_typeProperties_environmentUrl')]"
-					},
-					"SalesforceSandBox_properties_typeProperties_username": {
-						"value": "[parameters('SalesforceSandBox_properties_typeProperties_username')]"
 					}
 				}
 			},
@@ -419,6 +407,12 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
+					"SalesforceSandBox_password": {
+						"value": "[parameters('SalesforceSandBox_password')]"
+					},
+					"SalesforceSandBox_securityToken": {
+						"value": "[parameters('SalesforceSandBox_securityToken')]"
+					},
 					"TESTSorrelDB_25022020_connectionString": {
 						"value": "[parameters('TESTSorrelDB_25022020_connectionString')]"
 					},
@@ -433,6 +427,12 @@
 					},
 					"sqlsrv_sap_TestNewQcoreDB_05012020_connectionString": {
 						"value": "[parameters('sqlsrv_sap_TestNewQcoreDB_05012020_connectionString')]"
+					},
+					"SalesforceSandBox_properties_typeProperties_environmentUrl": {
+						"value": "[parameters('SalesforceSandBox_properties_typeProperties_environmentUrl')]"
+					},
+					"SalesforceSandBox_properties_typeProperties_username": {
+						"value": "[parameters('SalesforceSandBox_properties_typeProperties_username')]"
 					}
 				}
 			},

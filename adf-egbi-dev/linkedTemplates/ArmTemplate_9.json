@@ -13,6 +13,126 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/Training_Mrr_SF_Departments')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqldb_egbi_dev",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLDB-EGBI-DEV/Training"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ETL_ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ETL_Timestamp",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "Id",
+						"type": "varchar"
+					},
+					{
+						"name": "OwnerId",
+						"type": "varchar"
+					},
+					{
+						"name": "IsDeleted",
+						"type": "bit"
+					},
+					{
+						"name": "Name",
+						"type": "varchar"
+					},
+					{
+						"name": "CreatedDate",
+						"type": "datetime2",
+						"scale": 0
+					},
+					{
+						"name": "CreatedById",
+						"type": "varchar"
+					},
+					{
+						"name": "LastModifiedDate",
+						"type": "datetime2",
+						"scale": 0
+					},
+					{
+						"name": "LastModifiedById",
+						"type": "varchar"
+					},
+					{
+						"name": "SystemModstamp",
+						"type": "datetime2",
+						"scale": 0
+					},
+					{
+						"name": "LastActivityDate",
+						"type": "datetime2",
+						"scale": 0
+					},
+					{
+						"name": "LastViewedDate",
+						"type": "datetime2",
+						"scale": 0
+					},
+					{
+						"name": "LastReferencedDate",
+						"type": "datetime2",
+						"scale": 0
+					},
+					{
+						"name": "CompSuite__Department_Details__c",
+						"type": "varchar"
+					},
+					{
+						"name": "CompSuite__Department_Fax__c",
+						"type": "varchar"
+					},
+					{
+						"name": "CompSuite__Department_Number__c",
+						"type": "varchar"
+					},
+					{
+						"name": "CompSuite__Department_Phone__c",
+						"type": "varchar"
+					},
+					{
+						"name": "CompSuite__Life_Cycle_Comments__c",
+						"type": "varchar"
+					},
+					{
+						"name": "CompSuite__Lock_Fields__c",
+						"type": "varchar"
+					},
+					{
+						"name": "CompSuite__State__c",
+						"type": "varchar"
+					},
+					{
+						"name": "Company__c",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "training",
+					"table": "Mrr_SF_Departments"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/Training_Mrr_SF_Employee')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -1629,61 +1749,6 @@
 				],
 				"typeProperties": {
 					"schema": "porf",
-					"table": "Mrr_Items"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/porf_Mrr_Items2')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqldb_sorrelbi_dev",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQLDB-EGBI-DEV/PORF"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "ETL_ID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "ETL_Timestamp",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "ItemCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "ItemName",
-						"type": "nvarchar"
-					},
-					{
-						"name": "CardCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "ItmsGrpCod",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "DB_NAME",
-						"type": "varchar"
-					}
-				],
-				"typeProperties": {
-					"schema": "PORF",
 					"table": "Mrr_Items"
 				}
 			},

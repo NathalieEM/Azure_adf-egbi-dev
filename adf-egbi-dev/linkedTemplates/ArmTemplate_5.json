@@ -13,6 +13,135 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/Mrr_ServiceCenters')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqldb_egbi_dev",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLDB-EGBI-DEV/ScoreCards/Mrr"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "Code",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Name",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DocEntry",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Canceled",
+						"type": "char"
+					},
+					{
+						"name": "Object",
+						"type": "nvarchar"
+					},
+					{
+						"name": "LogInst",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "UserSign",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Transfered",
+						"type": "char"
+					},
+					{
+						"name": "CreateDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "CreateTime",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "UpdateDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "UpdateTime",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "DataSource",
+						"type": "char"
+					},
+					{
+						"name": "U_SC_Name",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_Active",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_CardCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_CardName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_HubCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_HubName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_IntakeFormEmail",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_IntakeFormSAMA",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_IsQcore",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_IsICU",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_ServiceCenterType",
+						"type": "int",
+						"precision": 10
+					}
+				],
+				"typeProperties": {
+					"schema": "ScoreCards",
+					"table": "Mrr_ServiceCenters"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/Mrr_ServiceFlow')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -5095,76 +5224,6 @@
 				"typeProperties": {
 					"schema": "srv",
 					"table": "Mrr_parm_CallUrgency"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Porf_mrr_projects')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqldb_egbi_dev",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQLSRV-SAP/NewQcoreDB"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "ETL_ID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "ETL_Timestamp",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "PrjCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "PrjName",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_Owner",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_OwnerMail",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_Secondary",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_SecMail",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_PORFApp",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_PorfApp2",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_PORF",
-						"type": "nvarchar"
-					}
-				],
-				"typeProperties": {
-					"schema": "PORF",
-					"table": "Mrr_Projects"
 				}
 			},
 			"dependsOn": []
