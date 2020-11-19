@@ -2394,7 +2394,7 @@
 						"typeProperties": {
 							"source": {
 								"type": "SqlServerSource",
-								"sqlReaderQuery": "SELECT \n\tT0.[CardCode], \n\tIsnull(t0.CardFName, CardName) AS [CardName], \n\tCASE \n\t\tWHEN T0.[GroupCode] = 101 THEN 'Local'\n\t\tWHEN T0.[GroupCode] = 102 THEN 'Abroad'\n\tEND AS [Group],\n\tT2.[CurrName], \n\tT0.E_Mail,  \n\t'' AS [PayMethod], \n\t--U_ASLType, \n\tt0.ListNum , \n\tt0.LicTradNum, \n\tDB_NAME() AS [DB_NAME]\n FROM [dbo].[OCRD] AS T0 \n \n LEFT JOIN [dbo].[OCRN] AS T2 \n ON T0.Currency = T2.CurrCode\n \n LEFT JOIN [dbo].[OCTG] AS T3 \n ON T0.GroupNum = T3.GroupNum\n\n WHERE [CardType] = 'S' \n   AND [frozenFor] = 'N'\n   AND [GroupCode] IN (101,103)",
+								"sqlReaderQuery": "SELECT \n\tT0.[CardCode], \n\tIsnull(t0.CardFName, CardName) AS [CardName], \n\tCASE \n\t\tWHEN T0.[GroupCode] = 101 THEN 'Local'\n\t\tWHEN T0.[GroupCode] = 103 THEN 'Abroad'\n\tEND AS [Group],\n\tT2.[CurrName], \n\tT0.E_Mail,  \n\t'' AS [PayMethod], \n\t--U_ASLType, \n\tt0.ListNum , \n\tt0.LicTradNum, \n\tDB_NAME() AS [DB_NAME]\n FROM [dbo].[OCRD] AS T0 \n \n LEFT JOIN [dbo].[OCRN] AS T2 \n ON T0.Currency = T2.CurrCode\n \n LEFT JOIN [dbo].[OCTG] AS T3 \n ON T0.GroupNum = T3.GroupNum\n\n WHERE [CardType] = 'S' \n   AND [frozenFor] = 'N'\n   AND [GroupCode] IN (101,103)",
 								"queryTimeout": "02:00:00",
 								"partitionOption": "None"
 							},
