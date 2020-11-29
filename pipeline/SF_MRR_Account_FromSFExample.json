@@ -30,7 +30,10 @@
 				"typeProperties": {
 					"source": {
 						"type": "SalesforceSource",
-						"query": "select * from Account\nWHERE LastModifiedDate >= '@{activity('get watermark').output.firstRow.highValue}'",
+						"query": {
+							"value": "select * from Account\nWHERE LastModifiedDate >= '@{activity('get watermark').output.firstRow.highValue}'",
+							"type": "Expression"
+						},
 						"readBehavior": "query"
 					},
 					"sink": {
@@ -732,7 +735,8 @@
 									"type": "String",
 									"physicalType": "nvarchar"
 								}
-							}
+							},
+							null
 						],
 						"typeConversion": true,
 						"typeConversionSettings": {
