@@ -17,7 +17,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "AzureSqlSource",
-						"sqlReaderQuery": "  select * from sf.Mrr_sf_account_replica where Type = 'A'\n  --and Account_External_Id__c is null\n  and byd_id is not null\n  and etl_sf_updated = 0\nand BYD_Id='5'",
+						"sqlReaderQuery": "  select * from sf.Mrr_sf_account_replica \nwhere \n-- Type = 'A'\n  --and Account_External_Id__c is null\n  --and byd_id is not null\n--  and etl_sf_updated = 0\n--and\n BYD_Id='8'",
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
@@ -34,12 +34,23 @@
 						"mappings": [
 							{
 								"source": {
-									"name": "BYD_id",
+									"name": "Account_External_Id__c",
 									"type": "String",
 									"physicalType": "nvarchar"
 								},
 								"sink": {
 									"name": "Account_External_Id__c",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "BYD_id",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "Quickbooks_account__c",
 									"type": "String"
 								}
 							}
