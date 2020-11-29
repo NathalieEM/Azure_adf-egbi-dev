@@ -17,7 +17,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "AzureSqlSource",
-						"sqlReaderQuery": "select * from sf.Mrr_sf_account_replica where Type = 'A'\n  and Account_External_Id__c is null\n  and byd_id is not null\n  and etl_sf_updated = 0",
+						"sqlReaderQuery": "  select * from sf.Mrr_sf_account_replica where Type = 'A'\n  --and Account_External_Id__c is null\n  and byd_id is not null\n  and etl_sf_updated = 0\nand BYD_Id='5'",
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
