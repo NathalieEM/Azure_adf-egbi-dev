@@ -1,5 +1,5 @@
 {
-	"name": "SF_MRR_Account_FromSFExample",
+	"name": "1_SF_MRR_Account_FromSFExample",
 	"properties": {
 		"activities": [
 			{
@@ -735,8 +735,7 @@
 									"type": "String",
 									"physicalType": "nvarchar"
 								}
-							},
-							null
+							}
 						],
 						"typeConversion": true,
 						"typeConversionSettings": {
@@ -872,6 +871,9 @@
 				}
 			}
 		],
+		"folder": {
+			"name": "SF"
+		},
 		"annotations": [],
 		"lastPublishTime": "2020-10-08T10:02:02Z"
 	},

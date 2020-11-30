@@ -1,5 +1,5 @@
 {
-	"name": "SF_MRR_Account_WayBackExample",
+	"name": "3_SF_MRR_Account_WayBackExample",
 	"properties": {
 		"activities": [
 			{
@@ -76,6 +76,9 @@
 				]
 			}
 		],
+		"folder": {
+			"name": "SF"
+		},
 		"annotations": [],
 		"lastPublishTime": "2020-10-08T10:02:02Z"
 	},
