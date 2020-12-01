@@ -1,0 +1,16 @@
+{
+	"name": "SF_Contacts",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sqldb_egbi_dev",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "SF",
+			"table": "Mrr_SF_Contacts"
+		}
+	}
+}
