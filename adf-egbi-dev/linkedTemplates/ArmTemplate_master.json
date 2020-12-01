@@ -380,9 +380,6 @@
 					},
 					"RptSrv_connectionString": {
 						"value": "[parameters('RptSrv_connectionString')]"
-					},
-					"SAP_Integrator_dev_connectionString": {
-						"value": "[parameters('SAP_Integrator_dev_connectionString')]"
 					}
 				}
 			},
@@ -403,6 +400,9 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"SAP_Integrator_dev_connectionString": {
+						"value": "[parameters('SAP_Integrator_dev_connectionString')]"
 					},
 					"SAP_Sorrel_connectionString": {
 						"value": "[parameters('SAP_Sorrel_connectionString')]"
@@ -718,6 +718,26 @@
 			},
 			"dependsOn": [
 				"[resourceId('Microsoft.Resources/deployments', 'adf-egbi-dev_ArmTemplate_24')]"
+			]
+		},
+		{
+			"name": "adf-egbi-dev_ArmTemplate_26",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_26.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adf-egbi-dev_ArmTemplate_25')]"
 			]
 		}
 	]
