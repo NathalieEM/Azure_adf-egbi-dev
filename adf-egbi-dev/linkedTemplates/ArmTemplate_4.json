@@ -14549,6 +14549,98 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/Mrr_ProcedureType_Replica')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqldb_egbi_dev",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_Name",
+						"type": "nvarchar"
+					},
+					{
+						"name": "_Parent",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_Authorized",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_DataClass",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_OrderValue",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_ResultType",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_DetailedDescription",
+						"type": "nvarchar"
+					},
+					{
+						"name": "_Required",
+						"type": "bit"
+					},
+					{
+						"name": "_EditorURL",
+						"type": "nvarchar"
+					},
+					{
+						"name": "_Obsolete",
+						"type": "bit"
+					},
+					{
+						"name": "_DisplayedName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "_AfterSignChangeAuthorized",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_QcApprovalEnabled",
+						"type": "bit"
+					},
+					{
+						"name": "_EnforcedLocation",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_ManualEditing",
+						"type": "bit"
+					}
+				],
+				"typeProperties": {
+					"schema": "EDHR",
+					"table": "Mrr_ProcedureType_Replica"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/Mrr_RIN1')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -21872,152 +21964,6 @@
 				"typeProperties": {
 					"schema": "ScoreCards",
 					"table": "Mrr_ScarLog"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Mrr_Service')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqldb_egbi_dev",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQLDB-EGBI-DEV/Service/Mrr"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "ID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "fSerialNumber",
-						"type": "nvarchar"
-					},
-					{
-						"name": "ServiceDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "dtCheckOutDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "fServiceStepID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "InitailBOHStatus",
-						"type": "nvarchar"
-					},
-					{
-						"name": "BOHComments",
-						"type": "nvarchar"
-					},
-					{
-						"name": "ENV_TEMP_Type",
-						"type": "nvarchar"
-					},
-					{
-						"name": "ENV_TEMP",
-						"type": "nvarchar"
-					},
-					{
-						"name": "ENV_SERIAL_Number",
-						"type": "nvarchar"
-					},
-					{
-						"name": "ENV_HUMIDITY",
-						"type": "nvarchar"
-					},
-					{
-						"name": "IsConfrimBOH",
-						"type": "bit"
-					},
-					{
-						"name": "ACKTEST_RESULT",
-						"type": "nvarchar"
-					},
-					{
-						"name": "SWVersionCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "ENV_SW_Version",
-						"type": "nvarchar"
-					},
-					{
-						"name": "IsSendToQcore",
-						"type": "bit"
-					},
-					{
-						"name": "status",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "StatusDesc",
-						"type": "nvarchar"
-					},
-					{
-						"name": "UserServiceCenterSAPID",
-						"type": "nvarchar"
-					},
-					{
-						"name": "___office",
-						"type": "char"
-					},
-					{
-						"name": "fCreatedByID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "dtCreatedDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "fUpdatedByID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "dtUpdatedDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "__sync_to_sap_fields",
-						"type": "nvarchar"
-					},
-					{
-						"name": "IsToExport",
-						"type": "bit"
-					},
-					{
-						"name": "dtLastExportDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					}
-				],
-				"typeProperties": {
-					"schema": "srv",
-					"table": "Mrr_Service"
 				}
 			},
 			"dependsOn": []
