@@ -42,6 +42,11 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
 					"sink": {
 						"type": "AzureSqlSink"
 					},
@@ -98,6 +103,12 @@
 						]
 					}
 				},
+				"inputs": [
+					{
+						"referenceName": "Result",
+						"type": "DatasetReference"
+					}
+				],
 				"outputs": [
 					{
 						"referenceName": "Mrr_Result_Replica",

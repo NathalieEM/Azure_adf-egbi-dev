@@ -1,12 +1,9 @@
 {
-	"name": "Location",
+	"name": "Result",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "sql_rptsrv",
 			"type": "LinkedServiceReference"
-		},
-		"folder": {
-			"name": "SQLSRV-RPTSRV/EDHR"
 		},
 		"annotations": [],
 		"type": "SqlServerTable",
@@ -17,13 +14,23 @@
 				"precision": 10
 			},
 			{
-				"name": "_Name",
+				"name": "_Type",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "_Value",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "_Status",
 				"type": "nvarchar"
 			}
 		],
 		"typeProperties": {
 			"schema": "dbo",
-			"table": "_Location"
+			"table": "_Result"
 		}
 	}
 }
