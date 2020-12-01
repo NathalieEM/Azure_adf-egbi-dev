@@ -13,6 +13,155 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/SF_MRR_Account')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqldb_egbi_dev",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ETL_ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Name",
+						"type": "nvarchar"
+					},
+					{
+						"name": "BillingCity",
+						"type": "nvarchar"
+					},
+					{
+						"name": "BillingCountryCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "BillingPostalCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "BillingStateCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "BillingStreet",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Description",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Industry",
+						"type": "nvarchar"
+					},
+					{
+						"name": "OwnerId",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ERP_Account_ID__c",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Type",
+						"type": "nvarchar"
+					},
+					{
+						"name": "AnnualRevenue",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ParentId",
+						"type": "nvarchar"
+					},
+					{
+						"name": "signed_a_set_commitment_agreement__c",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Set_List_Account__c",
+						"type": "nvarchar"
+					},
+					{
+						"name": "dtUpdated",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "BYD_UK_id",
+						"type": "nvarchar"
+					},
+					{
+						"name": "BYD_FR_id",
+						"type": "nvarchar"
+					},
+					{
+						"name": "BYD_US_id",
+						"type": "nvarchar"
+					},
+					{
+						"name": "SBO_IL_id",
+						"type": "nvarchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "SF",
+					"table": "Mrr_SF_Account"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SF_Master_Document')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_salesforce",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SalesForce"
+				},
+				"annotations": [],
+				"type": "SalesforceObject",
+				"schema": [],
+				"typeProperties": {
+					"objectApiName": "CompSuite__Document_Header__c"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SF_Record_Type')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_salesforce",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SalesForce"
+				},
+				"annotations": [],
+				"type": "SalesforceObject",
+				"schema": [],
+				"typeProperties": {
+					"objectApiName": "RecordType"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/SF_Requirement_Header')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -1108,339 +1257,6 @@
 				"typeProperties": {
 					"schema": "ScoreCards",
 					"table": "Stg_Suppliers_Audit_Activities_Followup"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Stg_Suppliers_OTD')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqldb_egbi_dev",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQLDB-EGBI-DEV/ScoreCards/Stg"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "cardcode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "cardname",
-						"type": "nvarchar"
-					},
-					{
-						"name": "QcorePO",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "PO Line Num",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "VendorRef#",
-						"type": "nvarchar"
-					},
-					{
-						"name": "PN",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Item Group Name",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Description",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Quantity",
-						"type": "decimal",
-						"precision": 38,
-						"scale": 11
-					},
-					{
-						"name": "OpenQuantity",
-						"type": "decimal",
-						"precision": 38,
-						"scale": 11
-					},
-					{
-						"name": "ShippedQuantity",
-						"type": "decimal",
-						"precision": 38,
-						"scale": 6
-					},
-					{
-						"name": "LastShipDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "Requested Date",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "ScoreCard",
-						"type": "nvarchar"
-					}
-				],
-				"typeProperties": {
-					"schema": "ScoreCards",
-					"table": "Stg_SuppliersOTD"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Suppliers_Audit_Activities_Followup')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureBlobStorage1",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "Blob Storage"
-				},
-				"annotations": [],
-				"type": "Excel",
-				"typeProperties": {
-					"sheetName": "Suppliers Audit Log",
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "Suppliers Audit Activities Follow-up.xlsx",
-						"container": "excels"
-					},
-					"range": "a3:r1000",
-					"firstRowAsHeader": false
-				},
-				"schema": [
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Training_Mrr_SF_Classroom')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqldb_egbi_dev",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQLDB-EGBI-DEV/Training"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "ETL_ID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "ETL_Timestamp",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "Id",
-						"type": "varchar"
-					},
-					{
-						"name": "OwnerId",
-						"type": "varchar"
-					},
-					{
-						"name": "IsDeleted",
-						"type": "bit"
-					},
-					{
-						"name": "Name",
-						"type": "nvarchar"
-					},
-					{
-						"name": "CreatedDate",
-						"type": "datetime2",
-						"scale": 0
-					},
-					{
-						"name": "CreatedById",
-						"type": "varchar"
-					},
-					{
-						"name": "LastModifiedDate",
-						"type": "datetime2",
-						"scale": 0
-					},
-					{
-						"name": "LastModifiedById",
-						"type": "varchar"
-					},
-					{
-						"name": "SystemModstamp",
-						"type": "datetime2",
-						"scale": 0
-					},
-					{
-						"name": "LastActivityDate",
-						"type": "datetime2",
-						"scale": 0
-					},
-					{
-						"name": "LastViewedDate",
-						"type": "datetime2",
-						"scale": 0
-					},
-					{
-						"name": "LastReferencedDate",
-						"type": "datetime2",
-						"scale": 0
-					},
-					{
-						"name": "CompSuite__Training_Eff_Protocol__c",
-						"type": "nvarchar"
-					},
-					{
-						"name": "CompSuite__Completed__c",
-						"type": "bit"
-					},
-					{
-						"name": "CompSuite__Life_Cycle_Comments__c",
-						"type": "nvarchar"
-					},
-					{
-						"name": "CompSuite__Lock_Fields__c",
-						"type": "nvarchar"
-					},
-					{
-						"name": "CompSuite__State__c",
-						"type": "varchar"
-					},
-					{
-						"name": "CompSuite__Training_Date__c",
-						"type": "datetime2",
-						"scale": 0
-					},
-					{
-						"name": "CompSuite__Training_Purpose__c",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Number_of_Attendees__c",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Canceled__c",
-						"type": "bit"
-					},
-					{
-						"name": "Trainer__c",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Class_Number__c",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Company__c",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Count_Open_Training__c",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Effectiveness_Check__c",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Pending_Trainees_Signature__c",
-						"type": "bit"
-					},
-					{
-						"name": "Training_Effectiveness_Protocol__c",
-						"type": "nvarchar"
-					},
-					{
-						"name": "CompSuite__Business_Unit__c",
-						"type": "nvarchar"
-					}
-				],
-				"typeProperties": {
-					"schema": "training",
-					"table": "Mrr_SF_Classroom"
 				}
 			},
 			"dependsOn": []

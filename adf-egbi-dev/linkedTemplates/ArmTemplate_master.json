@@ -371,15 +371,6 @@
 					},
 					"AWS_Service_portal_connectionString": {
 						"value": "[parameters('AWS_Service_portal_connectionString')]"
-					},
-					"Is_Sorrel_integration_connectionString": {
-						"value": "[parameters('Is_Sorrel_integration_connectionString')]"
-					},
-					"RPTSRV_ReportServer_connectionString": {
-						"value": "[parameters('RPTSRV_ReportServer_connectionString')]"
-					},
-					"RptSrv_connectionString": {
-						"value": "[parameters('RptSrv_connectionString')]"
 					}
 				}
 			},
@@ -400,6 +391,15 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"Is_Sorrel_integration_connectionString": {
+						"value": "[parameters('Is_Sorrel_integration_connectionString')]"
+					},
+					"RPTSRV_ReportServer_connectionString": {
+						"value": "[parameters('RPTSRV_ReportServer_connectionString')]"
+					},
+					"RptSrv_connectionString": {
+						"value": "[parameters('RptSrv_connectionString')]"
 					},
 					"SAP_Integrator_dev_connectionString": {
 						"value": "[parameters('SAP_Integrator_dev_connectionString')]"

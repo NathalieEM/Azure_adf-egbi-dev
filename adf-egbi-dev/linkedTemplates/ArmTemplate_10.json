@@ -10,24 +10,186 @@
 		"AWS_Service_portal_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AWS_Service_portal'"
-		},
-		"Is_Sorrel_integration_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'Is_Sorrel_integration'"
-		},
-		"RPTSRV_ReportServer_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'RPTSRV_ReportServer'"
-		},
-		"RptSrv_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'RptSrv'"
 		}
 	},
 	"variables": {
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/porf_Mrr_CostCenter')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqldb_egbi_dev",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLDB-EGBI-DEV/PORF"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ETL_ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ETL_Timestamp",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "PrcCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PrcName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DimCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_OWNERCODE",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_OWNERNAME",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DB_NAME",
+						"type": "nvarchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "PORF",
+					"table": "Mrr_CostCenter"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/porf_Mrr_CostCenter1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqldb_sorrelbi_dev",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLDB-EGBI-DEV/PORF"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ETL_ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ETL_Timestamp",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "PrcCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PrcName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DimCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_OWNERCODE",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_OWNERNAME",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DB_NAME",
+						"type": "nvarchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "PORF",
+					"table": "Mrr_CostCenter"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/porf_Mrr_CostCenter2')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqldb_sorrelbi_dev",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLDB-EGBI-DEV/PORF"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ETL_ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ETL_Timestamp",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "PrcCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PrcName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DimCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_OWNERCODE",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_OWNERNAME",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DB_NAME",
+						"type": "nvarchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "PORF",
+					"table": "Mrr_CostCenter"
+				}
+			},
+			"dependsOn": []
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/porf_Mrr_Items')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
@@ -1234,57 +1396,6 @@
 				},
 				"connectVia": {
 					"referenceName": "integrationRuntime-AWS-Service-SQL",
-					"type": "IntegrationRuntimeReference"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Is_Sorrel_integration')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "SqlServer",
-				"typeProperties": {
-					"connectionString": "[parameters('Is_Sorrel_integration_connectionString')]"
-				},
-				"connectVia": {
-					"referenceName": "ir-sap",
-					"type": "IntegrationRuntimeReference"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/RPTSRV_ReportServer')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "SqlServer",
-				"typeProperties": {
-					"connectionString": "[parameters('RPTSRV_ReportServer_connectionString')]"
-				},
-				"connectVia": {
-					"referenceName": "ir-sap",
-					"type": "IntegrationRuntimeReference"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/RptSrv')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "SqlServer",
-				"typeProperties": {
-					"connectionString": "[parameters('RptSrv_connectionString')]"
-				},
-				"connectVia": {
-					"referenceName": "ir-sap",
 					"type": "IntegrationRuntimeReference"
 				}
 			},
