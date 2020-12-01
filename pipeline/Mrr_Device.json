@@ -50,6 +50,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "SqlServerSource",
+						"sqlReaderQuery": "SELECT *\nFROM [dbo].[_Device]\nWHERE [@{activity('get watermark').output.firstRow.columnName}] >= '@{activity('get watermark').output.firstRow.highValue}'",
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
@@ -59,7 +60,7 @@
 					"enableStaging": true,
 					"stagingSettings": {
 						"linkedServiceName": {
-							"referenceName": "AzureBlobStorage1",
+							"referenceName": "st_error_log",
 							"type": "LinkedServiceReference"
 						}
 					},
@@ -105,7 +106,8 @@
 							{
 								"source": {
 									"name": "_Brand",
-									"type": "Int32"
+									"type": "Int32",
+									"physicalType": "int"
 								},
 								"sink": {
 									"name": "Brand",
@@ -116,7 +118,8 @@
 							{
 								"source": {
 									"name": "_PartNumber",
-									"type": "String"
+									"type": "String",
+									"physicalType": "nvarchar"
 								},
 								"sink": {
 									"name": "PartNumber",
@@ -127,7 +130,8 @@
 							{
 								"source": {
 									"name": "_OwnerGroup",
-									"type": "Int32"
+									"type": "Int32",
+									"physicalType": "int"
 								},
 								"sink": {
 									"name": "OwnerGroup",

@@ -51,7 +51,7 @@
 					"source": {
 						"type": "SqlServerSource",
 						"sqlReaderQuery": {
-							"value": "/****** Script for SelectTopNRows command from SSMS  ******/\nSELECT [ID]\n      ,[_Procedure]\n      ,[_StartTime]\n      ,[_EndTime]\n      ,[_ExecutedBy]\n      ,[_Parent]\n      ,[_Comments]\n      ,[_Result]\n      ,[_FailReason]\n      ,[_PCAppSoftwareVersion]\n      ,[_Deleted]\n      ,[_DeletedBy]\n      ,[_DeletedTime]\n      ,[_InsertTime]\n      ,[_LastUpdateTime]\n      ,[_OriginalProcedureId]\n      ,[_QcApprovalTime]\n      ,[_QcApprover]\n      ,[_Device]\n      ,[_DeviceSoftwareVersion]\n  FROM [QcOo_reporting].[dbo].[_DeviceProcedureData]\n  WHERE [_StartTime] >='20180101' and COALESCE ([_StartTime],getdate()) >= '@{activity('get watermark').output.firstRow.highValue}'\n",
+							"value": "SELECT *\nFROM [dbo].[_DeviceProcedureData]\nWHERE [@{activity('get watermark').output.firstRow.columnName}] >= '@{activity('get watermark').output.firstRow.highValue}'",
 							"type": "Expression"
 						},
 						"queryTimeout": "02:00:00",
