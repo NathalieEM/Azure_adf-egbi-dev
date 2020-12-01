@@ -208,38 +208,6 @@
 				}
 			},
 			{
-				"name": "upsert",
-				"type": "Lookup",
-				"dependsOn": [
-					{
-						"activity": "Mrr_DeviceMovement",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"source": {
-						"type": "AzureSqlSource",
-						"sqlReaderStoredProcedureName": "[EDHR].[sp_Merge_Mrr_DeviceMovement]",
-						"queryTimeout": "02:00:00",
-						"partitionOption": "None"
-					},
-					"dataset": {
-						"referenceName": "Mrr_DeviceMovement",
-						"type": "DatasetReference"
-					}
-				}
-			},
-			{
 				"name": "set watermark",
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
@@ -274,6 +242,33 @@
 							"type": "String"
 						}
 					}
+				},
+				"linkedServiceName": {
+					"referenceName": "sqldb_egbi_dev",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "upsert",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "Mrr_DeviceMovement",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[EDHR].[sp_Merge_Mrr_DeviceMovement]"
 				},
 				"linkedServiceName": {
 					"referenceName": "sqldb_egbi_dev",
