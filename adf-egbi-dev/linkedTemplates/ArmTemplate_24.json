@@ -4033,6 +4033,309 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/Mrr__DeviceMovement')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Truncate Mrr_DeviceMovement",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[EDHR].[sp_trunc_Mrr_DeviceMovement]"
+						},
+						"linkedServiceName": {
+							"referenceName": "sqldb_egbi_dev",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "Mrr_DeviceMovement",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "Truncate Mrr_DeviceMovement",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "get watermark",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "SqlServerSource",
+								"sqlReaderQuery": {
+									"value": "SELECT *\nFROM [dbo].[_DeviceMovement]\nWHERE [@{activity('get watermark').output.firstRow.columnName}] >= '@{activity('get watermark').output.firstRow.highValue}'",
+									"type": "Expression"
+								},
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"sink": {
+								"type": "AzureSqlSink"
+							},
+							"enableStaging": true,
+							"stagingSettings": {
+								"linkedServiceName": {
+									"referenceName": "st_error_log",
+									"type": "LinkedServiceReference"
+								},
+								"path": "adfstagedcopytempdata"
+							},
+							"enableSkipIncompatibleRow": true,
+							"logStorageSettings": {
+								"linkedServiceName": {
+									"referenceName": "st_error_log",
+									"type": "LinkedServiceReference"
+								},
+								"path": "adf-errorlogs-dev"
+							},
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "ID",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "ID",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "_Device",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "Device",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "_Target",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "Target",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "_Time",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										},
+										"sink": {
+											"name": "Time",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										}
+									},
+									{
+										"source": {
+											"name": "_By",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "By",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "_Comments",
+											"type": "String",
+											"physicalType": "ntext"
+										},
+										"sink": {
+											"name": "Comments",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "DeviceMovement",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "Mrr_DeviceMovement",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "get watermark",
+						"type": "Lookup",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "AzureSqlSource",
+								"sqlReaderStoredProcedureName": "[[watermarks].[sp_get_watermark]",
+								"storedProcedureParameters": {
+									"schemaName": {
+										"type": "String",
+										"value": "EDHR"
+									},
+									"tableName": {
+										"type": "String",
+										"value": "Mrr_DeviceMovement"
+									}
+								},
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"dataset": {
+								"referenceName": "watermarks_highValues",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						}
+					},
+					{
+						"name": "upsert",
+						"type": "Lookup",
+						"dependsOn": [
+							{
+								"activity": "Mrr_DeviceMovement",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "AzureSqlSource",
+								"sqlReaderStoredProcedureName": "[[EDHR].[sp_Merge_Mrr_DeviceMovement]",
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"dataset": {
+								"referenceName": "Mrr_DeviceMovement",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						}
+					},
+					{
+						"name": "set watermark",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [
+							{
+								"activity": "upsert",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[watermarks].[sp_set_watermark]",
+							"storedProcedureParameters": {
+								"columnName": {
+									"value": "ID",
+									"type": "String"
+								},
+								"schemaName": {
+									"value": "EDHR",
+									"type": "String"
+								},
+								"tableName": {
+									"value": "Mrr_DeviceMovement",
+									"type": "String"
+								}
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "sqldb_egbi_dev",
+							"type": "LinkedServiceReference"
+						}
+					}
+				],
+				"parameters": {
+					"param_tableName": {
+						"type": "string",
+						"defaultValue": "DeviceMovement"
+					}
+				},
+				"folder": {
+					"name": "EDHR/MRR"
+				},
+				"annotations": [],
+				"lastPublishTime": "2020-09-22T08:03:59Z"
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/Mrr_projects')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
@@ -4643,210 +4946,6 @@
 				},
 				"annotations": [],
 				"lastPublishTime": "2020-08-26T10:18:49Z"
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/SAP_Mrr_OSCN1')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "TRUN_OSCN",
-						"type": "SqlServerStoredProcedure",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"storedProcedureName": "[[sap].[sp_trunc_Mrr_OSCN]"
-						},
-						"linkedServiceName": {
-							"referenceName": "sqldb_sorrelbi_dev",
-							"type": "LinkedServiceReference"
-						}
-					},
-					{
-						"name": "MRR_OSCN",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "TRUN_OSCN",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "SqlServerSource",
-								"queryTimeout": "02:00:00",
-								"partitionOption": "None"
-							},
-							"sink": {
-								"type": "AzureSqlSink"
-							},
-							"enableStaging": true,
-							"stagingSettings": {
-								"linkedServiceName": {
-									"referenceName": "AzureBlobStorage1",
-									"type": "LinkedServiceReference"
-								}
-							},
-							"translator": {
-								"type": "TabularTranslator",
-								"mappings": [
-									{
-										"source": {
-											"name": "ItemCode",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "ItemCode",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "CardCode",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "CardCode",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "Substitute",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "Substitute",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "Transfered",
-											"type": "String",
-											"physicalType": "char"
-										},
-										"sink": {
-											"name": "Transfered",
-											"type": "String",
-											"physicalType": "char"
-										}
-									},
-									{
-										"source": {
-											"name": "DataSource",
-											"type": "String",
-											"physicalType": "char"
-										},
-										"sink": {
-											"name": "DataSource",
-											"type": "String",
-											"physicalType": "char"
-										}
-									},
-									{
-										"source": {
-											"name": "UserSign",
-											"type": "Int16",
-											"physicalType": "smallint"
-										},
-										"sink": {
-											"name": "UserSign",
-											"type": "Int16",
-											"physicalType": "smallint"
-										}
-									},
-									{
-										"source": {
-											"name": "UserSign2",
-											"type": "Int16",
-											"physicalType": "smallint"
-										},
-										"sink": {
-											"name": "UserSign2",
-											"type": "Int16",
-											"physicalType": "smallint"
-										}
-									},
-									{
-										"source": {
-											"name": "ShowSCN",
-											"type": "String",
-											"physicalType": "char"
-										},
-										"sink": {
-											"name": "ShowSCN",
-											"type": "String",
-											"physicalType": "char"
-										}
-									},
-									{
-										"source": {
-											"name": "U_Manuf",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "U_Manuf",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									}
-								],
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "OSCN1",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "SAP_Mrr_OSCN1",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					}
-				],
-				"folder": {
-					"name": "SAP_SORREL/MRR"
-				},
-				"annotations": [],
-				"lastPublishTime": "2020-10-07T07:39:18Z"
 			},
 			"dependsOn": []
 		}

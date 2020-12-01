@@ -13060,10 +13060,7 @@
 						"typeProperties": {
 							"source": {
 								"type": "AzureSqlSource",
-								"sqlReaderStoredProcedureName": {
-									"value": "[[EDHR].[sp_Merge_Mrr_@{pipeline().parameters.param_tableName}]",
-									"type": "Expression"
-								},
+								"sqlReaderStoredProcedureName": "[[EDHR].[sp_Merge_Mrr_DeviceProcedureData]",
 								"queryTimeout": "02:00:00",
 								"partitionOption": "None"
 							},

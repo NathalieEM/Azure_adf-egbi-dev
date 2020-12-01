@@ -380,6 +380,9 @@
 					},
 					"RptSrv_connectionString": {
 						"value": "[parameters('RptSrv_connectionString')]"
+					},
+					"SAP_Integrator_dev_connectionString": {
+						"value": "[parameters('SAP_Integrator_dev_connectionString')]"
 					}
 				}
 			},
@@ -400,9 +403,6 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
-					},
-					"SAP_Integrator_dev_connectionString": {
-						"value": "[parameters('SAP_Integrator_dev_connectionString')]"
 					},
 					"SAP_Sorrel_connectionString": {
 						"value": "[parameters('SAP_Sorrel_connectionString')]"
