@@ -1,0 +1,50 @@
+{
+	"name": "Mrr_DeviceMovement",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sqldb_egbi_dev",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SQLDB-EGBI-DEV/EDHR"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Device",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Target",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Time",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "By",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Comments",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "EDHR",
+			"table": "Mrr_DeviceMovement"
+		}
+	}
+}

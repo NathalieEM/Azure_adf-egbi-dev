@@ -1,0 +1,50 @@
+{
+	"name": "DeviceMovement",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sql_rptsrv",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SQLSRV-RPTSRV/EDHR"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "_Device",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "_Target",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "_Time",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "_By",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "_Comments",
+				"type": "ntext"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "_DeviceMovement"
+		}
+	}
+}

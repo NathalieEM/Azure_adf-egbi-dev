@@ -5,6 +5,9 @@
 			"referenceName": "sql_rptsrv",
 			"type": "LinkedServiceReference"
 		},
+		"folder": {
+			"name": "SQLSRV-RPTSRV/EDHR"
+		},
 		"annotations": [],
 		"type": "SqlServerTable",
 		"schema": [
