@@ -13,6 +13,27 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/SF_Job_Function')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_salesforce",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SalesForce"
+				},
+				"annotations": [],
+				"type": "SalesforceObject",
+				"schema": [],
+				"typeProperties": {
+					"objectApiName": "CompSuite__Job_Function_Group__c"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/SF_MRR_Account')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -584,6 +605,146 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/Stg_Fact_Data')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqldb_egbi_dev",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ParentID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ParentTypeDescription",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ParentStartTime",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "ParentEndTime",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "DisplayedName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Procedure",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "StartTime",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "EndTime",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "ExecutedBy",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Comments",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Result",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "FailReason",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PCAppSoftwareVersion",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Deleted",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "DeletedBy",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "DeletedTime",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "InsertTime",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "LastUpdateTime",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "OriginalProcedureId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Device",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "SerialNumber",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "DeviceSoftwareVersion",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Name",
+						"type": "nvarchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "EDHR",
+					"table": "Stg_Fact_Data"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/Stg_Fact_OrdersAndShipments')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -1091,172 +1252,6 @@
 				"typeProperties": {
 					"schema": "PORF",
 					"table": "Stg_SapPO"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Stg_ScarLog')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqldb_egbi_dev",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQLDB-EGBI-DEV/ScoreCards/Stg"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "Year",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Week",
-						"type": "nvarchar"
-					},
-					{
-						"name": "NCRNo",
-						"type": "nvarchar"
-					},
-					{
-						"name": "SupplierName",
-						"type": "nvarchar"
-					},
-					{
-						"name": "SupplierNo",
-						"type": "nvarchar"
-					},
-					{
-						"name": "PartDescription",
-						"type": "nvarchar"
-					},
-					{
-						"name": "PN",
-						"type": "nvarchar"
-					},
-					{
-						"name": "MRBNo",
-						"type": "nvarchar"
-					},
-					{
-						"name": "DescriptionofDeviation",
-						"type": "nvarchar"
-					},
-					{
-						"name": "ScarSendingDate",
-						"type": "date"
-					},
-					{
-						"name": "AllowedReturnDate",
-						"type": "date"
-					},
-					{
-						"name": "ReminderDate",
-						"type": "date"
-					},
-					{
-						"name": "ScarReturningDate",
-						"type": "date"
-					}
-				],
-				"typeProperties": {
-					"schema": "ScoreCards",
-					"table": "Stg_ScarLog"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Stg_Suppliers_Audit_Activities_Followup')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqldb_egbi_dev",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQLDB-EGBI-DEV/ScoreCards/Stg"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "SupplierName",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Supplier Number",
-						"type": "nvarchar"
-					},
-					{
-						"name": "SupplierType",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Location",
-						"type": "nvarchar"
-					},
-					{
-						"name": "EAN #",
-						"type": "nvarchar"
-					},
-					{
-						"name": "AuditPerfom",
-						"type": "nvarchar"
-					},
-					{
-						"name": "ActualAuditDate",
-						"type": "date"
-					},
-					{
-						"name": "AuditDurationDays",
-						"type": "nvarchar"
-					},
-					{
-						"name": "LeadAuditorName",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Audit Team",
-						"type": "nvarchar"
-					},
-					{
-						"name": "AuditType",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Findings_Critical",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Findings_Major",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Findings_Moderate",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Findings_Observ",
-						"type": "nvarchar"
-					},
-					{
-						"name": "AuditResults",
-						"type": "nvarchar"
-					},
-					{
-						"name": "AuditorScore",
-						"type": "nvarchar"
-					}
-				],
-				"typeProperties": {
-					"schema": "ScoreCards",
-					"table": "Stg_Suppliers_Audit_Activities_Followup"
 				}
 			},
 			"dependsOn": []

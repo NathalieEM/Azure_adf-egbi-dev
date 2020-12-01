@@ -13,6 +13,172 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/Stg_ScarLog')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqldb_egbi_dev",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLDB-EGBI-DEV/ScoreCards/Stg"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "Year",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Week",
+						"type": "nvarchar"
+					},
+					{
+						"name": "NCRNo",
+						"type": "nvarchar"
+					},
+					{
+						"name": "SupplierName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "SupplierNo",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PartDescription",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PN",
+						"type": "nvarchar"
+					},
+					{
+						"name": "MRBNo",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DescriptionofDeviation",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ScarSendingDate",
+						"type": "date"
+					},
+					{
+						"name": "AllowedReturnDate",
+						"type": "date"
+					},
+					{
+						"name": "ReminderDate",
+						"type": "date"
+					},
+					{
+						"name": "ScarReturningDate",
+						"type": "date"
+					}
+				],
+				"typeProperties": {
+					"schema": "ScoreCards",
+					"table": "Stg_ScarLog"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Stg_Suppliers_Audit_Activities_Followup')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqldb_egbi_dev",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLDB-EGBI-DEV/ScoreCards/Stg"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "SupplierName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Supplier Number",
+						"type": "nvarchar"
+					},
+					{
+						"name": "SupplierType",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Location",
+						"type": "nvarchar"
+					},
+					{
+						"name": "EAN #",
+						"type": "nvarchar"
+					},
+					{
+						"name": "AuditPerfom",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ActualAuditDate",
+						"type": "date"
+					},
+					{
+						"name": "AuditDurationDays",
+						"type": "nvarchar"
+					},
+					{
+						"name": "LeadAuditorName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Audit Team",
+						"type": "nvarchar"
+					},
+					{
+						"name": "AuditType",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Findings_Critical",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Findings_Major",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Findings_Moderate",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Findings_Observ",
+						"type": "nvarchar"
+					},
+					{
+						"name": "AuditResults",
+						"type": "nvarchar"
+					},
+					{
+						"name": "AuditorScore",
+						"type": "nvarchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "ScoreCards",
+					"table": "Stg_Suppliers_Audit_Activities_Followup"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/Stg_Suppliers_OTD')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -1968,114 +2134,6 @@
 			"properties": {
 				"linkedServiceName": {
 					"referenceName": "sqldb_egbi_dev",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQLDB-EGBI-DEV/PORF"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "ETL_ID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "ETL_Timestamp",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "AcctCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "AcctName",
-						"type": "nvarchar"
-					},
-					{
-						"name": "OverCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "OverCode2",
-						"type": "nvarchar"
-					},
-					{
-						"name": "DB_NAME",
-						"type": "nvarchar"
-					}
-				],
-				"typeProperties": {
-					"schema": "PORF",
-					"table": "Mrr_Accounts"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/porf_Mrr_Accounts1')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqldb_sorrelbi_dev",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQLDB-EGBI-DEV/PORF"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "ETL_ID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "ETL_Timestamp",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "AcctCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "AcctName",
-						"type": "nvarchar"
-					},
-					{
-						"name": "OverCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "OverCode2",
-						"type": "nvarchar"
-					},
-					{
-						"name": "DB_NAME",
-						"type": "nvarchar"
-					}
-				],
-				"typeProperties": {
-					"schema": "PORF",
-					"table": "Mrr_Accounts"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/porf_Mrr_Accounts2')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqldb_sorrelbi_dev",
 					"type": "LinkedServiceReference"
 				},
 				"folder": {

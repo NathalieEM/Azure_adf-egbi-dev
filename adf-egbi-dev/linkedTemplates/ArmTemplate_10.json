@@ -6,16 +6,120 @@
 			"type": "string",
 			"metadata": "Data Factory name",
 			"defaultValue": "adf-egbi-dev"
-		},
-		"AWS_Service_portal_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'AWS_Service_portal'"
 		}
 	},
 	"variables": {
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/porf_Mrr_Accounts1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqldb_sorrelbi_dev",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLDB-EGBI-DEV/PORF"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ETL_ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ETL_Timestamp",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "AcctCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "AcctName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "OverCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "OverCode2",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DB_NAME",
+						"type": "nvarchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "PORF",
+					"table": "Mrr_Accounts"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/porf_Mrr_Accounts2')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqldb_sorrelbi_dev",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLDB-EGBI-DEV/PORF"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ETL_ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ETL_Timestamp",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "AcctCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "AcctName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "OverCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "OverCode2",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DB_NAME",
+						"type": "nvarchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "PORF",
+					"table": "Mrr_Accounts"
+				}
+			},
+			"dependsOn": []
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/porf_Mrr_CostCenter')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
@@ -1326,77 +1430,6 @@
 				"typeProperties": {
 					"schema": "watermarks",
 					"table": "highValues"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/watermarks_highValues1')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqldb_sorrelbi_dev",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQLDB-EGBI-DEV"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "highValue_Id",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "highValue_updateDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "schemaName",
-						"type": "varchar"
-					},
-					{
-						"name": "tableName",
-						"type": "varchar"
-					},
-					{
-						"name": "columnName",
-						"type": "varchar"
-					},
-					{
-						"name": "highValue",
-						"type": "varchar"
-					},
-					{
-						"name": "highValue_Type",
-						"type": "varchar"
-					}
-				],
-				"typeProperties": {
-					"schema": "watermarks",
-					"table": "highValues"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/AWS_Service_portal')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "SqlServer",
-				"typeProperties": {
-					"connectionString": "[parameters('AWS_Service_portal_connectionString')]"
-				},
-				"connectVia": {
-					"referenceName": "integrationRuntime-AWS-Service-SQL",
-					"type": "IntegrationRuntimeReference"
 				}
 			},
 			"dependsOn": []

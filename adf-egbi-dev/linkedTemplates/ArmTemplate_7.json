@@ -13,6 +13,386 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/SAP_Mrr_ORDR')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqldb_egbi_dev",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLDB-EGBI-DEV/SAP"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ETL_ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ETL_Timestamp",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "DocEntry",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "DocNum",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "CANCELED",
+						"type": "char"
+					},
+					{
+						"name": "DocStatus",
+						"type": "char"
+					},
+					{
+						"name": "DocDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "DocDueDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "CardCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CardName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Address",
+						"type": "nvarchar"
+					},
+					{
+						"name": "NumAtCard",
+						"type": "nvarchar"
+					},
+					{
+						"name": "VatPercent",
+						"type": "decimal",
+						"precision": 19,
+						"scale": 6
+					},
+					{
+						"name": "VatSum",
+						"type": "decimal",
+						"precision": 19,
+						"scale": 6
+					},
+					{
+						"name": "VatSumFC",
+						"type": "decimal",
+						"precision": 19,
+						"scale": 6
+					},
+					{
+						"name": "DiscPrcnt",
+						"type": "decimal",
+						"precision": 19,
+						"scale": 6
+					},
+					{
+						"name": "DiscSum",
+						"type": "decimal",
+						"precision": 19,
+						"scale": 6
+					},
+					{
+						"name": "DiscSumFC",
+						"type": "decimal",
+						"precision": 19,
+						"scale": 6
+					},
+					{
+						"name": "DocCur",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DocRate",
+						"type": "decimal",
+						"precision": 19,
+						"scale": 6
+					},
+					{
+						"name": "DocTotal",
+						"type": "decimal",
+						"precision": 19,
+						"scale": 6
+					},
+					{
+						"name": "DocTotalFC",
+						"type": "decimal",
+						"precision": 19,
+						"scale": 6
+					},
+					{
+						"name": "PaidToDate",
+						"type": "decimal",
+						"precision": 19,
+						"scale": 6
+					},
+					{
+						"name": "PaidFC",
+						"type": "decimal",
+						"precision": 19,
+						"scale": 6
+					},
+					{
+						"name": "Ref1",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Ref2",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Comments",
+						"type": "nvarchar"
+					},
+					{
+						"name": "JrnlMemo",
+						"type": "nvarchar"
+					},
+					{
+						"name": "TransId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "DocTime",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "SlpCode",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "SysRate",
+						"type": "decimal",
+						"precision": 19,
+						"scale": 6
+					},
+					{
+						"name": "VatSumSy",
+						"type": "decimal",
+						"precision": 19,
+						"scale": 6
+					},
+					{
+						"name": "DiscSumSy",
+						"type": "decimal",
+						"precision": 19,
+						"scale": 6
+					},
+					{
+						"name": "DocTotalSy",
+						"type": "decimal",
+						"precision": 19,
+						"scale": 6
+					},
+					{
+						"name": "PaidSys",
+						"type": "decimal",
+						"precision": 19,
+						"scale": 6
+					},
+					{
+						"name": "UpdateDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "CreateDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "Volume",
+						"type": "decimal",
+						"precision": 19,
+						"scale": 6
+					},
+					{
+						"name": "VolUnit",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "Weight",
+						"type": "decimal",
+						"precision": 19,
+						"scale": 6
+					},
+					{
+						"name": "WeightUnit",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "Series",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "TaxDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "Filler",
+						"type": "nvarchar"
+					},
+					{
+						"name": "UserSign",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "selfInv",
+						"type": "char"
+					},
+					{
+						"name": "VatPaid",
+						"type": "decimal",
+						"precision": 19,
+						"scale": 6
+					},
+					{
+						"name": "VatPaidFC",
+						"type": "decimal",
+						"precision": 19,
+						"scale": 6
+					},
+					{
+						"name": "VatPaidSys",
+						"type": "decimal",
+						"precision": 19,
+						"scale": 6
+					},
+					{
+						"name": "UserSign2",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "WddStatus",
+						"type": "char"
+					},
+					{
+						"name": "draftKey",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Address2",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ShipToCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "LicTradNum",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PaymentRef",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ReqDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "CancelDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "PickStatus",
+						"type": "char"
+					},
+					{
+						"name": "Pick",
+						"type": "char"
+					},
+					{
+						"name": "BlockDunn",
+						"type": "char"
+					},
+					{
+						"name": "PeyMethod",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Project",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PaidSum",
+						"type": "decimal",
+						"precision": 19,
+						"scale": 6
+					},
+					{
+						"name": "PaidSumFc",
+						"type": "decimal",
+						"precision": 19,
+						"scale": 6
+					},
+					{
+						"name": "PaidSumSc",
+						"type": "decimal",
+						"precision": 19,
+						"scale": 6
+					},
+					{
+						"name": "PayToCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "IsPaytoBnk",
+						"type": "char"
+					},
+					{
+						"name": "U_OrderType",
+						"type": "smallint",
+						"precision": 5
+					}
+				],
+				"typeProperties": {
+					"schema": "sap",
+					"table": "Mrr_ORDR"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/SAP_Mrr_ORDR1')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -2164,27 +2544,6 @@
 				"schema": [],
 				"typeProperties": {
 					"objectApiName": "CompSuite__Junction_Employee_Job_Function__c"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/SF_Job_Function')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "ls_salesforce",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SalesForce"
-				},
-				"annotations": [],
-				"type": "SalesforceObject",
-				"schema": [],
-				"typeProperties": {
-					"objectApiName": "CompSuite__Job_Function_Group__c"
 				}
 			},
 			"dependsOn": []
