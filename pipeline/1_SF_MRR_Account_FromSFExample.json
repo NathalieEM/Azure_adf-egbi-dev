@@ -716,6 +716,17 @@
 							},
 							{
 								"source": {
+									"name": "ERP_Account_ID__c",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ERP_Account_ID__c",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
 									"name": "signed_a_set_commitment_agreement__c",
 									"type": "String"
 								},
@@ -732,6 +743,28 @@
 								},
 								"sink": {
 									"name": "Set_List_Account__c",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Customer_Type__c",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CustomerType",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Account_Owner_Email__c",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Account_Owner_Email",
 									"type": "String",
 									"physicalType": "nvarchar"
 								}
@@ -872,7 +905,7 @@
 			}
 		],
 		"folder": {
-			"name": "SF"
+			"name": "SF/ACCOUNTS"
 		},
 		"annotations": [],
 		"lastPublishTime": "2020-10-08T10:02:02Z"
