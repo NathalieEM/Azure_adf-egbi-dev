@@ -12218,6 +12218,10 @@
 						"typeProperties": {
 							"source": {
 								"type": "SqlServerSource",
+								"sqlReaderQuery": {
+									"value": "SELECT *\nFROM [dbo].[_Device]\nWHERE [@{activity('get watermark').output.firstRow.columnName}] >= '@{activity('get watermark').output.firstRow.highValue}'",
+									"type": "Expression"
+								},
 								"queryTimeout": "02:00:00",
 								"partitionOption": "None"
 							},
@@ -12227,7 +12231,7 @@
 							"enableStaging": true,
 							"stagingSettings": {
 								"linkedServiceName": {
-									"referenceName": "AzureBlobStorage1",
+									"referenceName": "st_error_log",
 									"type": "LinkedServiceReference"
 								}
 							},
@@ -12273,7 +12277,8 @@
 									{
 										"source": {
 											"name": "_Brand",
-											"type": "Int32"
+											"type": "Int32",
+											"physicalType": "int"
 										},
 										"sink": {
 											"name": "Brand",
@@ -12284,7 +12289,8 @@
 									{
 										"source": {
 											"name": "_PartNumber",
-											"type": "String"
+											"type": "String",
+											"physicalType": "nvarchar"
 										},
 										"sink": {
 											"name": "PartNumber",
@@ -12295,7 +12301,8 @@
 									{
 										"source": {
 											"name": "_OwnerGroup",
-											"type": "Int32"
+											"type": "Int32",
+											"physicalType": "int"
 										},
 										"sink": {
 											"name": "OwnerGroup",
@@ -12500,7 +12507,7 @@
 							"source": {
 								"type": "SqlServerSource",
 								"sqlReaderQuery": {
-									"value": "/****** Script for SelectTopNRows command from SSMS  ******/\nSELECT [ID]\n      ,[_Procedure]\n      ,[_StartTime]\n      ,[_EndTime]\n      ,[_ExecutedBy]\n      ,[_Parent]\n      ,[_Comments]\n      ,[_Result]\n      ,[_FailReason]\n      ,[_PCAppSoftwareVersion]\n      ,[_Deleted]\n      ,[_DeletedBy]\n      ,[_DeletedTime]\n      ,[_InsertTime]\n      ,[_LastUpdateTime]\n      ,[_OriginalProcedureId]\n      ,[_QcApprovalTime]\n      ,[_QcApprover]\n      ,[_Device]\n      ,[_DeviceSoftwareVersion]\n  FROM [QcOo_reporting].[dbo].[_DeviceProcedureData]\n  WHERE [_StartTime] >='20180101' and COALESCE ([_StartTime],getdate()) >= '@{activity('get watermark').output.firstRow.highValue}'\n",
+									"value": "SELECT *\nFROM [dbo].[_DeviceProcedureData]\nWHERE [@{activity('get watermark').output.firstRow.columnName}] >= '@{activity('get watermark').output.firstRow.highValue}'",
 									"type": "Expression"
 								},
 								"queryTimeout": "02:00:00",
