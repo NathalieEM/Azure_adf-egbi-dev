@@ -1,0 +1,114 @@
+{
+	"name": "Mrr_Result",
+	"properties": {
+		"activities": [
+			{
+				"name": "trunc Mrr_Result_Replica",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[EDHR].[sp_trunc_Mrr_Result_Replica]"
+				},
+				"linkedServiceName": {
+					"referenceName": "sqldb_egbi_dev",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Copy Mrr_Result_Replica",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "trunc Mrr_Result_Replica",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"sink": {
+						"type": "AzureSqlSink"
+					},
+					"enableStaging": true,
+					"stagingSettings": {
+						"linkedServiceName": {
+							"referenceName": "st_error_log",
+							"type": "LinkedServiceReference"
+						}
+					},
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "ID",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "ID",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "_Type",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "Type",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "_Value",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "Value",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "_Status",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Status",
+									"type": "String"
+								}
+							}
+						]
+					}
+				},
+				"outputs": [
+					{
+						"referenceName": "Mrr_Result_Replica",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"folder": {
+			"name": "EDHR/MRR"
+		},
+		"annotations": []
+	}
+}

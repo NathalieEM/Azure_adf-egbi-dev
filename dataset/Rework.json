@@ -1,0 +1,43 @@
+{
+	"name": "Rework",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sql_rptsrv",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "_Code",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "_Category",
+				"type": "varchar"
+			},
+			{
+				"name": "_DescriptionEng",
+				"type": "varchar"
+			},
+			{
+				"name": "_DescriptionHeb",
+				"type": "varchar"
+			},
+			{
+				"name": "_Obsolete",
+				"type": "bit"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "_Rework"
+		}
+	}
+}

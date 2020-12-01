@@ -1,0 +1,43 @@
+{
+	"name": "Mrr_Rework_Replica",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sqldb_egbi_dev",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "_Code",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "_Category",
+				"type": "nvarchar"
+			},
+			{
+				"name": "_DescriptionEng",
+				"type": "nvarchar"
+			},
+			{
+				"name": "_DescriptionHeb",
+				"type": "nvarchar"
+			},
+			{
+				"name": "_Obsolete",
+				"type": "bit"
+			}
+		],
+		"typeProperties": {
+			"schema": "EDHR",
+			"table": "Mrr_Rework_Replica"
+		}
+	}
+}

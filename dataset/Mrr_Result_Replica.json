@@ -1,0 +1,36 @@
+{
+	"name": "Mrr_Result_Replica",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sqldb_egbi_dev",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Type",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Value",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Status",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "EDHR",
+			"table": "Mrr_Result_Replica"
+		}
+	}
+}
