@@ -1,0 +1,89 @@
+{
+	"name": "ProcedureType",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sql_rptsrv",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "_Name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "_Parent",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "_Authorized",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "_DataClass",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "_OrderValue",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "_ResultType",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "_DetailedDescription",
+				"type": "ntext"
+			},
+			{
+				"name": "_Required",
+				"type": "bit"
+			},
+			{
+				"name": "_EditorURL",
+				"type": "ntext"
+			},
+			{
+				"name": "_Obsolete",
+				"type": "bit"
+			},
+			{
+				"name": "_DisplayedName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "_AfterSignChangeAuthorized",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "_QcApprovalEnabled",
+				"type": "bit"
+			},
+			{
+				"name": "_EnforcedLocation",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "_ManualEditing",
+				"type": "bit"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "_ProcedureType"
+		}
+	}
+}
