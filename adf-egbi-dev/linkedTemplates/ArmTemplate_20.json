@@ -12677,354 +12677,6 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/Mrr_FTP')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "truncate table ftp",
-						"type": "SqlServerStoredProcedure",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"storedProcedureName": "[[EDHR].[sp_trunc_Mrr_FTP]"
-						},
-						"linkedServiceName": {
-							"referenceName": "sqldb_egbi_dev",
-							"type": "LinkedServiceReference"
-						}
-					},
-					{
-						"name": "MRR_FTP",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "truncate table ftp",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "SqlServerSource",
-								"sqlReaderQuery": "\nSELECT [ID]\n      ,[_Procedure]\n      ,[_StartTime]\n      ,[_EndTime]\n      ,[_ExecutedBy]\n      ,[_Parent]\n      ,[_Comments]\n      ,[_Result]\n      ,[_FailReason]\n      ,[_PCAppSoftwareVersion]\n      ,[_Deleted]\n      ,[_DeletedBy]\n      ,[_DeletedTime]\n      ,[_InsertTime]\n      ,[_LastUpdateTime]\n      ,[_OriginalProcedureId]\n      ,[_QcApprovalTime]\n      ,[_QcApprover]\n      ,[_Device]\n      ,[_DeviceSoftwareVersion]\n      ,[_PreFTPComments]\n      ,[_EntranceReason]\n      ,[_PostFTPComments]\n      ,[_Failure]\n  FROM [dbo].[_FTP]\n  WHERE [_StartTime] >='20180101'",
-								"queryTimeout": "02:00:00",
-								"partitionOption": "None"
-							},
-							"sink": {
-								"type": "AzureSqlSink"
-							},
-							"enableStaging": true,
-							"stagingSettings": {
-								"linkedServiceName": {
-									"referenceName": "AzureBlobStorage1",
-									"type": "LinkedServiceReference"
-								}
-							},
-							"translator": {
-								"type": "TabularTranslator",
-								"mappings": [
-									{
-										"source": {
-											"name": "ID",
-											"type": "Int32",
-											"physicalType": "int"
-										},
-										"sink": {
-											"name": "ID",
-											"type": "Int32",
-											"physicalType": "int"
-										}
-									},
-									{
-										"source": {
-											"name": "_Procedure",
-											"type": "Int32",
-											"physicalType": "int"
-										},
-										"sink": {
-											"name": "Procedure",
-											"type": "Int32",
-											"physicalType": "int"
-										}
-									},
-									{
-										"source": {
-											"name": "_StartTime",
-											"type": "DateTime",
-											"physicalType": "datetime"
-										},
-										"sink": {
-											"name": "StartTime",
-											"type": "DateTime",
-											"physicalType": "datetime"
-										}
-									},
-									{
-										"source": {
-											"name": "_EndTime",
-											"type": "DateTime"
-										},
-										"sink": {
-											"name": "EndTime",
-											"type": "DateTime",
-											"physicalType": "datetime"
-										}
-									},
-									{
-										"source": {
-											"name": "_ExecutedBy",
-											"type": "Int32"
-										},
-										"sink": {
-											"name": "ExecutedBy",
-											"type": "Int32",
-											"physicalType": "int"
-										}
-									},
-									{
-										"source": {
-											"name": "_Parent",
-											"type": "Int32"
-										},
-										"sink": {
-											"name": "Parent",
-											"type": "Int32",
-											"physicalType": "int"
-										}
-									},
-									{
-										"source": {
-											"name": "_Comments",
-											"type": "String"
-										},
-										"sink": {
-											"name": "Comments",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "_Result",
-											"type": "Int32"
-										},
-										"sink": {
-											"name": "Result",
-											"type": "Int32",
-											"physicalType": "int"
-										}
-									},
-									{
-										"source": {
-											"name": "_FailReason",
-											"type": "String"
-										},
-										"sink": {
-											"name": "FailReason",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "_PCAppSoftwareVersion",
-											"type": "String"
-										},
-										"sink": {
-											"name": "PCAppSoftwareVersion",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "_Deleted",
-											"type": "Boolean"
-										},
-										"sink": {
-											"name": "Deleted",
-											"type": "Boolean",
-											"physicalType": "bit"
-										}
-									},
-									{
-										"source": {
-											"name": "_DeletedBy",
-											"type": "Int32"
-										},
-										"sink": {
-											"name": "DeletedBy",
-											"type": "Int32",
-											"physicalType": "int"
-										}
-									},
-									{
-										"source": {
-											"name": "_DeletedTime",
-											"type": "DateTime"
-										},
-										"sink": {
-											"name": "DeletedTime",
-											"type": "DateTime",
-											"physicalType": "datetime"
-										}
-									},
-									{
-										"source": {
-											"name": "_InsertTime",
-											"type": "DateTime"
-										},
-										"sink": {
-											"name": "InsertTime",
-											"type": "DateTime",
-											"physicalType": "datetime"
-										}
-									},
-									{
-										"source": {
-											"name": "_LastUpdateTime",
-											"type": "DateTime"
-										},
-										"sink": {
-											"name": "LastUpdateTime",
-											"type": "DateTime",
-											"physicalType": "datetime"
-										}
-									},
-									{
-										"source": {
-											"name": "_OriginalProcedureId",
-											"type": "Int32"
-										},
-										"sink": {
-											"name": "OriginalProcedureId",
-											"type": "Int32",
-											"physicalType": "int"
-										}
-									},
-									{
-										"source": {
-											"name": "_Device",
-											"type": "Int32"
-										},
-										"sink": {
-											"name": "Device",
-											"type": "Int32",
-											"physicalType": "int"
-										}
-									},
-									{
-										"source": {
-											"name": "_DeviceSoftwareVersion",
-											"type": "String"
-										},
-										"sink": {
-											"name": "DeviceSoftwareVersion",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "_PreFTPComments",
-											"type": "String"
-										},
-										"sink": {
-											"name": "PreFTPComments",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "_EntranceReason",
-											"type": "Int32"
-										},
-										"sink": {
-											"name": "EntranceReason",
-											"type": "Int32",
-											"physicalType": "int"
-										}
-									},
-									{
-										"source": {
-											"name": "_PostFTPComments",
-											"type": "String"
-										},
-										"sink": {
-											"name": "PostFTPComments",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "_Failure",
-											"type": "Int32"
-										},
-										"sink": {
-											"name": "Failure",
-											"type": "Int32",
-											"physicalType": "int"
-										}
-									}
-								],
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "Mrr_Ftp",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "EDHR_MRR_FTP",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					}
-				],
-				"parameters": {
-					"param_tableName": {
-						"type": "string",
-						"defaultValue": "Mrr_FTP"
-					}
-				},
-				"folder": {
-					"name": "EDHR/MRR"
-				},
-				"annotations": [],
-				"lastPublishTime": "2020-08-18T12:11:54Z"
-			},
-			"dependsOn": []
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/Mrr_INV1')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
@@ -21557,6 +21209,282 @@
 				},
 				"annotations": [],
 				"lastPublishTime": "2020-09-06T09:03:53Z"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Mrr_ITM11')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "trunc_Mrr_ITM1",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[sap].[sp_trunc_Mrr_ITM1]"
+						},
+						"linkedServiceName": {
+							"referenceName": "sqldb_sorrelbi_dev",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "Mrr_ITM1",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "trunc_Mrr_ITM1",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "SqlServerSource",
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"sink": {
+								"type": "AzureSqlSink"
+							},
+							"enableStaging": true,
+							"stagingSettings": {
+								"linkedServiceName": {
+									"referenceName": "AzureBlobStorage1",
+									"type": "LinkedServiceReference"
+								}
+							},
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "ItemCode",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "ItemCode",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "PriceList",
+											"type": "Int16",
+											"physicalType": "smallint"
+										},
+										"sink": {
+											"name": "PriceList",
+											"type": "Int16",
+											"physicalType": "smallint"
+										}
+									},
+									{
+										"source": {
+											"name": "Price",
+											"type": "Decimal",
+											"physicalType": "decimal"
+										},
+										"sink": {
+											"name": "Price",
+											"type": "Decimal",
+											"physicalType": "decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "Currency",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "Currency",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Ovrwritten",
+											"type": "String",
+											"physicalType": "char"
+										},
+										"sink": {
+											"name": "Ovrwritten",
+											"type": "String",
+											"physicalType": "char"
+										}
+									},
+									{
+										"source": {
+											"name": "Factor",
+											"type": "Decimal",
+											"physicalType": "decimal"
+										},
+										"sink": {
+											"name": "Factor",
+											"type": "Decimal",
+											"physicalType": "decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "LogInstanc",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "LogInstanc",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "ObjType",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "ObjType",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "AddPrice1",
+											"type": "Decimal",
+											"physicalType": "decimal"
+										},
+										"sink": {
+											"name": "AddPrice1",
+											"type": "Decimal",
+											"physicalType": "decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "Currency1",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "Currency1",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "AddPrice2",
+											"type": "Decimal",
+											"physicalType": "decimal"
+										},
+										"sink": {
+											"name": "AddPrice2",
+											"type": "Decimal",
+											"physicalType": "decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "Currency2",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "Currency2",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Ovrwrite1",
+											"type": "String",
+											"physicalType": "char"
+										},
+										"sink": {
+											"name": "Ovrwrite1",
+											"type": "String",
+											"physicalType": "char"
+										}
+									},
+									{
+										"source": {
+											"name": "Ovrwrite2",
+											"type": "String",
+											"physicalType": "char"
+										},
+										"sink": {
+											"name": "Ovrwrite2",
+											"type": "String",
+											"physicalType": "char"
+										}
+									},
+									{
+										"source": {
+											"name": "BasePLNum",
+											"type": "Int16",
+											"physicalType": "smallint"
+										},
+										"sink": {
+											"name": "BasePLNum",
+											"type": "Int16",
+											"physicalType": "smallint"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "ITM11",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "Mrr_ITM11",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"folder": {
+					"name": "SAP_SORREL/MRR"
+				},
+				"annotations": [],
+				"lastPublishTime": "2020-10-04T07:50:10Z"
 			},
 			"dependsOn": []
 		}
