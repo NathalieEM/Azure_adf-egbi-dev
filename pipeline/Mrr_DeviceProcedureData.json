@@ -400,24 +400,15 @@
 					"storedProcedureName": "[watermarks].[sp_set_watermark]",
 					"storedProcedureParameters": {
 						"columnName": {
-							"value": {
-								"value": "@activity('get watermark').output.firstRow.columnName",
-								"type": "Expression"
-							},
+							"value": "_StartTime",
 							"type": "String"
 						},
 						"schemaName": {
-							"value": {
-								"value": "@activity('get watermark').output.firstRow.schemaName",
-								"type": "Expression"
-							},
+							"value": "EDHR",
 							"type": "String"
 						},
 						"tableName": {
-							"value": {
-								"value": "@activity('get watermark').output.firstRow.tableName",
-								"type": "Expression"
-							},
+							"value": "Mrr_DeviceProcedureData",
 							"type": "String"
 						}
 					}
