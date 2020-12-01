@@ -12165,6 +12165,287 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/Mrr_Device')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Truncate table EDHR Mrr Device",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[EDHR].[sp_trunc_Mrr_Device]"
+						},
+						"linkedServiceName": {
+							"referenceName": "sqldb_egbi_dev",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "Mrr_device",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "Truncate table EDHR Mrr Device",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "get watermark",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "SqlServerSource",
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"sink": {
+								"type": "AzureSqlSink"
+							},
+							"enableStaging": true,
+							"stagingSettings": {
+								"linkedServiceName": {
+									"referenceName": "AzureBlobStorage1",
+									"type": "LinkedServiceReference"
+								}
+							},
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "ID",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "ID",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "_SerialNumber",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "SerialNumber",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "_Comments",
+											"type": "String",
+											"physicalType": "ntext"
+										},
+										"sink": {
+											"name": "Comments",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "_Brand",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "Brand",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "_PartNumber",
+											"type": "String"
+										},
+										"sink": {
+											"name": "PartNumber",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "_OwnerGroup",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "OwnerGroup",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "Mrr_Device",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "EDHR_MRR_Device",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "get watermark",
+						"type": "Lookup",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "AzureSqlSource",
+								"sqlReaderStoredProcedureName": "[[watermarks].[sp_get_watermark]",
+								"storedProcedureParameters": {
+									"schemaName": {
+										"type": "String",
+										"value": "EDHR"
+									},
+									"tableName": {
+										"type": "String",
+										"value": "Mrr_Device"
+									}
+								},
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"dataset": {
+								"referenceName": "watermarks_highValues",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						}
+					},
+					{
+						"name": "upsert",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [
+							{
+								"activity": "Mrr_device",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[EDHR].[sp_Merge_Mrr_Device]"
+						},
+						"linkedServiceName": {
+							"referenceName": "sqldb_egbi_dev",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "set watermark",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [
+							{
+								"activity": "upsert",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[watermarks].[sp_set_watermark]",
+							"storedProcedureParameters": {
+								"columnName": {
+									"value": "ID",
+									"type": "String"
+								},
+								"schemaName": {
+									"value": "EDHR",
+									"type": "String"
+								},
+								"tableName": {
+									"value": "Mrr_Device",
+									"type": "String"
+								}
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "sqldb_egbi_dev",
+							"type": "LinkedServiceReference"
+						}
+					}
+				],
+				"parameters": {
+					"param_tableName": {
+						"type": "string",
+						"defaultValue": "Mrr_Device"
+					}
+				},
+				"folder": {
+					"name": "EDHR/MRR"
+				},
+				"annotations": [],
+				"lastPublishTime": "2020-08-18T12:11:54Z"
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/Mrr_DeviceProcedureData')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
@@ -12514,37 +12795,6 @@
 						}
 					},
 					{
-						"name": "stream activity - copy",
-						"type": "WebActivity",
-						"dependsOn": [
-							{
-								"activity": "Mrr_DeviceProcedureData",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"url": "https://api.powerbi.com/beta/7ef15b48-e070-48c2-b1c5-86e2488d6058/datasets/be953ba9-8789-435d-9add-fb35836ab916/rows?noSignUpCheck=1&key=29QqE0bnK0yio0X2c1eZoMdV4XGuyh70Gfnxlbo5gXM9CXKFx4tWH%2F7Kv%2Ff5InszefKuhEMq%2FCNwqEhTP8JPfA%3D%3D",
-							"method": "POST",
-							"headers": {
-								"Content-Type": "application/json"
-							},
-							"body": {
-								"value": "[[\n{\n\"Timestamp\" :\"@{utcnow()}\",\n\"Factory Name\" :\"@{pipeline().DataFactory}\",\n\"Pipeline Name\" :\"@{pipeline().Pipeline}\",\n\"Pipeline Run Id\" :\"@{pipeline().RunId}\",\n\"Activity Name\" :\"Mrr_@{pipeline().parameters.param_tableName} - Copy\",\n\"Copy Activity - Rows Read\" :@{activity('Mrr_DeviceProcedureData').output.rowsRead},\n\"Copy Activity - Rows Written\" :@{activity('Mrr_DeviceProcedureData').output.rowsCopied},\n\"Copy Activity - Rows Skipped\" :@{activity('Mrr_DeviceProcedureData').output.rowsSkipped}\n}\n]",
-								"type": "Expression"
-							}
-						}
-					},
-					{
 						"name": "upsert",
 						"type": "Lookup",
 						"dependsOn": [
@@ -12577,37 +12827,6 @@
 								"referenceName": "EDHR_MRR__DeviceProceduredata",
 								"type": "DatasetReference",
 								"parameters": {}
-							}
-						}
-					},
-					{
-						"name": "stream activity - merge",
-						"type": "WebActivity",
-						"dependsOn": [
-							{
-								"activity": "upsert",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"url": "https://api.powerbi.com/beta/7ef15b48-e070-48c2-b1c5-86e2488d6058/datasets/be953ba9-8789-435d-9add-fb35836ab916/rows?noSignUpCheck=1&key=29QqE0bnK0yio0X2c1eZoMdV4XGuyh70Gfnxlbo5gXM9CXKFx4tWH%2F7Kv%2Ff5InszefKuhEMq%2FCNwqEhTP8JPfA%3D%3D",
-							"method": "POST",
-							"headers": {
-								"Content-Type": "application/json"
-							},
-							"body": {
-								"value": "[[\n{\n\"Timestamp\" :\"@{utcnow()}\",\n\"Factory Name\" :\"@{pipeline().DataFactory}\",\n\"Pipeline Name\" :\"@{pipeline().Pipeline}\",\n\"Pipeline Run Id\" :\"@{pipeline().RunId}\",\n\"Activity Name\" :\"Mrr_@{pipeline().parameters.param_tableName} - Merge\",\n\"Merge Activity - Insert\" :@{if(\ncontains(activity('upsert').output,'firstRow'),\nactivity('upsert').output.firstRow.INSERT,\n0)},\n\"Merge Activity - Update\" :@{if(\ncontains(activity('upsert').output,'firstRow'),\nactivity('upsert').output.firstRow.UPDATE,\n0)}\n}\n]",
-								"type": "Expression"
 							}
 						}
 					},
@@ -21209,282 +21428,6 @@
 				},
 				"annotations": [],
 				"lastPublishTime": "2020-09-06T09:03:53Z"
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Mrr_ITM11')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "trunc_Mrr_ITM1",
-						"type": "SqlServerStoredProcedure",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"storedProcedureName": "[[sap].[sp_trunc_Mrr_ITM1]"
-						},
-						"linkedServiceName": {
-							"referenceName": "sqldb_sorrelbi_dev",
-							"type": "LinkedServiceReference"
-						}
-					},
-					{
-						"name": "Mrr_ITM1",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "trunc_Mrr_ITM1",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "SqlServerSource",
-								"queryTimeout": "02:00:00",
-								"partitionOption": "None"
-							},
-							"sink": {
-								"type": "AzureSqlSink"
-							},
-							"enableStaging": true,
-							"stagingSettings": {
-								"linkedServiceName": {
-									"referenceName": "AzureBlobStorage1",
-									"type": "LinkedServiceReference"
-								}
-							},
-							"translator": {
-								"type": "TabularTranslator",
-								"mappings": [
-									{
-										"source": {
-											"name": "ItemCode",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "ItemCode",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "PriceList",
-											"type": "Int16",
-											"physicalType": "smallint"
-										},
-										"sink": {
-											"name": "PriceList",
-											"type": "Int16",
-											"physicalType": "smallint"
-										}
-									},
-									{
-										"source": {
-											"name": "Price",
-											"type": "Decimal",
-											"physicalType": "decimal"
-										},
-										"sink": {
-											"name": "Price",
-											"type": "Decimal",
-											"physicalType": "decimal"
-										}
-									},
-									{
-										"source": {
-											"name": "Currency",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "Currency",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "Ovrwritten",
-											"type": "String",
-											"physicalType": "char"
-										},
-										"sink": {
-											"name": "Ovrwritten",
-											"type": "String",
-											"physicalType": "char"
-										}
-									},
-									{
-										"source": {
-											"name": "Factor",
-											"type": "Decimal",
-											"physicalType": "decimal"
-										},
-										"sink": {
-											"name": "Factor",
-											"type": "Decimal",
-											"physicalType": "decimal"
-										}
-									},
-									{
-										"source": {
-											"name": "LogInstanc",
-											"type": "Int32",
-											"physicalType": "int"
-										},
-										"sink": {
-											"name": "LogInstanc",
-											"type": "Int32",
-											"physicalType": "int"
-										}
-									},
-									{
-										"source": {
-											"name": "ObjType",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "ObjType",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "AddPrice1",
-											"type": "Decimal",
-											"physicalType": "decimal"
-										},
-										"sink": {
-											"name": "AddPrice1",
-											"type": "Decimal",
-											"physicalType": "decimal"
-										}
-									},
-									{
-										"source": {
-											"name": "Currency1",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "Currency1",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "AddPrice2",
-											"type": "Decimal",
-											"physicalType": "decimal"
-										},
-										"sink": {
-											"name": "AddPrice2",
-											"type": "Decimal",
-											"physicalType": "decimal"
-										}
-									},
-									{
-										"source": {
-											"name": "Currency2",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "Currency2",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "Ovrwrite1",
-											"type": "String",
-											"physicalType": "char"
-										},
-										"sink": {
-											"name": "Ovrwrite1",
-											"type": "String",
-											"physicalType": "char"
-										}
-									},
-									{
-										"source": {
-											"name": "Ovrwrite2",
-											"type": "String",
-											"physicalType": "char"
-										},
-										"sink": {
-											"name": "Ovrwrite2",
-											"type": "String",
-											"physicalType": "char"
-										}
-									},
-									{
-										"source": {
-											"name": "BasePLNum",
-											"type": "Int16",
-											"physicalType": "smallint"
-										},
-										"sink": {
-											"name": "BasePLNum",
-											"type": "Int16",
-											"physicalType": "smallint"
-										}
-									}
-								],
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "ITM11",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "Mrr_ITM11",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					}
-				],
-				"folder": {
-					"name": "SAP_SORREL/MRR"
-				},
-				"annotations": [],
-				"lastPublishTime": "2020-10-04T07:50:10Z"
 			},
 			"dependsOn": []
 		}

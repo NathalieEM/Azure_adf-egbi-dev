@@ -4,6 +4,84 @@
 	"parameters": {
 		"factoryName": {
 			"value": "adf-egbi-dev"
+		},
+		"AWS_Service_portal_connectionString": {
+			"value": ""
+		},
+		"AzureBlobStorage1_connectionString": {
+			"value": ""
+		},
+		"Is_Sorrel_integration_connectionString": {
+			"value": ""
+		},
+		"RPTSRV_ReportServer_connectionString": {
+			"value": ""
+		},
+		"RptSrv_connectionString": {
+			"value": ""
+		},
+		"SAP_Integrator_dev_connectionString": {
+			"value": ""
+		},
+		"SAP_Sorrel_connectionString": {
+			"value": ""
+		},
+		"SalesforceSandBox_password": {
+			"value": ""
+		},
+		"SalesforceSandBox_securityToken": {
+			"value": ""
+		},
+		"SharePointOnlineList1_servicePrincipalKey": {
+			"value": ""
+		},
+		"TESTSorrelDB_25022020_connectionString": {
+			"value": ""
+		},
+		"ls_salesforce_password": {
+			"value": ""
+		},
+		"ls_salesforce_securityToken": {
+			"value": ""
+		},
+		"ls_sap_integrator_connectionString": {
+			"value": ""
+		},
+		"sql_rptsrv_connectionString": {
+			"value": ""
+		},
+		"sqldb_egbi_dev_connectionString": {
+			"value": ""
+		},
+		"sqldb_sorrelbi_dev_connectionString": {
+			"value": ""
+		},
+		"sqlsrv_sap_connectionString": {
+			"value": ""
+		},
+		"sqlsrv_sap_TestNewQcoreDB_05012020_connectionString": {
+			"value": ""
+		},
+		"st_error_log_connectionString": {
+			"value": ""
+		},
+		"SalesforceSandBox_properties_typeProperties_environmentUrl": {
+			"value": "qcoremedical--sandbox.my.salesforce.com"
+		},
+		"SalesforceSandBox_properties_typeProperties_username": {
+			"value": "nathalie.mayzlits@qcore.com.sandbox"
+		},
+		"SharePointOnlineList1_properties_typeProperties_servicePrincipalId": {
+			"value": "a0518f3b-5bac-47c9-8059-20b248658b92"
+		},
+		"SharepointSire_PR_properties_typeProperties_url": {
+			"value": "https://eitangroupna.sharepoint.com/sites/PR/_api/lists/"
+		},
+		"ls_salesforce_properties_typeProperties_environmentUrl": {
+			"value": "https://login.salesforce.com"
+		},
+		"ls_salesforce_properties_typeProperties_username": {
+			"value": "help.desk@qcore.com"
 		}
 	}
 }

@@ -2353,7 +2353,7 @@
 						"userProperties": [],
 						"typeProperties": {
 							"pipeline": {
-								"referenceName": "Mrr_device",
+								"referenceName": "Mrr_Device",
 								"type": "PipelineReference"
 							},
 							"waitOnCompletion": true,
