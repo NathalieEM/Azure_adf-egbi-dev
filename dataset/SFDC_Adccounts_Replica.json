@@ -1,0 +1,340 @@
+{
+	"name": "SFDC_Adccounts_Replica",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sqldb_egbi_dev",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "Id",
+				"type": "nvarchar"
+			},
+			{
+				"name": "IsDeleted",
+				"type": "bit"
+			},
+			{
+				"name": "MasterRecordId",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Type",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ParentId",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BillingStreet",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BillingCity",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BillingState",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BillingPostalCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BillingCountry",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BillingStateCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BillingCountryCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BillingLatitude",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BillingLongitude",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BillingGeocodeAccurcy",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ShippingStreet",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ShippingCity",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ShippingState",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ShippingPostalCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ShippingCountry",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ShippingStateCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ShippingCountryCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ShippingLatitude",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ShippingLongitude",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ShippingGeocodeAccuracy",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Phone",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Website",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Industry",
+				"type": "nvarchar"
+			},
+			{
+				"name": "NumberOfEmployees",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Description",
+				"type": "nvarchar"
+			},
+			{
+				"name": "OwnerId",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CreatedDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "CreatedById",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LastModifiedDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "LastModifiedById",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SystemModstamp",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "LastActivityDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "LastViewedDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "LastReferencedDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "Jigsaw",
+				"type": "nvarchar"
+			},
+			{
+				"name": "JigsawCompanyId",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AccountSource",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SicDesc",
+				"type": "nvarchar"
+			},
+			{
+				"name": "State__c",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Company_Type__c",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Account_External_Id__c",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Pump_Fleet_Size__c",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Sapphire_Epidural__c",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Sapphire_Plus__c",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Sapphire_MT__c",
+				"type": "nvarchar"
+			},
+			{
+				"name": "City__c",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Street_Address__c",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Extended_Service__c",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Contacts__c",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Quickbooks_account__c",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Country__c",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Account_Name_Inital_String__c",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Region__c",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Account_Name_Copy__c",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Account_Id_18_Digits__c",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Billing_Account__c",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ETL_ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ETL_datetime",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "ETL_Action",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ETL_TargetUpdated",
+				"type": "bit"
+			},
+			{
+				"name": "ERP_Account_ID__c",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AnnualRevenue",
+				"type": "nvarchar"
+			},
+			{
+				"name": "signed_a_set_commitment_agreement__c",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Set_List_Account__c",
+				"type": "nvarchar"
+			},
+			{
+				"name": "dtUpdated",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "BYD_id",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BYD_CompanyID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BYD_dtUpdated",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "CustomerType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Account_Owner_Email",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "SF",
+			"table": "Mrr_SF_Account_Replica"
+		}
+	}
+}
