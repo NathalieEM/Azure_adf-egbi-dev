@@ -352,7 +352,7 @@
 					"storedProcedureName": "[watermarks].[sp_set_watermark]",
 					"storedProcedureParameters": {
 						"columnName": {
-							"value": "_StartTime",
+							"value": "StartTime",
 							"type": "String"
 						},
 						"schemaName": {
@@ -360,7 +360,7 @@
 							"type": "String"
 						},
 						"tableName": {
-							"value": "Mrr_DeviceProcedureData",
+							"value": "Mrr_DeviceProcedureData_replica",
 							"type": "String"
 						}
 					}
@@ -398,12 +398,6 @@
 				}
 			}
 		],
-		"parameters": {
-			"param_tableName": {
-				"type": "string",
-				"defaultValue": "Mrr_DeviceProcedureData_replica"
-			}
-		},
 		"folder": {
 			"name": "EDHR/MRR"
 		},
