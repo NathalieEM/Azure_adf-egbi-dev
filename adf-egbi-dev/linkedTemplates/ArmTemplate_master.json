@@ -15,6 +15,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage1'"
 		},
+		"Integrator_MRR_Accounts_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'Integrator_MRR_Accounts'"
+		},
 		"Is_Sorrel_integration_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'Is_Sorrel_integration'"
@@ -34,6 +38,10 @@
 		"SAP_Sorrel_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'SAP_Sorrel'"
+		},
+		"SAP_integrator_dev_accounts_replica_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'SAP_integrator_dev_accounts_replica'"
 		},
 		"SalesforceSandBox_password": {
 			"type": "secureString",
@@ -392,6 +400,9 @@
 					"AWS_Service_portal_connectionString": {
 						"value": "[parameters('AWS_Service_portal_connectionString')]"
 					},
+					"Integrator_MRR_Accounts_connectionString": {
+						"value": "[parameters('Integrator_MRR_Accounts_connectionString')]"
+					},
 					"Is_Sorrel_integration_connectionString": {
 						"value": "[parameters('Is_Sorrel_integration_connectionString')]"
 					},
@@ -406,6 +417,9 @@
 					},
 					"SAP_Sorrel_connectionString": {
 						"value": "[parameters('SAP_Sorrel_connectionString')]"
+					},
+					"SAP_integrator_dev_accounts_replica_connectionString": {
+						"value": "[parameters('SAP_integrator_dev_accounts_replica_connectionString')]"
 					},
 					"SalesforceSandBox_password": {
 						"value": "[parameters('SalesforceSandBox_password')]"

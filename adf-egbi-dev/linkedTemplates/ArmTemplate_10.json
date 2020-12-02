@@ -13,6 +13,60 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/porf_Mrr_Accounts')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqldb_egbi_dev",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLDB-EGBI-DEV/PORF"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ETL_ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ETL_Timestamp",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "AcctCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "AcctName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "OverCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "OverCode2",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DB_NAME",
+						"type": "nvarchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "PORF",
+					"table": "Mrr_Accounts"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/porf_Mrr_Accounts1')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -1376,60 +1430,6 @@
 				"typeProperties": {
 					"schema": "training",
 					"table": "vw_Training_Quality_Plan"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/watermarks_highValues')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqldb_egbi_dev",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQLDB-EGBI-DEV"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "highValue_Id",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "highValue_updateDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "schemaName",
-						"type": "varchar"
-					},
-					{
-						"name": "tableName",
-						"type": "varchar"
-					},
-					{
-						"name": "columnName",
-						"type": "varchar"
-					},
-					{
-						"name": "highValue",
-						"type": "varchar"
-					},
-					{
-						"name": "highValue_Type",
-						"type": "varchar"
-					}
-				],
-				"typeProperties": {
-					"schema": "watermarks",
-					"table": "highValues"
 				}
 			},
 			"dependsOn": []
