@@ -5194,13 +5194,6 @@
 							"type": "PipelineReference"
 						},
 						"parameters": {}
-					},
-					{
-						"pipelineReference": {
-							"referenceName": "EDHR_Main",
-							"type": "PipelineReference"
-						},
-						"parameters": {}
 					}
 				],
 				"type": "ScheduleTrigger",
@@ -5230,8 +5223,7 @@
 				}
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/MainService')]",
-				"[concat(variables('factoryId'), '/pipelines/EDHR_Main')]"
+				"[concat(variables('factoryId'), '/pipelines/MainService')]"
 			]
 		}
 	]
