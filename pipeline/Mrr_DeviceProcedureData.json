@@ -51,7 +51,7 @@
 					"source": {
 						"type": "SqlServerSource",
 						"sqlReaderQuery": {
-							"value": "SELECT * FROM [dbo].[_DeviceProcedureData]\nWHERE [@{activity('get watermark').output.firstRow.columnName}] >= '@{activity('get watermark').output.firstRow.highValue}'",
+							"value": "SELECT * FROM [dbo].[_DeviceProcedureData]\nWHERE _StartTime >= '@{activity('get watermark').output.firstRow.highValue}'",
 							"type": "Expression"
 						},
 						"queryTimeout": "02:00:00",
