@@ -288,8 +288,8 @@
 								},
 								"sink": {
 									"name": "SerialNumber",
-									"type": "Int32",
-									"physicalType": "int"
+									"type": "String",
+									"physicalType": "nvarchar"
 								}
 							},
 							{
