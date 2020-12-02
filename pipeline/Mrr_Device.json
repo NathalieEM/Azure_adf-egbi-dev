@@ -268,12 +268,6 @@
 				}
 			}
 		],
-		"parameters": {
-			"param_tableName": {
-				"type": "string",
-				"defaultValue": "Mrr_Device_replica"
-			}
-		},
 		"folder": {
 			"name": "EDHR/MRR"
 		},
