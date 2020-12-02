@@ -1,0 +1,365 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "adf-egbi-dev"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/Stg_Fact_Data')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Copy Stg_Fact_Data",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "AzureSqlSource",
+								"sqlReaderQuery": "with Cte as (\nselect Device,[Target],max(ID) as CurrentLoacation\nfrom [EDHR].[Mrr_DeviceMovement_Replica]\n--where Device = 1842256\ngroup by Device,[Target]\n)\n\nSELECT \n _ParentData.ID as ParentID\n,_ParentType._DisplayedName as ParentTypeDescription\n,_ParentData.StartTime as ParentStartTime\n,_ParentData.EndTime as ParentEndTime\n,_ChildType._DisplayedName as  DisplayedName\n,[_DeviceProcedureData].[ID]\n,[_DeviceProcedureData].[Procedure]\n,[_DeviceProcedureData].[StartTime]\n,[_DeviceProcedureData].[EndTime]\n,[_DeviceProcedureData].[ExecutedBy]\n,[_DeviceProcedureData].[Comments]\n,[_DeviceProcedureData].[Result]\n,[_DeviceProcedureData].[FailReason]\n,[_DeviceProcedureData].[PCAppSoftwareVersion]\n,[_DeviceProcedureData].[Deleted]\n,[_DeviceProcedureData].[DeletedBy]\n,[_DeviceProcedureData].[DeletedTime]\n,[_DeviceProcedureData].[InsertTime]\n,[_DeviceProcedureData].[LastUpdateTime]\n,[_DeviceProcedureData].[OriginalProcedureId]\n--,[_DeviceProcedureData].[_QcApprovalTime]\n--,[_DeviceProcedureData].[_QcApprover]\n,[_DeviceProcedureData].[Device]\n,[_Device].SerialNumber\n,[_DeviceProcedureData].[DeviceSoftwareVersion]\n,_Location.[Name]\nFROM [EDHR].[Mrr_DeviceProcedureData_replica]   as _DeviceProcedureData\njoin [EDHR].[Mrr_ProcedureType_Replica]\t\t\tas _ChildType  on [_DeviceProcedureData].[Procedure] = _ChildType.ID\njoin [EDHR].[Mrr_DeviceProcedureData_replica]\tas _ParentData on [_DeviceProcedureData].Parent = _ParentData.Id\njoin [EDHR].[Mrr_ProcedureType_Replica]\t\t\tas _ParentType on _ParentData.[Procedure] = _ParentType.ID\njoin [EDHR].[Mrr_Device_Replica]\t\t\t\tas _Device     on _Device.ID = _DeviceProcedureData.Device\njoin Cte\t\t\t\t\t\t\t\t\t\t\t\t\t   on Cte.Device = _DeviceProcedureData.Device\njoin [EDHR].Mrr_Location_Replica as _location\t\t\t\t   on _location.ID = Cte.[Target]\nWHERE Isnull([_DeviceProcedureData].[EndTime], '1980-01-01 00:00:00.000' )  >='1980-01-01 00:00:00.000'  \n  --and [_DeviceProcedureData].[Device]='1842256'\n  --and_ParentType._DisplayedName = 'DHR'\n  --and and _ChildType._DisplayedName = 'Assembly'\n--ORDER BY   [_ParentStartTime], (\t_ParentType._OrderValue * 10000 + _ChildType._OrderValue)",
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"sink": {
+								"type": "AzureSqlSink"
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "ParentID",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "ParentID",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "ParentTypeDescription",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "ParentTypeDescription",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "ParentStartTime",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										},
+										"sink": {
+											"name": "ParentStartTime",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										}
+									},
+									{
+										"source": {
+											"name": "ParentEndTime",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										},
+										"sink": {
+											"name": "ParentEndTime",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										}
+									},
+									{
+										"source": {
+											"name": "DisplayedName",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "DisplayedName",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "ID",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "ID",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "Procedure",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "Procedure",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "StartTime",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										},
+										"sink": {
+											"name": "StartTime",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										}
+									},
+									{
+										"source": {
+											"name": "EndTime",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										},
+										"sink": {
+											"name": "EndTime",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										}
+									},
+									{
+										"source": {
+											"name": "ExecutedBy",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "ExecutedBy",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "Comments",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "Comments",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Result",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "Result",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "FailReason",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "FailReason",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "PCAppSoftwareVersion",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "PCAppSoftwareVersion",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Deleted",
+											"type": "Boolean",
+											"physicalType": "bit"
+										},
+										"sink": {
+											"name": "Deleted",
+											"type": "Boolean",
+											"physicalType": "bit"
+										}
+									},
+									{
+										"source": {
+											"name": "DeletedBy",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "DeletedBy",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "DeletedTime",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										},
+										"sink": {
+											"name": "DeletedTime",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										}
+									},
+									{
+										"source": {
+											"name": "InsertTime",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										},
+										"sink": {
+											"name": "InsertTime",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										}
+									},
+									{
+										"source": {
+											"name": "LastUpdateTime",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										},
+										"sink": {
+											"name": "LastUpdateTime",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										}
+									},
+									{
+										"source": {
+											"name": "OriginalProcedureId",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "OriginalProcedureId",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "Device",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "Device",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "SerialNumber",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "SerialNumber",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "DeviceSoftwareVersion",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "DeviceSoftwareVersion",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Name",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "Name",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "Mrr_Data",
+								"type": "DatasetReference"
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "Stg_Fact_Data",
+								"type": "DatasetReference"
+							}
+						]
+					}
+				],
+				"folder": {
+					"name": "EDHR/Stg"
+				},
+				"annotations": []
+			},
+			"dependsOn": []
+		}
+	]
+}
