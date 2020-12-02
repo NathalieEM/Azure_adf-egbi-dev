@@ -1,0 +1,16 @@
+{
+	"name": "SAP_integrator_dev_accounts_replica",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "SqlServer",
+		"typeProperties": {
+			"connectionString": "integrated security=False;data source=SAP;initial catalog=SAP_Integrator;user id=\"sa \"",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI3YzZiMGIxMS03ODBmLTRhYzAtYWIxYi01ZDllNWE4YWM4NzciLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "ir-sap",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}
