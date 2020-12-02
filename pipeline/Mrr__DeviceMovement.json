@@ -195,7 +195,7 @@
 							},
 							"tableName": {
 								"type": "String",
-								"value": "Mrr_DeviceMovement"
+								"value": "Mrr_DeviceMovement_replica"
 							}
 						},
 						"queryTimeout": "02:00:00",
@@ -238,7 +238,7 @@
 							"type": "String"
 						},
 						"tableName": {
-							"value": "Mrr_DeviceMovement",
+							"value": "Mrr_DeviceMovement_replica",
 							"type": "String"
 						}
 					}
@@ -279,7 +279,7 @@
 		"parameters": {
 			"param_tableName": {
 				"type": "string",
-				"defaultValue": "DeviceMovement"
+				"defaultValue": "Mrr_DeviceMovement_replica"
 			}
 		},
 		"folder": {

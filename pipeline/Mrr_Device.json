@@ -50,7 +50,10 @@
 				"typeProperties": {
 					"source": {
 						"type": "SqlServerSource",
-						"sqlReaderQuery": "SELECT *\nFROM [dbo].[_Device]\nWHERE [@{activity('get watermark').output.firstRow.columnName}] >= '@{activity('get watermark').output.firstRow.highValue}'",
+						"sqlReaderQuery": {
+							"value": "SELECT *\nFROM [dbo].[_Device]\nWHERE [@{activity('get watermark').output.firstRow.columnName}] >= '@{activity('get watermark').output.firstRow.highValue}'",
+							"type": "Expression"
+						},
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
@@ -183,7 +186,7 @@
 							},
 							"tableName": {
 								"type": "String",
-								"value": "Mrr_Device"
+								"value": "Mrr_Device_replica"
 							}
 						},
 						"queryTimeout": "02:00:00",
@@ -192,7 +195,8 @@
 					"dataset": {
 						"referenceName": "watermarks_highValues",
 						"type": "DatasetReference"
-					}
+					},
+					"firstRowOnly": true
 				}
 			},
 			{
@@ -253,7 +257,7 @@
 							"type": "String"
 						},
 						"tableName": {
-							"value": "Mrr_Device",
+							"value": "Mrr_Device_replica",
 							"type": "String"
 						}
 					}
@@ -267,7 +271,7 @@
 		"parameters": {
 			"param_tableName": {
 				"type": "string",
-				"defaultValue": "Mrr_Device"
+				"defaultValue": "Mrr_Device_replica"
 			}
 		},
 		"folder": {
