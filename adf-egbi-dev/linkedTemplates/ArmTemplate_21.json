@@ -11358,7 +11358,7 @@
 									},
 									"tableName": {
 										"type": "String",
-										"value": "Mrr_Device"
+										"value": "Mrr_Device_replica"
 									}
 								},
 								"queryTimeout": "02:00:00",
@@ -11368,7 +11368,8 @@
 								"referenceName": "watermarks_highValues",
 								"type": "DatasetReference",
 								"parameters": {}
-							}
+							},
+							"firstRowOnly": true
 						}
 					},
 					{
@@ -11429,7 +11430,7 @@
 									"type": "String"
 								},
 								"tableName": {
-									"value": "Mrr_Device",
+									"value": "Mrr_Device_replica",
 									"type": "String"
 								}
 							}
@@ -11440,12 +11441,6 @@
 						}
 					}
 				],
-				"parameters": {
-					"param_tableName": {
-						"type": "string",
-						"defaultValue": "Mrr_Device"
-					}
-				},
 				"folder": {
 					"name": "EDHR/MRR"
 				},
@@ -11509,7 +11504,7 @@
 							"source": {
 								"type": "SqlServerSource",
 								"sqlReaderQuery": {
-									"value": "SELECT *\nFROM [dbo].[_DeviceProcedureData]\nWHERE [@{activity('get watermark').output.firstRow.columnName}] >= '@{activity('get watermark').output.firstRow.highValue}'",
+									"value": "SELECT * FROM [dbo].[_DeviceProcedureData]\nWHERE [@{activity('get watermark').output.firstRow.columnName}] >= '@{activity('get watermark').output.firstRow.highValue}'",
 									"type": "Expression"
 								},
 								"queryTimeout": "02:00:00",
@@ -11527,13 +11522,6 @@
 								"path": "adfstagedcopytempdata"
 							},
 							"enableSkipIncompatibleRow": true,
-							"logStorageSettings": {
-								"linkedServiceName": {
-									"referenceName": "st_error_log",
-									"type": "LinkedServiceReference"
-								},
-								"path": "adf-errorlogs-dev"
-							},
 							"translator": {
 								"type": "TabularTranslator",
 								"mappings": [
@@ -11784,7 +11772,7 @@
 									},
 									"tableName": {
 										"type": "String",
-										"value": "Mrr_DeviceProcedureData"
+										"value": "Mrr_DeviceProcedureData_replica"
 									}
 								},
 								"queryTimeout": "02:00:00",
@@ -11866,12 +11854,6 @@
 						}
 					}
 				],
-				"parameters": {
-					"param_tableName": {
-						"type": "string",
-						"defaultValue": "DeviceProcedureData"
-					}
-				},
 				"folder": {
 					"name": "EDHR/MRR"
 				},
