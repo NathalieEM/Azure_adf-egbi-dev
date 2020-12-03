@@ -13,6 +13,132 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/MRR_PROJECTS')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqlsrv_sap_TestNewQcoreDB_05012020",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLDB-EGBI-DEV/PORF"
+				},
+				"annotations": [],
+				"type": "SqlServerTable",
+				"schema": [
+					{
+						"name": "PrjCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PrjName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Locked",
+						"type": "char"
+					},
+					{
+						"name": "DataSource",
+						"type": "char"
+					},
+					{
+						"name": "UserSign",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "ValidFrom",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "ValidTo",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "Active",
+						"type": "char"
+					},
+					{
+						"name": "LogInstanc",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "UserSign2",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "UpdateDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "U_beas_status",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_beas_template",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_beas_cardcode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_beas_belnr_id",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "U_beas_belpos_id",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "U_Owner",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_OwnerMail",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_Secondary",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_SecMail",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_PORFApp",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_PorfApp2",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_PORF",
+						"type": "nvarchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "OPRJ"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/MRR_PROJECTS1')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -15617,390 +15743,6 @@
 				"typeProperties": {
 					"schema": "dbo",
 					"table": "OINV"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/OITB')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqlsrv_sap",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQLSRV-SAP/NewQcoreDB"
-				},
-				"annotations": [],
-				"type": "SqlServerTable",
-				"schema": [
-					{
-						"name": "ItmsGrpCod",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "ItmsGrpNam",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Locked",
-						"type": "char"
-					},
-					{
-						"name": "DataSource",
-						"type": "char"
-					},
-					{
-						"name": "UserSign",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "BalInvntAc",
-						"type": "nvarchar"
-					},
-					{
-						"name": "SaleCostAc",
-						"type": "nvarchar"
-					},
-					{
-						"name": "TransferAc",
-						"type": "nvarchar"
-					},
-					{
-						"name": "RevenuesAc",
-						"type": "nvarchar"
-					},
-					{
-						"name": "VarianceAc",
-						"type": "nvarchar"
-					},
-					{
-						"name": "DecreasAc",
-						"type": "nvarchar"
-					},
-					{
-						"name": "IncreasAc",
-						"type": "nvarchar"
-					},
-					{
-						"name": "ReturnAc",
-						"type": "nvarchar"
-					},
-					{
-						"name": "ExpensesAc",
-						"type": "nvarchar"
-					},
-					{
-						"name": "EURevenuAc",
-						"type": "nvarchar"
-					},
-					{
-						"name": "EUExpensAc",
-						"type": "nvarchar"
-					},
-					{
-						"name": "FrRevenuAc",
-						"type": "nvarchar"
-					},
-					{
-						"name": "FrExpensAc",
-						"type": "nvarchar"
-					},
-					{
-						"name": "ExmptIncom",
-						"type": "nvarchar"
-					},
-					{
-						"name": "CycleCode",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "Alert",
-						"type": "char"
-					},
-					{
-						"name": "PriceDifAc",
-						"type": "nvarchar"
-					},
-					{
-						"name": "ExchangeAc",
-						"type": "nvarchar"
-					},
-					{
-						"name": "BalanceAcc",
-						"type": "nvarchar"
-					},
-					{
-						"name": "PurchaseAc",
-						"type": "nvarchar"
-					},
-					{
-						"name": "PAReturnAc",
-						"type": "nvarchar"
-					},
-					{
-						"name": "PurchOfsAc",
-						"type": "nvarchar"
-					},
-					{
-						"name": "ShpdGdsAct",
-						"type": "nvarchar"
-					},
-					{
-						"name": "VatRevAct",
-						"type": "nvarchar"
-					},
-					{
-						"name": "DecresGlAc",
-						"type": "nvarchar"
-					},
-					{
-						"name": "IncresGlAc",
-						"type": "nvarchar"
-					},
-					{
-						"name": "InvntSys",
-						"type": "char"
-					},
-					{
-						"name": "PlaningSys",
-						"type": "char"
-					},
-					{
-						"name": "PrcrmntMtd",
-						"type": "char"
-					},
-					{
-						"name": "OrdrIntrvl",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "OrdrMulti",
-						"type": "decimal",
-						"precision": 19,
-						"scale": 6
-					},
-					{
-						"name": "MinOrdrQty",
-						"type": "decimal",
-						"precision": 19,
-						"scale": 6
-					},
-					{
-						"name": "LeadTime",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "StokRvlAct",
-						"type": "nvarchar"
-					},
-					{
-						"name": "StkOffsAct",
-						"type": "nvarchar"
-					},
-					{
-						"name": "WipAcct",
-						"type": "nvarchar"
-					},
-					{
-						"name": "WipVarAcct",
-						"type": "nvarchar"
-					},
-					{
-						"name": "CostRvlAct",
-						"type": "nvarchar"
-					},
-					{
-						"name": "CstOffsAct",
-						"type": "nvarchar"
-					},
-					{
-						"name": "ExpClrAct",
-						"type": "nvarchar"
-					},
-					{
-						"name": "ExpOfstAct",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Object",
-						"type": "nvarchar"
-					},
-					{
-						"name": "logInstanc",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "createDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "userSign2",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "updateDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "ARCMAct",
-						"type": "nvarchar"
-					},
-					{
-						"name": "ARCMFrnAct",
-						"type": "nvarchar"
-					},
-					{
-						"name": "ARCMEUAct",
-						"type": "nvarchar"
-					},
-					{
-						"name": "ARCMExpAct",
-						"type": "nvarchar"
-					},
-					{
-						"name": "APCMAct",
-						"type": "nvarchar"
-					},
-					{
-						"name": "APCMFrnAct",
-						"type": "nvarchar"
-					},
-					{
-						"name": "APCMEUAct",
-						"type": "nvarchar"
-					},
-					{
-						"name": "RevRetAct",
-						"type": "nvarchar"
-					},
-					{
-						"name": "ItemClass",
-						"type": "char"
-					},
-					{
-						"name": "OSvcCode",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "ISvcCode",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "ServiceGrp",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "NCMCode",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "MatType",
-						"type": "nvarchar"
-					},
-					{
-						"name": "MatGrp",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "ProductSrc",
-						"type": "nvarchar"
-					},
-					{
-						"name": "NegStckAct",
-						"type": "nvarchar"
-					},
-					{
-						"name": "StkInTnAct",
-						"type": "nvarchar"
-					},
-					{
-						"name": "PurBalAct",
-						"type": "nvarchar"
-					},
-					{
-						"name": "WhICenAct",
-						"type": "nvarchar"
-					},
-					{
-						"name": "WhOCenAct",
-						"type": "nvarchar"
-					},
-					{
-						"name": "WipOffset",
-						"type": "nvarchar"
-					},
-					{
-						"name": "StockOffst",
-						"type": "nvarchar"
-					},
-					{
-						"name": "UgpEntry",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "IUoMEntry",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "ToleranDay",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "RuleCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "CompoWH",
-						"type": "char"
-					},
-					{
-						"name": "FreeChrgSA",
-						"type": "nvarchar"
-					},
-					{
-						"name": "FreeChrgPU",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_NextSN",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "U_ItemType",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "U_Company",
-						"type": "nvarchar"
-					}
-				],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "OITB"
 				}
 			},
 			"dependsOn": []
