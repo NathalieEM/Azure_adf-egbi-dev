@@ -13,6 +13,66 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/Stg_SapPO')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqldb_egbi_dev",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "PORF"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "PORFNum",
+						"type": "nvarchar"
+					},
+					{
+						"name": "SAPDocNum",
+						"type": "nvarchar"
+					},
+					{
+						"name": "TranDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "TranStatus",
+						"type": "nvarchar"
+					},
+					{
+						"name": "TranMessage",
+						"type": "nvarchar"
+					},
+					{
+						"name": "dtUpdated",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "TakenToSP",
+						"type": "bit"
+					}
+				],
+				"typeProperties": {
+					"schema": "PORF",
+					"table": "Stg_SapPO"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/Stg_SapPO1')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -2160,30 +2220,6 @@
 					"schema": "training",
 					"table": "Mrr_SF_Record_Type"
 				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/json_dummy')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "st_error_log",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "Blob Storage"
-				},
-				"annotations": [],
-				"type": "Json",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"container": "prof"
-					}
-				},
-				"schema": {}
 			},
 			"dependsOn": []
 		}
