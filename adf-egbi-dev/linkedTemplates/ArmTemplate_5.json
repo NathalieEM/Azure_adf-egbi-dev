@@ -13,114 +13,6 @@
 	},
 	"resources": [
 		{
-			"name": "[concat(parameters('factoryName'), '/Mrr_SCORE_CONFIG')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqldb_egbi_dev",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQLDB-EGBI-DEV/ScoreCards/Mrr"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "Code",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Name",
-						"type": "nvarchar"
-					},
-					{
-						"name": "DocEntry",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Canceled",
-						"type": "char"
-					},
-					{
-						"name": "Object",
-						"type": "nvarchar"
-					},
-					{
-						"name": "LogInst",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "UserSign",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Transfered",
-						"type": "char"
-					},
-					{
-						"name": "CreateDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "CreateTime",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "UpdateDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "UpdateTime",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "DataSource",
-						"type": "char"
-					},
-					{
-						"name": "U_Type",
-						"type": "char"
-					},
-					{
-						"name": "U_REV",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_Active",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_ActiveFrom",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "U_Activeto",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					}
-				],
-				"typeProperties": {
-					"schema": "ScoreCards",
-					"table": "Mrr_SCORE_CONFIG"
-				}
-			},
-			"dependsOn": []
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/Mrr_SCORE_CONFIG_LINES')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -1846,6 +1738,216 @@
 				"typeProperties": {
 					"schema": "ScoreCards",
 					"table": "Mrr_Suppliers_Audit_Activities_Followup"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Mrr_User')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqldb_egbi_dev",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLDB-EGBI-DEV/Service/Mrr"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "fGroupID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "IsTrainingUser",
+						"type": "bit"
+					},
+					{
+						"name": "IsAdminUser",
+						"type": "bit"
+					},
+					{
+						"name": "FirstName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "LastName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "fPositionID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Position",
+						"type": "nvarchar"
+					},
+					{
+						"name": "fStateID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "City",
+						"type": "nvarchar"
+					},
+					{
+						"name": "fCountryID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "fTrainerID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "fServiceCenterID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Organization",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Phone",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Email",
+						"type": "nvarchar"
+					},
+					{
+						"name": "UserName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "UserPassword",
+						"type": "nvarchar"
+					},
+					{
+						"name": "UserDisplayName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "IsActive",
+						"type": "bit"
+					},
+					{
+						"name": "fStatusID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "fNewUserStatusID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "RegistrationDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "IsBlockUser",
+						"type": "bit"
+					},
+					{
+						"name": "UserCertificationRenewDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "ApproveTermsConditions",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "IsNeedApproveTermsAgain",
+						"type": "bit"
+					},
+					{
+						"name": "__Location",
+						"type": "char"
+					},
+					{
+						"name": "fLocationID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "dtLocationDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "__Office",
+						"type": "char"
+					},
+					{
+						"name": "fCreatedByID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "dtCreatedDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "fUpdatedByID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "dtUpdatedDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "__sync_to_sap_fields",
+						"type": "nvarchar"
+					},
+					{
+						"name": "IsToExport",
+						"type": "bit"
+					},
+					{
+						"name": "dtLastExportDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "__fDistributorID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_fServiceCenterID",
+						"type": "int",
+						"precision": 10
+					}
+				],
+				"typeProperties": {
+					"schema": "srv",
+					"table": "Mrr_User"
 				}
 			},
 			"dependsOn": []

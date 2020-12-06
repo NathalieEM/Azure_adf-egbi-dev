@@ -13,138 +13,6 @@
 	},
 	"resources": [
 		{
-			"name": "[concat(parameters('factoryName'), '/Service_Flow1')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "TESTSorrelDB_25022020",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQLDB-EGBI-DEV/SAP"
-				},
-				"annotations": [],
-				"type": "SqlServerTable",
-				"schema": [
-					{
-						"name": "ID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Callid",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "ObjId",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Sort",
-						"type": "float",
-						"precision": 15
-					},
-					{
-						"name": "Step",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Startdate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "Enddate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "DaysInstep",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "StepGoal",
-						"type": "nchar"
-					},
-					{
-						"name": "PendingGroup",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "dtupdated",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "isDeleted",
-						"type": "bit"
-					}
-				],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": {
-						"value": "@@ServiceFlow",
-						"type": "Expression"
-					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/SrvCenterConfig')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqlsrv_sap",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQLDB-EGBI-DEV/ScoreCards/Mrr"
-				},
-				"annotations": [],
-				"type": "SqlServerTable",
-				"schema": [
-					{
-						"name": "Code",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Name",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_Location",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_Countries",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_ReEqp",
-						"type": "nvarchar"
-					}
-				],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": {
-						"value": "@@SRVCENTERCONFIG",
-						"type": "Expression"
-					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/Suppliers_OCRD_OCRN_OCTG')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -8081,6 +7949,410 @@
 				"lastPublishTime": "2020-08-25T08:24:49Z"
 			},
 			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/4_SF_MRR_Account_WayBackExample')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "AZURE_Acoount",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "AzureSqlSource",
+								"sqlReaderQuery": "  select * from sf.Mrr_sf_account_replica \nwhere \n Type = 'A' and \n[ETL_TargetUpdated] = 1 \nand ERP_account_Id__c is not null\n",
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"sink": {
+								"type": "SalesforceSink",
+								"writeBatchSize": 5000,
+								"writeBehavior": "upsert",
+								"externalIdFieldName": "Account_External_Id__c",
+								"ignoreNullValues": true
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "Account_External_Id__c",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "Account_External_Id__c",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "BYD_id",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "ERP_Account_ID__c",
+											"type": "String"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "SF_MRR_Account",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "SalesforceObject_account",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"folder": {
+					"name": "SF/ACCOUNTS"
+				},
+				"annotations": [],
+				"lastPublishTime": "2020-10-08T10:02:02Z"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AWS_Call')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Copy Mrr_Call",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "sp_trunc_Mrr_Call",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "SqlServerSource",
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"sink": {
+								"type": "AzureSqlSink"
+							},
+							"enableStaging": true,
+							"stagingSettings": {
+								"linkedServiceName": {
+									"referenceName": "st_error_log",
+									"type": "LinkedServiceReference"
+								}
+							},
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "ID",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "ID",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "fSerialNumber",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "fSerialNumber",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "callID",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "callID",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "fTemplateID",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "fTemplateID",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "fCategoryID",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "fCategoryID",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "CategoryOther",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "CategoryOther",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "fSubCategoryID",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "fSubCategoryID",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "SubCategoryOther",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "SubCategoryOther",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Title",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "Title",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "CallDesc",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "CallDesc",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "fUrgencyID",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "fUrgencyID",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "fMainAssetID",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "fMainAssetID",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "fStatusID",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "fStatusID",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "___office",
+											"type": "String",
+											"physicalType": "char"
+										},
+										"sink": {
+											"name": "___office",
+											"type": "String",
+											"physicalType": "char"
+										}
+									},
+									{
+										"source": {
+											"name": "fCreatedByID",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "fCreatedByID",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "dtCreatedDate",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										},
+										"sink": {
+											"name": "dtCreatedDate",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										}
+									},
+									{
+										"source": {
+											"name": "fUpdatedByID",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "fUpdatedByID",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "dtUpdatedDate",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										},
+										"sink": {
+											"name": "dtUpdatedDate",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "tbl_Call",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "Mrr_Call",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "sp_trunc_Mrr_Call",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[srv].[sp_trunc_Mrr_Call]"
+						},
+						"linkedServiceName": {
+							"referenceName": "sqldb_egbi_dev",
+							"type": "LinkedServiceReference"
+						}
+					}
+				],
+				"folder": {
+					"name": "Service/Mrr"
+				},
+				"annotations": [],
+				"lastPublishTime": "2020-10-11T13:21:45Z"
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/tbl_Call')]"
+			]
 		}
 	]
 }

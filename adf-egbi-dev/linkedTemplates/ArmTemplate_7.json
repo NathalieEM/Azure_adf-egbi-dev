@@ -13,177 +13,6 @@
 	},
 	"resources": [
 		{
-			"name": "[concat(parameters('factoryName'), '/SAP_Mrr_OITM1')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqldb_sorrelbi_dev",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQLDB-EGBI-DEV/SAP"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "ETL_ID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "ETL_Timestamp",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "ItemCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "ItemName",
-						"type": "nvarchar"
-					},
-					{
-						"name": "FrgnName",
-						"type": "nvarchar"
-					},
-					{
-						"name": "ItmsGrpCod",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "PrchseItem",
-						"type": "char"
-					},
-					{
-						"name": "SellItem",
-						"type": "char"
-					},
-					{
-						"name": "InvntItem",
-						"type": "char"
-					},
-					{
-						"name": "OnHand",
-						"type": "decimal",
-						"precision": 19,
-						"scale": 6
-					},
-					{
-						"name": "IsCommited",
-						"type": "decimal",
-						"precision": 19,
-						"scale": 6
-					},
-					{
-						"name": "OnOrder",
-						"type": "decimal",
-						"precision": 19,
-						"scale": 6
-					},
-					{
-						"name": "CardCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "SuppCatNum",
-						"type": "nvarchar"
-					},
-					{
-						"name": "BuyUnitMsr",
-						"type": "nvarchar"
-					},
-					{
-						"name": "SalUnitMsr",
-						"type": "nvarchar"
-					},
-					{
-						"name": "LstSalDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "CreateDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "UpdateDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "frozenFor",
-						"type": "char"
-					},
-					{
-						"name": "frozenFrom",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "frozenTo",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "ItemType",
-						"type": "char"
-					},
-					{
-						"name": "U_EOL",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_EolFrom",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "U_SWEOL",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_SWEolFrom",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "SalPackUn",
-						"type": "decimal",
-						"precision": 19,
-						"scale": 6
-					},
-					{
-						"name": "PurPackUn",
-						"type": "decimal",
-						"precision": 19,
-						"scale": 6
-					},
-					{
-						"name": "U_HosPN",
-						"type": "nvarchar"
-					}
-				],
-				"typeProperties": {
-					"schema": "sap",
-					"table": "Mrr_OITM"
-				}
-			},
-			"dependsOn": []
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/SAP_Mrr_OPRJ')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -3132,6 +2961,27 @@
 				"schema": [],
 				"typeProperties": {
 					"objectApiName": "CompSuite__Junction_Curriculum_Requirement_Header__c"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SF_Departments')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_salesforce",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SalesForce"
+				},
+				"annotations": [],
+				"type": "SalesforceObject",
+				"schema": [],
+				"typeProperties": {
+					"objectApiName": "CompSuite__Department__c"
 				}
 			},
 			"dependsOn": []

@@ -81,268 +81,6 @@
 	},
 	"resources": [
 		{
-			"name": "[concat(parameters('factoryName'), '/training_Mrr_SF_Training_Assignment')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqldb_egbi_dev",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQLDB-EGBI-DEV/Training"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "ETL_ID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "ETL_Timestamp",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "Id",
-						"type": "varchar"
-					},
-					{
-						"name": "OwnerId",
-						"type": "varchar"
-					},
-					{
-						"name": "IsDeleted",
-						"type": "bit"
-					},
-					{
-						"name": "Name",
-						"type": "nvarchar"
-					},
-					{
-						"name": "RecordTypeId",
-						"type": "varchar"
-					},
-					{
-						"name": "CreatedDate",
-						"type": "datetime2",
-						"scale": 0
-					},
-					{
-						"name": "CreatedById",
-						"type": "varchar"
-					},
-					{
-						"name": "LastModifiedDate",
-						"type": "datetime2",
-						"scale": 0
-					},
-					{
-						"name": "LastModifiedById",
-						"type": "varchar"
-					},
-					{
-						"name": "SystemModstamp",
-						"type": "datetime2",
-						"scale": 0
-					},
-					{
-						"name": "LastActivityDate",
-						"type": "datetime2",
-						"scale": 0
-					},
-					{
-						"name": "LastViewedDate",
-						"type": "datetime2",
-						"scale": 0
-					},
-					{
-						"name": "LastReferencedDate",
-						"type": "datetime2",
-						"scale": 0
-					},
-					{
-						"name": "CompSuite__Classroom__c",
-						"type": "nvarchar"
-					},
-					{
-						"name": "CompSuite__Completion_Date__c",
-						"type": "datetime2",
-						"scale": 0
-					},
-					{
-						"name": "CompSuite__Days_to_Complete__c",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "CompSuite__Document_Header__c",
-						"type": "nvarchar"
-					},
-					{
-						"name": "CompSuite__Document_Revision__c",
-						"type": "nvarchar"
-					},
-					{
-						"name": "CompSuite__Download_PDF__c",
-						"type": "nvarchar"
-					},
-					{
-						"name": "CompSuite__Due_Date__c",
-						"type": "datetime2",
-						"scale": 0
-					},
-					{
-						"name": "CompSuite__Employee_Email__c",
-						"type": "nvarchar"
-					},
-					{
-						"name": "CompSuite__Employee__c",
-						"type": "varchar"
-					},
-					{
-						"name": "CompSuite__Life_Cycle_Comments__c",
-						"type": "nvarchar"
-					},
-					{
-						"name": "CompSuite__Link_to_on_line_Training__c",
-						"type": "nvarchar"
-					},
-					{
-						"name": "CompSuite__Lock_Fields__c",
-						"type": "nvarchar"
-					},
-					{
-						"name": "CompSuite__Record_Type__c",
-						"type": "nvarchar"
-					},
-					{
-						"name": "CompSuite__Requirement_Header__c",
-						"type": "nvarchar"
-					},
-					{
-						"name": "CompSuite__Requirement_Revision_Descr__c",
-						"type": "nvarchar"
-					},
-					{
-						"name": "CompSuite__Requirement_Revision_ID__c",
-						"type": "nvarchar"
-					},
-					{
-						"name": "CompSuite__Requirement_Revision__c",
-						"type": "varchar"
-					},
-					{
-						"name": "CompSuite__State__c",
-						"type": "varchar"
-					},
-					{
-						"name": "CompSuite__Training_Assignment_ID__c",
-						"type": "nvarchar"
-					},
-					{
-						"name": "CompSuite__Training_Completed__c",
-						"type": "bit"
-					},
-					{
-						"name": "CompSuite__Training_Objective__c",
-						"type": "nvarchar"
-					},
-					{
-						"name": "CompSuite__Training_Purpose__c",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Course_Classification__c",
-						"type": "nvarchar"
-					},
-					{
-						"name": "CompSuite__Is_Last_Version__c",
-						"type": "bit"
-					},
-					{
-						"name": "Employee_is_logged_in_user__c",
-						"type": "bit"
-					},
-					{
-						"name": "CompSuite__Requirement_Revision_Notes_Attachments__c",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Document_Revision_Version__c",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Document_Number__c",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Trainer__c",
-						"type": "nvarchar"
-					},
-					{
-						"name": "CompSuite__Exams_Cycles__c",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "CompSuite__Executed_Protocols__c",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "CompSuite__Number_of_allowed_failures__c",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "CompSuite__Number_of_failures__c",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "CompSuite__Passed_Exam__c",
-						"type": "bit"
-					},
-					{
-						"name": "CompSuite__Score__c",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "CompSuite__Training_Effectiveness_Protocol__c",
-						"type": "nvarchar"
-					},
-					{
-						"name": "CreatedTime__c",
-						"type": "datetime2",
-						"scale": 0
-					},
-					{
-						"name": "Employee_Company__c",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Exam__c",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Is_Open__c",
-						"type": "bit"
-					}
-				],
-				"typeProperties": {
-					"schema": "training",
-					"table": "Mrr_SF_Training_Assignment"
-				}
-			},
-			"dependsOn": []
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/vw_Training_Quality_Plan')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -1232,6 +970,151 @@
 				},
 				"annotations": [],
 				"lastPublishTime": "2020-08-18T13:00:26Z"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Mrr_Fact_SuppliersPN')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Copy Mrr_Fact_SuppliersPN",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "trunc Mrr_Fact_SuppliersPN",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "AzureSqlSource",
+								"sqlReaderQuery": "select distinct ItemCode,T0.CardCode,T1.CardName,U_ScoreCard from sap.Mrr_OSCN T0\nleft join sap.Mrr_OCRD_replica T1 on T0.cardcode=T1.cardcode",
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"sink": {
+								"type": "AzureSqlSink"
+							},
+							"enableStaging": true,
+							"stagingSettings": {
+								"linkedServiceName": {
+									"referenceName": "AzureBlobStorage1",
+									"type": "LinkedServiceReference"
+								}
+							},
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "ItemCode",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "ItemCode",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "CardCode",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "SupplierID",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "CardName",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "SupplierName",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "U_ScoreCard",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "ScoreCard",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "Mrr_Fact_SuppliersPN",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "Dwh_fact_supplierspn",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "trunc Mrr_Fact_SuppliersPN",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[ScoreCards].[sp_trunc_Dwh_Fact_SuppliersPN]"
+						},
+						"linkedServiceName": {
+							"referenceName": "sqldb_egbi_dev",
+							"type": "LinkedServiceReference"
+						}
+					}
+				],
+				"folder": {
+					"name": "ScoreCards/Mrr"
+				},
+				"annotations": [],
+				"lastPublishTime": "2020-09-08T12:34:39Z"
 			},
 			"dependsOn": []
 		}
