@@ -13,6 +13,196 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/CostCenter_OPRC')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqlsrv_sap_TestNewQcoreDB_05012020",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLSRV-SAP/NewQcoreDB"
+				},
+				"annotations": [],
+				"type": "SqlServerTable",
+				"schema": [
+					{
+						"name": "PrcCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PrcName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "GrpCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Balance",
+						"type": "decimal",
+						"precision": 19,
+						"scale": 6
+					},
+					{
+						"name": "Locked",
+						"type": "char"
+					},
+					{
+						"name": "DataSource",
+						"type": "char"
+					},
+					{
+						"name": "UserSign",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "DimCode",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "CCTypeCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ValidFrom",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "ValidTo",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "Active",
+						"type": "char"
+					},
+					{
+						"name": "LogInstanc",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "UserSign2",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "UpdateDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "OPRC"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/CostCenter_OPRC1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "TESTSorrelDB_25022020",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLSRV-SAP/NewQcoreDB"
+				},
+				"annotations": [],
+				"type": "SqlServerTable",
+				"schema": [
+					{
+						"name": "PrcCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PrcName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "GrpCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Balance",
+						"type": "decimal",
+						"precision": 19,
+						"scale": 6
+					},
+					{
+						"name": "Locked",
+						"type": "char"
+					},
+					{
+						"name": "DataSource",
+						"type": "char"
+					},
+					{
+						"name": "UserSign",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "DimCode",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "CCTypeCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ValidFrom",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "ValidTo",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "Active",
+						"type": "char"
+					},
+					{
+						"name": "LogInstanc",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "UserSign2",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "UpdateDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "OPRC"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/CostCenter_OPRC2')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -15334,164 +15524,6 @@
 				"typeProperties": {
 					"schema": "dbo",
 					"table": "tbl_KnownIssues"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Location')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sql_rptsrv",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQLSRV-RPTSRV/EDHR"
-				},
-				"annotations": [],
-				"type": "SqlServerTable",
-				"schema": [
-					{
-						"name": "ID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "_Name",
-						"type": "nvarchar"
-					}
-				],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "_Location"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/MRR_PROJECTS')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqlsrv_sap_TestNewQcoreDB_05012020",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQLDB-EGBI-DEV/PORF"
-				},
-				"annotations": [],
-				"type": "SqlServerTable",
-				"schema": [
-					{
-						"name": "PrjCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "PrjName",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Locked",
-						"type": "char"
-					},
-					{
-						"name": "DataSource",
-						"type": "char"
-					},
-					{
-						"name": "UserSign",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "ValidFrom",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "ValidTo",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "Active",
-						"type": "char"
-					},
-					{
-						"name": "LogInstanc",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "UserSign2",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "UpdateDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "U_beas_status",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_beas_template",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_beas_cardcode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_beas_belnr_id",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "U_beas_belpos_id",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "U_Owner",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_OwnerMail",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_Secondary",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_SecMail",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_PORFApp",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_PorfApp2",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_PORF",
-						"type": "nvarchar"
-					}
-				],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "OPRJ"
 				}
 			},
 			"dependsOn": []

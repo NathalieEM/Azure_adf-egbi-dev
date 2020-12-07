@@ -13,6 +13,48 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/SF_Curriculum_Requirement_Relations')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_salesforce",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SalesForce"
+				},
+				"annotations": [],
+				"type": "SalesforceObject",
+				"schema": [],
+				"typeProperties": {
+					"objectApiName": "CompSuite__Junction_Curriculum_Requirement_Header__c"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SF_Departments')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_salesforce",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SalesForce"
+				},
+				"annotations": [],
+				"type": "SalesforceObject",
+				"schema": [],
+				"typeProperties": {
+					"objectApiName": "CompSuite__Department__c"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/SF_Employee')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -982,198 +1024,6 @@
 				"typeProperties": {
 					"schema": "srv",
 					"table": "Stg_Fact_Trending"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Stg_IQC_Followup')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqldb_egbi_dev",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQLDB-EGBI-DEV/ScoreCards/Stg"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "Year",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "WeeK",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "EndDateIQC",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "SupplierID",
-						"type": "nvarchar"
-					},
-					{
-						"name": "SupplierName",
-						"type": "nvarchar"
-					},
-					{
-						"name": "DateReciept",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "Itemcode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "ProductType",
-						"type": "nvarchar"
-					},
-					{
-						"name": "TotalRecQty",
-						"type": "float",
-						"precision": 15
-					},
-					{
-						"name": "Pass/Fail",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Rev number ",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Batch Number",
-						"type": "nvarchar"
-					}
-				],
-				"typeProperties": {
-					"schema": "ScoreCards",
-					"table": "Stg_IQC_Followup"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Stg_OCReport')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqldb_egbi_dev",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQLDB-EGBI-DEV/Service/Stg"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "Step",
-						"type": "nvarchar"
-					},
-					{
-						"name": "CallId",
-						"type": "nvarchar"
-					},
-					{
-						"name": "objid",
-						"type": "nvarchar"
-					},
-					{
-						"name": "pendinggroup",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "SD",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "ED",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "startweek",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "endweek",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Wkopenat",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Dates",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "Name",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_StepFatherGroup",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "U_GoalInDays",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Hirarchy",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Sort",
-						"type": "float",
-						"precision": 15
-					},
-					{
-						"name": "U_CompDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "U_ThirdPumpAttempt",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "U_LevelInvestigation",
-						"type": "nvarchar"
-					}
-				],
-				"typeProperties": {
-					"schema": "srv",
-					"table": "Stg_OCReport"
 				}
 			},
 			"dependsOn": []
