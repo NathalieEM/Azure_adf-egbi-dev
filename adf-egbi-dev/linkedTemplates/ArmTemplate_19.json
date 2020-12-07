@@ -5806,7 +5806,7 @@
 							"source": {
 								"type": "SalesforceSource",
 								"query": {
-									"value": "select * from Account\n",
+									"value": "select * from Account\nWHERE LastModifiedDate >= '@{activity('get watermark').output.firstRow.highValue}'",
 									"type": "Expression"
 								},
 								"readBehavior": "query"
@@ -6704,7 +6704,7 @@
 							"source": {
 								"type": "SalesforceSource",
 								"query": {
-									"value": "select * from Account_Addresses__c\n",
+									"value": "select * from Account_Addresses__c\nWHERE LastModifiedDate >= '@{activity('get watermark').output.firstRow.highValue}'",
 									"type": "Expression"
 								},
 								"readBehavior": "query"
