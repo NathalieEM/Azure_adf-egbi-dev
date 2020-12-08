@@ -4,6 +4,7 @@
 		"activities": [
 			{
 				"name": "SF_MRR_Account",
+				"description": "take out the account with no address billing and shipping\nIf it have a parent only shipping",
 				"type": "Copy",
 				"dependsOn": [
 					{
@@ -792,6 +793,7 @@
 			},
 			{
 				"name": "Truncate SF_Mrr_Account",
+				"description": "why the Value at water mark string? ",
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [],
 				"policy": {
@@ -837,6 +839,7 @@
 			},
 			{
 				"name": "Merge SF_MRR_Account_Replica",
+				"description": "merge if not mach id insert if mach id and field different and target did not met update if target met insert",
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
@@ -864,6 +867,7 @@
 			},
 			{
 				"name": "Set Watermark",
+				"description": "why it is setting string",
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
@@ -905,6 +909,7 @@
 			},
 			{
 				"name": "SF_MRR_Address",
+				"description": "take out adress with no shipping",
 				"type": "Copy",
 				"dependsOn": [
 					{
@@ -1159,6 +1164,7 @@
 			},
 			{
 				"name": "Merge_Mrr_Address_to_Account_Replica",
+				"description": "merge if not mach id insert if mach id and field different and target did not met update if target met insert",
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
