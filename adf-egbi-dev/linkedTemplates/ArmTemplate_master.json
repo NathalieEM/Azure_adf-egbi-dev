@@ -439,9 +439,6 @@
 					"sqlsrv_sap_connectionString": {
 						"value": "[parameters('sqlsrv_sap_connectionString')]"
 					},
-					"sqlsrv_sap_TestNewQcoreDB_05012020_connectionString": {
-						"value": "[parameters('sqlsrv_sap_TestNewQcoreDB_05012020_connectionString')]"
-					},
 					"SalesforceSandBox_properties_typeProperties_environmentUrl": {
 						"value": "[parameters('SalesforceSandBox_properties_typeProperties_environmentUrl')]"
 					},
@@ -467,6 +464,9 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"sqlsrv_sap_TestNewQcoreDB_05012020_connectionString": {
+						"value": "[parameters('sqlsrv_sap_TestNewQcoreDB_05012020_connectionString')]"
 					}
 				}
 			},

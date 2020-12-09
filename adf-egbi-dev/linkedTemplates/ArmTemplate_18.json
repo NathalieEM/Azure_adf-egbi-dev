@@ -13,6 +13,193 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/Rates_ORTT1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "TESTSorrelDB_25022020",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLSRV-SAP/NewQcoreDB"
+				},
+				"annotations": [],
+				"type": "SqlServerTable",
+				"schema": [
+					{
+						"name": "RateDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "Currency",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Rate",
+						"type": "decimal",
+						"precision": 19,
+						"scale": 6
+					},
+					{
+						"name": "DataSource",
+						"type": "char"
+					},
+					{
+						"name": "UserSign",
+						"type": "smallint",
+						"precision": 5
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "ORTT"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Rates_ORTT2')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "TESTSorrelDB_25022020",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLSRV-SAP/NewQcoreDB"
+				},
+				"annotations": [],
+				"type": "SqlServerTable",
+				"schema": [
+					{
+						"name": "RateDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "Currency",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Rate",
+						"type": "decimal",
+						"precision": 19,
+						"scale": 6
+					},
+					{
+						"name": "DataSource",
+						"type": "char"
+					},
+					{
+						"name": "UserSign",
+						"type": "smallint",
+						"precision": 5
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "ORTT"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Result')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sql_rptsrv",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLSRV-RPTSRV/EDHR"
+				},
+				"annotations": [],
+				"type": "SqlServerTable",
+				"schema": [
+					{
+						"name": "ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_Type",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_Value",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_Status",
+						"type": "nvarchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "_Result"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Rework')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sql_rptsrv",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLSRV-RPTSRV/EDHR"
+				},
+				"annotations": [],
+				"type": "SqlServerTable",
+				"schema": [
+					{
+						"name": "ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_Code",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_Category",
+						"type": "varchar"
+					},
+					{
+						"name": "_DescriptionEng",
+						"type": "varchar"
+					},
+					{
+						"name": "_DescriptionHeb",
+						"type": "varchar"
+					},
+					{
+						"name": "_Obsolete",
+						"type": "bit"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "_Rework"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/SAP_Mrr_PCH1')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -2858,561 +3045,6 @@
 				"typeProperties": {
 					"schema": "dbo",
 					"table": "tbl_Service"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/ServiceCenters')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqlsrv_sap",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQLDB-EGBI-DEV/ScoreCards/Mrr"
-				},
-				"annotations": [],
-				"type": "SqlServerTable",
-				"schema": [
-					{
-						"name": "Code",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Name",
-						"type": "nvarchar"
-					},
-					{
-						"name": "DocEntry",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Canceled",
-						"type": "char"
-					},
-					{
-						"name": "Object",
-						"type": "nvarchar"
-					},
-					{
-						"name": "LogInst",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "UserSign",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Transfered",
-						"type": "char"
-					},
-					{
-						"name": "CreateDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "CreateTime",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "UpdateDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "UpdateTime",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "DataSource",
-						"type": "char"
-					},
-					{
-						"name": "U_SC_Name",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_Active",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_CardCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_CardName",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_HubCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_HubName",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_IntakeFormEmail",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_IntakeFormSAMA",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_IsQcore",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_IsICU",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_ServiceCenterType",
-						"type": "int",
-						"precision": 10
-					}
-				],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": {
-						"value": "@@ServiceCenters",
-						"type": "Expression"
-					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/ServiceCenters1')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "TESTSorrelDB_25022020",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQLDB-EGBI-DEV/ScoreCards/Mrr"
-				},
-				"annotations": [],
-				"type": "SqlServerTable",
-				"schema": [
-					{
-						"name": "Code",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Name",
-						"type": "nvarchar"
-					},
-					{
-						"name": "DocEntry",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Canceled",
-						"type": "char"
-					},
-					{
-						"name": "Object",
-						"type": "nvarchar"
-					},
-					{
-						"name": "LogInst",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "UserSign",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Transfered",
-						"type": "char"
-					},
-					{
-						"name": "CreateDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "CreateTime",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "UpdateDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "UpdateTime",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "DataSource",
-						"type": "char"
-					},
-					{
-						"name": "U_SC_Name",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_Active",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_CardCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_CardName",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_HubCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_HubName",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_IntakeFormEmail",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_IntakeFormSAMA",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_IsQcore",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_IsICU",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_ServiceCenterType",
-						"type": "int",
-						"precision": 10
-					}
-				],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": {
-						"value": "@@ServiceCenters",
-						"type": "Expression"
-					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/ServiceFlow')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqlsrv_sap",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQLDB-EGBI-DEV/ScoreCards/Mrr"
-				},
-				"annotations": [],
-				"type": "SqlServerTable",
-				"schema": [
-					{
-						"name": "ID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Callid",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "ObjId",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Sort",
-						"type": "float",
-						"precision": 15
-					},
-					{
-						"name": "Step",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Startdate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "Enddate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "DaysInstep",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "StepGoal",
-						"type": "nchar"
-					},
-					{
-						"name": "PendingGroup",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "dtupdated",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "isDeleted",
-						"type": "bit"
-					}
-				],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": {
-						"value": "@@ServiceFlow",
-						"type": "Expression"
-					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Service_Activites')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AWS_Service_portal",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "AWS"
-				},
-				"annotations": [],
-				"type": "SqlServerTable",
-				"schema": [
-					{
-						"name": "ID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "___General",
-						"type": "nvarchar"
-					},
-					{
-						"name": "fIssueID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "fServiceID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "___DM_fields",
-						"type": "nvarchar"
-					},
-					{
-						"name": "fDeviceID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "SerialNumber",
-						"type": "nvarchar"
-					},
-					{
-						"name": "fComplaintID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "___Form_Data",
-						"type": "bit"
-					},
-					{
-						"name": "UserExperienceCategoryCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "UserExperienceCategoryName",
-						"type": "nvarchar"
-					},
-					{
-						"name": "UserExperienceErrorCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "UserExperienceErrorName",
-						"type": "nvarchar"
-					},
-					{
-						"name": "AnalysisCategoryCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "AnalysisCategoryName",
-						"type": "nvarchar"
-					},
-					{
-						"name": "AnalysisErrorCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "AnalysisErrorName",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Confirmed",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Misused",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "RepairCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "RepairName",
-						"type": "nvarchar"
-					},
-					{
-						"name": "AnalysisRepairCategoryCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "AnalysisRepairCategoryName",
-						"type": "nvarchar"
-					},
-					{
-						"name": "AnalysisRepairErrorCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "AnalysisRepairErrorName",
-						"type": "nvarchar"
-					},
-					{
-						"name": "RepairLevel",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "RepairActionReplacedCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "RepairActionReplacedName",
-						"type": "nvarchar"
-					},
-					{
-						"name": "SparePartSnBatchNumber",
-						"type": "nvarchar"
-					},
-					{
-						"name": "InitializationDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "DiagnosticsConclusion",
-						"type": "nvarchar"
-					},
-					{
-						"name": "DiagnosticsConclusionComments",
-						"type": "nvarchar"
-					},
-					{
-						"name": "UserServiceCenterSAPID",
-						"type": "nvarchar"
-					},
-					{
-						"name": "___office",
-						"type": "char"
-					},
-					{
-						"name": "fCreatedByID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "dtCreatedDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "fUpdatedByID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "dtUpdatedDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "__sync_to_sap_fields",
-						"type": "nvarchar"
-					},
-					{
-						"name": "IsToExport",
-						"type": "bit"
-					},
-					{
-						"name": "dtLastExportDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					}
-				],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "tbl_Service_Activites"
 				}
 			},
 			"dependsOn": []

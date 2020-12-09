@@ -1,0 +1,2750 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "adf-egbi-dev"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/1_SF_MRR_Account_FromSFExample')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "SF_MRR_Account",
+						"description": "take out the account with no address billing and shipping\nIf it have a parent only shipping",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "Truncate SF_Mrr_Account",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "get watermark",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "SalesforceSource",
+								"query": {
+									"value": "select * from Account\nWHERE LastModifiedDate >= '@{activity('get watermark').output.firstRow.highValue}'",
+									"type": "Expression"
+								},
+								"readBehavior": "query"
+							},
+							"sink": {
+								"type": "AzureSqlSink"
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "Id",
+											"type": "String"
+										},
+										"sink": {
+											"name": "Id",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "IsDeleted",
+											"type": "Boolean"
+										},
+										"sink": {
+											"name": "IsDeleted",
+											"type": "Boolean",
+											"physicalType": "bit"
+										}
+									},
+									{
+										"source": {
+											"name": "MasterRecordId",
+											"type": "String"
+										},
+										"sink": {
+											"name": "MasterRecordId",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Name",
+											"type": "String"
+										},
+										"sink": {
+											"name": "Name",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Type",
+											"type": "String"
+										},
+										"sink": {
+											"name": "Type",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "ParentId",
+											"type": "String"
+										},
+										"sink": {
+											"name": "ParentId",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "BillingStreet",
+											"type": "String"
+										},
+										"sink": {
+											"name": "BillingStreet",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "BillingCity",
+											"type": "String"
+										},
+										"sink": {
+											"name": "BillingCity",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "BillingState",
+											"type": "String"
+										},
+										"sink": {
+											"name": "BillingState",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "BillingPostalCode",
+											"type": "String"
+										},
+										"sink": {
+											"name": "BillingPostalCode",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "BillingCountry",
+											"type": "String"
+										},
+										"sink": {
+											"name": "BillingCountry",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "BillingStateCode",
+											"type": "String"
+										},
+										"sink": {
+											"name": "BillingStateCode",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "BillingCountryCode",
+											"type": "String"
+										},
+										"sink": {
+											"name": "BillingCountryCode",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "BillingLatitude",
+											"type": "Decimal"
+										},
+										"sink": {
+											"name": "BillingLatitude",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "BillingLongitude",
+											"type": "Decimal"
+										},
+										"sink": {
+											"name": "BillingLongitude",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "ShippingStreet",
+											"type": "String"
+										},
+										"sink": {
+											"name": "ShippingStreet",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "ShippingCity",
+											"type": "String"
+										},
+										"sink": {
+											"name": "ShippingCity",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "ShippingState",
+											"type": "String"
+										},
+										"sink": {
+											"name": "ShippingState",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "ShippingPostalCode",
+											"type": "String"
+										},
+										"sink": {
+											"name": "ShippingPostalCode",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "ShippingCountry",
+											"type": "String"
+										},
+										"sink": {
+											"name": "ShippingCountry",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "ShippingStateCode",
+											"type": "String"
+										},
+										"sink": {
+											"name": "ShippingStateCode",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "ShippingCountryCode",
+											"type": "String"
+										},
+										"sink": {
+											"name": "ShippingCountryCode",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "ShippingLatitude",
+											"type": "Decimal"
+										},
+										"sink": {
+											"name": "ShippingLatitude",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "ShippingLongitude",
+											"type": "Decimal"
+										},
+										"sink": {
+											"name": "ShippingLongitude",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "ShippingGeocodeAccuracy",
+											"type": "String"
+										},
+										"sink": {
+											"name": "ShippingGeocodeAccuracy",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Phone",
+											"type": "String"
+										},
+										"sink": {
+											"name": "Phone",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Website",
+											"type": "String"
+										},
+										"sink": {
+											"name": "Website",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Industry",
+											"type": "String"
+										},
+										"sink": {
+											"name": "Industry",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "NumberOfEmployees",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "NumberOfEmployees",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Description",
+											"type": "String"
+										},
+										"sink": {
+											"name": "Description",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "OwnerId",
+											"type": "String"
+										},
+										"sink": {
+											"name": "OwnerId",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "CreatedDate",
+											"type": "DateTime"
+										},
+										"sink": {
+											"name": "CreatedDate",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										}
+									},
+									{
+										"source": {
+											"name": "CreatedById",
+											"type": "String"
+										},
+										"sink": {
+											"name": "CreatedById",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "LastModifiedDate",
+											"type": "DateTime"
+										},
+										"sink": {
+											"name": "LastModifiedDate",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										}
+									},
+									{
+										"source": {
+											"name": "LastModifiedById",
+											"type": "String"
+										},
+										"sink": {
+											"name": "LastModifiedById",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "SystemModstamp",
+											"type": "DateTime"
+										},
+										"sink": {
+											"name": "SystemModstamp",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										}
+									},
+									{
+										"source": {
+											"name": "LastActivityDate",
+											"type": "DateTime"
+										},
+										"sink": {
+											"name": "LastActivityDate",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										}
+									},
+									{
+										"source": {
+											"name": "LastViewedDate",
+											"type": "DateTime"
+										},
+										"sink": {
+											"name": "LastViewedDate",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										}
+									},
+									{
+										"source": {
+											"name": "LastReferencedDate",
+											"type": "DateTime"
+										},
+										"sink": {
+											"name": "LastReferencedDate",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										}
+									},
+									{
+										"source": {
+											"name": "Jigsaw",
+											"type": "String"
+										},
+										"sink": {
+											"name": "Jigsaw",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "JigsawCompanyId",
+											"type": "String"
+										},
+										"sink": {
+											"name": "JigsawCompanyId",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "AccountSource",
+											"type": "String"
+										},
+										"sink": {
+											"name": "AccountSource",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "SicDesc",
+											"type": "String"
+										},
+										"sink": {
+											"name": "SicDesc",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "State__c",
+											"type": "String"
+										},
+										"sink": {
+											"name": "State__c",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Company_Type__c",
+											"type": "String"
+										},
+										"sink": {
+											"name": "Company_Type__c",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Account_External_Id__c",
+											"type": "String"
+										},
+										"sink": {
+											"name": "Account_External_Id__c",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Pump_Fleet_Size__c",
+											"type": "Decimal"
+										},
+										"sink": {
+											"name": "Pump_Fleet_Size__c",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Sapphire_Epidural__c",
+											"type": "Decimal"
+										},
+										"sink": {
+											"name": "Sapphire_Epidural__c",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Sapphire_Plus__c",
+											"type": "Decimal"
+										},
+										"sink": {
+											"name": "Sapphire_Plus__c",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Sapphire_MT__c",
+											"type": "Decimal"
+										},
+										"sink": {
+											"name": "Sapphire_MT__c",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "City__c",
+											"type": "String"
+										},
+										"sink": {
+											"name": "City__c",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Street_Address__c",
+											"type": "String"
+										},
+										"sink": {
+											"name": "Street_Address__c",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Extended_Service__c",
+											"type": "String"
+										},
+										"sink": {
+											"name": "Extended_Service__c",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Contacts__c",
+											"type": "String"
+										},
+										"sink": {
+											"name": "Contacts__c",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Quickbooks_account__c",
+											"type": "String"
+										},
+										"sink": {
+											"name": "Quickbooks_account__c",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Country__c",
+											"type": "String"
+										},
+										"sink": {
+											"name": "Country__c",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Account_Name_Inital_String__c",
+											"type": "String"
+										},
+										"sink": {
+											"name": "Account_Name_Inital_String__c",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Region__c",
+											"type": "String"
+										},
+										"sink": {
+											"name": "Region__c",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Account_Name_Copy__c",
+											"type": "String"
+										},
+										"sink": {
+											"name": "Account_Name_Copy__c",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Account_Id_18_Digits__c",
+											"type": "String"
+										},
+										"sink": {
+											"name": "Account_Id_18_Digits__c",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Billing_Account__c",
+											"type": "Boolean"
+										},
+										"sink": {
+											"name": "Billing_Account__c",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "ERP_Account_ID__c",
+											"type": "String"
+										},
+										"sink": {
+											"name": "ERP_Account_ID__c",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "signed_a_set_commitment_agreement__c",
+											"type": "String"
+										},
+										"sink": {
+											"name": "signed_a_set_commitment_agreement__c",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Set_List_Account__c",
+											"type": "String"
+										},
+										"sink": {
+											"name": "Set_List_Account__c",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Customer_Type__c",
+											"type": "String"
+										},
+										"sink": {
+											"name": "CustomerType",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Account_Owner_Email__c",
+											"type": "String"
+										},
+										"sink": {
+											"name": "Account_Owner_Email",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "SalesforceSandBox",
+								"type": "DatasetReference"
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "SF_Accounts",
+								"type": "DatasetReference"
+							}
+						]
+					},
+					{
+						"name": "Truncate SF_Mrr_Account",
+						"description": "why the Value at water mark string? ",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[SF].[trunc_Mrr_SF_Account]"
+						},
+						"linkedServiceName": {
+							"referenceName": "sqldb_egbi_dev",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "get watermark",
+						"type": "Lookup",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "AzureSqlSource",
+								"sqlReaderQuery": "SELECT [highValue]\nFROM [watermarks].[highValues]\nWHERE [tableName] = 'Mrr_SF_Account_Replica'",
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"dataset": {
+								"referenceName": "watermarks_highValues",
+								"type": "DatasetReference"
+							}
+						}
+					},
+					{
+						"name": "Merge SF_MRR_Account_Replica",
+						"description": "merge if not mach id insert if mach id and field different and target did not met update if target met insert",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [
+							{
+								"activity": "SF_MRR_Address",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[SF].[Merge_Mrr_Account_Replica]"
+						},
+						"linkedServiceName": {
+							"referenceName": "sqldb_egbi_dev",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "Set Watermark",
+						"description": "why it is setting string",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [
+							{
+								"activity": "Merge_Mrr_Address_to_Account_Replica",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[watermarks].[sp_set_watermark]",
+							"storedProcedureParameters": {
+								"columnName": {
+									"value": "LastModifiedDate",
+									"type": "String"
+								},
+								"schemaName": {
+									"value": "sf",
+									"type": "String"
+								},
+								"tableName": {
+									"value": "Mrr_SF_Account_Replica",
+									"type": "String"
+								}
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "sqldb_egbi_dev",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "SF_MRR_Address",
+						"description": "take out adress with no shipping",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "SF_MRR_Account",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "SalesforceSource",
+								"query": {
+									"value": "select * from Account_Addresses__c\nWHERE LastModifiedDate >= '@{activity('get watermark').output.firstRow.highValue}'",
+									"type": "Expression"
+								},
+								"readBehavior": "query"
+							},
+							"sink": {
+								"type": "AzureSqlSink"
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "Id",
+											"type": "String"
+										},
+										"sink": {
+											"name": "Id",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "IsDeleted",
+											"type": "Boolean"
+										},
+										"sink": {
+											"name": "IsDeleted",
+											"type": "Boolean",
+											"physicalType": "bit"
+										}
+									},
+									{
+										"source": {
+											"name": "Name",
+											"type": "String"
+										},
+										"sink": {
+											"name": "Name",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "CurrencyIsoCode",
+											"type": "String"
+										},
+										"sink": {
+											"name": "CurrencyIsoCode",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "CreatedDate",
+											"type": "DateTime"
+										},
+										"sink": {
+											"name": "CreatedDate",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										}
+									},
+									{
+										"source": {
+											"name": "CreatedById",
+											"type": "String"
+										},
+										"sink": {
+											"name": "CreatedById",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "LastModifiedDate",
+											"type": "DateTime"
+										},
+										"sink": {
+											"name": "LastModifiedDate",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										}
+									},
+									{
+										"source": {
+											"name": "LastModifiedById",
+											"type": "String"
+										},
+										"sink": {
+											"name": "LastModifiedById",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "SystemModstamp",
+											"type": "DateTime"
+										},
+										"sink": {
+											"name": "SystemModstamp",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "LastActivityDate",
+											"type": "DateTime"
+										},
+										"sink": {
+											"name": "LastActivityDate",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										}
+									},
+									{
+										"source": {
+											"name": "LastViewedDate",
+											"type": "DateTime"
+										},
+										"sink": {
+											"name": "LastViewedDate",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										}
+									},
+									{
+										"source": {
+											"name": "LastReferencedDate",
+											"type": "DateTime"
+										},
+										"sink": {
+											"name": "LastReferencedDate",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										}
+									},
+									{
+										"source": {
+											"name": "Account__c",
+											"type": "String"
+										},
+										"sink": {
+											"name": "Account__c",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Address__c",
+											"type": "String"
+										},
+										"sink": {
+											"name": "Address__c",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Country__c",
+											"type": "String"
+										},
+										"sink": {
+											"name": "Country__c",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "City__c",
+											"type": "String"
+										},
+										"sink": {
+											"name": "City__c",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Zip_Postal_Code__c",
+											"type": "String"
+										},
+										"sink": {
+											"name": "Zip_Postal_Code__c",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "State_Province__c",
+											"type": "String"
+										},
+										"sink": {
+											"name": "State_Province__c",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "SalesforceSandBox",
+								"type": "DatasetReference"
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "SF_Address",
+								"type": "DatasetReference"
+							}
+						]
+					},
+					{
+						"name": "Merge_Mrr_Address_to_Account_Replica",
+						"description": "merge if not mach id insert if mach id and field different and target did not met update if target met insert",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [
+							{
+								"activity": "Merge SF_MRR_Account_Replica",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[SF].[Merge_Mrr_Address_to_Account_Replica]"
+						},
+						"linkedServiceName": {
+							"referenceName": "sqldb_egbi_dev",
+							"type": "LinkedServiceReference"
+						}
+					}
+				],
+				"folder": {
+					"name": "SF/ACCOUNTS"
+				},
+				"annotations": [],
+				"lastPublishTime": "2020-10-08T10:02:02Z"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/EDHR_Main')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Mrr_Device",
+						"type": "ExecutePipeline",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "Mrr_Device",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true
+						}
+					},
+					{
+						"name": "Mrr_DeviceProcedureData",
+						"type": "ExecutePipeline",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "Mrr_DeviceProcedureData",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true
+						}
+					},
+					{
+						"name": "Mrr_ProcedureType",
+						"type": "ExecutePipeline",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "Mrr_ProcedureType",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true
+						}
+					},
+					{
+						"name": "Mrr__DeviceMovement",
+						"type": "ExecutePipeline",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "Mrr__DeviceMovement",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true
+						}
+					},
+					{
+						"name": "Mrr_Location",
+						"type": "ExecutePipeline",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "Mrr_Location",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true
+						}
+					},
+					{
+						"name": "Mrr_Result",
+						"type": "ExecutePipeline",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "Mrr_Result",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true
+						}
+					},
+					{
+						"name": "Mrr_Rework",
+						"type": "ExecutePipeline",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "Mrr_Rework",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true
+						}
+					},
+					{
+						"name": "Stg_Fact_Data",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "Mrr__DeviceMovement",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "Mrr_Location",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "Mrr_ProcedureType",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "Mrr_DeviceProcedureData",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "Mrr_Device",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "Mrr_Result",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "Mrr_Rework",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "Mrr_PumpProductionLine",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "Mrr_Pump",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "Mrr_DHR_Failure",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "Stg_Fact_Data",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true
+						}
+					},
+					{
+						"name": "Mrr_PumpProductionLine",
+						"type": "ExecutePipeline",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "Mrr_PumpProductionLine",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true
+						}
+					},
+					{
+						"name": "Mrr_Pump",
+						"type": "ExecutePipeline",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "Mrr_Pump",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true
+						}
+					},
+					{
+						"name": "Mrr_DHR_Failure",
+						"type": "ExecutePipeline",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "Mrr_DHR_Failure",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true
+						}
+					}
+				],
+				"folder": {
+					"name": "EDHR"
+				},
+				"annotations": [],
+				"lastPublishTime": "2020-08-18T12:11:55Z"
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/Mrr_Pump')]",
+				"[concat(variables('factoryId'), '/pipelines/Mrr_DHR_Failure')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Mrr_DHR_Failure')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Truncate table EDHR Mrr DHR_Failure",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[EDHR].[sp_trunc_Mrr_DHR_Failure]"
+						},
+						"linkedServiceName": {
+							"referenceName": "sqldb_egbi_dev",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "Mrr_DHR_Failure",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "Truncate table EDHR Mrr DHR_Failure",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "SqlServerSource",
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"sink": {
+								"type": "AzureSqlSink"
+							},
+							"enableStaging": true,
+							"stagingSettings": {
+								"linkedServiceName": {
+									"referenceName": "st_error_log",
+									"type": "LinkedServiceReference"
+								}
+							},
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "ID",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "ID",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "_Procedure",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "Procedure",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "_StartTime",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										},
+										"sink": {
+											"name": "StartTime",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										}
+									},
+									{
+										"source": {
+											"name": "_EndTime",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										},
+										"sink": {
+											"name": "EndTime",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										}
+									},
+									{
+										"source": {
+											"name": "_ExecutedBy",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "ExecutedBy",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "_Parent",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "Parent",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "_Comments",
+											"type": "String",
+											"physicalType": "ntext"
+										},
+										"sink": {
+											"name": "Comments",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "_Result",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "Result",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "_FailReason",
+											"type": "String",
+											"physicalType": "ntext"
+										},
+										"sink": {
+											"name": "FailReason",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "_PCAppSoftwareVersion",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "PCAppSoftwareVersion",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "_Deleted",
+											"type": "Boolean",
+											"physicalType": "bit"
+										},
+										"sink": {
+											"name": "Deleted",
+											"type": "Boolean",
+											"physicalType": "bit"
+										}
+									},
+									{
+										"source": {
+											"name": "_DeletedBy",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "DeletedBy",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "_DeletedTime",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										},
+										"sink": {
+											"name": "DeletedTime",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										}
+									},
+									{
+										"source": {
+											"name": "_InsertTime",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										},
+										"sink": {
+											"name": "InsertTime",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										}
+									},
+									{
+										"source": {
+											"name": "_LastUpdateTime",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										},
+										"sink": {
+											"name": "LastUpdateTime",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										}
+									},
+									{
+										"source": {
+											"name": "_OriginalProcedureId",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "OriginalProcedureId",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "_QcApprovalTime",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										},
+										"sink": {
+											"name": "QcApprovalTime",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										}
+									},
+									{
+										"source": {
+											"name": "_QcApprover",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "QcApprover",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "_Device",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "Device",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "_DeviceSoftwareVersion",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "DeviceSoftwareVersion",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "_FailureDescription",
+											"type": "String",
+											"physicalType": "ntext"
+										},
+										"sink": {
+											"name": "FailureDescription",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "_SolutionDescription",
+											"type": "String",
+											"physicalType": "ntext"
+										},
+										"sink": {
+											"name": "SolutionDescription",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "_WhoOpened",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "WhoOpened",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "_WhoFixed",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "WhoFixed",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "_Failure",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "Failure",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "DHR_Failure",
+								"type": "DatasetReference"
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "Mrr_DHR_Failure",
+								"type": "DatasetReference"
+							}
+						]
+					}
+				],
+				"folder": {
+					"name": "EDHR/MRR"
+				},
+				"annotations": [],
+				"lastPublishTime": "2020-08-18T12:11:54Z"
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/DHR_Failure')]",
+				"[concat(variables('factoryId'), '/datasets/Mrr_DHR_Failure')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Mrr_Pump')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Truncate table EDHR Mrr Pump",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[EDHR].[sp_trunc_Mrr_Pump]"
+						},
+						"linkedServiceName": {
+							"referenceName": "sqldb_egbi_dev",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "Mrr_Pump",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "Truncate table EDHR Mrr Pump",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "SqlServerSource",
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"sink": {
+								"type": "AzureSqlSink"
+							},
+							"enableStaging": true,
+							"stagingSettings": {
+								"linkedServiceName": {
+									"referenceName": "st_error_log",
+									"type": "LinkedServiceReference"
+								}
+							},
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "ID",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "ID",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "_SerialNumber",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "SerialNumber",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "_Comments",
+											"type": "String",
+											"physicalType": "ntext"
+										},
+										"sink": {
+											"name": "Comments",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "_Brand",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "Brand",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "_PartNumber",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "PartNumber",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "_OwnerGroup",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "OwnerGroup",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "_MotorNumber",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "MotorNumber",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "_Type",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "Type",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "_MotorPartNumber",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "MotorPartNumber",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "_BOMRevision",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "BOMRevision",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "_ProductionLine",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "ProductionLine",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "_WifiNumber",
+											"type": "String",
+											"physicalType": "varchar"
+										},
+										"sink": {
+											"name": "WifiNumber",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "Pump",
+								"type": "DatasetReference"
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "Mrr_Pump",
+								"type": "DatasetReference"
+							}
+						]
+					}
+				],
+				"folder": {
+					"name": "EDHR/MRR"
+				},
+				"annotations": [],
+				"lastPublishTime": "2020-08-18T12:11:54Z"
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/Pump')]",
+				"[concat(variables('factoryId'), '/datasets/Mrr_Pump')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DHR_Failure')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sql_rptsrv",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLSRV-RPTSRV/EDHR"
+				},
+				"annotations": [],
+				"type": "SqlServerTable",
+				"schema": [
+					{
+						"name": "ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_Procedure",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_StartTime",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "_EndTime",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "_ExecutedBy",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_Parent",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_Comments",
+						"type": "ntext"
+					},
+					{
+						"name": "_Result",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_FailReason",
+						"type": "ntext"
+					},
+					{
+						"name": "_PCAppSoftwareVersion",
+						"type": "nvarchar"
+					},
+					{
+						"name": "_Deleted",
+						"type": "bit"
+					},
+					{
+						"name": "_DeletedBy",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_DeletedTime",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "_InsertTime",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "_LastUpdateTime",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "_OriginalProcedureId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_QcApprovalTime",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "_QcApprover",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_Device",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_DeviceSoftwareVersion",
+						"type": "nvarchar"
+					},
+					{
+						"name": "_FailureDescription",
+						"type": "ntext"
+					},
+					{
+						"name": "_SolutionDescription",
+						"type": "ntext"
+					},
+					{
+						"name": "_WhoOpened",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_WhoFixed",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_Failure",
+						"type": "int",
+						"precision": 10
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "_DHR_Failure"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Mrr_DHR_Failure')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqldb_egbi_dev",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLDB-EGBI-DEV/EDHR"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_Procedure",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_StartTime",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "_EndTime",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "_ExecutedBy",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_Parent",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_Comments",
+						"type": "nvarchar"
+					},
+					{
+						"name": "_Result",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_FailReason",
+						"type": "nvarchar"
+					},
+					{
+						"name": "_PCAppSoftwareVersion",
+						"type": "nvarchar"
+					},
+					{
+						"name": "_Deleted",
+						"type": "bit"
+					},
+					{
+						"name": "_DeletedBy",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_DeletedTime",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "_InsertTime",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "_LastUpdateTime",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "_OriginalProcedureId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_QcApprovalTime",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "_QcApprover",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_Device",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_DeviceSoftwareVersion",
+						"type": "nvarchar"
+					},
+					{
+						"name": "_FailureDescription",
+						"type": "nvarchar"
+					},
+					{
+						"name": "_SolutionDescription",
+						"type": "nvarchar"
+					},
+					{
+						"name": "_WhoOpened",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_WhoFixed",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_Failure",
+						"type": "int",
+						"precision": 10
+					}
+				],
+				"typeProperties": {
+					"schema": "EDHR",
+					"table": "Mrr_DHR_Failure"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Mrr_Data')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqldb_egbi_dev",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLDB-EGBI-DEV/EDHR"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Mrr_Pump')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqldb_egbi_dev",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLDB-EGBI-DEV/EDHR"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_SerialNumber",
+						"type": "nvarchar"
+					},
+					{
+						"name": "_Comments",
+						"type": "nvarchar"
+					},
+					{
+						"name": "_Brand",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_PartNumber",
+						"type": "nvarchar"
+					},
+					{
+						"name": "_OwnerGroup",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_MotorNumber",
+						"type": "nvarchar"
+					},
+					{
+						"name": "_Type",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_MotorPartNumber",
+						"type": "nvarchar"
+					},
+					{
+						"name": "_BOMRevision",
+						"type": "nvarchar"
+					},
+					{
+						"name": "_ProductionLine",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_WifiNumber",
+						"type": "nvarchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "EDHR",
+					"table": "Mrr_Pump"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Mrr_PumpProductionLine')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqldb_egbi_dev",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLDB-EGBI-DEV/EDHR"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Name",
+						"type": "nvarchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "EDHR",
+					"table": "Mrr_PumpProductionLine"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Pump')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sql_rptsrv",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLSRV-RPTSRV/EDHR"
+				},
+				"annotations": [],
+				"type": "SqlServerTable",
+				"schema": [
+					{
+						"name": "ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_SerialNumber",
+						"type": "nvarchar"
+					},
+					{
+						"name": "_Comments",
+						"type": "ntext"
+					},
+					{
+						"name": "_Brand",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_PartNumber",
+						"type": "nvarchar"
+					},
+					{
+						"name": "_OwnerGroup",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_MotorNumber",
+						"type": "nvarchar"
+					},
+					{
+						"name": "_Type",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_MotorPartNumber",
+						"type": "nvarchar"
+					},
+					{
+						"name": "_BOMRevision",
+						"type": "nvarchar"
+					},
+					{
+						"name": "_ProductionLine",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_WifiNumber",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "_Pump"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/PumpProductionLine')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sql_rptsrv",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLSRV-RPTSRV/EDHR"
+				},
+				"annotations": [],
+				"type": "SqlServerTable",
+				"schema": [
+					{
+						"name": "ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_Name",
+						"type": "nvarchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "_PumpProductionLine"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Stg_Fact_Data')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqldb_egbi_dev",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLDB-EGBI-DEV/EDHR"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ParentID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ParentTypeDescription",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ParentStartTime",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "ParentEndTime",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "DisplayedName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Procedure",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "StartTime",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "EndTime",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "ExecutedBy",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Comments",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Result",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "FailReason",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PCAppSoftwareVersion",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Deleted",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "DeletedBy",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "DeletedTime",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "InsertTime",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "LastUpdateTime",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "OriginalProcedureId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Device",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "SerialNumber",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "DeviceSoftwareVersion",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Name",
+						"type": "nvarchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "EDHR",
+					"table": "Stg_Fact_Data"
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}

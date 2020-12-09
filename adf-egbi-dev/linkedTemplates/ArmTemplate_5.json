@@ -13,6 +13,97 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/Mrr_Result_Replica')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqldb_egbi_dev",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLDB-EGBI-DEV/EDHR"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Type",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Value",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Status",
+						"type": "nvarchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "EDHR",
+					"table": "Mrr_Result_Replica"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Mrr_Rework_Replica')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqldb_egbi_dev",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLDB-EGBI-DEV/EDHR"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_Code",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_Category",
+						"type": "nvarchar"
+					},
+					{
+						"name": "_DescriptionEng",
+						"type": "nvarchar"
+					},
+					{
+						"name": "_DescriptionHeb",
+						"type": "nvarchar"
+					},
+					{
+						"name": "_Obsolete",
+						"type": "bit"
+					}
+				],
+				"typeProperties": {
+					"schema": "EDHR",
+					"table": "Mrr_Rework_Replica"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/Mrr_SCORE_CONFIG')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -1719,133 +1810,6 @@
 				"typeProperties": {
 					"schema": "sap",
 					"table": "Mrr_Srv_Serials"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Mrr_State')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqldb_egbi_dev",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQLDB-EGBI-DEV/Service/Mrr"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "ID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "State",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Code",
-						"type": "nvarchar"
-					}
-				],
-				"typeProperties": {
-					"schema": "srv",
-					"table": "Mrr_State"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Mrr_Suppliers_Audit_Activities_Followup')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqldb_egbi_dev",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQLDB-EGBI-DEV/ScoreCards/Mrr"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "SupplierName",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Supplier Number",
-						"type": "nvarchar"
-					},
-					{
-						"name": "SupplierType",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Location",
-						"type": "nvarchar"
-					},
-					{
-						"name": "EAN #",
-						"type": "nvarchar"
-					},
-					{
-						"name": "AuditPerfom",
-						"type": "nvarchar"
-					},
-					{
-						"name": "ActualAuditDate",
-						"type": "date"
-					},
-					{
-						"name": "AuditDurationDays",
-						"type": "nvarchar"
-					},
-					{
-						"name": "LeadAuditorName",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Audit Team",
-						"type": "nvarchar"
-					},
-					{
-						"name": "AuditType",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Findings_Critical",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Findings_Major",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Findings_Moderate",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Findings_Observ",
-						"type": "nvarchar"
-					},
-					{
-						"name": "AuditResults",
-						"type": "nvarchar"
-					},
-					{
-						"name": "AuditorScore",
-						"type": "nvarchar"
-					}
-				],
-				"typeProperties": {
-					"schema": "ScoreCards",
-					"table": "Mrr_Suppliers_Audit_Activities_Followup"
 				}
 			},
 			"dependsOn": []

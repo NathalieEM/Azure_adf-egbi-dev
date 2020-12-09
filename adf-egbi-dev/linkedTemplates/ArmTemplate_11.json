@@ -63,10 +63,6 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'sqlsrv_sap'"
 		},
-		"sqlsrv_sap_TestNewQcoreDB_05012020_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'sqlsrv_sap_TestNewQcoreDB_05012020'"
-		},
 		"SalesforceSandBox_properties_typeProperties_environmentUrl": {
 			"type": "string",
 			"defaultValue": "qcoremedical--sandbox.my.salesforce.com"
@@ -80,6 +76,140 @@
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/porf_Mrr_Suppliers1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqldb_sorrelbi_dev",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLDB-EGBI-DEV/PORF"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ETL_ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ETL_Timestamp",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "CardCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CardName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CurrName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "E_Mail",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PayMethod",
+						"type": "varchar"
+					},
+					{
+						"name": "U_ASLType",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ListNum",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "DB_NAME",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "PORF",
+					"table": "Mrr_Suppliers"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/porf_Mrr_Suppliers2')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqldb_sorrelbi_dev",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLDB-EGBI-DEV/PORF"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ETL_ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ETL_Timestamp",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "CardCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CardName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CurrName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "E_Mail",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PayMethod",
+						"type": "varchar"
+					},
+					{
+						"name": "U_ASLType",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ListNum",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "DB_NAME",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "PORF",
+					"table": "Mrr_Suppliers"
+				}
+			},
+			"dependsOn": []
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/sp_Stg_Fact_Trending')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
@@ -844,263 +974,6 @@
 					"referenceName": "ir-sap",
 					"type": "IntegrationRuntimeReference"
 				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/sqlsrv_sap_TestNewQcoreDB_05012020')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "SqlServer",
-				"typeProperties": {
-					"connectionString": "[parameters('sqlsrv_sap_TestNewQcoreDB_05012020_connectionString')]"
-				},
-				"connectVia": {
-					"referenceName": "ir-sap",
-					"type": "IntegrationRuntimeReference"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Dwh_IQC_Followup')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "Copy Dwh_IQC_Followup",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "trunc Dwh_IQC_Followup",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "AzureSqlSource",
-								"queryTimeout": "02:00:00",
-								"partitionOption": "None"
-							},
-							"sink": {
-								"type": "AzureSqlSink"
-							},
-							"enableStaging": true,
-							"stagingSettings": {
-								"linkedServiceName": {
-									"referenceName": "AzureBlobStorage1",
-									"type": "LinkedServiceReference"
-								}
-							},
-							"translator": {
-								"type": "TabularTranslator",
-								"mappings": [
-									{
-										"source": {
-											"name": "Year",
-											"type": "Int32",
-											"physicalType": "int"
-										},
-										"sink": {
-											"name": "Year",
-											"type": "Int32",
-											"physicalType": "int"
-										}
-									},
-									{
-										"source": {
-											"name": "WeeK",
-											"type": "Int32",
-											"physicalType": "int"
-										},
-										"sink": {
-											"name": "WeeK",
-											"type": "Int32",
-											"physicalType": "int"
-										}
-									},
-									{
-										"source": {
-											"name": "EndDateIQC",
-											"type": "DateTime",
-											"physicalType": "datetime"
-										},
-										"sink": {
-											"name": "EndDateIQC",
-											"type": "DateTime",
-											"physicalType": "datetime"
-										}
-									},
-									{
-										"source": {
-											"name": "SupplierID",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "SupplierID",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "SupplierName",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "SupplierName",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "DateReciept",
-											"type": "DateTime",
-											"physicalType": "datetime"
-										},
-										"sink": {
-											"name": "DateReciept",
-											"type": "DateTime",
-											"physicalType": "datetime"
-										}
-									},
-									{
-										"source": {
-											"name": "Itemcode",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "Itemcode",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "ProductType",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "ProductType",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "TotalRecQty",
-											"type": "Double",
-											"physicalType": "float"
-										},
-										"sink": {
-											"name": "TotalRecQty",
-											"type": "Double",
-											"physicalType": "float"
-										}
-									},
-									{
-										"source": {
-											"name": "Pass/Fail",
-											"type": "Int32",
-											"physicalType": "int"
-										},
-										"sink": {
-											"name": "Pass/Fail",
-											"type": "Int32",
-											"physicalType": "int"
-										}
-									},
-									{
-										"source": {
-											"name": "Rev number ",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "Rev number ",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "Batch Number",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "Batch Number",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									}
-								],
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "Stg_IQC_Followup",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "Dwh_IQC_Followup",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "trunc Dwh_IQC_Followup",
-						"type": "SqlServerStoredProcedure",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"storedProcedureName": "[[ScoreCards].[trunc_dwh_IQC_Followup]"
-						},
-						"linkedServiceName": {
-							"referenceName": "sqldb_egbi_dev",
-							"type": "LinkedServiceReference"
-						}
-					}
-				],
-				"folder": {
-					"name": "ScoreCards/Dwh"
-				},
-				"annotations": [],
-				"lastPublishTime": "2020-08-18T13:00:25Z"
 			},
 			"dependsOn": []
 		}
