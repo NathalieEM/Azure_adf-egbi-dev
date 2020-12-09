@@ -1,5 +1,5 @@
 {
-	"name": "Stg_Fact_Data",
+	"name": "Mrr_DHR_Failure",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "sqldb_egbi_dev",
@@ -12,129 +12,133 @@
 		"type": "AzureSqlTable",
 		"schema": [
 			{
-				"name": "ParentID",
-				"type": "int",
-				"precision": 10
-			},
-			{
-				"name": "ParentTypeDescription",
-				"type": "nvarchar"
-			},
-			{
-				"name": "ParentStartTime",
-				"type": "datetime",
-				"precision": 23,
-				"scale": 3
-			},
-			{
-				"name": "ParentEndTime",
-				"type": "datetime",
-				"precision": 23,
-				"scale": 3
-			},
-			{
-				"name": "DisplayedName",
-				"type": "nvarchar"
-			},
-			{
 				"name": "ID",
 				"type": "int",
 				"precision": 10
 			},
 			{
-				"name": "Procedure",
+				"name": "_Procedure",
 				"type": "int",
 				"precision": 10
 			},
 			{
-				"name": "StartTime",
+				"name": "_StartTime",
 				"type": "datetime",
 				"precision": 23,
 				"scale": 3
 			},
 			{
-				"name": "EndTime",
+				"name": "_EndTime",
 				"type": "datetime",
 				"precision": 23,
 				"scale": 3
 			},
 			{
-				"name": "ExecutedBy",
+				"name": "_ExecutedBy",
 				"type": "int",
 				"precision": 10
 			},
 			{
-				"name": "Comments",
+				"name": "_Parent",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "_Comments",
 				"type": "nvarchar"
 			},
 			{
-				"name": "Result",
+				"name": "_Result",
 				"type": "int",
 				"precision": 10
 			},
 			{
-				"name": "FailReason",
+				"name": "_FailReason",
 				"type": "nvarchar"
 			},
 			{
-				"name": "PCAppSoftwareVersion",
+				"name": "_PCAppSoftwareVersion",
 				"type": "nvarchar"
 			},
 			{
-				"name": "Deleted",
+				"name": "_Deleted",
+				"type": "bit"
+			},
+			{
+				"name": "_DeletedBy",
 				"type": "int",
 				"precision": 10
 			},
 			{
-				"name": "DeletedBy",
-				"type": "int",
-				"precision": 10
-			},
-			{
-				"name": "DeletedTime",
+				"name": "_DeletedTime",
 				"type": "datetime",
 				"precision": 23,
 				"scale": 3
 			},
 			{
-				"name": "InsertTime",
+				"name": "_InsertTime",
 				"type": "datetime",
 				"precision": 23,
 				"scale": 3
 			},
 			{
-				"name": "LastUpdateTime",
+				"name": "_LastUpdateTime",
 				"type": "datetime",
 				"precision": 23,
 				"scale": 3
 			},
 			{
-				"name": "OriginalProcedureId",
+				"name": "_OriginalProcedureId",
 				"type": "int",
 				"precision": 10
 			},
 			{
-				"name": "Device",
+				"name": "_QcApprovalTime",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "_QcApprover",
 				"type": "int",
 				"precision": 10
 			},
 			{
-				"name": "SerialNumber",
+				"name": "_Device",
 				"type": "int",
 				"precision": 10
 			},
 			{
-				"name": "DeviceSoftwareVersion",
+				"name": "_DeviceSoftwareVersion",
 				"type": "nvarchar"
 			},
 			{
-				"name": "Name",
+				"name": "_FailureDescription",
 				"type": "nvarchar"
+			},
+			{
+				"name": "_SolutionDescription",
+				"type": "nvarchar"
+			},
+			{
+				"name": "_WhoOpened",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "_WhoFixed",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "_Failure",
+				"type": "int",
+				"precision": 10
 			}
 		],
 		"typeProperties": {
 			"schema": "EDHR",
-			"table": "Stg_Fact_Data"
+			"table": "Mrr_DHR_Failure"
 		}
 	}
 }

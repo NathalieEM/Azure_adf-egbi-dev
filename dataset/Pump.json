@@ -1,0 +1,73 @@
+{
+	"name": "Pump",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sql_rptsrv",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SQLSRV-RPTSRV/EDHR"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "_SerialNumber",
+				"type": "nvarchar"
+			},
+			{
+				"name": "_Comments",
+				"type": "ntext"
+			},
+			{
+				"name": "_Brand",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "_PartNumber",
+				"type": "nvarchar"
+			},
+			{
+				"name": "_OwnerGroup",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "_MotorNumber",
+				"type": "nvarchar"
+			},
+			{
+				"name": "_Type",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "_MotorPartNumber",
+				"type": "nvarchar"
+			},
+			{
+				"name": "_BOMRevision",
+				"type": "nvarchar"
+			},
+			{
+				"name": "_ProductionLine",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "_WifiNumber",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "_Pump"
+		}
+	}
+}
