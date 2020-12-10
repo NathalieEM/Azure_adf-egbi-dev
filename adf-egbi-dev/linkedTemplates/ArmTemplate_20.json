@@ -106,13 +106,7 @@
 						"type": "Copy",
 						"dependsOn": [
 							{
-								"activity": "Truncate SF_Mrr_Account",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							},
-							{
-								"activity": "get watermark",
+								"activity": "Truncate SF_Mrr_ADDRESS",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -895,7 +889,14 @@
 						"name": "Truncate SF_Mrr_Account",
 						"description": "why the Value at water mark string? ",
 						"type": "SqlServerStoredProcedure",
-						"dependsOn": [],
+						"dependsOn": [
+							{
+								"activity": "get watermark",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
 						"policy": {
 							"timeout": "7.00:00:00",
 							"retry": 0,
@@ -1118,7 +1119,7 @@
 										"sink": {
 											"name": "LastModifiedDate",
 											"type": "DateTime",
-											"physicalType": "datetime"
+											"physicalType": "datetime2"
 										}
 									},
 									{
@@ -1139,8 +1140,8 @@
 										},
 										"sink": {
 											"name": "SystemModstamp",
-											"type": "String",
-											"physicalType": "nvarchar"
+											"type": "DateTime",
+											"physicalType": "datetime"
 										}
 									},
 									{
@@ -1238,6 +1239,17 @@
 										},
 										"sink": {
 											"name": "State_Province__c",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "ERP_Account_ID__c",
+											"type": "String"
+										},
+										"sink": {
+											"name": "ERP_Account_ID__c",
 											"type": "String",
 											"physicalType": "nvarchar"
 										}
@@ -1287,6 +1299,34 @@
 						"userProperties": [],
 						"typeProperties": {
 							"storedProcedureName": "[[SF].[Merge_Mrr_Address_to_Account_Replica]"
+						},
+						"linkedServiceName": {
+							"referenceName": "sqldb_egbi_dev",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "Truncate SF_Mrr_ADDRESS",
+						"description": "why the Value at water mark string? ",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [
+							{
+								"activity": "Truncate SF_Mrr_Account",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[SF].[trunc_Mrr_SF_ADDRESS]"
 						},
 						"linkedServiceName": {
 							"referenceName": "sqldb_egbi_dev",
@@ -1791,7 +1831,7 @@
 						"typeProperties": {
 							"source": {
 								"type": "AzureSqlSource",
-								"sqlReaderQuery": "SELECT  top 0  [Id]\n      ,[IsDeleted]\n      ,[MasterRecordId]\n      ,[Name]\n      ,[Type]\n      ,[ParentId]\n      ,[BillingStreet]\n      ,[BillingCity]\n      ,[BillingState]\n      ,[BillingPostalCode]\n      ,[BillingCountry]\n      ,[BillingStateCode]\n      ,[BillingCountryCode]\n      ,[BillingLatitude]\n      ,[BillingLongitude]\n      ,[BillingGeocodeAccurcy]\n      ,[ShippingStreet]\n      ,[ShippingCity]\n      ,[ShippingState]\n      ,[ShippingPostalCode]\n      ,[ShippingCountry]\n      ,[ShippingStateCode]\n      ,[ShippingCountryCode]\n      ,[ShippingLatitude]\n      ,[ShippingLongitude]\n      ,[ShippingGeocodeAccuracy]\n      ,[Phone]\n      ,[Website]\n      ,[Industry]\n      ,[NumberOfEmployees]\n      ,[Description]\n      ,[OwnerId]\n      ,[CreatedDate]\n      ,[CreatedById]\n      ,[LastModifiedDate]\n      ,[LastModifiedById]\n      ,[SystemModstamp]\n      ,[LastActivityDate]\n      ,[LastViewedDate]\n      ,[LastReferencedDate]\n      ,[Jigsaw]\n      ,[JigsawCompanyId]\n      ,[AccountSource]\n      ,[SicDesc]\n      ,[State__c]\n      ,[Company_Type__c]\n      ,[Account_External_Id__c]\n      ,[Pump_Fleet_Size__c]\n      ,[Sapphire_Epidural__c]\n      ,[Sapphire_Plus__c]\n      ,[Sapphire_MT__c]\n      ,[City__c]\n      ,[Street_Address__c]\n      ,[Extended_Service__c]\n      ,[Contacts__c]\n      ,[Quickbooks_account__c]\n      ,[Country__c]\n      ,[Account_Name_Inital_String__c]\n      ,[Region__c]\n      ,[Account_Name_Copy__c]\n      ,[Account_Id_18_Digits__c]\n      ,[Billing_Account__c]\n      ,[ETL_ID]\n      ,[ETL_datetime]\n      ,[ETL_Action]\n      ,[ETL_TargetUpdated]\n      ,[ERP_Account_ID__c]\n      ,[AnnualRevenue]\n      ,[signed_a_set_commitment_agreement__c]\n      ,[Set_List_Account__c]\n      ,[dtUpdated]\n      ,[BYD_id]\n      ,[BYD_CompanyID]\n      ,[BYD_dtUpdated]\n      ,[CustomerType]\n      ,[Account_Owner_Email]\n \n  FROM [SF].[Mrr_SF_Account_Replica] where \n [ETL_TargetUpdated] = 0 \n",
+								"sqlReaderQuery": "SELECT [Id]\n      ,[ETL_ID]\n      ,[ETL_datetime]\n      ,[ETL_Action]\n      ,[ETL_TargetUpdated]\n      ,[BYD_id]\n      ,[BYD_CompanyID]\n      ,[BYD_dtUpdated]\n      ,[ERP_Account_ID__c]\n      ,[IsDeleted]\n      ,[Name]\n      ,[Type]\n      ,[ParentId]\n      ,[BillingStreet]\n      ,[BillingCity]\n      ,[BillingState]\n      ,[BillingPostalCode]\n      ,[BillingCountry]\n      ,[BillingStateCode]\n      ,[BillingCountryCode]\n      ,[ShippingStreet]\n      ,[ShippingCity]\n      ,[ShippingState]\n      ,[ShippingPostalCode]\n      ,[ShippingCountry]\n      ,[ShippingStateCode]\n      ,[ShippingCountryCode]\n      ,[Phone]\n      ,[Website]\n      ,[Industry]\n      ,[OwnerId]\n      ,[CreatedDate]\n      ,[LastModifiedDate]\n      ,[LastModifiedById]\n      ,[Account_External_Id__c]\n      ,[Contacts__c]\n      ,[Quickbooks_account__c]\n      ,[Region__c]\n      ,[CustomerType]\n      ,[Account_Owner_Email]\n      ,[Currency]\n      ,[IsAddress]\n      ,[RelatedAccount]\n  FROM [SF].[Mrr_SF_Account_Replica]\nwhere Isnull( [ETL_TargetUpdated] , 0) = 0 \n-and [Region__c] in ('global','Latam') \n\n",
 								"queryTimeout": "02:00:00",
 								"partitionOption": "None"
 							},
@@ -1835,18 +1875,6 @@
 									},
 									{
 										"source": {
-											"name": "MasterRecordId",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "MasterRecordId",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
 											"name": "Name",
 											"type": "String",
 											"physicalType": "nvarchar"
@@ -1967,42 +1995,6 @@
 									},
 									{
 										"source": {
-											"name": "BillingLatitude",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "BillingLatitude",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "BillingLongitude",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "BillingLongitude",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "BillingGeocodeAccurcy",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "BillingGeocodeAccurcy",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
 											"name": "ShippingStreet",
 											"type": "String",
 											"physicalType": "nvarchar"
@@ -2087,42 +2079,6 @@
 									},
 									{
 										"source": {
-											"name": "ShippingLatitude",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "ShippingLatitude",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "ShippingLongitude",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "ShippingLongitude",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "ShippingGeocodeAccuracy",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "ShippingGeocodeAccuracy",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
 											"name": "Phone",
 											"type": "String",
 											"physicalType": "nvarchar"
@@ -2159,30 +2115,6 @@
 									},
 									{
 										"source": {
-											"name": "NumberOfEmployees",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "NumberOfEmployees",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "Description",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "Description",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
 											"name": "OwnerId",
 											"type": "String",
 											"physicalType": "nvarchar"
@@ -2207,21 +2139,9 @@
 									},
 									{
 										"source": {
-											"name": "CreatedById",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "CreatedById",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
 											"name": "LastModifiedDate",
 											"type": "DateTime",
-											"physicalType": "datetime"
+											"physicalType": "datetime2"
 										},
 										"sink": {
 											"name": "LastModifiedDate",
@@ -2243,216 +2163,12 @@
 									},
 									{
 										"source": {
-											"name": "SystemModstamp",
-											"type": "DateTime",
-											"physicalType": "datetime"
-										},
-										"sink": {
-											"name": "SystemModstamp",
-											"type": "DateTime",
-											"physicalType": "datetime"
-										}
-									},
-									{
-										"source": {
-											"name": "LastActivityDate",
-											"type": "DateTime",
-											"physicalType": "datetime"
-										},
-										"sink": {
-											"name": "LastActivityDate",
-											"type": "DateTime",
-											"physicalType": "datetime"
-										}
-									},
-									{
-										"source": {
-											"name": "LastViewedDate",
-											"type": "DateTime",
-											"physicalType": "datetime"
-										},
-										"sink": {
-											"name": "LastViewedDate",
-											"type": "DateTime",
-											"physicalType": "datetime"
-										}
-									},
-									{
-										"source": {
-											"name": "LastReferencedDate",
-											"type": "DateTime",
-											"physicalType": "datetime"
-										},
-										"sink": {
-											"name": "LastReferencedDate",
-											"type": "DateTime",
-											"physicalType": "datetime"
-										}
-									},
-									{
-										"source": {
-											"name": "Jigsaw",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "Jigsaw",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "JigsawCompanyId",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "JigsawCompanyId",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "AccountSource",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "AccountSource",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "SicDesc",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "SicDesc",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "State__c",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "State__c",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "Company_Type__c",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "Company_Type__c",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
 											"name": "Account_External_Id__c",
 											"type": "String",
 											"physicalType": "nvarchar"
 										},
 										"sink": {
 											"name": "Account_External_Id__c",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "Pump_Fleet_Size__c",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "Pump_Fleet_Size__c",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "Sapphire_Epidural__c",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "Sapphire_Epidural__c",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "Sapphire_Plus__c",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "Sapphire_Plus__c",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "Sapphire_MT__c",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "Sapphire_MT__c",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "City__c",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "City__c",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "Street_Address__c",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "Street_Address__c",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "Extended_Service__c",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "Extended_Service__c",
 											"type": "String",
 											"physicalType": "nvarchar"
 										}
@@ -2483,72 +2199,12 @@
 									},
 									{
 										"source": {
-											"name": "Country__c",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "Country__c",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "Account_Name_Inital_String__c",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "Account_Name_Inital_String__c",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
 											"name": "Region__c",
 											"type": "String",
 											"physicalType": "nvarchar"
 										},
 										"sink": {
 											"name": "Region__c",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "Account_Name_Copy__c",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "Account_Name_Copy__c",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "Account_Id_18_Digits__c",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "Account_Id_18_Digits__c",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "Billing_Account__c",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "Billing_Account__c",
 											"type": "String",
 											"physicalType": "nvarchar"
 										}
@@ -2615,54 +2271,6 @@
 									},
 									{
 										"source": {
-											"name": "AnnualRevenue",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "AnnualRevenue",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "signed_a_set_commitment_agreement__c",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "signed_a_set_commitment_agreement__c",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "Set_List_Account__c",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "Set_List_Account__c",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "dtUpdated",
-											"type": "DateTime",
-											"physicalType": "datetime"
-										},
-										"sink": {
-											"name": "dtUpdated",
-											"type": "DateTime",
-											"physicalType": "datetime"
-										}
-									},
-									{
-										"source": {
 											"name": "BYD_id",
 											"type": "String",
 											"physicalType": "nvarchar"
@@ -2717,6 +2325,42 @@
 										},
 										"sink": {
 											"name": "Account_Owner_Email",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Currency",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "Currency",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "IsAddress",
+											"type": "Boolean",
+											"physicalType": "bit"
+										},
+										"sink": {
+											"name": "IsAddress",
+											"type": "Boolean",
+											"physicalType": "bit"
+										}
+									},
+									{
+										"source": {
+											"name": "RelatedAccount",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "RelatedAccount",
 											"type": "String",
 											"physicalType": "nvarchar"
 										}
