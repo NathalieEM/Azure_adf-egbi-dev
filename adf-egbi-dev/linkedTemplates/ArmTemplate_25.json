@@ -13,6 +13,484 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/Mrr_Pump')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Truncate table EDHR Mrr Pump",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[EDHR].[sp_trunc_Mrr_Pump]"
+						},
+						"linkedServiceName": {
+							"referenceName": "sqldb_egbi_dev",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "Mrr_Pump",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "Truncate table EDHR Mrr Pump",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "SqlServerSource",
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"sink": {
+								"type": "AzureSqlSink"
+							},
+							"enableStaging": true,
+							"stagingSettings": {
+								"linkedServiceName": {
+									"referenceName": "st_error_log",
+									"type": "LinkedServiceReference"
+								}
+							},
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "ID",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "ID",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "_SerialNumber",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "SerialNumber",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "_Comments",
+											"type": "String",
+											"physicalType": "ntext"
+										},
+										"sink": {
+											"name": "Comments",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "_Brand",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "Brand",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "_PartNumber",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "PartNumber",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "_OwnerGroup",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "OwnerGroup",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "_MotorNumber",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "MotorNumber",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "_Type",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "Type",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "_MotorPartNumber",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "MotorPartNumber",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "_BOMRevision",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "BOMRevision",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "_ProductionLine",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "ProductionLine",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "_WifiNumber",
+											"type": "String",
+											"physicalType": "varchar"
+										},
+										"sink": {
+											"name": "WifiNumber",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "Pump",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "Mrr_Pump",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"folder": {
+					"name": "EDHR/MRR"
+				},
+				"annotations": [],
+				"lastPublishTime": "2020-08-18T12:11:54Z"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Mrr_PumpProductionLine')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "trunc Mrr_PumpProductionLine",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[EDHR].[sp_trunc_Mrr_PumpProductionLine]"
+						},
+						"linkedServiceName": {
+							"referenceName": "sqldb_egbi_dev",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "Copy Mrr_Location_Replica",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "trunc Mrr_PumpProductionLine",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "SqlServerSource",
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"sink": {
+								"type": "AzureSqlSink"
+							},
+							"enableStaging": true,
+							"stagingSettings": {
+								"linkedServiceName": {
+									"referenceName": "st_error_log",
+									"type": "LinkedServiceReference"
+								}
+							},
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "ID",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "ID",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "_Name",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "Name",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "PumpProductionLine",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "Mrr_PumpProductionLine",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"folder": {
+					"name": "EDHR/MRR"
+				},
+				"annotations": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Mrr_PumpType')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Copy Mrr_PumpType",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "trunc Mrr_PumpType",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "SqlServerSource",
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"sink": {
+								"type": "AzureSqlSink"
+							},
+							"enableStaging": true,
+							"stagingSettings": {
+								"linkedServiceName": {
+									"referenceName": "st_error_log",
+									"type": "LinkedServiceReference"
+								}
+							},
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "ID",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "Id",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "_Name",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "Name",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "PumpType",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "Mrr_PumpType",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "trunc Mrr_PumpType",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[EDHR].[sp_trunc_Mrr_PumpType]"
+						},
+						"linkedServiceName": {
+							"referenceName": "sqldb_egbi_dev",
+							"type": "LinkedServiceReference"
+						}
+					}
+				],
+				"folder": {
+					"name": "EDHR/MRR"
+				},
+				"annotations": []
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/Mrr_RDN1')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
@@ -21994,810 +22472,6 @@
 				},
 				"annotations": [],
 				"lastPublishTime": "2020-08-30T09:37:37Z"
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Mrr_ServiceFlow')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "Copy Mrr_ServiceFlow",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "trunc Mrr_ServiceFlow",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "SqlServerSource",
-								"queryTimeout": "02:00:00",
-								"partitionOption": "None"
-							},
-							"sink": {
-								"type": "AzureSqlSink"
-							},
-							"enableStaging": true,
-							"stagingSettings": {
-								"linkedServiceName": {
-									"referenceName": "AzureBlobStorage1",
-									"type": "LinkedServiceReference"
-								}
-							},
-							"translator": {
-								"type": "TabularTranslator",
-								"mappings": [
-									{
-										"source": {
-											"name": "ID",
-											"type": "Int32",
-											"physicalType": "int"
-										},
-										"sink": {
-											"name": "ID",
-											"type": "Int32",
-											"physicalType": "int"
-										}
-									},
-									{
-										"source": {
-											"name": "Callid",
-											"type": "Int32",
-											"physicalType": "int"
-										},
-										"sink": {
-											"name": "Callid",
-											"type": "Int32",
-											"physicalType": "int"
-										}
-									},
-									{
-										"source": {
-											"name": "ObjId",
-											"type": "Int32",
-											"physicalType": "int"
-										},
-										"sink": {
-											"name": "ObjId",
-											"type": "Int32",
-											"physicalType": "int"
-										}
-									},
-									{
-										"source": {
-											"name": "Sort",
-											"type": "Double",
-											"physicalType": "float"
-										},
-										"sink": {
-											"name": "Sort",
-											"type": "Double",
-											"physicalType": "float"
-										}
-									},
-									{
-										"source": {
-											"name": "Step",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "Step",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "Startdate",
-											"type": "DateTime",
-											"physicalType": "datetime"
-										},
-										"sink": {
-											"name": "Startdate",
-											"type": "DateTime",
-											"physicalType": "datetime"
-										}
-									},
-									{
-										"source": {
-											"name": "Enddate",
-											"type": "DateTime",
-											"physicalType": "datetime"
-										},
-										"sink": {
-											"name": "Enddate",
-											"type": "DateTime",
-											"physicalType": "datetime"
-										}
-									},
-									{
-										"source": {
-											"name": "DaysInstep",
-											"type": "Int32",
-											"physicalType": "int"
-										},
-										"sink": {
-											"name": "DaysInstep",
-											"type": "Int32",
-											"physicalType": "int"
-										}
-									},
-									{
-										"source": {
-											"name": "StepGoal",
-											"type": "String",
-											"physicalType": "nchar"
-										},
-										"sink": {
-											"name": "StepGoal",
-											"type": "String",
-											"physicalType": "nchar"
-										}
-									},
-									{
-										"source": {
-											"name": "PendingGroup",
-											"type": "Int32",
-											"physicalType": "int"
-										},
-										"sink": {
-											"name": "PendingGroup",
-											"type": "Int32",
-											"physicalType": "int"
-										}
-									},
-									{
-										"source": {
-											"name": "dtupdated",
-											"type": "DateTime",
-											"physicalType": "datetime"
-										},
-										"sink": {
-											"name": "dtupdated",
-											"type": "DateTime",
-											"physicalType": "datetime"
-										}
-									},
-									{
-										"source": {
-											"name": "isDeleted",
-											"type": "Boolean",
-											"physicalType": "bit"
-										},
-										"sink": {
-											"name": "isDeleted",
-											"type": "Boolean",
-											"physicalType": "bit"
-										}
-									}
-								],
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "ServiceFlow",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "Mrr_ServiceFlow",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "trunc Mrr_ServiceFlow",
-						"type": "SqlServerStoredProcedure",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"storedProcedureName": "[[ScoreCards].[sp_trunc_Mrr_serviceflow]"
-						},
-						"linkedServiceName": {
-							"referenceName": "sqldb_egbi_dev",
-							"type": "LinkedServiceReference"
-						}
-					}
-				],
-				"folder": {
-					"name": "ScoreCards/Mrr"
-				},
-				"annotations": [],
-				"lastPublishTime": "2020-08-18T13:00:27Z"
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Mrr_ServiceGoal')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "Trunc_Mrr_ServiceGoal",
-						"type": "SqlServerStoredProcedure",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"storedProcedureName": "[[sap].[sp_trunc_Mrr_ServiceGoal]"
-						},
-						"linkedServiceName": {
-							"referenceName": "sqldb_egbi_dev",
-							"type": "LinkedServiceReference"
-						}
-					},
-					{
-						"name": "Mrr_ServiceGoal",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "Trunc_Mrr_ServiceGoal",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "SqlServerSource",
-								"queryTimeout": "02:00:00",
-								"partitionOption": "None"
-							},
-							"sink": {
-								"type": "AzureSqlSink"
-							},
-							"enableStaging": true,
-							"stagingSettings": {
-								"linkedServiceName": {
-									"referenceName": "st_error_log",
-									"type": "LinkedServiceReference"
-								}
-							},
-							"translator": {
-								"type": "TabularTranslator",
-								"mappings": [
-									{
-										"source": {
-											"name": "Code",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "Code",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "Name",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "Name",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "U_StepName",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "U_StepName",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "U_StepFatherGroup",
-											"type": "Int32",
-											"physicalType": "int"
-										},
-										"sink": {
-											"name": "U_StepFatherGroup",
-											"type": "Int32",
-											"physicalType": "int"
-										}
-									},
-									{
-										"source": {
-											"name": "U_GoalInDays",
-											"type": "Int32",
-											"physicalType": "int"
-										},
-										"sink": {
-											"name": "U_GoalInDays",
-											"type": "Int32",
-											"physicalType": "int"
-										}
-									},
-									{
-										"source": {
-											"name": "Sd_Rule",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "Sd_Rule",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "Ed_Rule",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "Ed_Rule",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									}
-								],
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "SERVICEGOAL",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "Mrr_ServiceGoal",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					}
-				],
-				"folder": {
-					"name": "SAP/Mrr"
-				},
-				"annotations": [],
-				"lastPublishTime": "2020-10-13T07:49:53Z"
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Mrr_Service_Center')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "sp_trunc_Mrr_Service_Center",
-						"type": "SqlServerStoredProcedure",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"storedProcedureName": "[[sap].[sp_trunc_Mrr_ServiceCenters]"
-						},
-						"linkedServiceName": {
-							"referenceName": "sqldb_egbi_dev",
-							"type": "LinkedServiceReference"
-						}
-					},
-					{
-						"name": "Copy Mrr_Service_Center",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "sp_trunc_Mrr_Service_Center",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "SqlServerSource",
-								"queryTimeout": "02:00:00",
-								"partitionOption": "None"
-							},
-							"sink": {
-								"type": "AzureSqlSink"
-							},
-							"enableStaging": true,
-							"stagingSettings": {
-								"linkedServiceName": {
-									"referenceName": "st_error_log",
-									"type": "LinkedServiceReference"
-								}
-							},
-							"translator": {
-								"type": "TabularTranslator",
-								"mappings": [
-									{
-										"source": {
-											"name": "Code",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "Code",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "Name",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "Name",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "DocEntry",
-											"type": "Int32",
-											"physicalType": "int"
-										},
-										"sink": {
-											"name": "DocEntry",
-											"type": "Int32",
-											"physicalType": "int"
-										}
-									},
-									{
-										"source": {
-											"name": "Canceled",
-											"type": "String",
-											"physicalType": "char"
-										},
-										"sink": {
-											"name": "Canceled",
-											"type": "String",
-											"physicalType": "char"
-										}
-									},
-									{
-										"source": {
-											"name": "Object",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "Object",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "LogInst",
-											"type": "Int32",
-											"physicalType": "int"
-										},
-										"sink": {
-											"name": "LogInst",
-											"type": "Int32",
-											"physicalType": "int"
-										}
-									},
-									{
-										"source": {
-											"name": "UserSign",
-											"type": "Int32",
-											"physicalType": "int"
-										},
-										"sink": {
-											"name": "UserSign",
-											"type": "Int32",
-											"physicalType": "int"
-										}
-									},
-									{
-										"source": {
-											"name": "Transfered",
-											"type": "String",
-											"physicalType": "char"
-										},
-										"sink": {
-											"name": "Transfered",
-											"type": "String",
-											"physicalType": "char"
-										}
-									},
-									{
-										"source": {
-											"name": "CreateDate",
-											"type": "DateTime",
-											"physicalType": "datetime"
-										},
-										"sink": {
-											"name": "CreateDate",
-											"type": "DateTime",
-											"physicalType": "datetime"
-										}
-									},
-									{
-										"source": {
-											"name": "CreateTime",
-											"type": "Int16",
-											"physicalType": "smallint"
-										},
-										"sink": {
-											"name": "CreateTime",
-											"type": "Int16",
-											"physicalType": "smallint"
-										}
-									},
-									{
-										"source": {
-											"name": "UpdateDate",
-											"type": "DateTime",
-											"physicalType": "datetime"
-										},
-										"sink": {
-											"name": "UpdateDate",
-											"type": "DateTime",
-											"physicalType": "datetime"
-										}
-									},
-									{
-										"source": {
-											"name": "UpdateTime",
-											"type": "Int16",
-											"physicalType": "smallint"
-										},
-										"sink": {
-											"name": "UpdateTime",
-											"type": "Int16",
-											"physicalType": "smallint"
-										}
-									},
-									{
-										"source": {
-											"name": "DataSource",
-											"type": "String",
-											"physicalType": "char"
-										},
-										"sink": {
-											"name": "DataSource",
-											"type": "String",
-											"physicalType": "char"
-										}
-									},
-									{
-										"source": {
-											"name": "U_SC_Name",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "U_SC_Name",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "U_Active",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "U_Active",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "U_CardCode",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "U_CardCode",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "U_CardName",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "U_CardName",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "U_HubCode",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "U_HubCode",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "U_HubName",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "U_HubName",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "U_IntakeFormEmail",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "U_IntakeFormEmail",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "U_IntakeFormSAMA",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "U_IntakeFormSAMA",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "U_IsQcore",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "U_IsQcore",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "U_IsICU",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "U_IsICU",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "U_ServiceCenterType",
-											"type": "Int32",
-											"physicalType": "int"
-										},
-										"sink": {
-											"name": "U_ServiceCenterType",
-											"type": "Int32",
-											"physicalType": "int"
-										}
-									}
-								],
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "ServiceCenters",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "Mrr_Service_Center",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					}
-				],
-				"folder": {
-					"name": "SAP/Mrr"
-				},
-				"annotations": [],
-				"lastPublishTime": "2020-09-29T09:56:20Z"
 			},
 			"dependsOn": []
 		}

@@ -1,0 +1,478 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "adf-egbi-dev"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/EDHR_Main')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Mrr_Device",
+						"type": "ExecutePipeline",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "Mrr_Device",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true
+						}
+					},
+					{
+						"name": "Mrr_DeviceProcedureData",
+						"type": "ExecutePipeline",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "Mrr_DeviceProcedureData",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true
+						}
+					},
+					{
+						"name": "Mrr_ProcedureType",
+						"type": "ExecutePipeline",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "Mrr_ProcedureType",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true
+						}
+					},
+					{
+						"name": "Mrr_DeviceMovement",
+						"type": "ExecutePipeline",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "Mrr_DeviceMovement",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true
+						}
+					},
+					{
+						"name": "Mrr_Location",
+						"type": "ExecutePipeline",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "Mrr_Location",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true
+						}
+					},
+					{
+						"name": "Mrr_Result",
+						"type": "ExecutePipeline",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "Mrr_Result",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true
+						}
+					},
+					{
+						"name": "Mrr_Rework",
+						"type": "ExecutePipeline",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "Mrr_Rework",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true
+						}
+					},
+					{
+						"name": "Stg_Fact_Data",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "Mrr_DeviceMovement",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "Mrr_Location",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "Mrr_ProcedureType",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "Mrr_DeviceProcedureData",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "Mrr_Device",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "Mrr_Result",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "Mrr_Rework",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "Mrr_PumpProductionLine",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "Mrr_Pump",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "Mrr_DHR_Failure",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "Mrr_EntranceReason",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "Mrr_DHR_Assembly",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "Mrr_PumpType",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "Stg_Fact_Data",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true
+						}
+					},
+					{
+						"name": "Mrr_PumpProductionLine",
+						"type": "ExecutePipeline",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "Mrr_PumpProductionLine",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true
+						}
+					},
+					{
+						"name": "Mrr_Pump",
+						"type": "ExecutePipeline",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "Mrr_Pump",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true
+						}
+					},
+					{
+						"name": "Mrr_DHR_Failure",
+						"type": "ExecutePipeline",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "Mrr_DHR_Failure",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true
+						}
+					},
+					{
+						"name": "Mrr_DHR_Assembly",
+						"type": "ExecutePipeline",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "Mrr_DHR_Assembly",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true
+						}
+					},
+					{
+						"name": "Mrr_EntranceReason",
+						"type": "ExecutePipeline",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "Mrr_EntranceReason",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true
+						}
+					},
+					{
+						"name": "Mrr_PumpType",
+						"type": "ExecutePipeline",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "Mrr_PumpType",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true
+						}
+					}
+				],
+				"folder": {
+					"name": "EDHR"
+				},
+				"annotations": [],
+				"lastPublishTime": "2020-08-18T12:11:55Z"
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/Mrr_PumpType')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Mrr_PumpType')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Copy Mrr_PumpType",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "trunc Mrr_PumpType",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "SqlServerSource",
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"sink": {
+								"type": "AzureSqlSink"
+							},
+							"enableStaging": true,
+							"stagingSettings": {
+								"linkedServiceName": {
+									"referenceName": "st_error_log",
+									"type": "LinkedServiceReference"
+								}
+							},
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "ID",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "Id",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "_Name",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "Name",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "PumpType",
+								"type": "DatasetReference"
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "Mrr_PumpType",
+								"type": "DatasetReference"
+							}
+						]
+					},
+					{
+						"name": "trunc Mrr_PumpType",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[EDHR].[sp_trunc_Mrr_PumpType]"
+						},
+						"linkedServiceName": {
+							"referenceName": "sqldb_egbi_dev",
+							"type": "LinkedServiceReference"
+						}
+					}
+				],
+				"folder": {
+					"name": "EDHR/MRR"
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/PumpType')]",
+				"[concat(variables('factoryId'), '/datasets/Mrr_PumpType')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Mrr_PumpType')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqldb_egbi_dev",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLDB-EGBI-DEV/EDHR"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "Id",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Name",
+						"type": "nvarchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "EDHR",
+					"table": "Mrr_PumpType"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/PumpType')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sql_rptsrv",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLSRV-RPTSRV/EDHR"
+				},
+				"annotations": [],
+				"type": "SqlServerTable",
+				"schema": [
+					{
+						"name": "ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_Name",
+						"type": "nvarchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "_PumpType"
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}

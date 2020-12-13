@@ -13,6 +13,115 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/SAP_Mrr_OCRY')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqldb_egbi_dev",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLDB-EGBI-DEV/SAP"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ETL_ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ETL_Timestamp",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "Code",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Name",
+						"type": "nvarchar"
+					},
+					{
+						"name": "AddrFormat",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "UserSign",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "IsEC",
+						"type": "char"
+					},
+					{
+						"name": "ReportCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "TaxIdDigts",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "BnkCodDgts",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "BnkBchDgts",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "BnkActDgts",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "BnkCtKDgts",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ValDomAcct",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ValIban",
+						"type": "char"
+					},
+					{
+						"name": "IsBlackLst",
+						"type": "char"
+					},
+					{
+						"name": "UICCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CntCodNum",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Siscomex",
+						"type": "nvarchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "sap",
+					"table": "Mrr_OCRY"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/SAP_Mrr_OCRY1')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -3425,113 +3534,6 @@
 				"typeProperties": {
 					"schema": "SF",
 					"table": "Mrr_SF_Account"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/SF_Address')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqldb_egbi_dev",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "ETL_ID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Id",
-						"type": "nvarchar"
-					},
-					{
-						"name": "IsDeleted",
-						"type": "bit"
-					},
-					{
-						"name": "Name",
-						"type": "nvarchar"
-					},
-					{
-						"name": "CurrencyIsoCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "CreatedDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "CreatedById",
-						"type": "nvarchar"
-					},
-					{
-						"name": "LastModifiedDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "LastModifiedById",
-						"type": "nvarchar"
-					},
-					{
-						"name": "SystemModstamp",
-						"type": "nvarchar"
-					},
-					{
-						"name": "LastActivityDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "LastViewedDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "LastReferencedDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "Account__c",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Address__c",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Country__c",
-						"type": "nvarchar"
-					},
-					{
-						"name": "City__c",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Zip_Postal_Code__c",
-						"type": "nvarchar"
-					},
-					{
-						"name": "State_Province__c",
-						"type": "nvarchar"
-					}
-				],
-				"typeProperties": {
-					"schema": "SF",
-					"table": "Mrr_SF_Address"
 				}
 			},
 			"dependsOn": []

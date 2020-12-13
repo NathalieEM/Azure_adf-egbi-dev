@@ -13,6 +13,113 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/SF_Address')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqldb_egbi_dev",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ETL_ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Id",
+						"type": "nvarchar"
+					},
+					{
+						"name": "IsDeleted",
+						"type": "bit"
+					},
+					{
+						"name": "Name",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CurrencyIsoCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CreatedDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "CreatedById",
+						"type": "nvarchar"
+					},
+					{
+						"name": "LastModifiedDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "LastModifiedById",
+						"type": "nvarchar"
+					},
+					{
+						"name": "SystemModstamp",
+						"type": "nvarchar"
+					},
+					{
+						"name": "LastActivityDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "LastViewedDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "LastReferencedDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "Account__c",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Address__c",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Country__c",
+						"type": "nvarchar"
+					},
+					{
+						"name": "City__c",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Zip_Postal_Code__c",
+						"type": "nvarchar"
+					},
+					{
+						"name": "State_Province__c",
+						"type": "nvarchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "SF",
+					"table": "Mrr_SF_Address"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/SF_Classroom')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -492,173 +599,6 @@
 					"relativeUrl": "getbytitle('PURCRequests')/items"
 				},
 				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Stg_Dim_User')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqldb_egbi_dev",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "ID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "fGroupID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "IsTrainingUser",
-						"type": "bit"
-					},
-					{
-						"name": "IsAdminUser",
-						"type": "bit"
-					},
-					{
-						"name": "FirstName",
-						"type": "nvarchar"
-					},
-					{
-						"name": "LastName",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Position",
-						"type": "nvarchar"
-					},
-					{
-						"name": "fStateID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "City",
-						"type": "nvarchar"
-					},
-					{
-						"name": "fCountryID",
-						"type": "nvarchar"
-					},
-					{
-						"name": "fServiceCenterID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Organization",
-						"type": "nvarchar"
-					},
-					{
-						"name": "UserName",
-						"type": "nvarchar"
-					},
-					{
-						"name": "UserDisplayName",
-						"type": "nvarchar"
-					},
-					{
-						"name": "IsActive",
-						"type": "bit"
-					},
-					{
-						"name": "fStatusID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "fNewUserStatusID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "RegistrationDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "IsBlockUser",
-						"type": "bit"
-					},
-					{
-						"name": "UserCertificationRenewDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "ApproveTermsConditions",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "IsNeedApproveTermsAgain",
-						"type": "bit"
-					},
-					{
-						"name": "fLocationID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "fCreatedByID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "dtCreatedDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "fUpdatedByID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "dtUpdatedDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "IsToExport",
-						"type": "bit"
-					},
-					{
-						"name": "dtLastExportDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "__fDistributorID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "_fServiceCenterID",
-						"type": "int",
-						"precision": 10
-					}
-				],
-				"typeProperties": {
-					"schema": "srv",
-					"table": "Stg_Dim_User"
-				}
 			},
 			"dependsOn": []
 		}

@@ -13,6 +13,151 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/ITT11')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "TESTSorrelDB_25022020",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLSRV-SAP/NewQcoreDB"
+				},
+				"annotations": [],
+				"type": "SqlServerTable",
+				"schema": [
+					{
+						"name": "Father",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ChildNum",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Code",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Quantity",
+						"type": "decimal",
+						"precision": 19,
+						"scale": 6
+					},
+					{
+						"name": "Warehouse",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Price",
+						"type": "decimal",
+						"precision": 19,
+						"scale": 6
+					},
+					{
+						"name": "Currency",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PriceList",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "OrigPrice",
+						"type": "decimal",
+						"precision": 19,
+						"scale": 6
+					},
+					{
+						"name": "OrigCurr",
+						"type": "nvarchar"
+					},
+					{
+						"name": "IssueMthd",
+						"type": "char"
+					},
+					{
+						"name": "Uom",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Comment",
+						"type": "nvarchar"
+					},
+					{
+						"name": "LogInstanc",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Object",
+						"type": "nvarchar"
+					},
+					{
+						"name": "OcrCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "OcrCode2",
+						"type": "nvarchar"
+					},
+					{
+						"name": "OcrCode3",
+						"type": "nvarchar"
+					},
+					{
+						"name": "OcrCode4",
+						"type": "nvarchar"
+					},
+					{
+						"name": "OcrCode5",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PrncpInput",
+						"type": "char"
+					},
+					{
+						"name": "Project",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Type",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "WipActCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "AddQuantit",
+						"type": "decimal",
+						"precision": 19,
+						"scale": 6
+					},
+					{
+						"name": "LineText",
+						"type": "ntext"
+					},
+					{
+						"name": "U_pos",
+						"type": "decimal",
+						"precision": 19,
+						"scale": 6
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "ITT1"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/Issue_Service')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -12112,104 +12257,6 @@
 			"properties": {
 				"linkedServiceName": {
 					"referenceName": "sqlsrv_sap",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQLSRV-SAP/NewQcoreDB"
-				},
-				"annotations": [],
-				"type": "SqlServerTable",
-				"schema": [
-					{
-						"name": "Code",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Name",
-						"type": "nvarchar"
-					},
-					{
-						"name": "AddrFormat",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "UserSign",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "IsEC",
-						"type": "char"
-					},
-					{
-						"name": "ReportCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "TaxIdDigts",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "BnkCodDgts",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "BnkBchDgts",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "BnkActDgts",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "BnkCtKDgts",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "ValDomAcct",
-						"type": "nvarchar"
-					},
-					{
-						"name": "ValIban",
-						"type": "char"
-					},
-					{
-						"name": "IsBlackLst",
-						"type": "char"
-					},
-					{
-						"name": "UICCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "CntCodNum",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Siscomex",
-						"type": "nvarchar"
-					}
-				],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "OCRY"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/OCRY1')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "TESTSorrelDB_25022020",
 					"type": "LinkedServiceReference"
 				},
 				"folder": {

@@ -13,6 +13,82 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/SRV_SERIALS')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqlsrv_sap",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLSRV-SAP/NewQcoreDB"
+				},
+				"annotations": [],
+				"type": "SqlServerTable",
+				"schema": [
+					{
+						"name": "DocEntry",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "LineId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "VisOrder",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Object",
+						"type": "nvarchar"
+					},
+					{
+						"name": "LogInst",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "U_SerialNo",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_Rma",
+						"type": "nvarchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": {
+						"value": "@@SRV_SERIALS",
+						"type": "Expression"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SalesforceObject_account')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "SalesforceSandBox",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "SalesforceObject",
+				"schema": [],
+				"typeProperties": {
+					"objectApiName": "Account"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/SalesforceSandBox')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -6125,144 +6201,6 @@
 				"typeProperties": {
 					"schema": "dbo",
 					"table": "parm_CallCategory"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/parm_CallStatus')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AWS_Service_portal",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "AWS"
-				},
-				"annotations": [],
-				"type": "SqlServerTable",
-				"schema": [
-					{
-						"name": "ID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Name",
-						"type": "nvarchar"
-					},
-					{
-						"name": "__Office",
-						"type": "char"
-					},
-					{
-						"name": "fCreatedByID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "dtCreatedDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "fUpdatedByID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "dtUpdatedDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					}
-				],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "parm_CallStatus"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/parm_CallSubCategory')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AWS_Service_portal",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "AWS"
-				},
-				"annotations": [],
-				"type": "SqlServerTable",
-				"schema": [
-					{
-						"name": "ID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Name",
-						"type": "nvarchar"
-					},
-					{
-						"name": "fCategoryID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "IsFreeText",
-						"type": "bit"
-					},
-					{
-						"name": "DefaultTitle",
-						"type": "nvarchar"
-					},
-					{
-						"name": "DefaultCallDesc",
-						"type": "nvarchar"
-					},
-					{
-						"name": "SortOrder",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "__Office",
-						"type": "char"
-					},
-					{
-						"name": "fCreatedByID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "dtCreatedDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "fUpdatedByID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "dtUpdatedDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					}
-				],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "parm_CallSubCategory"
 				}
 			},
 			"dependsOn": []

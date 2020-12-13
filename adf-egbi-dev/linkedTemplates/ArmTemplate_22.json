@@ -13,6 +13,548 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/Mrr_CostCenter')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Mrr_CostCenter",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "trunc_Mrr_CostCenter",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [
+							{
+								"name": "Source",
+								"value": "dbo.OPRC"
+							},
+							{
+								"name": "Destination",
+								"value": "prof.Mrr_Departments"
+							}
+						],
+						"typeProperties": {
+							"source": {
+								"type": "SqlServerSource",
+								"sqlReaderQuery": "SELECT \n       [PrcCode]\n      ,[PrcName]\n      ,[DimCode]\n      ,[U_Owner]\n      ,[U_PorfApp]\n      ,[U_OwnerMail]\n      ,[U_Secondary]\n      ,[U_SecMail]\n      ,[U_PorfApp2]\n      ,[Active]\n      ,T0.[ValidTo]\n      ,T0.u_porf\n       ,DB_NAME() [DB_NAME]\n FROM [dbo].OPRC  t0 inner join [dbo].OACT T1 on t0.PrcCode= t1.U_PORF_Dep OR T0.PrcCode=T1.U_PORF_Alloc\n \n where Active <> 'N' AND T1.U_PORF='Y'\n GROUP BY \n     [PrcCode]\n      ,[PrcName]\n      ,[DimCode]\n      ,[U_Owner]\n      ,[U_PorfApp]\n      ,[U_OwnerMail]\n      ,[U_Secondary]\n      ,[U_SecMail]\n      ,[U_PorfApp2]\n      ,[Active]\n      ,T0.[ValidTo]\n      ,T0.u_porf\n     ",
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"sink": {
+								"type": "AzureSqlSink"
+							},
+							"enableStaging": true,
+							"stagingSettings": {
+								"linkedServiceName": {
+									"referenceName": "AzureBlobStorage1",
+									"type": "LinkedServiceReference"
+								},
+								"path": "prof"
+							},
+							"enableSkipIncompatibleRow": true,
+							"logStorageSettings": {
+								"linkedServiceName": {
+									"referenceName": "st_error_log",
+									"type": "LinkedServiceReference"
+								},
+								"path": "adf-errorlogs-dev"
+							},
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "PrcCode",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "PrcCode",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "PrcName",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "PrcName",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "DimCode",
+											"type": "Int16",
+											"physicalType": "smallint"
+										},
+										"sink": {
+											"name": "DimCode",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "U_Owner",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "U_Owner",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "U_PorfApp",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "U_PorfApp",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "U_OwnerMail",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "U_OwnerMail",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "U_Secondary",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "U_Secondary",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "U_SecMail",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "U_SecMail",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "U_PorfApp2",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "U_PorfApp2",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Active",
+											"type": "String",
+											"physicalType": "char"
+										},
+										"sink": {
+											"name": "Active",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "ValidTo",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										},
+										"sink": {
+											"name": "ValidTo",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "u_porf",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "U_PORF",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "DB_NAME",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "DB_NAME",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "CostCenter_OPRC",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "porf_Mrr_CostCenter",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "trunc_Mrr_CostCenter",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[porf].[sp_trunc_Mrr_CostCenter]"
+						},
+						"linkedServiceName": {
+							"referenceName": "sqldb_egbi_dev",
+							"type": "LinkedServiceReference"
+						}
+					}
+				],
+				"folder": {
+					"name": "PORF/Mrr"
+				},
+				"annotations": [],
+				"lastPublishTime": "2020-08-26T10:14:17Z"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Mrr_CostCenter1')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Mrr_CostCenter",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "trunc_Mrr_CostCenter",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [
+							{
+								"name": "Source",
+								"value": "dbo.OPRC"
+							},
+							{
+								"name": "Destination",
+								"value": "prof.Mrr_Departments"
+							}
+						],
+						"typeProperties": {
+							"source": {
+								"type": "SqlServerSource",
+								"sqlReaderQuery": "SELECT \n       [PrcCode]\n      ,[PrcName]\n      ,[DimCode]\n      ,[U_Owner]\n      ,[U_PorfApp]\n      ,[U_OwnerMail]\n      ,[U_Secondary]\n      ,[U_SecMail]\n      ,[U_PorfApp2]\n      ,[Active]\n      ,T0.[ValidTo]\n      ,T0.u_porf\n       ,DB_NAME() [DB_NAME]\n FROM [dbo].OPRC  t0 inner join [dbo].OACT T1 on t0.PrcCode= t1.U_PORF_Dep OR T0.PrcCode=T1.U_PORF_Alloc\n \n where Active <> 'N' AND T1.U_PORF='Y'\n GROUP BY \n     [PrcCode]\n      ,[PrcName]\n      ,[DimCode]\n      ,[U_Owner]\n      ,[U_PorfApp]\n      ,[U_OwnerMail]\n      ,[U_Secondary]\n      ,[U_SecMail]\n      ,[U_PorfApp2]\n      ,[Active]\n      ,T0.[ValidTo]\n      ,T0.u_porf\n     ",
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"sink": {
+								"type": "AzureSqlSink"
+							},
+							"enableStaging": true,
+							"stagingSettings": {
+								"linkedServiceName": {
+									"referenceName": "AzureBlobStorage1",
+									"type": "LinkedServiceReference"
+								},
+								"path": "prof"
+							},
+							"enableSkipIncompatibleRow": true,
+							"logStorageSettings": {
+								"linkedServiceName": {
+									"referenceName": "st_error_log",
+									"type": "LinkedServiceReference"
+								},
+								"path": "adf-errorlogs-dev"
+							},
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "PrcCode",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "PrcCode",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "PrcName",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "PrcName",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "DimCode",
+											"type": "Int16",
+											"physicalType": "smallint"
+										},
+										"sink": {
+											"name": "DimCode",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "U_Owner",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "U_Owner",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "U_PorfApp",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "U_PorfApp",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "U_OwnerMail",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "U_OwnerMail",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "U_Secondary",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "U_Secondary",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "U_SecMail",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "U_SecMail",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "U_PorfApp2",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "U_PorfApp2",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Active",
+											"type": "String",
+											"physicalType": "char"
+										},
+										"sink": {
+											"name": "Active",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "ValidTo",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										},
+										"sink": {
+											"name": "ValidTo",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "u_porf",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "U_PORF",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "DB_NAME",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "DB_NAME",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "CostCenter_OPRC1",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "porf_Mrr_CostCenter1",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "trunc_Mrr_CostCenter",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[porf].[sp_trunc_Mrr_CostCenter]"
+						},
+						"linkedServiceName": {
+							"referenceName": "sqldb_sorrelbi_dev",
+							"type": "LinkedServiceReference"
+						}
+					}
+				],
+				"folder": {
+					"name": "PORF_SORREL/MRR"
+				},
+				"annotations": [],
+				"lastPublishTime": "2020-09-30T13:16:25Z"
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/Mrr_DHR_Assembly')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
@@ -22880,572 +23422,6 @@
 				},
 				"annotations": [],
 				"lastPublishTime": "2020-08-18T13:28:54Z"
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Mrr_Items1')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "Mrr_Items",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "trunc_Mrr_Items",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "SqlServerSource",
-								"sqlReaderQuery": "SELECT \n\tItemCode,\n\tISNULL(FrgnName, ItemName) AS ItemName, \n\tCardCode, \n\tItmsGrpCod, \n\tU_ServiceItem,\n\tDB_NAME() AS [DB_NAME],\n        U_PORF,\n\tcast ( LastPurPrc  as float) LastPurPrc   ,\n\tLastPurDat ,\n\tLastPurCur \n FROM [dbo].[OITM]\n\nWHERE frozenFor = 'N'\nAND PrchseItem = 'Y'\nAND U_PORF = 'Y' ",
-								"queryTimeout": "02:00:00",
-								"partitionOption": "None"
-							},
-							"sink": {
-								"type": "AzureSqlSink"
-							},
-							"enableStaging": true,
-							"stagingSettings": {
-								"linkedServiceName": {
-									"referenceName": "AzureBlobStorage1",
-									"type": "LinkedServiceReference"
-								}
-							},
-							"enableSkipIncompatibleRow": true,
-							"translator": {
-								"type": "TabularTranslator",
-								"mappings": [
-									{
-										"source": {
-											"name": "ItemCode",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "ItemCode",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "ItemName",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "ItemName",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "CardCode",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "CardCode",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "ItmsGrpCod",
-											"type": "Int16",
-											"physicalType": "smallint"
-										},
-										"sink": {
-											"name": "ItmsGrpCod",
-											"type": "Int32",
-											"physicalType": "int"
-										}
-									},
-									{
-										"source": {
-											"name": "U_ServiceItem",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "U_ServiceItem",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "U_PORF",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "U_PORF",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "LastPurPrc",
-											"type": "Double",
-											"physicalType": "float"
-										},
-										"sink": {
-											"name": "LastPurPrice",
-											"type": "Double",
-											"physicalType": "float"
-										}
-									},
-									{
-										"source": {
-											"name": "LastPurDat",
-											"type": "DateTime",
-											"physicalType": "datetime"
-										},
-										"sink": {
-											"name": "LastPurDate",
-											"type": "DateTime",
-											"physicalType": "datetime"
-										}
-									},
-									{
-										"source": {
-											"name": "LastPurCur",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "LastPurCurr",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "DB_NAME",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "DB_NAME",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									}
-								],
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "Items_OITM1",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "porf_Mrr_Items1",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "trunc_Mrr_Items",
-						"type": "SqlServerStoredProcedure",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"storedProcedureName": "[[porf].[sp_trunc_Mrr_Items]"
-						},
-						"linkedServiceName": {
-							"referenceName": "sqldb_sorrelbi_dev",
-							"type": "LinkedServiceReference"
-						}
-					}
-				],
-				"folder": {
-					"name": "PORF_SORREL/MRR"
-				},
-				"annotations": [],
-				"lastPublishTime": "2020-09-30T12:36:26Z"
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Mrr_Ki_Config_Tables')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "Trunc_Mrr_Ki_Config_Tables",
-						"type": "SqlServerStoredProcedure",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"storedProcedureName": "[[sap].[sp_trunc_Mrr_Ki_Config_Tables]"
-						},
-						"linkedServiceName": {
-							"referenceName": "sqldb_egbi_dev",
-							"type": "LinkedServiceReference"
-						}
-					},
-					{
-						"name": "Mrr_Ki_Config_Tables",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "Trunc_Mrr_Ki_Config_Tables",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "SqlServerSource",
-								"queryTimeout": "02:00:00",
-								"partitionOption": "None"
-							},
-							"sink": {
-								"type": "AzureSqlSink"
-							},
-							"enableStaging": true,
-							"stagingSettings": {
-								"linkedServiceName": {
-									"referenceName": "st_error_log",
-									"type": "LinkedServiceReference"
-								}
-							},
-							"translator": {
-								"type": "TabularTranslator",
-								"mappings": [
-									{
-										"source": {
-											"name": "Code",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "Code",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "Name",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "Name",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "DocEntry",
-											"type": "Int32",
-											"physicalType": "int"
-										},
-										"sink": {
-											"name": "DocEntry",
-											"type": "Int32",
-											"physicalType": "int"
-										}
-									},
-									{
-										"source": {
-											"name": "Canceled",
-											"type": "String",
-											"physicalType": "char"
-										},
-										"sink": {
-											"name": "Canceled",
-											"type": "String",
-											"physicalType": "char"
-										}
-									},
-									{
-										"source": {
-											"name": "Object",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "Object",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "LogInst",
-											"type": "Int32",
-											"physicalType": "int"
-										},
-										"sink": {
-											"name": "LogInst",
-											"type": "Int32",
-											"physicalType": "int"
-										}
-									},
-									{
-										"source": {
-											"name": "UserSign",
-											"type": "Int32",
-											"physicalType": "int"
-										},
-										"sink": {
-											"name": "UserSign",
-											"type": "Int32",
-											"physicalType": "int"
-										}
-									},
-									{
-										"source": {
-											"name": "Transfered",
-											"type": "String",
-											"physicalType": "char"
-										},
-										"sink": {
-											"name": "Transfered",
-											"type": "String",
-											"physicalType": "char"
-										}
-									},
-									{
-										"source": {
-											"name": "CreateDate",
-											"type": "DateTime",
-											"physicalType": "datetime"
-										},
-										"sink": {
-											"name": "CreateDate",
-											"type": "DateTime",
-											"physicalType": "datetime"
-										}
-									},
-									{
-										"source": {
-											"name": "CreateTime",
-											"type": "Int16",
-											"physicalType": "smallint"
-										},
-										"sink": {
-											"name": "CreateTime",
-											"type": "Int16",
-											"physicalType": "smallint"
-										}
-									},
-									{
-										"source": {
-											"name": "UpdateDate",
-											"type": "DateTime",
-											"physicalType": "datetime"
-										},
-										"sink": {
-											"name": "UpdateDate",
-											"type": "DateTime",
-											"physicalType": "datetime"
-										}
-									},
-									{
-										"source": {
-											"name": "UpdateTime",
-											"type": "Int16",
-											"physicalType": "smallint"
-										},
-										"sink": {
-											"name": "UpdateTime",
-											"type": "Int16",
-											"physicalType": "smallint"
-										}
-									},
-									{
-										"source": {
-											"name": "DataSource",
-											"type": "String",
-											"physicalType": "char"
-										},
-										"sink": {
-											"name": "DataSource",
-											"type": "String",
-											"physicalType": "char"
-										}
-									},
-									{
-										"source": {
-											"name": "U_Type",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "U_Type",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "U_Description",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "U_Description",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "U_Erorr",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "U_Erorr",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "U_Analysis",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "U_Analysis",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "U_Repair",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "U_Repair",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "U_IsActive",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "U_IsActive",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "U_Company",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "U_Company",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "U_ExistInQB",
-											"type": "String",
-											"physicalType": "char"
-										},
-										"sink": {
-											"name": "U_ExistInQB",
-											"type": "String",
-											"physicalType": "char"
-										}
-									}
-								],
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "Ki_Config_Tables",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "Mrr_Ki_Config_Tables",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					}
-				],
-				"folder": {
-					"name": "SAP/Mrr"
-				},
-				"annotations": [],
-				"lastPublishTime": "2020-10-06T08:27:08Z"
 			},
 			"dependsOn": []
 		}
