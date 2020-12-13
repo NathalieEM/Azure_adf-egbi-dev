@@ -48,7 +48,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "Mrr__DeviceMovement",
+						"referenceName": "Mrr_DeviceMovement",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true
@@ -156,6 +156,12 @@
 						"dependencyConditions": [
 							"Succeeded"
 						]
+					},
+					{
+						"activity": "Mrr_DHR_Failure1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
 					}
 				],
 				"userProperties": [],
@@ -195,6 +201,19 @@
 			},
 			{
 				"name": "Mrr_DHR_Failure",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Mrr_DHR_Failure",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Mrr_DHR_Failure1",
 				"type": "ExecutePipeline",
 				"dependsOn": [],
 				"userProperties": [],
