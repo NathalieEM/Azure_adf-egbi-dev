@@ -100,7 +100,7 @@
 						}
 					},
 					{
-						"name": "Mrr__DeviceMovement",
+						"name": "Mrr_DeviceMovement",
 						"type": "ExecutePipeline",
 						"dependsOn": [],
 						"userProperties": [],
@@ -160,7 +160,7 @@
 						"type": "ExecutePipeline",
 						"dependsOn": [
 							{
-								"activity": "Mrr__DeviceMovement",
+								"activity": "Mrr_DeviceMovement",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -220,7 +220,13 @@
 								]
 							},
 							{
-								"activity": "Mrr_DHR_Failure1",
+								"activity": "Mrr_EntranceReason",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "Mrr_DHR_Assembly",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -279,13 +285,27 @@
 						}
 					},
 					{
-						"name": "Mrr_DHR_Failure1",
+						"name": "Mrr_DHR_Assembly",
 						"type": "ExecutePipeline",
 						"dependsOn": [],
 						"userProperties": [],
 						"typeProperties": {
 							"pipeline": {
-								"referenceName": "Mrr_DHR_Failure",
+								"referenceName": "Mrr_DHR_Assembly",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {}
+						}
+					},
+					{
+						"name": "Mrr_EntranceReason",
+						"type": "ExecutePipeline",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "Mrr_EntranceReason",
 								"type": "PipelineReference"
 							},
 							"waitOnCompletion": true,
