@@ -168,6 +168,12 @@
 						"dependencyConditions": [
 							"Succeeded"
 						]
+					},
+					{
+						"activity": "Mrr_PumpType",
+						"dependencyConditions": [
+							"Succeeded"
+						]
 					}
 				],
 				"userProperties": [],
@@ -239,6 +245,19 @@
 				"typeProperties": {
 					"pipeline": {
 						"referenceName": "Mrr_EntranceReason",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Mrr_PumpType",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Mrr_PumpType",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true
