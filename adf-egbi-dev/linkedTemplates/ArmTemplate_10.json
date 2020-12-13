@@ -13,6 +13,136 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/Training_Mrr_SF_Requirement_Header')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqldb_egbi_dev",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLDB-EGBI-DEV/Training"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ETL_ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ETL_Timestamp",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "Id",
+						"type": "varchar"
+					},
+					{
+						"name": "OwnerId",
+						"type": "varchar"
+					},
+					{
+						"name": "IsDeleted",
+						"type": "bit"
+					},
+					{
+						"name": "Name",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CreatedDate",
+						"type": "datetime2",
+						"scale": 0
+					},
+					{
+						"name": "CreatedById",
+						"type": "varchar"
+					},
+					{
+						"name": "LastModifiedDate",
+						"type": "datetime2",
+						"scale": 0
+					},
+					{
+						"name": "LastModifiedById",
+						"type": "varchar"
+					},
+					{
+						"name": "SystemModstamp",
+						"type": "datetime2",
+						"scale": 0
+					},
+					{
+						"name": "LastActivityDate",
+						"type": "datetime2",
+						"scale": 0
+					},
+					{
+						"name": "LastViewedDate",
+						"type": "datetime2",
+						"scale": 0
+					},
+					{
+						"name": "LastReferencedDate",
+						"type": "datetime2",
+						"scale": 0
+					},
+					{
+						"name": "CompSuite__Curriculums__c",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CompSuite__Days_to_Complete__c",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "CompSuite__Document__c",
+						"type": "varchar"
+					},
+					{
+						"name": "CompSuite__Life_Cycle_Comments__c",
+						"type": "varchar"
+					},
+					{
+						"name": "CompSuite__Lock_Fields__c",
+						"type": "varchar"
+					},
+					{
+						"name": "CompSuite__Requirement_Frequency__c",
+						"type": "varchar"
+					},
+					{
+						"name": "CompSuite__Training_Eff_Protocol__c",
+						"type": "varchar"
+					},
+					{
+						"name": "CompSuite__State__c",
+						"type": "varchar"
+					},
+					{
+						"name": "CompSuite__Number_of_Versions__c",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Requirement_ID__c",
+						"type": "nvarchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "training",
+					"table": "Mrr_SF_Requirement_Header"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/Training_Quality_Plan')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -1047,73 +1177,6 @@
 				"typeProperties": {
 					"schema": "PORF",
 					"table": "Mrr_Rates"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/porf_Mrr_Suppliers')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqldb_egbi_dev",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQLDB-EGBI-DEV/PORF"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "ETL_ID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "ETL_Timestamp",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "CardCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "CardName",
-						"type": "nvarchar"
-					},
-					{
-						"name": "CurrName",
-						"type": "nvarchar"
-					},
-					{
-						"name": "E_Mail",
-						"type": "nvarchar"
-					},
-					{
-						"name": "PayMethod",
-						"type": "varchar"
-					},
-					{
-						"name": "U_ASLType",
-						"type": "nvarchar"
-					},
-					{
-						"name": "ListNum",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "DB_NAME",
-						"type": "varchar"
-					}
-				],
-				"typeProperties": {
-					"schema": "PORF",
-					"table": "Mrr_Suppliers"
 				}
 			},
 			"dependsOn": []

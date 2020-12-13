@@ -13,6 +13,25 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/SF_Contacts')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqldb_egbi_dev",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "SF",
+					"table": "Mrr_SF_Contacts"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/SF_Curriculum')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -726,149 +745,6 @@
 				"typeProperties": {
 					"schema": "srv",
 					"table": "Stg_Fact_ComplaintHeader"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Stg_Fact_Data')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqldb_egbi_dev",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQLDB-EGBI-DEV/EDHR"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "ParentID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "ParentTypeDescription",
-						"type": "nvarchar"
-					},
-					{
-						"name": "ParentStartTime",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "ParentEndTime",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "DisplayedName",
-						"type": "nvarchar"
-					},
-					{
-						"name": "ID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Procedure",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "StartTime",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "EndTime",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "ExecutedBy",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Comments",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Result",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "FailReason",
-						"type": "nvarchar"
-					},
-					{
-						"name": "PCAppSoftwareVersion",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Deleted",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "DeletedBy",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "DeletedTime",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "InsertTime",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "LastUpdateTime",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "OriginalProcedureId",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Device",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "SerialNumber",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "DeviceSoftwareVersion",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Name",
-						"type": "nvarchar"
-					}
-				],
-				"typeProperties": {
-					"schema": "EDHR",
-					"table": "Stg_Fact_Data"
 				}
 			},
 			"dependsOn": []
