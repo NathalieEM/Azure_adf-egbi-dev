@@ -1,0 +1,126 @@
+{
+	"name": "Mrr_DHR_Assembly",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sqldb_egbi_dev",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "_Procedure",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "_StartTime",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "_EndTime",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "_ExecutedBy",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "_Parent",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "_Comments",
+				"type": "nvarchar"
+			},
+			{
+				"name": "_Result",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "_FailReason",
+				"type": "nvarchar"
+			},
+			{
+				"name": "_PCAppSoftwareVersion",
+				"type": "nvarchar"
+			},
+			{
+				"name": "_Deleted",
+				"type": "bit"
+			},
+			{
+				"name": "_DeletedBy",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "_DeletedTime",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "_InsertTime",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "_LastUpdateTime",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "_OriginalProcedureId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "_QcApprovalTime",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "_QcApprover",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "_Device",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "_DeviceSoftwareVersion",
+				"type": "nvarchar"
+			},
+			{
+				"name": "_EntranceReason",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "EDHR",
+			"table": "Mrr_DHR_Assembly"
+		}
+	}
+}
