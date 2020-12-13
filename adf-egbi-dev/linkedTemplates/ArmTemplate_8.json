@@ -13,6 +13,27 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/SF_Classroom')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_salesforce",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SalesForce"
+				},
+				"annotations": [],
+				"type": "SalesforceObject",
+				"schema": [],
+				"typeProperties": {
+					"objectApiName": "CompSuite__Classroom__c"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/SF_Contacts')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -637,114 +658,6 @@
 				"typeProperties": {
 					"schema": "srv",
 					"table": "Stg_Dim_User"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Stg_Fact_ComplaintHeader')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqldb_egbi_dev",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQLDB-EGBI-DEV/Service/Stg"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "U_PortalID",
-						"type": "nvarchar"
-					},
-					{
-						"name": "fSerialNumber",
-						"type": "nvarchar"
-					},
-					{
-						"name": "callID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "status",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "dtCreatedDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "Subject",
-						"type": "nvarchar"
-					},
-					{
-						"name": "closeDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "itemName",
-						"type": "nvarchar"
-					},
-					{
-						"name": "itemCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Customer",
-						"type": "float",
-						"precision": 15
-					},
-					{
-						"name": "custmrName",
-						"type": "nvarchar"
-					},
-					{
-						"name": "callType",
-						"type": "float",
-						"precision": 15
-					},
-					{
-						"name": "ComplaintSource",
-						"type": "nvarchar"
-					},
-					{
-						"name": "servicedate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "dtcheckoutdate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "serviceStatus",
-						"type": "nvarchar"
-					},
-					{
-						"name": "fcreatedbyid",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "UserServiceCenterSAPID",
-						"type": "nvarchar"
-					}
-				],
-				"typeProperties": {
-					"schema": "srv",
-					"table": "Stg_Fact_ComplaintHeader"
 				}
 			},
 			"dependsOn": []

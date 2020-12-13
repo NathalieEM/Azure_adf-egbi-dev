@@ -13,6 +13,107 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/CUFD')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqlsrv_sap_TestNewQcoreDB_05012020",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLSRV-SAP/NewQcoreDB"
+				},
+				"annotations": [],
+				"type": "SqlServerTable",
+				"schema": [
+					{
+						"name": "TableID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "FieldID",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "AliasID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Descr",
+						"type": "nvarchar"
+					},
+					{
+						"name": "TypeID",
+						"type": "char"
+					},
+					{
+						"name": "EditType",
+						"type": "char"
+					},
+					{
+						"name": "SizeID",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "EditSize",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "Dflt",
+						"type": "nvarchar"
+					},
+					{
+						"name": "NotNull",
+						"type": "char"
+					},
+					{
+						"name": "IndexID",
+						"type": "char"
+					},
+					{
+						"name": "RTable",
+						"type": "nvarchar"
+					},
+					{
+						"name": "RField",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "Action",
+						"type": "char"
+					},
+					{
+						"name": "Sys",
+						"type": "char"
+					},
+					{
+						"name": "DfltDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "RelUDO",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ValidRule",
+						"type": "nvarchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "CUFD"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/CUFD1')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -996,6 +1097,9 @@
 				"linkedServiceName": {
 					"referenceName": "sql_rptsrv",
 					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLSRV-RPTSRV/EDHR"
 				},
 				"annotations": [],
 				"type": "SqlServerTable",
@@ -4806,6 +4910,42 @@
 				"typeProperties": {
 					"schema": "dbo",
 					"table": "_DeviceMovement"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/EntranceReason')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sql_rptsrv",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLSRV-RPTSRV/EDHR"
+				},
+				"annotations": [],
+				"type": "SqlServerTable",
+				"schema": [
+					{
+						"name": "ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_Description",
+						"type": "nvarchar"
+					},
+					{
+						"name": "_Obsolete",
+						"type": "bit"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "_EntranceReason"
 				}
 			},
 			"dependsOn": []
@@ -9134,714 +9274,6 @@
 				"typeProperties": {
 					"schema": "dbo",
 					"table": "ITT1"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Issue_Service')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqlsrv_sap",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQLDB-EGBI-DEV/SAP"
-				},
-				"annotations": [],
-				"type": "SqlServerTable",
-				"schema": [
-					{
-						"name": "Code",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Name",
-						"type": "nvarchar"
-					},
-					{
-						"name": "DocEntry",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Canceled",
-						"type": "char"
-					},
-					{
-						"name": "Object",
-						"type": "nvarchar"
-					},
-					{
-						"name": "LogInst",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "UserSign",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Transfered",
-						"type": "char"
-					},
-					{
-						"name": "CreateDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "CreateTime",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "UpdateDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "UpdateTime",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "DataSource",
-						"type": "char"
-					},
-					{
-						"name": "U_CallId",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "U_SPCategory",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_SPError",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_Confirmed",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_MisUse",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_UserSign1",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_DateStamp1",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "U_TimeStamp1",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "U_AnaylsisCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_AnalysisErrCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_KnownID",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_LongKnownID",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_UserSign2",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_DateStamp2",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "U_TimeStamp2",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "U_RrpairCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_AnalysisRepairCat",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_AnalysisRepairErr",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_RepairLevel",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_RepairAction",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_SparePartSnBatch",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_DiagnosticsConc",
-						"type": "ntext"
-					},
-					{
-						"name": "U_DiagConcComment",
-						"type": "ntext"
-					},
-					{
-						"name": "U_ComplaintRelated",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_UserSign3",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_DateStamp3",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "U_TimeStamp3",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "U_Reopen",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_ReopendT",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "U_ReOpen_Detalis",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_LineStatus",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_UserSign",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_DateStamp",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "U_TimeStamp",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "U_SPDescription",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_PortalID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "U_ServiceID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "U_PortalCompIsuueID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "U_ServiceActivityID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "U_Category",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_Error",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_UserSignP",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_DateStampP",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "U_TimeStampP",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "U_UserSignP1",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_DateStampP1",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "U_TomeStampP1",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "U_InternalSN",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_CompIssueStatus",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_TimeStampP1",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "U_OriginDocentry",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "U_OriginLine",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "U_ServiceLocation",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_ReopenUser",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_ReopenPortalUser",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_ReopenPortalDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "U_TransactionID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "U_Cancel",
-						"type": "char"
-					},
-					{
-						"name": "U_UserServiceCenter",
-						"type": "nvarchar"
-					}
-				],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": {
-						"value": "@@ISSUES_SERVICE",
-						"type": "Expression"
-					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Issue_Service1')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "TESTSorrelDB_25022020",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQLDB-EGBI-DEV/SAP"
-				},
-				"annotations": [],
-				"type": "SqlServerTable",
-				"schema": [
-					{
-						"name": "Code",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Name",
-						"type": "nvarchar"
-					},
-					{
-						"name": "DocEntry",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Canceled",
-						"type": "char"
-					},
-					{
-						"name": "Object",
-						"type": "nvarchar"
-					},
-					{
-						"name": "LogInst",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "UserSign",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Transfered",
-						"type": "char"
-					},
-					{
-						"name": "CreateDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "CreateTime",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "UpdateDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "UpdateTime",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "DataSource",
-						"type": "char"
-					},
-					{
-						"name": "U_CallId",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "U_SPCategory",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_SPError",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_Confirmed",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_MisUse",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_UserSign1",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_DateStamp1",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "U_TimeStamp1",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "U_AnaylsisCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_AnalysisErrCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_KnownID",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_LongKnownID",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_UserSign2",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_DateStamp2",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "U_TimeStamp2",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "U_RrpairCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_AnalysisRepairCat",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_AnalysisRepairErr",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_RepairLevel",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_RepairAction",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_SparePartSnBatch",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_DiagnosticsConc",
-						"type": "ntext"
-					},
-					{
-						"name": "U_DiagConcComment",
-						"type": "ntext"
-					},
-					{
-						"name": "U_ComplaintRelated",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_UserSign3",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_DateStamp3",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "U_TimeStamp3",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "U_Reopen",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_ReopendT",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "U_ReOpen_Detalis",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_LineStatus",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_UserSign",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_DateStamp",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "U_TimeStamp",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "U_SPDescription",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_PortalID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "U_ServiceID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "U_PortalCompIsuueID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "U_ServiceActivityID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "U_Category",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_Error",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_UserSignP",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_DateStampP",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "U_TimeStampP",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "U_UserSignP1",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_DateStampP1",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "U_TomeStampP1",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "U_InternalSN",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_CompIssueStatus",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_TimeStampP1",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "U_OriginDocentry",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "U_OriginLine",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "U_ServiceLocation",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_ReopenUser",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_ReopenPortalUser",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_ReopenPortalDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "U_TransactionID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "U_Cancel",
-						"type": "char"
-					},
-					{
-						"name": "U_UserServiceCenter",
-						"type": "nvarchar"
-					}
-				],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": {
-						"value": "@@ISSUES_SERVICE",
-						"type": "Expression"
-					}
 				}
 			},
 			"dependsOn": []
