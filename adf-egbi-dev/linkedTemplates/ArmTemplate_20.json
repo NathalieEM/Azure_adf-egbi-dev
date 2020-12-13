@@ -973,7 +973,7 @@
 						"type": "SqlServerStoredProcedure",
 						"dependsOn": [
 							{
-								"activity": "Merge_Mrr_Address_to_Account_Replica",
+								"activity": "Merge stg_accounts",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -1327,6 +1327,33 @@
 						"userProperties": [],
 						"typeProperties": {
 							"storedProcedureName": "[[SF].[trunc_Mrr_SF_ADDRESS]"
+						},
+						"linkedServiceName": {
+							"referenceName": "sqldb_egbi_dev",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "Merge stg_accounts",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [
+							{
+								"activity": "Merge_Mrr_Address_to_Account_Replica",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[SF].[Merge_STG_Account]"
 						},
 						"linkedServiceName": {
 							"referenceName": "sqldb_egbi_dev",
@@ -2409,6 +2436,33 @@
 						"userProperties": [],
 						"typeProperties": {
 							"storedProcedureName": "[[SF].[Loader_Mrr_SF_Account_Replica]"
+						},
+						"linkedServiceName": {
+							"referenceName": "SAP_Integrator_dev",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "Update integrator_account_replica taarget updated",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [
+							{
+								"activity": "sp_Loader_account",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[SF].[Update_Transtatus_Account_Replica]"
 						},
 						"linkedServiceName": {
 							"referenceName": "SAP_Integrator_dev",
