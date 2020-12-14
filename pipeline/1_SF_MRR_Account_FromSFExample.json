@@ -872,7 +872,7 @@
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
-						"activity": "Merge stg_accounts",
+						"activity": "Merge_Mrr_Address_to_Account_Replica",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -1224,33 +1224,6 @@
 				"userProperties": [],
 				"typeProperties": {
 					"storedProcedureName": "[SF].[trunc_Mrr_SF_ADDRESS]"
-				},
-				"linkedServiceName": {
-					"referenceName": "sqldb_egbi_dev",
-					"type": "LinkedServiceReference"
-				}
-			},
-			{
-				"name": "Merge stg_accounts",
-				"type": "SqlServerStoredProcedure",
-				"dependsOn": [
-					{
-						"activity": "Merge_Mrr_Address_to_Account_Replica",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"storedProcedureName": "[SF].[Merge_STG_Account]"
 				},
 				"linkedServiceName": {
 					"referenceName": "sqldb_egbi_dev",

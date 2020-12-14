@@ -17,7 +17,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "AzureSqlSource",
-						"sqlReaderQuery": "  select * from sf.Mrr_sf_account_replica \nwhere \n Type = 'A' and \n[ETL_TargetUpdated] = 1 \nand ERP_account_Id__c is not null\n",
+						"sqlReaderQuery": "select * from sf.Mrr_sf_account_replica \nwhere \nETL_Action = 'A' and \n[ETL_TargetUpdated] = 1 \nand ERP_account_Id__c is  null\nand BYD_ID is not null\n\n",
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
@@ -35,23 +35,19 @@
 							{
 								"source": {
 									"name": "Account_External_Id__c",
-									"type": "String",
 									"physicalType": "nvarchar"
 								},
 								"sink": {
-									"name": "Account_External_Id__c",
-									"type": "String"
+									"name": "Account_External_Id__c"
 								}
 							},
 							{
 								"source": {
 									"name": "BYD_id",
-									"type": "String",
 									"physicalType": "nvarchar"
 								},
 								"sink": {
-									"name": "ERP_Account_ID__c",
-									"type": "String"
+									"name": "ERP_Account_ID__c"
 								}
 							}
 						],
