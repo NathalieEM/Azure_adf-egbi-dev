@@ -1605,7 +1605,7 @@
 						"type": "SqlServerStoredProcedure",
 						"dependsOn": [
 							{
-								"activity": "Merge stg_accounts",
+								"activity": "Merge_Mrr_Address_to_Account_Replica",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -1959,33 +1959,6 @@
 						"userProperties": [],
 						"typeProperties": {
 							"storedProcedureName": "[[SF].[trunc_Mrr_SF_ADDRESS]"
-						},
-						"linkedServiceName": {
-							"referenceName": "sqldb_egbi_dev",
-							"type": "LinkedServiceReference"
-						}
-					},
-					{
-						"name": "Merge stg_accounts",
-						"type": "SqlServerStoredProcedure",
-						"dependsOn": [
-							{
-								"activity": "Merge_Mrr_Address_to_Account_Replica",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"storedProcedureName": "[[SF].[Merge_STG_Account]"
 						},
 						"linkedServiceName": {
 							"referenceName": "sqldb_egbi_dev",
@@ -3100,6 +3073,140 @@
 							"referenceName": "SAP_Integrator_dev",
 							"type": "LinkedServiceReference"
 						}
+					},
+					{
+						"name": "Copy  BYD_Id to Azure Account replica",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "Update integrator_account_replica taarget updated",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "SqlServerSource",
+								"sqlReaderQuery": "Select * from [SF].[Mrr_SF_Account_Replica]",
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"sink": {
+								"type": "AzureSqlSink"
+							},
+							"enableStaging": true,
+							"stagingSettings": {
+								"linkedServiceName": {
+									"referenceName": "AzureBlobStorage1",
+									"type": "LinkedServiceReference"
+								}
+							},
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "Id",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "Id",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "BYD_id",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "BYD_id",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "BYD_CompanyID",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "BYD_CompanyID",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "BYD_dtUpdated",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										},
+										"sink": {
+											"name": "BYD_dtUpdated",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										}
+									},
+									{
+										"source": {
+											"name": "ETL_TargetUpdated",
+											"type": "Boolean",
+											"physicalType": "bit"
+										},
+										"sink": {
+											"name": "ETL_TargetUpdated",
+											"type": "Boolean",
+											"physicalType": "bit"
+										}
+									},
+									{
+										"source": {
+											"name": "TransactionID",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "TransactionID",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "SAP_integrator_dev",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "SFDC_Adccounts_Replica",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
 					}
 				],
 				"folder": {
@@ -3131,7 +3238,7 @@
 						"typeProperties": {
 							"source": {
 								"type": "AzureSqlSource",
-								"sqlReaderQuery": "  select * from sf.Mrr_sf_account_replica \nwhere \n Type = 'A' and \n[ETL_TargetUpdated] = 1 \nand ERP_account_Id__c is not null\n",
+								"sqlReaderQuery": "select * from sf.Mrr_sf_account_replica \nwhere \nETL_Action = 'A' and \n[ETL_TargetUpdated] = 1 \nand ERP_account_Id__c is  null\nand BYD_ID is not null\n\n",
 								"queryTimeout": "02:00:00",
 								"partitionOption": "None"
 							},
@@ -3149,23 +3256,19 @@
 									{
 										"source": {
 											"name": "Account_External_Id__c",
-											"type": "String",
 											"physicalType": "nvarchar"
 										},
 										"sink": {
-											"name": "Account_External_Id__c",
-											"type": "String"
+											"name": "Account_External_Id__c"
 										}
 									},
 									{
 										"source": {
 											"name": "BYD_id",
-											"type": "String",
 											"physicalType": "nvarchar"
 										},
 										"sink": {
-											"name": "ERP_Account_ID__c",
-											"type": "String"
+											"name": "ERP_Account_ID__c"
 										}
 									}
 								],
