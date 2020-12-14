@@ -3255,20 +3255,24 @@
 								"mappings": [
 									{
 										"source": {
-											"name": "Account_External_Id__c",
+											"name": "ERP_Account_ID__c",
+											"type": "String",
 											"physicalType": "nvarchar"
 										},
 										"sink": {
-											"name": "Account_External_Id__c"
+											"name": "ERP_Account_ID__c",
+											"type": "String"
 										}
 									},
 									{
 										"source": {
 											"name": "BYD_id",
+											"type": "String",
 											"physicalType": "nvarchar"
 										},
 										"sink": {
-											"name": "ERP_Account_ID__c"
+											"name": "Account_External_Id__c",
+											"type": "String"
 										}
 									}
 								],
