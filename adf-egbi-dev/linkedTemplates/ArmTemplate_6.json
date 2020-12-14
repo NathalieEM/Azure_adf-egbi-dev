@@ -13,6 +13,89 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/Mrr_Service_Flow1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqldb_sorrelbi_dev",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLDB-EGBI-DEV/SAP"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Callid",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ObjId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Sort",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "Step",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Startdate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "Enddate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "DaysInstep",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "StepGoal",
+						"type": "nchar"
+					},
+					{
+						"name": "PendingGroup",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "dtupdated",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "isDeleted",
+						"type": "bit"
+					}
+				],
+				"typeProperties": {
+					"schema": "sap",
+					"table": "Mrr_ServiceFlow"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/Mrr_SrvCenterConfig')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -4892,68 +4975,6 @@
 			"properties": {
 				"linkedServiceName": {
 					"referenceName": "sqldb_egbi_dev",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQLDB-EGBI-DEV/SAP"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "ETL_ID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "ETL_Timestamp",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "CardCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "CardName",
-						"type": "nvarchar"
-					},
-					{
-						"name": "CardType",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Country",
-						"type": "nvarchar"
-					},
-					{
-						"name": "CreateDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "UpdateDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					}
-				],
-				"typeProperties": {
-					"schema": "sap",
-					"table": "Mrr_OCRD"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/SAP_Mrr_OCRD1')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqldb_sorrelbi_dev",
 					"type": "LinkedServiceReference"
 				},
 				"folder": {

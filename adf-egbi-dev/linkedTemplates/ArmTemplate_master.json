@@ -427,9 +427,6 @@
 					"SalesforceSandBox_securityToken": {
 						"value": "[parameters('SalesforceSandBox_securityToken')]"
 					},
-					"TESTSorrelDB_25022020_connectionString": {
-						"value": "[parameters('TESTSorrelDB_25022020_connectionString')]"
-					},
 					"SalesforceSandBox_properties_typeProperties_environmentUrl": {
 						"value": "[parameters('SalesforceSandBox_properties_typeProperties_environmentUrl')]"
 					},
@@ -455,6 +452,9 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"TESTSorrelDB_25022020_connectionString": {
+						"value": "[parameters('TESTSorrelDB_25022020_connectionString')]"
 					},
 					"ls_sap_integrator_connectionString": {
 						"value": "[parameters('ls_sap_integrator_connectionString')]"

@@ -13,6 +13,137 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/SRV_PACKING')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqlsrv_sap",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLSRV-SAP/NewQcoreDB"
+				},
+				"annotations": [],
+				"type": "SqlServerTable",
+				"schema": [
+					{
+						"name": "DocEntry",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "DocNum",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Period",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Instance",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "Series",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Handwrtten",
+						"type": "char"
+					},
+					{
+						"name": "Canceled",
+						"type": "char"
+					},
+					{
+						"name": "Object",
+						"type": "nvarchar"
+					},
+					{
+						"name": "LogInst",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "UserSign",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Transfered",
+						"type": "char"
+					},
+					{
+						"name": "Status",
+						"type": "char"
+					},
+					{
+						"name": "CreateDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "CreateTime",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "UpdateDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "UpdateTime",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "DataSource",
+						"type": "char"
+					},
+					{
+						"name": "RequestStatus",
+						"type": "char"
+					},
+					{
+						"name": "Creator",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Remark",
+						"type": "ntext"
+					},
+					{
+						"name": "U_SO",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_CustomerName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_MixPumps",
+						"type": "char"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": {
+						"value": "@@SRV_PACKGING",
+						"type": "Expression"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/SRV_SERIALS')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -101,6 +232,24 @@
 				"type": "SalesforceObject",
 				"schema": [],
 				"typeProperties": {}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Salesforce_currency')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "SalesforceSandBox",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "SalesforceObject",
+				"schema": [],
+				"typeProperties": {
+					"objectApiName": "DatedConversionRate"
+				}
 			},
 			"dependsOn": []
 		},
@@ -5924,283 +6073,6 @@
 				"typeProperties": {
 					"schema": "dbo",
 					"table": "UFD1"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/User')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AWS_Service_portal",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "AWS"
-				},
-				"annotations": [],
-				"type": "SqlServerTable",
-				"schema": [
-					{
-						"name": "ID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "fGroupID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "IsTrainingUser",
-						"type": "bit"
-					},
-					{
-						"name": "IsAdminUser",
-						"type": "bit"
-					},
-					{
-						"name": "FirstName",
-						"type": "nvarchar"
-					},
-					{
-						"name": "LastName",
-						"type": "nvarchar"
-					},
-					{
-						"name": "fPositionID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Position",
-						"type": "nvarchar"
-					},
-					{
-						"name": "fStateID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "City",
-						"type": "nvarchar"
-					},
-					{
-						"name": "fCountryID",
-						"type": "nvarchar"
-					},
-					{
-						"name": "fTrainerID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "fServiceCenterID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Organization",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Phone",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Email",
-						"type": "nvarchar"
-					},
-					{
-						"name": "UserName",
-						"type": "nvarchar"
-					},
-					{
-						"name": "UserPassword",
-						"type": "nvarchar"
-					},
-					{
-						"name": "UserDisplayName",
-						"type": "nvarchar"
-					},
-					{
-						"name": "IsActive",
-						"type": "bit"
-					},
-					{
-						"name": "fStatusID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "fNewUserStatusID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "RegistrationDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "IsBlockUser",
-						"type": "bit"
-					},
-					{
-						"name": "UserCertificationRenewDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "ApproveTermsConditions",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "IsNeedApproveTermsAgain",
-						"type": "bit"
-					},
-					{
-						"name": "__Location",
-						"type": "char"
-					},
-					{
-						"name": "fLocationID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "dtLocationDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "__Office",
-						"type": "char"
-					},
-					{
-						"name": "fCreatedByID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "dtCreatedDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "fUpdatedByID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "dtUpdatedDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "__sync_to_sap_fields",
-						"type": "nvarchar"
-					},
-					{
-						"name": "IsToExport",
-						"type": "bit"
-					},
-					{
-						"name": "dtLastExportDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "__fDistributorID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "_fServiceCenterID",
-						"type": "int",
-						"precision": 10
-					}
-				],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "tbl_sys_User"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/parm_CallCategory')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AWS_Service_portal",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "AWS"
-				},
-				"annotations": [],
-				"type": "SqlServerTable",
-				"schema": [
-					{
-						"name": "ID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Name",
-						"type": "nvarchar"
-					},
-					{
-						"name": "IsFreeText",
-						"type": "bit"
-					},
-					{
-						"name": "SortOrder",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "__Office",
-						"type": "char"
-					},
-					{
-						"name": "fCreatedByID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "dtCreatedDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "fUpdatedByID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "dtUpdatedDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					}
-				],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "parm_CallCategory"
 				}
 			},
 			"dependsOn": []

@@ -873,6 +873,51 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/ExchangeRateTable')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqldb_egbi_dev",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ETL_ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ETL_Datetime",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "Currency",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Base",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Rate",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 6
+					}
+				],
+				"typeProperties": {
+					"schema": "SF",
+					"table": "Mrr_ExchangeRates"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/MRR_OSCN')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -1222,136 +1267,6 @@
 				"typeProperties": {
 					"schema": "ScoreCards",
 					"table": "Mrr_BP_SCORE1"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Mrr_CRD1')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqldb_egbi_dev",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQLDB-EGBI-DEV/SAP"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "Address",
-						"type": "nvarchar"
-					},
-					{
-						"name": "CardCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Street",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Block",
-						"type": "nvarchar"
-					},
-					{
-						"name": "ZipCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "City",
-						"type": "nvarchar"
-					},
-					{
-						"name": "County",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Country",
-						"type": "nvarchar"
-					},
-					{
-						"name": "State",
-						"type": "nvarchar"
-					},
-					{
-						"name": "UserSign",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "LogInstanc",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "ObjType",
-						"type": "nvarchar"
-					},
-					{
-						"name": "LicTradNum",
-						"type": "nvarchar"
-					},
-					{
-						"name": "LineNum",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "TaxCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Building",
-						"type": "ntext"
-					},
-					{
-						"name": "AdresType",
-						"type": "char"
-					},
-					{
-						"name": "Address2",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Address3",
-						"type": "nvarchar"
-					},
-					{
-						"name": "AddrType",
-						"type": "nvarchar"
-					},
-					{
-						"name": "StreetNo",
-						"type": "nvarchar"
-					},
-					{
-						"name": "AltCrdName",
-						"type": "nvarchar"
-					},
-					{
-						"name": "AltTaxId",
-						"type": "nvarchar"
-					},
-					{
-						"name": "TaxOffice",
-						"type": "nvarchar"
-					},
-					{
-						"name": "GlblLocNum",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Ntnlty",
-						"type": "nvarchar"
-					}
-				],
-				"typeProperties": {
-					"schema": "sap",
-					"table": "Mrr_CRD1"
 				}
 			},
 			"dependsOn": []

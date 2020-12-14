@@ -13,6 +13,113 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/SF_Accounts')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqldb_egbi_dev",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ETL_ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Name",
+						"type": "nvarchar"
+					},
+					{
+						"name": "BillingCity",
+						"type": "nvarchar"
+					},
+					{
+						"name": "BillingCountryCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "BillingPostalCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "BillingStateCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "BillingStreet",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Description",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Industry",
+						"type": "nvarchar"
+					},
+					{
+						"name": "OwnerId",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ERP_Account_ID__c",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Type",
+						"type": "nvarchar"
+					},
+					{
+						"name": "AnnualRevenue",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ParentId",
+						"type": "nvarchar"
+					},
+					{
+						"name": "signed_a_set_commitment_agreement__c",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Set_List_Account__c",
+						"type": "nvarchar"
+					},
+					{
+						"name": "dtUpdated",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "BYD_UK_id",
+						"type": "nvarchar"
+					},
+					{
+						"name": "BYD_FR_id",
+						"type": "nvarchar"
+					},
+					{
+						"name": "BYD_US_id",
+						"type": "nvarchar"
+					},
+					{
+						"name": "SBO_IL_id",
+						"type": "nvarchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "SF",
+					"table": "Mrr_SF_Account"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/SF_Address')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -576,27 +683,6 @@
 				"type": "RestResource",
 				"typeProperties": {
 					"relativeUrl": "getbytitle('OCRD')/items"
-				},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Sharepoint_PR_List_PURCRequests')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "SharepointSire_PR",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "Sharepoint/PROF"
-				},
-				"annotations": [],
-				"type": "RestResource",
-				"typeProperties": {
-					"relativeUrl": "getbytitle('PURCRequests')/items"
 				},
 				"schema": []
 			},
