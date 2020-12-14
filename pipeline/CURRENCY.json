@@ -1,0 +1,99 @@
+{
+	"name": "CURRENCY",
+	"properties": {
+		"activities": [
+			{
+				"name": "AZURE_CURRENCY",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": "\nSELECT  [ETL_ID]\n      ,[ETL_Datetime]\n      ,[Currency]\n      ,[Base]\n      ,[Rate]\n  FROM [SF].[Mrr_ExchangeRates]\n  where Currency='ILS'",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "SalesforceSink",
+						"writeBatchSize": 5000,
+						"writeBehavior": "insert",
+						"ignoreNullValues": true
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "ETL_Datetime",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								},
+								"sink": {
+									"name": "StartDate",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "Currency",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "IsoCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Rate",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 6,
+									"precision": 18
+								},
+								"sink": {
+									"name": "ConversionRate",
+									"type": "Decimal"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "ExchangeRateTable",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Salesforce_currency",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"concurrency": 1,
+		"folder": {
+			"name": "SF/ACCOUNTS"
+		},
+		"annotations": [],
+		"lastPublishTime": "2020-10-08T10:02:02Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

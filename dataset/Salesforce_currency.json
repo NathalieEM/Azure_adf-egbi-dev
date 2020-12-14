@@ -1,0 +1,15 @@
+{
+	"name": "Salesforce_currency",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SalesforceSandBox",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SalesforceObject",
+		"schema": [],
+		"typeProperties": {
+			"objectApiName": "DatedConversionRate"
+		}
+	}
+}

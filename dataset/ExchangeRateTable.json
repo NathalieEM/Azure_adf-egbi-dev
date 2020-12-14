@@ -1,0 +1,42 @@
+{
+	"name": "ExchangeRateTable",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sqldb_egbi_dev",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ETL_ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ETL_Datetime",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "Currency",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Base",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Rate",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 6
+			}
+		],
+		"typeProperties": {
+			"schema": "SF",
+			"table": "Mrr_ExchangeRates"
+		}
+	}
+}
