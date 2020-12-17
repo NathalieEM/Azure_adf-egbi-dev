@@ -3018,7 +3018,7 @@
 						"typeProperties": {
 							"source": {
 								"type": "AzureSqlSource",
-								"sqlReaderQuery": "\nSELECT  [ETL_ID]\n      ,[ETL_Datetime]\n      ,[Currency]\n      ,[Base]\n      ,[Rate]\n  FROM [SF].[Mrr_ExchangeRates]\n  where Currency='ILS'",
+								"sqlReaderQuery": "SELECT  [ETL_ID]\n      ,[ETL_Datetime]\n      ,[Currency]\n  --   ,[Base]\n      ,[Rate]\n  FROM [SF].[Mrr_ExchangeRates]\n  where Currency in  ('ILS') ",
 								"queryTimeout": "02:00:00",
 								"partitionOption": "None"
 							},
@@ -3093,7 +3093,7 @@
 				],
 				"concurrency": 1,
 				"folder": {
-					"name": "SF/ACCOUNTS"
+					"name": "SF/CURRENCY"
 				},
 				"annotations": [],
 				"lastPublishTime": "2020-10-08T10:02:02Z"

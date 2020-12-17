@@ -3079,7 +3079,7 @@
 						"type": "Copy",
 						"dependsOn": [
 							{
-								"activity": "Update integrator_account_replica taarget updated",
+								"activity": "UNTIL_P_NOTEXSITS",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -3207,8 +3207,81 @@
 								"parameters": {}
 							}
 						]
+					},
+					{
+						"name": "UNTIL_P_NOTEXSITS",
+						"type": "Until",
+						"dependsOn": [
+							{
+								"activity": "Update integrator_account_replica taarget updated",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"expression": {
+								"value": "@equals(variables('StatusCount'),'0')",
+								"type": "Expression"
+							},
+							"activities": [
+								{
+									"name": "variable",
+									"type": "SetVariable",
+									"dependsOn": [
+										{
+											"activity": "Mrr_account_replica_trantatus",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										}
+									],
+									"userProperties": [],
+									"typeProperties": {
+										"variableName": "StatusCount",
+										"value": {
+											"value": "@string(activity('Mrr_account_replica_trantatus').output.FirstRow.result)",
+											"type": "Expression"
+										}
+									}
+								},
+								{
+									"name": "Mrr_account_replica_trantatus",
+									"type": "Lookup",
+									"dependsOn": [],
+									"policy": {
+										"timeout": "7.00:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"source": {
+											"type": "SqlServerSource",
+											"sqlReaderQuery": "select  count(t0.TranStatus) result from [XIS_Loader].[dbo].[DITranManage] t0 inner join [SAP_Integrator_dev].[SF].[Mrr_SF_Account_Replica] t1 on t0.TransactionID=t1.TransactionID\nwhere t0.TranStatus='P'",
+											"queryTimeout": "02:00:00",
+											"partitionOption": "None"
+										},
+										"dataset": {
+											"referenceName": "SAP_integrator_dev",
+											"type": "DatasetReference",
+											"parameters": {}
+										}
+									}
+								}
+							],
+							"timeout": "7.00:00:00"
+						}
 					}
 				],
+				"variables": {
+					"StatusCount": {
+						"type": "String"
+					}
+				},
 				"folder": {
 					"name": "SF/ACCOUNTS"
 				},
@@ -3238,7 +3311,7 @@
 						"typeProperties": {
 							"source": {
 								"type": "AzureSqlSource",
-								"sqlReaderQuery": "select * from sf.Mrr_sf_account_replica \nwhere \nETL_Action = 'A' and \n[ETL_TargetUpdated] = 1 \nand ERP_account_Id__c is  null\nand BYD_ID is not null\n\n",
+								"sqlReaderQuery": "select * from sf.Mrr_sf_account_replica \nwhere \nETL_Action = 'A' \nAND ERP_account_Id__c is  null\nAND [ETL_TargetUpdated] = 1 \nAND BYD_ID is not null\n\n",
 								"queryTimeout": "02:00:00",
 								"partitionOption": "None"
 							},
