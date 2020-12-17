@@ -90,7 +90,7 @@
 		],
 		"concurrency": 1,
 		"folder": {
-			"name": "SF/ACCOUNTS"
+			"name": "SF/CURRENCY"
 		},
 		"annotations": [],
 		"lastPublishTime": "2020-10-08T10:02:02Z"
