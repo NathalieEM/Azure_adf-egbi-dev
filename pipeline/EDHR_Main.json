@@ -176,7 +176,7 @@
 						]
 					},
 					{
-						"activity": "Mrr_DHR_Failure1",
+						"activity": "Mrr_DHR_FTP",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -270,13 +270,13 @@
 				}
 			},
 			{
-				"name": "Mrr_DHR_Failure1",
+				"name": "Mrr_DHR_FTP",
 				"type": "ExecutePipeline",
 				"dependsOn": [],
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "Mrr_DHR_Failure",
+						"referenceName": "Mrr_DHR_FTP",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true

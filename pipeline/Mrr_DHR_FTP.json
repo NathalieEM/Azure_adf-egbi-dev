@@ -1,9 +1,9 @@
 {
-	"name": "Mrr_DHR_Failure",
+	"name": "Mrr_DHR_FTP",
 	"properties": {
 		"activities": [
 			{
-				"name": "Truncate table EDHR Mrr_DHR_Failure",
+				"name": "Truncate table EDHR Mrr_FTP",
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [],
 				"policy": {
@@ -15,7 +15,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"storedProcedureName": "[EDHR].[sp_trunc_Mrr_DHR_Failure]"
+					"storedProcedureName": "[EDHR].[sp_trunc_Mrr_FTP]"
 				},
 				"linkedServiceName": {
 					"referenceName": "sqldb_egbi_dev",
@@ -23,11 +23,11 @@
 				}
 			},
 			{
-				"name": "Mrr_DHR_Failure",
+				"name": "Mrr_FTP",
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "Truncate table EDHR Mrr_DHR_Failure",
+						"activity": "Truncate table EDHR Mrr_FTP",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -79,7 +79,7 @@
 									"physicalType": "int"
 								},
 								"sink": {
-									"name": "Procedure",
+									"name": "_Procedure",
 									"type": "Int32",
 									"physicalType": "int"
 								}
@@ -91,7 +91,7 @@
 									"physicalType": "datetime"
 								},
 								"sink": {
-									"name": "StartTime",
+									"name": "_StartTime",
 									"type": "DateTime",
 									"physicalType": "datetime"
 								}
@@ -103,7 +103,7 @@
 									"physicalType": "datetime"
 								},
 								"sink": {
-									"name": "EndTime",
+									"name": "_EndTime",
 									"type": "DateTime",
 									"physicalType": "datetime"
 								}
@@ -115,7 +115,7 @@
 									"physicalType": "int"
 								},
 								"sink": {
-									"name": "ExecutedBy",
+									"name": "_ExecutedBy",
 									"type": "Int32",
 									"physicalType": "int"
 								}
@@ -127,7 +127,7 @@
 									"physicalType": "int"
 								},
 								"sink": {
-									"name": "Parent",
+									"name": "_Parent",
 									"type": "Int32",
 									"physicalType": "int"
 								}
@@ -139,7 +139,7 @@
 									"physicalType": "ntext"
 								},
 								"sink": {
-									"name": "Comments",
+									"name": "_Comments",
 									"type": "String",
 									"physicalType": "nvarchar"
 								}
@@ -151,7 +151,7 @@
 									"physicalType": "int"
 								},
 								"sink": {
-									"name": "Result",
+									"name": "_Result",
 									"type": "Int32",
 									"physicalType": "int"
 								}
@@ -163,7 +163,7 @@
 									"physicalType": "ntext"
 								},
 								"sink": {
-									"name": "FailReason",
+									"name": "_FailReason",
 									"type": "String",
 									"physicalType": "nvarchar"
 								}
@@ -175,7 +175,7 @@
 									"physicalType": "nvarchar"
 								},
 								"sink": {
-									"name": "PCAppSoftwareVersion",
+									"name": "_PCAppSoftwareVersion",
 									"type": "String",
 									"physicalType": "nvarchar"
 								}
@@ -187,7 +187,7 @@
 									"physicalType": "bit"
 								},
 								"sink": {
-									"name": "Deleted",
+									"name": "_Deleted",
 									"type": "Boolean",
 									"physicalType": "bit"
 								}
@@ -199,7 +199,7 @@
 									"physicalType": "int"
 								},
 								"sink": {
-									"name": "DeletedBy",
+									"name": "_DeletedBy",
 									"type": "Int32",
 									"physicalType": "int"
 								}
@@ -211,7 +211,7 @@
 									"physicalType": "datetime"
 								},
 								"sink": {
-									"name": "DeletedTime",
+									"name": "_DeletedTime",
 									"type": "DateTime",
 									"physicalType": "datetime"
 								}
@@ -223,7 +223,7 @@
 									"physicalType": "datetime"
 								},
 								"sink": {
-									"name": "InsertTime",
+									"name": "_InsertTime",
 									"type": "DateTime",
 									"physicalType": "datetime"
 								}
@@ -235,7 +235,7 @@
 									"physicalType": "datetime"
 								},
 								"sink": {
-									"name": "LastUpdateTime",
+									"name": "_LastUpdateTime",
 									"type": "DateTime",
 									"physicalType": "datetime"
 								}
@@ -247,7 +247,7 @@
 									"physicalType": "int"
 								},
 								"sink": {
-									"name": "OriginalProcedureId",
+									"name": "_OriginalProcedureId",
 									"type": "Int32",
 									"physicalType": "int"
 								}
@@ -259,7 +259,7 @@
 									"physicalType": "datetime"
 								},
 								"sink": {
-									"name": "QcApprovalTime",
+									"name": "_QcApprovalTime",
 									"type": "DateTime",
 									"physicalType": "datetime"
 								}
@@ -271,7 +271,7 @@
 									"physicalType": "int"
 								},
 								"sink": {
-									"name": "QcApprover",
+									"name": "_QcApprover",
 									"type": "Int32",
 									"physicalType": "int"
 								}
@@ -283,7 +283,7 @@
 									"physicalType": "int"
 								},
 								"sink": {
-									"name": "Device",
+									"name": "_Device",
 									"type": "Int32",
 									"physicalType": "int"
 								}
@@ -295,57 +295,45 @@
 									"physicalType": "nvarchar"
 								},
 								"sink": {
-									"name": "DeviceSoftwareVersion",
+									"name": "_DeviceSoftwareVersion",
 									"type": "String",
 									"physicalType": "nvarchar"
 								}
 							},
 							{
 								"source": {
-									"name": "_FailureDescription",
+									"name": "_PreFTPComments",
 									"type": "String",
 									"physicalType": "ntext"
 								},
 								"sink": {
-									"name": "FailureDescription",
+									"name": "_PreFTPComments",
 									"type": "String",
 									"physicalType": "nvarchar"
 								}
 							},
 							{
 								"source": {
-									"name": "_SolutionDescription",
+									"name": "_EntranceReason",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "_EntranceReason",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "_PostFTPComments",
 									"type": "String",
 									"physicalType": "ntext"
 								},
 								"sink": {
-									"name": "SolutionDescription",
+									"name": "_PostFTPComments",
 									"type": "String",
 									"physicalType": "nvarchar"
-								}
-							},
-							{
-								"source": {
-									"name": "_WhoOpened",
-									"type": "Int32",
-									"physicalType": "int"
-								},
-								"sink": {
-									"name": "WhoOpened",
-									"type": "Int32",
-									"physicalType": "int"
-								}
-							},
-							{
-								"source": {
-									"name": "_WhoFixed",
-									"type": "Int32",
-									"physicalType": "int"
-								},
-								"sink": {
-									"name": "WhoFixed",
-									"type": "Int32",
-									"physicalType": "int"
 								}
 							},
 							{
@@ -355,7 +343,7 @@
 									"physicalType": "int"
 								},
 								"sink": {
-									"name": "Failure",
+									"name": "_Failure",
 									"type": "Int32",
 									"physicalType": "int"
 								}
@@ -370,13 +358,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "DHR_Failure",
+						"referenceName": "FTP",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "Mrr_DHR_Failure",
+						"referenceName": "Mrr_FTP",
 						"type": "DatasetReference"
 					}
 				]
