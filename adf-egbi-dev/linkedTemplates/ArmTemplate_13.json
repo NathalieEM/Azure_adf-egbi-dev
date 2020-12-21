@@ -13,6 +13,419 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/Mrr_SF_Record_Type')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Mrr_SF_Record_Type",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "trunc_Mrr_Record_Type",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "get watermark",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "SalesforceSource",
+								"query": {
+									"value": "select * from RecordType\nWHERE LastModifiedDate >= '@{activity('get watermark').output.firstRow.highValue}'",
+									"type": "Expression"
+								},
+								"readBehavior": "query"
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"tableOption": "autoCreate"
+							},
+							"enableStaging": false,
+							"enableSkipIncompatibleRow": true,
+							"logStorageSettings": {
+								"linkedServiceName": {
+									"referenceName": "st_error_log",
+									"type": "LinkedServiceReference"
+								},
+								"path": "adf-errorlogs-dev"
+							},
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "Id",
+											"type": "String"
+										},
+										"sink": {
+											"name": "Id",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Name",
+											"type": "String"
+										},
+										"sink": {
+											"name": "Name",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "DeveloperName",
+											"type": "String"
+										},
+										"sink": {
+											"name": "DeveloperName",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "NamespacePrefix",
+											"type": "String"
+										},
+										"sink": {
+											"name": "NamespacePrefix",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Description",
+											"type": "String"
+										},
+										"sink": {
+											"name": "Description",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "BusinessProcessId",
+											"type": "String"
+										},
+										"sink": {
+											"name": "BusinessProcessId",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "SobjectType",
+											"type": "String"
+										},
+										"sink": {
+											"name": "SobjectType",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "IsActive",
+											"type": "Boolean"
+										},
+										"sink": {
+											"name": "IsActive",
+											"type": "Boolean",
+											"physicalType": "bit"
+										}
+									},
+									{
+										"source": {
+											"name": "CreatedById",
+											"type": "String"
+										},
+										"sink": {
+											"name": "CreatedById",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "CreatedDate",
+											"type": "DateTime"
+										},
+										"sink": {
+											"name": "CreatedDate",
+											"type": "DateTime",
+											"physicalType": "datetime2"
+										}
+									},
+									{
+										"source": {
+											"name": "LastModifiedById",
+											"type": "String"
+										},
+										"sink": {
+											"name": "LastModifiedById",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "LastModifiedDate",
+											"type": "DateTime"
+										},
+										"sink": {
+											"name": "LastModifiedDate",
+											"type": "DateTime",
+											"physicalType": "datetime2"
+										}
+									},
+									{
+										"source": {
+											"name": "SystemModstamp",
+											"type": "DateTime"
+										},
+										"sink": {
+											"name": "SystemModstamp",
+											"type": "DateTime",
+											"physicalType": "datetime2"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "SF_Record_Type",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "Training_SF_Record_Type",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "trunc_Mrr_Record_Type",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[training].[sp_trunc_Mrr_SF_Record_Type]"
+						},
+						"linkedServiceName": {
+							"referenceName": "sqldb_egbi_dev",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "get watermark",
+						"type": "Lookup",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "AzureSqlSource",
+								"sqlReaderQuery": "SELECT [highValue]\nFROM [watermarks].[highValues]\nWHERE [tableName] = 'Mrr_SF_Record_Type_replica'",
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"dataset": {
+								"referenceName": "watermarks_highValues",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						}
+					},
+					{
+						"name": "Set Watermark",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [
+							{
+								"activity": "upsert",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[watermarks].[sp_set_watermark]",
+							"storedProcedureParameters": {
+								"columnName": {
+									"value": "LastModifiedDate",
+									"type": "String"
+								},
+								"schemaName": {
+									"value": "training",
+									"type": "String"
+								},
+								"tableName": {
+									"value": "Mrr_SF_Record_Type_replica",
+									"type": "String"
+								}
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "sqldb_egbi_dev",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "stream activity - copy",
+						"type": "WebActivity",
+						"dependsOn": [
+							{
+								"activity": "Mrr_SF_Record_Type",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"url": "https://api.powerbi.com/beta/7ef15b48-e070-48c2-b1c5-86e2488d6058/datasets/be953ba9-8789-435d-9add-fb35836ab916/rows?key=29QqE0bnK0yio0X2c1eZoMdV4XGuyh70Gfnxlbo5gXM9CXKFx4tWH%2F7Kv%2Ff5InszefKuhEMq%2FCNwqEhTP8JPfA%3D%3D",
+							"method": "POST",
+							"headers": {
+								"Content-Type": "application/json"
+							},
+							"body": {
+								"value": "\n[\n{\n\"Timestamp\" :\"@{utcnow()}\",\n\"Factory Name\" :\"@{pipeline().DataFactory}\",\n\"Pipeline Name\" :\"@{pipeline().Pipeline}\",\n\"Pipeline Run Id\" :\"@{pipeline().RunId}\",\n\"Activity Name\" :\"Mrr_SF_Record_Type - Copy\",\n\"Copy Activity - Rows Read\" :@{activity('Mrr_SF_Record_Type').output.rowsRead},\n\"Copy Activity - Rows Written\" :@{activity('Mrr_SF_Record_Type').output.rowsCopied},\n\"Copy Activity - Rows Skipped\" :@{activity('Mrr_SF_Record_Type').output.rowsSkipped}\n}\n]",
+								"type": "Expression"
+							}
+						}
+					},
+					{
+						"name": "upsert",
+						"type": "Lookup",
+						"dependsOn": [
+							{
+								"activity": "Mrr_SF_Record_Type",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "AzureSqlSource",
+								"sqlReaderStoredProcedureName": "[[training].[sp_Merge_Mrr_SF_Record_Type]",
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"dataset": {
+								"referenceName": "Training_Mrr_SF_Curriculum",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						}
+					},
+					{
+						"name": "stream activity - merge",
+						"type": "WebActivity",
+						"dependsOn": [
+							{
+								"activity": "upsert",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"url": "https://api.powerbi.com/beta/7ef15b48-e070-48c2-b1c5-86e2488d6058/datasets/be953ba9-8789-435d-9add-fb35836ab916/rows?key=29QqE0bnK0yio0X2c1eZoMdV4XGuyh70Gfnxlbo5gXM9CXKFx4tWH%2F7Kv%2Ff5InszefKuhEMq%2FCNwqEhTP8JPfA%3D%3D",
+							"method": "POST",
+							"headers": {
+								"Content-Type": "application/json"
+							},
+							"body": {
+								"value": "[[\n{\n\"Timestamp\" :\"@{utcnow()}\",\n\"Factory Name\" :\"@{pipeline().DataFactory}\",\n\"Pipeline Name\" :\"@{pipeline().Pipeline}\",\n\"Pipeline Run Id\" :\"@{pipeline().RunId}\",\n\"Activity Name\" :\"Mrr_SF_Record_Type - Merge\",\n\"Merge Activity - Insert\" :@{if(\ncontains(activity('upsert').output,'firstRow'),\nactivity('upsert').output.firstRow.INSERT,\n0)},\n\"Merge Activity - Update\" :@{if(\ncontains(activity('upsert').output,'firstRow'),\nactivity('upsert').output.firstRow.UPDATE,\n0)}\n}\n]",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"folder": {
+					"name": "Training/Mrr"
+				},
+				"annotations": [],
+				"lastPublishTime": "2020-08-18T13:00:26Z"
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/Mrr_SF_Requirement_Header')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
@@ -7239,79 +7652,6 @@
 					"schema": "dbo",
 					"table": {
 						"value": "@@BP_SCORE",
-						"type": "Expression"
-					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/BP_SCORE1')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqlsrv_sap_TestNewQcoreDB_05012020",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQLDB-EGBI-DEV/ScoreCards/Mrr"
-				},
-				"annotations": [],
-				"type": "SqlServerTable",
-				"schema": [
-					{
-						"name": "Code",
-						"type": "nvarchar"
-					},
-					{
-						"name": "LineId",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Object",
-						"type": "nvarchar"
-					},
-					{
-						"name": "LogInst",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "U_CardCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_CardName",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_Score",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "U_Total",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_TotalPer",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_Critical",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_ScoreScaleType",
-						"type": "char"
-					}
-				],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": {
-						"value": "@@BP_SCORE1",
 						"type": "Expression"
 					}
 				}

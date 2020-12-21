@@ -38,28 +38,69 @@
 		"SAP_integrator_dev_accounts_replica_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'SAP_integrator_dev_accounts_replica'"
-		},
-		"SalesforceSandBox_password": {
-			"type": "secureString",
-			"metadata": "Secure string for 'password' of 'SalesforceSandBox'"
-		},
-		"SalesforceSandBox_securityToken": {
-			"type": "secureString",
-			"metadata": "Secure string for 'securityToken' of 'SalesforceSandBox'"
-		},
-		"SalesforceSandBox_properties_typeProperties_environmentUrl": {
-			"type": "string",
-			"defaultValue": "qcoremedical--sandbox.my.salesforce.com"
-		},
-		"SalesforceSandBox_properties_typeProperties_username": {
-			"type": "string",
-			"defaultValue": "nathalie.mayzlits@qcore.com.sandbox"
 		}
 	},
 	"variables": {
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/porf_Mrr_PriceList')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqldb_egbi_dev",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLDB-EGBI-DEV/PORF"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ETL_ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ETL_Timestamp",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "ItemCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PriceList",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Price",
+						"type": "decimal",
+						"precision": 9,
+						"scale": 0
+					},
+					{
+						"name": "Currency",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DB_NAME",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "PORF",
+					"table": "Mrr_PriceList"
+				}
+			},
+			"dependsOn": []
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/porf_Mrr_Rates')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
@@ -1075,33 +1116,6 @@
 				},
 				"connectVia": {
 					"referenceName": "ir-sap",
-					"type": "IntegrationRuntimeReference"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/SalesforceSandBox')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "Salesforce",
-				"typeProperties": {
-					"environmentUrl": "[parameters('SalesforceSandBox_properties_typeProperties_environmentUrl')]",
-					"username": "[parameters('SalesforceSandBox_properties_typeProperties_username')]",
-					"password": {
-						"type": "SecureString",
-						"value": "[parameters('SalesforceSandBox_password')]"
-					},
-					"securityToken": {
-						"type": "SecureString",
-						"value": "[parameters('SalesforceSandBox_securityToken')]"
-					},
-					"apiVersion": "48.0"
-				},
-				"connectVia": {
-					"referenceName": "SalesForce-azure-IR",
 					"type": "IntegrationRuntimeReference"
 				}
 			},

@@ -13,6 +13,38 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/Mrr_PumpType')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqldb_egbi_dev",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLDB-EGBI-DEV/EDHR"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "Id",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Name",
+						"type": "nvarchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "EDHR",
+					"table": "Mrr_PumpType"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/Mrr_RIN1')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -8410,89 +8442,6 @@
 				"typeProperties": {
 					"schema": "sap",
 					"table": "Mrr_ServiceCenters"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Mrr_Service_Flow')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqldb_egbi_dev",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQLDB-EGBI-DEV/SAP"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "ID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Callid",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "ObjId",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Sort",
-						"type": "float",
-						"precision": 15
-					},
-					{
-						"name": "Step",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Startdate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "Enddate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "DaysInstep",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "StepGoal",
-						"type": "nchar"
-					},
-					{
-						"name": "PendingGroup",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "dtupdated",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "isDeleted",
-						"type": "bit"
-					}
-				],
-				"typeProperties": {
-					"schema": "sap",
-					"table": "Mrr_ServiceFlow"
 				}
 			},
 			"dependsOn": []

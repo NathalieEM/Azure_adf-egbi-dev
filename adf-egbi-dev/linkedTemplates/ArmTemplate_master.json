@@ -420,18 +420,6 @@
 					},
 					"SAP_integrator_dev_accounts_replica_connectionString": {
 						"value": "[parameters('SAP_integrator_dev_accounts_replica_connectionString')]"
-					},
-					"SalesforceSandBox_password": {
-						"value": "[parameters('SalesforceSandBox_password')]"
-					},
-					"SalesforceSandBox_securityToken": {
-						"value": "[parameters('SalesforceSandBox_securityToken')]"
-					},
-					"SalesforceSandBox_properties_typeProperties_environmentUrl": {
-						"value": "[parameters('SalesforceSandBox_properties_typeProperties_environmentUrl')]"
-					},
-					"SalesforceSandBox_properties_typeProperties_username": {
-						"value": "[parameters('SalesforceSandBox_properties_typeProperties_username')]"
 					}
 				}
 			},
@@ -453,6 +441,12 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
+					"SalesforceSandBox_password": {
+						"value": "[parameters('SalesforceSandBox_password')]"
+					},
+					"SalesforceSandBox_securityToken": {
+						"value": "[parameters('SalesforceSandBox_securityToken')]"
+					},
 					"TESTSorrelDB_25022020_connectionString": {
 						"value": "[parameters('TESTSorrelDB_25022020_connectionString')]"
 					},
@@ -467,6 +461,12 @@
 					},
 					"sqlsrv_sap_TestNewQcoreDB_05012020_connectionString": {
 						"value": "[parameters('sqlsrv_sap_TestNewQcoreDB_05012020_connectionString')]"
+					},
+					"SalesforceSandBox_properties_typeProperties_environmentUrl": {
+						"value": "[parameters('SalesforceSandBox_properties_typeProperties_environmentUrl')]"
+					},
+					"SalesforceSandBox_properties_typeProperties_username": {
+						"value": "[parameters('SalesforceSandBox_properties_typeProperties_username')]"
 					}
 				}
 			},
@@ -772,6 +772,26 @@
 			},
 			"dependsOn": [
 				"[resourceId('Microsoft.Resources/deployments', 'adf-egbi-dev_ArmTemplate_26')]"
+			]
+		},
+		{
+			"name": "adf-egbi-dev_ArmTemplate_28",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_28.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adf-egbi-dev_ArmTemplate_27')]"
 			]
 		}
 	]

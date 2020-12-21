@@ -5142,6 +5142,148 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/Mrr_FTP')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqldb_egbi_dev",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLDB-EGBI-DEV/EDHR"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_Procedure",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_StartTime",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "_EndTime",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "_ExecutedBy",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_Parent",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_Comments",
+						"type": "nvarchar"
+					},
+					{
+						"name": "_Result",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_FailReason",
+						"type": "nvarchar"
+					},
+					{
+						"name": "_PCAppSoftwareVersion",
+						"type": "nvarchar"
+					},
+					{
+						"name": "_Deleted",
+						"type": "bit"
+					},
+					{
+						"name": "_DeletedBy",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_DeletedTime",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "_InsertTime",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "_LastUpdateTime",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "_OriginalProcedureId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_QcApprovalTime",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "_QcApprover",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_Device",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_DeviceSoftwareVersion",
+						"type": "nvarchar"
+					},
+					{
+						"name": "_PreFTPComments",
+						"type": "nvarchar"
+					},
+					{
+						"name": "_EntranceReason",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_PostFTPComments",
+						"type": "nvarchar"
+					},
+					{
+						"name": "_Failure",
+						"type": "int",
+						"precision": 10
+					}
+				],
+				"typeProperties": {
+					"schema": "EDHR",
+					"table": "Mrr_FTP"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/Mrr_Fact_SuppliersPN')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -5331,100 +5473,6 @@
 				"typeProperties": {
 					"schema": "ScoreCards",
 					"table": "Mrr_IQC_Followup"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Mrr_ITM1')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqldb_egbi_dev",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQLDB-EGBI-DEV/SAP"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "ItemCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "PriceList",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "Price",
-						"type": "decimal",
-						"precision": 19,
-						"scale": 6
-					},
-					{
-						"name": "Currency",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Ovrwritten",
-						"type": "char"
-					},
-					{
-						"name": "Factor",
-						"type": "decimal",
-						"precision": 19,
-						"scale": 6
-					},
-					{
-						"name": "LogInstanc",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "ObjType",
-						"type": "nvarchar"
-					},
-					{
-						"name": "AddPrice1",
-						"type": "decimal",
-						"precision": 19,
-						"scale": 6
-					},
-					{
-						"name": "Currency1",
-						"type": "nvarchar"
-					},
-					{
-						"name": "AddPrice2",
-						"type": "decimal",
-						"precision": 19,
-						"scale": 6
-					},
-					{
-						"name": "Currency2",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Ovrwrite1",
-						"type": "char"
-					},
-					{
-						"name": "Ovrwrite2",
-						"type": "char"
-					},
-					{
-						"name": "BasePLNum",
-						"type": "smallint",
-						"precision": 5
-					}
-				],
-				"typeProperties": {
-					"schema": "sap",
-					"table": "Mrr_ITM1"
 				}
 			},
 			"dependsOn": []

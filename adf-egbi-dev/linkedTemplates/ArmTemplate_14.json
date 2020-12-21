@@ -13,6 +13,79 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/BP_SCORE1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqlsrv_sap_TestNewQcoreDB_05012020",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLDB-EGBI-DEV/ScoreCards/Mrr"
+				},
+				"annotations": [],
+				"type": "SqlServerTable",
+				"schema": [
+					{
+						"name": "Code",
+						"type": "nvarchar"
+					},
+					{
+						"name": "LineId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Object",
+						"type": "nvarchar"
+					},
+					{
+						"name": "LogInst",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "U_CardCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_CardName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_Score",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "U_Total",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_TotalPer",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_Critical",
+						"type": "nvarchar"
+					},
+					{
+						"name": "U_ScoreScaleType",
+						"type": "char"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": {
+						"value": "@@BP_SCORE1",
+						"type": "Expression"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/CRD1')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -5211,6 +5284,148 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/FTP')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sql_rptsrv",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLSRV-RPTSRV/EDHR"
+				},
+				"annotations": [],
+				"type": "SqlServerTable",
+				"schema": [
+					{
+						"name": "ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_Procedure",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_StartTime",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "_EndTime",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "_ExecutedBy",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_Parent",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_Comments",
+						"type": "ntext"
+					},
+					{
+						"name": "_Result",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_FailReason",
+						"type": "ntext"
+					},
+					{
+						"name": "_PCAppSoftwareVersion",
+						"type": "nvarchar"
+					},
+					{
+						"name": "_Deleted",
+						"type": "bit"
+					},
+					{
+						"name": "_DeletedBy",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_DeletedTime",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "_InsertTime",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "_LastUpdateTime",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "_OriginalProcedureId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_QcApprovalTime",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "_QcApprover",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_Device",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_DeviceSoftwareVersion",
+						"type": "nvarchar"
+					},
+					{
+						"name": "_PreFTPComments",
+						"type": "ntext"
+					},
+					{
+						"name": "_EntranceReason",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_PostFTPComments",
+						"type": "ntext"
+					},
+					{
+						"name": "_Failure",
+						"type": "int",
+						"precision": 10
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "_FTP"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/INV1')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -9056,194 +9271,6 @@
 						"value": "@@ISSUES_SERVICE",
 						"type": "Expression"
 					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/ITM1')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqlsrv_sap",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQLSRV-SAP/NewQcoreDB"
-				},
-				"annotations": [],
-				"type": "SqlServerTable",
-				"schema": [
-					{
-						"name": "ItemCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "PriceList",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "Price",
-						"type": "decimal",
-						"precision": 19,
-						"scale": 6
-					},
-					{
-						"name": "Currency",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Ovrwritten",
-						"type": "char"
-					},
-					{
-						"name": "Factor",
-						"type": "decimal",
-						"precision": 19,
-						"scale": 6
-					},
-					{
-						"name": "LogInstanc",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "ObjType",
-						"type": "nvarchar"
-					},
-					{
-						"name": "AddPrice1",
-						"type": "decimal",
-						"precision": 19,
-						"scale": 6
-					},
-					{
-						"name": "Currency1",
-						"type": "nvarchar"
-					},
-					{
-						"name": "AddPrice2",
-						"type": "decimal",
-						"precision": 19,
-						"scale": 6
-					},
-					{
-						"name": "Currency2",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Ovrwrite1",
-						"type": "char"
-					},
-					{
-						"name": "Ovrwrite2",
-						"type": "char"
-					},
-					{
-						"name": "BasePLNum",
-						"type": "smallint",
-						"precision": 5
-					}
-				],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "ITM1"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/ITM11')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "TESTSorrelDB_25022020",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQLSRV-SAP/NewQcoreDB"
-				},
-				"annotations": [],
-				"type": "SqlServerTable",
-				"schema": [
-					{
-						"name": "ItemCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "PriceList",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "Price",
-						"type": "decimal",
-						"precision": 19,
-						"scale": 6
-					},
-					{
-						"name": "Currency",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Ovrwritten",
-						"type": "char"
-					},
-					{
-						"name": "Factor",
-						"type": "decimal",
-						"precision": 19,
-						"scale": 6
-					},
-					{
-						"name": "LogInstanc",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "ObjType",
-						"type": "nvarchar"
-					},
-					{
-						"name": "AddPrice1",
-						"type": "decimal",
-						"precision": 19,
-						"scale": 6
-					},
-					{
-						"name": "Currency1",
-						"type": "nvarchar"
-					},
-					{
-						"name": "AddPrice2",
-						"type": "decimal",
-						"precision": 19,
-						"scale": 6
-					},
-					{
-						"name": "Currency2",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Ovrwrite1",
-						"type": "char"
-					},
-					{
-						"name": "Ovrwrite2",
-						"type": "char"
-					},
-					{
-						"name": "BasePLNum",
-						"type": "smallint",
-						"precision": 5
-					}
-				],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "ITM1"
 				}
 			},
 			"dependsOn": []

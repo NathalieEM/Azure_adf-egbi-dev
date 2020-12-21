@@ -1,0 +1,982 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "adf-egbi-dev"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/EDHR_Main')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Mrr_Device",
+						"type": "ExecutePipeline",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "Mrr_Device",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true
+						}
+					},
+					{
+						"name": "Mrr_DeviceProcedureData",
+						"type": "ExecutePipeline",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "Mrr_DeviceProcedureData",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true
+						}
+					},
+					{
+						"name": "Mrr_ProcedureType",
+						"type": "ExecutePipeline",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "Mrr_ProcedureType",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true
+						}
+					},
+					{
+						"name": "Mrr_DeviceMovement",
+						"type": "ExecutePipeline",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "Mrr_DeviceMovement",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true
+						}
+					},
+					{
+						"name": "Mrr_Location",
+						"type": "ExecutePipeline",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "Mrr_Location",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true
+						}
+					},
+					{
+						"name": "Mrr_Result",
+						"type": "ExecutePipeline",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "Mrr_Result",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true
+						}
+					},
+					{
+						"name": "Mrr_Rework",
+						"type": "ExecutePipeline",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "Mrr_Rework",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true
+						}
+					},
+					{
+						"name": "Stg_Fact_Data",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "Mrr_DeviceMovement",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "Mrr_Location",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "Mrr_ProcedureType",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "Mrr_DeviceProcedureData",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "Mrr_Device",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "Mrr_Result",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "Mrr_Rework",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "Mrr_PumpProductionLine",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "Mrr_Pump",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "Mrr_DHR_Failure",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "Mrr_EntranceReason",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "Mrr_DHR_Assembly",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "Mrr_PumpType",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "Mrr_DHR_Failure1",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "Stg_Fact_Data",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true
+						}
+					},
+					{
+						"name": "Mrr_PumpProductionLine",
+						"type": "ExecutePipeline",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "Mrr_PumpProductionLine",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true
+						}
+					},
+					{
+						"name": "Mrr_Pump",
+						"type": "ExecutePipeline",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "Mrr_Pump",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true
+						}
+					},
+					{
+						"name": "Mrr_DHR_Failure",
+						"type": "ExecutePipeline",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "Mrr_DHR_Failure",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true
+						}
+					},
+					{
+						"name": "Mrr_DHR_Assembly",
+						"type": "ExecutePipeline",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "Mrr_DHR_Assembly",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true
+						}
+					},
+					{
+						"name": "Mrr_EntranceReason",
+						"type": "ExecutePipeline",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "Mrr_EntranceReason",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true
+						}
+					},
+					{
+						"name": "Mrr_PumpType",
+						"type": "ExecutePipeline",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "Mrr_PumpType",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true
+						}
+					},
+					{
+						"name": "Mrr_DHR_Failure1",
+						"type": "ExecutePipeline",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "Mrr_DHR_Failure",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true
+						}
+					}
+				],
+				"folder": {
+					"name": "EDHR"
+				},
+				"annotations": [],
+				"lastPublishTime": "2020-08-18T12:11:55Z"
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/Mrr_DHR_Failure')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Mrr_DHR_Failure')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Truncate table EDHR Mrr_FTP",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[EDHR].[sp_trunc_Mrr_FTP]"
+						},
+						"linkedServiceName": {
+							"referenceName": "sqldb_egbi_dev",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "Mrr_FTP",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "Truncate table EDHR Mrr_FTP",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "SqlServerSource",
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"sink": {
+								"type": "AzureSqlSink"
+							},
+							"enableStaging": true,
+							"stagingSettings": {
+								"linkedServiceName": {
+									"referenceName": "st_error_log",
+									"type": "LinkedServiceReference"
+								}
+							},
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "ID",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "ID",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "_Procedure",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "_Procedure",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "_StartTime",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										},
+										"sink": {
+											"name": "_StartTime",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										}
+									},
+									{
+										"source": {
+											"name": "_EndTime",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										},
+										"sink": {
+											"name": "_EndTime",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										}
+									},
+									{
+										"source": {
+											"name": "_ExecutedBy",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "_ExecutedBy",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "_Parent",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "_Parent",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "_Comments",
+											"type": "String",
+											"physicalType": "ntext"
+										},
+										"sink": {
+											"name": "_Comments",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "_Result",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "_Result",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "_FailReason",
+											"type": "String",
+											"physicalType": "ntext"
+										},
+										"sink": {
+											"name": "_FailReason",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "_PCAppSoftwareVersion",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "_PCAppSoftwareVersion",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "_Deleted",
+											"type": "Boolean",
+											"physicalType": "bit"
+										},
+										"sink": {
+											"name": "_Deleted",
+											"type": "Boolean",
+											"physicalType": "bit"
+										}
+									},
+									{
+										"source": {
+											"name": "_DeletedBy",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "_DeletedBy",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "_DeletedTime",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										},
+										"sink": {
+											"name": "_DeletedTime",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										}
+									},
+									{
+										"source": {
+											"name": "_InsertTime",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										},
+										"sink": {
+											"name": "_InsertTime",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										}
+									},
+									{
+										"source": {
+											"name": "_LastUpdateTime",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										},
+										"sink": {
+											"name": "_LastUpdateTime",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										}
+									},
+									{
+										"source": {
+											"name": "_OriginalProcedureId",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "_OriginalProcedureId",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "_QcApprovalTime",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										},
+										"sink": {
+											"name": "_QcApprovalTime",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										}
+									},
+									{
+										"source": {
+											"name": "_QcApprover",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "_QcApprover",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "_Device",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "_Device",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "_DeviceSoftwareVersion",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "_DeviceSoftwareVersion",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "_PreFTPComments",
+											"type": "String",
+											"physicalType": "ntext"
+										},
+										"sink": {
+											"name": "_PreFTPComments",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "_EntranceReason",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "_EntranceReason",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "_PostFTPComments",
+											"type": "String",
+											"physicalType": "ntext"
+										},
+										"sink": {
+											"name": "_PostFTPComments",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "_Failure",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "_Failure",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "FTP",
+								"type": "DatasetReference"
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "Mrr_FTP",
+								"type": "DatasetReference"
+							}
+						]
+					}
+				],
+				"folder": {
+					"name": "EDHR/MRR"
+				},
+				"annotations": [],
+				"lastPublishTime": "2020-08-18T12:11:54Z"
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/FTP')]",
+				"[concat(variables('factoryId'), '/datasets/Mrr_FTP')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/FTP')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sql_rptsrv",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLSRV-RPTSRV/EDHR"
+				},
+				"annotations": [],
+				"type": "SqlServerTable",
+				"schema": [
+					{
+						"name": "ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_Procedure",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_StartTime",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "_EndTime",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "_ExecutedBy",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_Parent",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_Comments",
+						"type": "ntext"
+					},
+					{
+						"name": "_Result",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_FailReason",
+						"type": "ntext"
+					},
+					{
+						"name": "_PCAppSoftwareVersion",
+						"type": "nvarchar"
+					},
+					{
+						"name": "_Deleted",
+						"type": "bit"
+					},
+					{
+						"name": "_DeletedBy",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_DeletedTime",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "_InsertTime",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "_LastUpdateTime",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "_OriginalProcedureId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_QcApprovalTime",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "_QcApprover",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_Device",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_DeviceSoftwareVersion",
+						"type": "nvarchar"
+					},
+					{
+						"name": "_PreFTPComments",
+						"type": "ntext"
+					},
+					{
+						"name": "_EntranceReason",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_PostFTPComments",
+						"type": "ntext"
+					},
+					{
+						"name": "_Failure",
+						"type": "int",
+						"precision": 10
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "_FTP"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Mrr_FTP')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqldb_egbi_dev",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLDB-EGBI-DEV/EDHR"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_Procedure",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_StartTime",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "_EndTime",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "_ExecutedBy",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_Parent",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_Comments",
+						"type": "nvarchar"
+					},
+					{
+						"name": "_Result",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_FailReason",
+						"type": "nvarchar"
+					},
+					{
+						"name": "_PCAppSoftwareVersion",
+						"type": "nvarchar"
+					},
+					{
+						"name": "_Deleted",
+						"type": "bit"
+					},
+					{
+						"name": "_DeletedBy",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_DeletedTime",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "_InsertTime",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "_LastUpdateTime",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "_OriginalProcedureId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_QcApprovalTime",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "_QcApprover",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_Device",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_DeviceSoftwareVersion",
+						"type": "nvarchar"
+					},
+					{
+						"name": "_PreFTPComments",
+						"type": "nvarchar"
+					},
+					{
+						"name": "_EntranceReason",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "_PostFTPComments",
+						"type": "nvarchar"
+					},
+					{
+						"name": "_Failure",
+						"type": "int",
+						"precision": 10
+					}
+				],
+				"typeProperties": {
+					"schema": "EDHR",
+					"table": "Mrr_FTP"
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}
