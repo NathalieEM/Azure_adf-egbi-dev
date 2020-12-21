@@ -13,6 +13,211 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/Mrr_projects1')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "trunc_Mrr_Projects",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[PORF].[sp_trunc_Mrr_Projects]"
+						},
+						"linkedServiceName": {
+							"referenceName": "sqldb_sorrelbi_dev",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "Mrr_Projects",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "trunc_Mrr_Projects",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "SqlServerSource",
+								"sqlReaderQuery": "\nselect \nPrjCode,      \nPrjName,      \nU_Owner       ,\nU_OwnerMail,  \nU_Secondary,  \nU_SecMail     ,\nU_PORFApp     ,\nU_PorfApp2,\nU_PORF\n\nfrom oprj\nwhere Locked='N' and active = 'Y'\n\n\nselect \nPrjCode,      \nPrjName,      \nU_Owner       ,\nU_OwnerMail,  \nU_Secondary,  \nU_SecMail     ,\nU_PORFApp     ,\nU_PorfApp2,\nU_PORF\n\nfrom oprj\nwhere Locked='N' and active = 'Y'\n",
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"sink": {
+								"type": "AzureSqlSink"
+							},
+							"enableStaging": true,
+							"stagingSettings": {
+								"linkedServiceName": {
+									"referenceName": "AzureBlobStorage1",
+									"type": "LinkedServiceReference"
+								}
+							},
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "PrjCode",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "PrjCode",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "PrjName",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "PrjName",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "U_Owner",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "U_Owner",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "U_OwnerMail",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "U_OwnerMail",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "U_Secondary",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "U_Secondary",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "U_SecMail",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "U_SecMail",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "U_PORFApp",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "U_PORFApp",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "U_PorfApp2",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "U_PorfApp2",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "U_PORF",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "U_PORF",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "MRR_PROJECTS1",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "Porf_mrr_projects1",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"folder": {
+					"name": "PORF_SORREL/MRR"
+				},
+				"annotations": [],
+				"lastPublishTime": "2020-10-12T07:10:04Z"
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/SAP_Mrr_OSCN')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
@@ -4207,7 +4412,7 @@
 								]
 							},
 							{
-								"activity": "Mrr_DHR_Failure1",
+								"activity": "Mrr_DHR_FTP",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -4308,13 +4513,13 @@
 						}
 					},
 					{
-						"name": "Mrr_DHR_Failure1",
+						"name": "Mrr_DHR_FTP",
 						"type": "ExecutePipeline",
 						"dependsOn": [],
 						"userProperties": [],
 						"typeProperties": {
 							"pipeline": {
-								"referenceName": "Mrr_DHR_Failure",
+								"referenceName": "Mrr_DHR_FTP",
 								"type": "PipelineReference"
 							},
 							"waitOnCompletion": true,
@@ -5046,7 +5251,9 @@
 				"annotations": [],
 				"lastPublishTime": "2020-09-30T12:36:27Z"
 			},
-			"dependsOn": []
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/Mrr_projects1')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/PORF_Main2')]",
@@ -5145,7 +5352,9 @@
 				"annotations": [],
 				"lastPublishTime": "2020-10-07T07:52:42Z"
 			},
-			"dependsOn": []
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/Mrr_projects1')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/SAP_Main')]",
@@ -5905,59 +6114,6 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/pipelines/Mrr_ScoreCards')]",
 				"[concat(variables('factoryId'), '/pipelines/Stg_ScoreCards')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/MainService')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "Mrr_Service",
-						"type": "ExecutePipeline",
-						"dependsOn": [],
-						"userProperties": [],
-						"typeProperties": {
-							"pipeline": {
-								"referenceName": "Mrr_Service",
-								"type": "PipelineReference"
-							},
-							"waitOnCompletion": true,
-							"parameters": {}
-						}
-					},
-					{
-						"name": "Stg_Service",
-						"type": "ExecutePipeline",
-						"dependsOn": [
-							{
-								"activity": "Mrr_Service",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"pipeline": {
-								"referenceName": "Stg_Service",
-								"type": "PipelineReference"
-							},
-							"waitOnCompletion": true,
-							"parameters": {}
-						}
-					}
-				],
-				"folder": {
-					"name": "Service"
-				},
-				"annotations": [],
-				"lastPublishTime": "2020-10-06T07:57:10Z"
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/Mrr_Service')]",
-				"[concat(variables('factoryId'), '/pipelines/Stg_Service')]"
 			]
 		}
 	]
