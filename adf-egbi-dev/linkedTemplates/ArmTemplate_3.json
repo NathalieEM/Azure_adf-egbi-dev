@@ -13,6 +13,141 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/Mrr_IQC_Followup')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqldb_egbi_dev",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQLDB-EGBI-DEV/ScoreCards/Mrr"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "Part Name",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Supplier Cod",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Lot Source Supplier / Q Core",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Supplier",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Drawing Number",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Rev number",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Product belongs to",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Date of receipt",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Y/M Receipt",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Archive Location",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Batch #",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Total Qty. Received",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Sample Size",
+						"type": "nvarchar"
+					},
+					{
+						"name": "End date (end of IQC)",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Y/M End",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Time from receipt to release (days)",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Batch Disposition (Pass/Fail)",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Production (Pass/fail)",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Comments",
+						"type": "nvarchar"
+					},
+					{
+						"name": "MRB source (IQC/Production)",
+						"type": "nvarchar"
+					},
+					{
+						"name": "MRB #",
+						"type": "nvarchar"
+					},
+					{
+						"name": "MRB Disposition",
+						"type": "nvarchar"
+					},
+					{
+						"name": "final release date (after MRB)",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Documentation",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Dimensions",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Visual",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Functional",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Other",
+						"type": "nvarchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "ScoreCards",
+					"table": "Mrr_IQC_Followup"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/Mrr_ITM1')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -7840,995 +7975,6 @@
 				"typeProperties": {
 					"schema": "sap",
 					"table": "Mrr_Oscs"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Mrr_Oclg')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqldb_egbi_dev",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQLDB-EGBI-DEV/ScoreCards/Mrr"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "ClgCode",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "CardCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Notes",
-						"type": "ntext"
-					},
-					{
-						"name": "CntctDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "CntctTime",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Recontact",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "Closed",
-						"type": "char"
-					},
-					{
-						"name": "CloseDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "ContactPer",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Tel",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Fax",
-						"type": "nvarchar"
-					},
-					{
-						"name": "CntctSbjct",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "Transfered",
-						"type": "char"
-					},
-					{
-						"name": "DocType",
-						"type": "nvarchar"
-					},
-					{
-						"name": "DocNum",
-						"type": "nvarchar"
-					},
-					{
-						"name": "DocEntry",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Attachment",
-						"type": "ntext"
-					},
-					{
-						"name": "DataSource",
-						"type": "char"
-					},
-					{
-						"name": "AttendUser",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "CntctCode",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "UserSign",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "SlpCode",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Action",
-						"type": "char"
-					},
-					{
-						"name": "Details",
-						"type": "nvarchar"
-					},
-					{
-						"name": "CntctType",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "Location",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "BeginTime",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Duration",
-						"type": "decimal",
-						"precision": 19,
-						"scale": 6
-					},
-					{
-						"name": "DurType",
-						"type": "char"
-					},
-					{
-						"name": "ENDTime",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Priority",
-						"type": "char"
-					},
-					{
-						"name": "Reminder",
-						"type": "char"
-					},
-					{
-						"name": "RemQty",
-						"type": "decimal",
-						"precision": 19,
-						"scale": 6
-					},
-					{
-						"name": "RemType",
-						"type": "char"
-					},
-					{
-						"name": "OprId",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "OprLine",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "RemDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "RemTime",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "RemSented",
-						"type": "char"
-					},
-					{
-						"name": "Instance",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "endDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "status",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "personal",
-						"type": "char"
-					},
-					{
-						"name": "inactive",
-						"type": "char"
-					},
-					{
-						"name": "tentative",
-						"type": "char"
-					},
-					{
-						"name": "street",
-						"type": "nvarchar"
-					},
-					{
-						"name": "city",
-						"type": "nvarchar"
-					},
-					{
-						"name": "country",
-						"type": "nvarchar"
-					},
-					{
-						"name": "state",
-						"type": "nvarchar"
-					},
-					{
-						"name": "room",
-						"type": "nvarchar"
-					},
-					{
-						"name": "parentType",
-						"type": "nvarchar"
-					},
-					{
-						"name": "parentId",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "prevActvty",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "AtcEntry",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "RecurPat",
-						"type": "char"
-					},
-					{
-						"name": "EndType",
-						"type": "char"
-					},
-					{
-						"name": "SeStartDat",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "SeEndDat",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "MaxOccur",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Interval",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Sunday",
-						"type": "char"
-					},
-					{
-						"name": "Monday",
-						"type": "char"
-					},
-					{
-						"name": "Tuesday",
-						"type": "char"
-					},
-					{
-						"name": "Wednesday",
-						"type": "char"
-					},
-					{
-						"name": "Thursday",
-						"type": "char"
-					},
-					{
-						"name": "Friday",
-						"type": "char"
-					},
-					{
-						"name": "Saturday",
-						"type": "char"
-					},
-					{
-						"name": "SubOption",
-						"type": "char"
-					},
-					{
-						"name": "DayInMonth",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Month",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "DayOfWeek",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Week",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "SeriesNum",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "OrigDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "IsRemoved",
-						"type": "char"
-					},
-					{
-						"name": "LastRemind",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "AssignedBy",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "AddrName",
-						"type": "nvarchar"
-					},
-					{
-						"name": "AddrType",
-						"type": "char"
-					},
-					{
-						"name": "AttendEmpl",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "NextDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "NextTime",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "U_beas_prjcode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_beas_prjuid",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "U_Applicable",
-						"type": "char"
-					},
-					{
-						"name": "U_DateCompleted",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "U_DesicionTreeType",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_DateReportability",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "U_prodinvolved",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_DeathAlleged",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_InjuryIllnes",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_Lifethreatening",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_Permanentbody",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_MedicalInterven",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_Medicalsurgical",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_InjurIllalleged",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_Justification",
-						"type": "ntext"
-					},
-					{
-						"name": "U_EventOccur",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_Malfunctionoccur",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_ListofEvents",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_Pumps",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_nonserializedprod",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_MalfunctionLead",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_Malfunctioncause",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_RequiredRemidalAct",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_ReportDecision",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_ReportType",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_ReportDayType",
-						"type": "ntext"
-					},
-					{
-						"name": "U_ReferenceNumber",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_ReportingDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "U_ReportedOther",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_ReportedFDA",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_ReportingDate2",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "U_ReferenceNumber2",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_ReportedCustomer",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_ReferenceNumber3",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_ReportingDate3",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "U_Justification2",
-						"type": "ntext"
-					},
-					{
-						"name": "U_QueriesAuthroties",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_DateQueriesRecieve",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "U_TargetDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "U_DateAnswersent",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "U_CompType",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_UserID",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_DateRep1",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "U_DateRep2",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "U_DateRep3",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "U_E_UDT",
-						"type": "char"
-					},
-					{
-						"name": "U_E_ODT",
-						"type": "char"
-					},
-					{
-						"name": "U_ReportEvent",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_ReportEvett2",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_M_NON",
-						"type": "char"
-					},
-					{
-						"name": "U_M_FSB",
-						"type": "char"
-					},
-					{
-						"name": "U_M_BLH",
-						"type": "char"
-					},
-					{
-						"name": "U_M_LEK",
-						"type": "char"
-					},
-					{
-						"name": "U_E_INT",
-						"type": "char"
-					},
-					{
-						"name": "U_E_DLT",
-						"type": "char"
-					},
-					{
-						"name": "U_E_STR",
-						"type": "char"
-					},
-					{
-						"name": "U_M_FSA",
-						"type": "char"
-					},
-					{
-						"name": "U_Notes2",
-						"type": "ntext"
-					},
-					{
-						"name": "U_E_ELE",
-						"type": "char"
-					},
-					{
-						"name": "U_E_EXU",
-						"type": "char"
-					},
-					{
-						"name": "U_E_BP",
-						"type": "char"
-					},
-					{
-						"name": "U_E_NON",
-						"type": "char"
-					},
-					{
-						"name": "U_M_EMC",
-						"type": "char"
-					},
-					{
-						"name": "U_M_BLS",
-						"type": "char"
-					},
-					{
-						"name": "U_InvestSummary",
-						"type": "ntext"
-					},
-					{
-						"name": "U_ComplaintRepo",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_CompConfirmation",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_TIReportApproval",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_ErrorFoundTI",
-						"type": "ntext"
-					},
-					{
-						"name": "U_CompDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "U_DateEvent",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "U_EventLogReview",
-						"type": "ntext"
-					},
-					{
-						"name": "U_DateEventLogReview",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "U_CompSum",
-						"type": "ntext"
-					},
-					{
-						"name": "U_HW",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_SW",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_PCAPP",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_Accessory",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_FactualMisinter",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_Other",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_NotFound",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_Set",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_NotCompRelated",
-						"type": "ntext"
-					},
-					{
-						"name": "U_ApprovedDateTI",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "U_ApprovedTIname",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_Callid",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "U_status",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_ClosedDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "U_ClosedTime",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "U_COCO",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_COCOsd",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "U_COCOed",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "U_StartDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "U_StartTime",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "U_Cancelled",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_DiffDrug",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_DurTesting",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_DurSetup",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_PatientInvolv",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_Malfunction",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_OpMistake",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_Justification3",
-						"type": "ntext"
-					},
-					{
-						"name": "U_OtherSub",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_SciInfo",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_LabelInaccuracy",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_SideEffect",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_Destruction",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_TherapyDelay",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_DrugInvolve",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_Interup",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_OverDelivery",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_UnderDelivery",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_BloodPressure",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_BloodLoss",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_Electric",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_AirEmbolism",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_SterilityBreach",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_Priming",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_Electromagnetic",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_PossOutcomes",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_UnBolus",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_Leakage",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_ProdInvolved_New",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_DrugInvolve2",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_DrugInvolve3",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_DrugInvolve4",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_AddToList",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_Justi",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_RADate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "U_RAName",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_Wait_Portal",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_Wait_Portal_SD",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "U_Wait_Portal_ED",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "U_TransactionID",
-						"type": "int",
-						"precision": 10
-					}
-				],
-				"typeProperties": {
-					"schema": "ScoreCards",
-					"table": "Mrr_OCLG"
 				}
 			},
 			"dependsOn": []

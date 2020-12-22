@@ -417,9 +417,6 @@
 					},
 					"SAP_Sorrel_connectionString": {
 						"value": "[parameters('SAP_Sorrel_connectionString')]"
-					},
-					"SAP_integrator_dev_accounts_replica_connectionString": {
-						"value": "[parameters('SAP_integrator_dev_accounts_replica_connectionString')]"
 					}
 				}
 			},
@@ -440,6 +437,9 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"SAP_integrator_dev_accounts_replica_connectionString": {
+						"value": "[parameters('SAP_integrator_dev_accounts_replica_connectionString')]"
 					},
 					"SalesforceSandBox_password": {
 						"value": "[parameters('SalesforceSandBox_password')]"

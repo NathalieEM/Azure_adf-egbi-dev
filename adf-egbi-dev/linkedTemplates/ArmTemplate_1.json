@@ -13,6 +13,41 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/Stg_Fact_Oscl')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "sp_Stg_Fact_Oscl",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[srv].[sp_Stg_Fact_Oscl]"
+						},
+						"linkedServiceName": {
+							"referenceName": "sqldb_egbi_dev",
+							"type": "LinkedServiceReference"
+						}
+					}
+				],
+				"folder": {
+					"name": "Service/Stg"
+				},
+				"annotations": [],
+				"lastPublishTime": "2020-09-22T09:12:05Z"
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/Stg_Fact_ServiceFlow')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
@@ -1197,76 +1232,6 @@
 				"typeProperties": {
 					"schema": "ScoreCards",
 					"table": "Mrr_BP_SCORE"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Mrr_BP_SCORE1')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqldb_egbi_dev",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQLDB-EGBI-DEV/ScoreCards/Mrr"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "Code",
-						"type": "nvarchar"
-					},
-					{
-						"name": "LineId",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Object",
-						"type": "nvarchar"
-					},
-					{
-						"name": "LogInst",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "U_CardCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_CardName",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_Score",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "U_Total",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_TotalPer",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_Critical",
-						"type": "nvarchar"
-					},
-					{
-						"name": "U_ScoreScaleType",
-						"type": "char"
-					}
-				],
-				"typeProperties": {
-					"schema": "ScoreCards",
-					"table": "Mrr_BP_SCORE1"
 				}
 			},
 			"dependsOn": []

@@ -13,6 +13,131 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/SCAR_Log')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Blob Storage"
+				},
+				"annotations": [],
+				"type": "Excel",
+				"typeProperties": {
+					"sheetName": "PURC-4000-0000800",
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "PURC-4000-0000800 Suppliers Corrective Action (SCAR) Log.xlsx",
+						"container": "excels"
+					},
+					"range": "a1:x1000",
+					"firstRowAsHeader": true
+				},
+				"schema": [
+					{
+						"name": "NCR #",
+						"type": "String"
+					},
+					{
+						"name": "Supplier Name",
+						"type": "String"
+					},
+					{
+						"name": "Supplier's No.",
+						"type": "String"
+					},
+					{
+						"name": "Part Description",
+						"type": "String"
+					},
+					{
+						"name": "PN",
+						"type": "String"
+					},
+					{
+						"name": "MRB # / Ref",
+						"type": "String"
+					},
+					{
+						"name": "Description of deviation",
+						"type": "String"
+					},
+					{
+						"name": "Date of sending SCAR to supplier",
+						"type": "String"
+					},
+					{
+						"name": "Y/M (trend)",
+						"type": "String"
+					},
+					{
+						"name": "Allowed return date",
+						"type": "String"
+					},
+					{
+						"name": "Date of Reminder",
+						"type": "String"
+					},
+					{
+						"name": "Date of SCAR Return",
+						"type": "String"
+					},
+					{
+						"name": "QA's Review date",
+						"type": "String"
+					},
+					{
+						"name": "SCAR Approval Date",
+						"type": "String"
+					},
+					{
+						"name": "Effectiveness Results",
+						"type": "String"
+					},
+					{
+						"name": "Effectiveness Checking Date",
+						"type": "String"
+					},
+					{
+						"name": "Closing Date",
+						"type": "String"
+					},
+					{
+						"name": "Sealing Date",
+						"type": "String"
+					},
+					{
+						"name": "Status",
+						"type": "String"
+					},
+					{
+						"name": "Comments",
+						"type": "String"
+					},
+					{
+						"name": "Time To Answer",
+						"type": "String"
+					},
+					{
+						"name": "Time to Approval",
+						"type": "String"
+					},
+					{
+						"name": "Time for Effectivness",
+						"type": "String"
+					},
+					{
+						"name": "Time to Close",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/SFDC_Adccounts_Replica')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -986,27 +1111,6 @@
 					"relativeUrl": "getbytitle('Accounts')/items"
 				},
 				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Sharepoint_PR_List_Items')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "SharePointOnlineList1",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "Sharepoint/PROF"
-				},
-				"annotations": [],
-				"type": "SharePointOnlineListResource",
-				"schema": [],
-				"typeProperties": {
-					"listName": "Items"
-				}
 			},
 			"dependsOn": []
 		}
