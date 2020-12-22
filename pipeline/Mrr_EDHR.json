@@ -1,5 +1,5 @@
 {
-	"name": "EDHR_Main",
+	"name": "Mrr_EDHR",
 	"properties": {
 		"activities": [
 			{
@@ -88,104 +88,6 @@
 				"typeProperties": {
 					"pipeline": {
 						"referenceName": "Mrr_Rework",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true
-				}
-			},
-			{
-				"name": "Stg_Fact_Data",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "Mrr_DeviceMovement",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					},
-					{
-						"activity": "Mrr_Location",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					},
-					{
-						"activity": "Mrr_ProcedureType",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					},
-					{
-						"activity": "Mrr_DeviceProcedureData",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					},
-					{
-						"activity": "Mrr_Device",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					},
-					{
-						"activity": "Mrr_Result",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					},
-					{
-						"activity": "Mrr_Rework",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					},
-					{
-						"activity": "Mrr_PumpProductionLine",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					},
-					{
-						"activity": "Mrr_Pump",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					},
-					{
-						"activity": "Mrr_DHR_Failure",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					},
-					{
-						"activity": "Mrr_EntranceReason",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					},
-					{
-						"activity": "Mrr_DHR_Assembly",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					},
-					{
-						"activity": "Mrr_PumpType",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					},
-					{
-						"activity": "Mrr_DHR_FTP",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "Stg_Fact_Data",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true

@@ -1,0 +1,44 @@
+{
+	"name": "Main_EDHR",
+	"properties": {
+		"activities": [
+			{
+				"name": "Mrr_EDHR",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Mrr_EDHR",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Stg_EDHR",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Mrr_EDHR",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Stg_EDHR",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			}
+		],
+		"folder": {
+			"name": "EDHR"
+		},
+		"annotations": []
+	}
+}

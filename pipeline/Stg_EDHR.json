@@ -1,0 +1,37 @@
+{
+	"name": "Stg_EDHR",
+	"properties": {
+		"activities": [
+			{
+				"name": "Stg_Fact_Data",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Stg_Fact_Data",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Stg_Fact_FTPData",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Stg_Fact_FTPData",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			}
+		],
+		"folder": {
+			"name": "EDHR"
+		},
+		"annotations": []
+	}
+}
